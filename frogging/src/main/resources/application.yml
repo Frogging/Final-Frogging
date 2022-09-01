@@ -1,0 +1,19 @@
+server:
+  port: 8010
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource: #jdbc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/wedding?characterEncoding=utf-8
+    username: root
+    password: root1234
+    
+    
+mybatis:
+  type-aliases-package: com.frogging.web.vo
+  mapper-locations: mapper/*Mapper.xml 
