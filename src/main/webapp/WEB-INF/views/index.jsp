@@ -13,7 +13,10 @@
 </head>
 <body>
 	<div class="container">
-		
+		<ul>
+			<li><a href="/club/join_club">함께하기</a></li>
+			<li><a href="/alone/alone_rec_path">혼자하기</a></li>
+		</ul>
 	</div>
 </body>
 </html>
