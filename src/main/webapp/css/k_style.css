@@ -105,7 +105,7 @@ header, footer{
 .k_section_title>div>i{ /*아이콘*/
 	font-size: calc(var(--size-medium-1)*1.2);
 }
-.k_section_title .k_my_party{
+.k_section_title .k_my_party{   /*마이리스트 버튼*/
 	float: right;
 	position: relative;
 	top: calc(var(--space-large)*(-1));
@@ -113,15 +113,23 @@ header, footer{
 	text-align: right;
 	background-color: var(--main-green);
 	color: var(--main-white);
-	width: 25%;
+	width: 22%;
 	height: 30px;
-	line-height: var(--size-medium-1);
+	line-height: 30px;
 	box-shadow: var(--shadow-basic);
 	border-radius: var(--radius-mild);
 	text-align: center;
 }
-.k_section_title .k_my_party>a{
+.k_section_title .k_my_party>a{ /*마이리스트 버튼-폰트*/
 	font-size: var(--size-medium-1);
+	position: relative;
+	top: -3px;
+}
+.k_section_title_links{ /*상단링크정리*/
+	color: var(--ct-dark-grey);
+	font-size: var(--size-small-2);
+	text-decoration: underline;
+	margin: var(--space-large) 0 0 80px; ;
 }
 /* ------------------ FIND PARTY -------------------- */
 .k_party_list{ /* 파티 리스트 배경 */
@@ -237,7 +245,7 @@ header, footer{
 
 /* ------------------- RECOMMENDATION PATH ------------------- */
 .k_path_list{ /*배경-그린*/
-	background-color: var(--main-green);
+	background-color: var(--ct-light-green);
 	padding: var(--space-medium);
 }
 .k_path_list_bg{ /*배경-화이트*/
@@ -245,6 +253,7 @@ header, footer{
 	border-radius: var(--radius-strong);
 	padding: var(--space-medium);
 	margin: var(--space-large) 0;
+	border: var(--border-bold) var(--main-green);
 }
 .k_new_party_rec_path .k_rec_path_button{/*경로버튼-정렬*/
 	display: flex;
@@ -748,6 +757,7 @@ header, footer{
 	border-radius: var(--radius-mild);
 	border: 1px solid var(--ct-dark-grey);
 }
+
 /* ------------------ modal setting --------------------- */
 .modal{
 	position: absolute;
@@ -767,4 +777,130 @@ header, footer{
   left: 50%;
   padding: 40px;
   transform: translateX(-50%) translateY(-50%);
+}
+
+/* ------------------ my_party_list: join--------------------- */
+.k_my_party_join{ /*참여중 영역*/
+	background-color: var(--ct-light-green);
+	padding: var(--space-medium);
+}
+.k_bg_white_wrapper{ /*영역 내부 상자*/
+	background-color: var(--main-white);
+	border-radius: var(--radius-strong);
+	padding: var(--space-medium);
+	margin: var(--space-large) auto;
+	border: var(--border-bold) var(--main-green);
+}
+
+/* ------------------ my_party_list: manage--------------------- */
+.k_my_party_manage{ /*운영중 영역*/
+	background-color: var(--ct-light-grey);
+	padding: var(--space-medium);
+}
+.k_my_party_list_title{ /*리스트 제목*/
+	margin: var(--space-large);
+	font-size: var(--size-large-2);
+	font-weight: bold;
+	/* color: var(--main-green); */
+	text-align: center;
+}
+.k_my_party_grid{ /*리스트 정렬*/
+	display: flex;
+	flex-wrap: wrap;
+	margin: var(--space-large) ;
+}
+.k_my_party_grid>li{ /*리스트 목록*/
+	width: 10%;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: var(--basic-dot) var(--main-green);
+	padding: 0 var(--space-medium);
+	border-right:var(--basic-dot) var(--main-green);
+}
+.k_my_party_grid .k_my_list_head{ /*리스트 제목*/
+	background-color: var(--main-green);
+	color: var(--main-white);
+	font-weight: bold;
+	text-align: center;
+	/* border: none; */
+}
+.k_my_party_grid .k_my_list_head:first-child{  /*리스트 속성*/
+	border-radius: var(--radius-mild) 0 0 0; 
+}
+.k_my_party_grid .k_my_list_head:nth-child(5){  /*리스트 속성*/
+	border-radius: 0 var(--radius-mild) 0 0;
+}
+.k_my_party_grid>li:nth-child(5n+2), 
+.k_my_party_grid>li:nth-child(5n+3){  /*리스트 속성-제목/코스명*/
+	width: 25%;
+}
+.k_my_party_grid>li:nth-child(5n+4){  /*리스트 속성-일시*/
+	width: 19.5%;
+}
+.k_my_party_grid>li:nth-child(5n+5){  /*리스트 속성*/
+	border-right: none;
+}
+.k_my_party_grid>li>i{  /*리스트 내 N 아이콘*/
+	font-size: var(--size-small-2);
+	position: relative;
+	top:-1.5px;
+}
+
+/* ------------------ my_party_list: manage+detail --------------------- */
+.k_selected_m_party_detail>.k_wrapper{ /*경로세부정보 영역-wrap*/
+	padding: var(--space-large) 0;
+}
+.k_m_party_detail_box{ /*경로세부-박스*/
+	border-radius: var(--radius-strong);
+	border: var(--border-bold) var(--ct-yellow);
+	background-color: var(--main-white);
+	padding: var(--space-large);
+}
+.k_party_manage_infos{ /*리스트 정렬*/
+	display: flex;
+	flex-wrap: wrap;
+	margin: var(--space-large) auto ;
+	width: 90%;
+}
+.k_party_manage_infos>li{ /*리스트 목록*/
+	width: 10%;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: var(--basic-dot) var(--main-green);
+	padding: 0 var(--space-medium);
+	border-right:var(--basic-dot) var(--main-green);
+}
+.k_party_manage_infos .k_my_list_head{ /*리스트 제목*/
+	background-color: var(--main-green);
+	color: var(--main-white);
+	font-weight: bold;
+	text-align: center;
+	/* border: none; */
+}
+.k_party_manage_infos .k_my_list_head:first-child{  /*리스트 속성*/
+	border-radius: var(--radius-mild) 0 0 0; 
+}
+.k_party_manage_infos .k_my_list_head:nth-child(5){  /*리스트 속성*/
+	border-radius: 0 var(--radius-mild) 0 0;
+}
+.k_party_manage_infos>li:nth-child(5n+2){  /*리스트 속성-제목/코스명*/
+	width: 30%;
+}
+.k_party_manage_infos>li:nth-child(5n+3),
+.k_party_manage_infos>li:nth-child(5n+4){  /*리스트 속성-버튼*/
+	width: 15%;
+}
+.k_party_manage_infos>li:nth-child(5n+5){  /*리스트 속성*/
+	width: 17%;
+	border-right: none;
+}
+.k_party_manage_infos button{
+	border-radius: var(--radius-mild);
+	font-size: var(--size-small-1);
+	width: 35%;
+	background-color: var(--ct-light-green);
+	border: none;
+}
+.k_party_manage_infos button:first-child{
+	margin-right: var(--space-medium);
 }

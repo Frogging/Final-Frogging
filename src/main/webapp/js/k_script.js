@@ -46,8 +46,8 @@ function modal_club() {
 };
 
 
-// 모달 띄우기: 경로 세부
-function modal_path() {
+// 모달 띄우기: 경로 세부 + 파티 신청 세부
+function modal_more() {
 	const body = document.querySelector('body');
 	const modal = document.querySelector('.modal');
 	const openPopup = document.querySelectorAll('.open_modal');
@@ -92,10 +92,17 @@ function modal_path() {
 	});
 };
 
+//---------------------- 버튼 클릭 --------------------
+function ask_join_in(party_no) {
+	if(confirm("클럽에 참여하시겠습니까?")){
+		console.log("check1");
+		location.href = "/club/ask_join_in?party_no="+party_no ;
+	}
+}
 
 $(function(){
 
-	//------------------------ 마우스 이벤트 처리 ------------------------ 
+	//------------------------ 마우스 이벤트 css 처리 ------------------------ 
 
 	//파티 박스
 	$(".k_one_box").on({

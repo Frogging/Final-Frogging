@@ -17,6 +17,21 @@
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
+				<div class="k_section_title_links">
+					<div>
+						<i class="fa-solid fa-square-caret-right k_green"></i>
+						<a href="/">
+							플로깅하기 
+						</a>
+						<a href="/alone/alone_rec_path">
+							<i class="fa-solid fa-angle-right"></i>
+							혼자하기
+						</a>
+						<i class="fa-solid fa-angle-right"></i>
+						추천 경로 찾기
+					</div>
+				</div>
+				
 				<div class="k_section_title">
 					<div>오늘은 혼자 걷고 싶어!</div>
 					<div class="k_green">프로깅 혼자하기 <i class="fa-solid fa-circle-plus"></i></div>

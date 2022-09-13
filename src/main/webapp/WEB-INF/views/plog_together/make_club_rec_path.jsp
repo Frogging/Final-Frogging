@@ -12,14 +12,30 @@
 	<script src="/js/k_script.js" type="text/javascript"></script>
 	<title>새파티-추천경로</title>
 </head>
-<body onload="modal_path()">
+<body onload="modal_more()">
 	<header></header>
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
-				<div class="k_section_title">
-					<div><a href="/club/join_club"><i class="fa-solid fa-rotate-left k_green"></i>&nbsp내 주변의 클럽찾기</a></div>
+				<div class="k_section_title_links">
+					<div>
+						<i class="fa-solid fa-square-caret-right k_green"></i>
+						<a href="/">
+							플로깅하기 
+						</a>
+						<a href="/club/join_club">
+							<i class="fa-solid fa-angle-right"></i>
+							함께하기
+							<i class="fa-solid fa-angle-right"></i>
+							클럽 찾기
+						</a>
+						<i class="fa-solid fa-angle-right"></i>
+						클럽 만들기
+						<i class="fa-solid fa-angle-right"></i>
+						추천 경로 찾기
+					</div>
 				</div>
+
 				<div class="k_section_title">
 					<div>원하는 파티가 없다면,</div>
 					<div class="k_green">나의 파티 만들기 <i class="fa-solid fa-circle-plus"></i></div>

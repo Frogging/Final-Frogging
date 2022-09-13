@@ -17,6 +17,21 @@
 	<!-- --------- FIND PARTY --------- -->
 	<section class="find_party">
 		<div class="k_wrapper">
+			<div class="k_section_title_links">
+				<div>
+					<i class="fa-solid fa-square-caret-right k_green"></i>
+					<a href="/">
+						플로깅하기 
+					</a>
+					<a href="/club/join_club">
+						<i class="fa-solid fa-angle-right"></i>
+						함께하기
+						<i class="fa-solid fa-angle-right"></i>
+						클럽 찾기
+					</a>
+				</div>
+			</div>
+
 			<div class="k_section_title">
 				<form action="">
 					<!-- script 처리 -->
@@ -27,7 +42,7 @@
 					</div>
 				</form>
 				<div>주변 파티를 찾아드릴께요</div>
-				<button class="k_my_party"><a href="/club/my_party_list">나의 파티 관리</a></button>
+				<button class="k_my_party"><a href="/club/my_club_list">나의 클럽 관리</a></button>
 			</div>
 		</div>
 		
@@ -216,7 +231,7 @@
 			</div> 
 			<div class="k_party_detail_join">
 				<div class="k_close_popup click-btn">돌아가기</div>
-				<div class="click-btn">파티 참여 신청하기</div>
+				<div class="click-btn"><a href="javascript:ask_join_in(1);">파티 참여 신청하기</a></div>
 			</div>
 		</div>
 	</section>
