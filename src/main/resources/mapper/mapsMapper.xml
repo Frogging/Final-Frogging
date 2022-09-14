@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.frogging.app.dao.MapsDAO">
+	<insert id = "courseInsert">
+		insert into course(course_name, course_info, distance, time)
+		values(#{course_name}, #{course_info}, #{distance}, #{time})
+	</insert>
+	<select id = "coursenoSearch" resultType = "int">
+		select course_no from course where course_name = #{param1}
+	</select>
+	<insert id = "coursedetailInsert">
+		insert into course_detail(course_no, waypoint, lat, log, addr)
+		value(${param1}, ${param2}, #{param3}, #{param4}, #{param5})
+	</insert>
+</mapper>

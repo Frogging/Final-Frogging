@@ -10,7 +10,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/mydb?characterEncoding=utf-8
+    url: jdbc:mysql://106.10.46.53:1025/frogging?characterEncoding=utf-8
     username: root
     password: root1234
 
