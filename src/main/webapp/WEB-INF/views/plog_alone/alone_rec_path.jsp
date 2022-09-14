@@ -137,6 +137,6 @@
 				</div>
 			</div>
 		</section>
-	<footer
+	<footer></footer>
 </body>
 </html>
