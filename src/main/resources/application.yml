@@ -1,12 +1,11 @@
 server:
-  port: 8010 
-  
+  port: 8010
+
 spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -14,8 +13,6 @@ spring:
     username: root
     password: root1234
 
-        
 mybatis:
   type-aliases-package: com.frogging.app.vo
   mapper-locations: mapper/*Mapper.xml
- 

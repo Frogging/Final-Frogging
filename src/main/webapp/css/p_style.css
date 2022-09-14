@@ -1,0 +1,120 @@
+@charset "UTF-8";
+body, html{ 
+	margin: 0; 
+	padding:0; 
+	text-decoration: none;
+	overflow:auto;
+}
+ul{
+	list-style:none;
+}
+.p_mainContent{
+	display:flex;
+	color:white;
+	font-family: 'Jua', sans-serif;
+	background-color:#2fb86a;
+	width:80%;
+	height:100%;
+	
+}
+.p_nav, .p_section {
+	float:left;
+	overflow:auto;
+	background-color:#2fb86a;
+	margin:10% 5%;
+	
+}
+.p_nav{
+	width:50%;
+	text-align:center;
+	font-size:1.6em;
+	overflow:auto;	
+}
+.p_section{
+	width:50%;
+	text-align:center;
+	font-size:1.6em;	
+	overflow:auto;	
+	
+}
+.p_section-ment{
+	border : 10px solid white;
+	border-radius:10px;
+}
+.p_main-plogging{
+	text-align:center;
+	font-family: 'Jua', sans-serif;
+	background-color:white;
+	height:100%;
+	width:80%;
+	
+}
+.p_plogging-ment{
+	padding:5%;
+}
+.p_main-event{
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color:#ddd;	
+	height:100%;
+	margin:5%;
+	padding:5%;
+	width:80%;
+	display:block;
+}
+.p_event-btn-area{
+	margin: 50px;   justify-content: center; text-align: center;
+}
+.p_event-btn:hover{
+	background-color: #2fb86a;
+}
+.p_event-btn{
+	background-color:white;
+	border-radius:5px; 
+	border : 1px solid white;
+	color:#2fb86a; 
+	height: 50px;  
+	font-size: 1.4em; 
+	font-weight: bold;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.p_title{
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+	font-weight: bold;
+}
+.p_delete,.p_search-btn, .p_boardwrite-btn{
+    height: 30px;
+    width: 80px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0 10px;
+}
+.p_delete:hover,.p_search-btn:hover, .p_communitywrite-btn:hover{
+    background-color: yellow;
+}
+.p_communityList{
+    padding: 10px 20px;
+    background-color: white;
+    height: 700px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.p_searchFrom{
+    display: flex;
+    padding: 10px 15px;
+    margin: 0 10px;
+}
+.p_community{overflow:auto;}
+.p_community li{
+    float:left; line-height:40px; border-bottom:1px solid #ddd; width:10%;
+}
+.p_community li:nth-child(6n+1){ width:5%;}
+.p_community li:nth-child(6n+3){width:55%;}
+.p_community li:nth-child(6n+3)>div{float:left;}
+.p_community li:nth-child(6n+3)>div:first-child{
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
