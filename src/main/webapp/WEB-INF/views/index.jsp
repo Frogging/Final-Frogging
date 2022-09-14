@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="/js_css/style.css" type="text/css"/>
+	<link rel="stylesheet" href="/css/p_style.css" type="text/css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
    	</head>
@@ -234,29 +233,5 @@
 			</script>
 		</div>
 	</div>   
-=======
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">	
-	<title>Insert title here</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<style>
-	</style>
-	<script>
-	</script>
-</head>
-<body>
-	<div class="container">
-		<ul>
-			<li><a href="/club/join_club">함께하기</a></li>
-			<li><a href="/alone/alone_rec_path">혼자하기</a></li>
-			<li><a href="/IntroductionForm">소개페이지</a></li>
-			<li><a href="/login">로그인페이지</a></li>
-			<li><a href="/rankingForm">랭킹페이지</a></li>
-		</ul>
-	</div>
->>>>>>> c930a8608e247df7f9b27209cb1a5fe1bc93e20b
 </body>
 </html>
