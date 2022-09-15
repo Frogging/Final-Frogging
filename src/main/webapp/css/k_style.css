@@ -47,9 +47,8 @@
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
-	box-sizing: unset;
 }	
-a {
+.k_wrapper a {
 	text-decoration: none;
 	color: inherit;
 	font-size: inherit;
@@ -64,6 +63,9 @@ body{
 .k_wrapper{
 	width: var(--section-width);
 	margin: 0 auto;
+}
+.k_wrapper *{
+	box-sizing: unset;
 }
 
 /* ------------------ SECTION TITLES ------------------ */
