@@ -60,7 +60,7 @@ function modal_more() {
 			//openPopup[i].style.color = 'blue';
 			//모달 위치 설정 
 			console.log(window.scrollY);
-			modal.style.top =  window.scrollY+'px';
+			modal.style.top =  (100+window.scrollY)+'px';
 			modal.classList.toggle('show');
 			console.log("check",i,"th");
 		
