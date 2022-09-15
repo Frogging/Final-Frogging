@@ -47,16 +47,20 @@
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+	box-sizing: unset;
 }	
 a {
 	text-decoration: none;
 	color: inherit;
 	font-size: inherit;
+	display: initial;
 }
 i{
 	cursor: pointer;
 }
-
+body{
+	position:static;
+}
 .k_wrapper{
 	width: var(--section-width);
 	margin: 0 auto;
@@ -156,7 +160,7 @@ i{
 	border-radius: var(--radius-mild);
 	box-shadow: var(--shadow-basic);
 	width: 20%;
-	height: 200px;
+	height: 150px;
 	border: var(--border-bold) var(--main-white);
 }
 .k_party_list_boxes li.active{
@@ -331,7 +335,7 @@ i{
 }
 .k_rec_path_list_view>li { /*경로박스 속성*/
 	width: 40%;
-	height: 180px;
+	height: 160px;
 	border-radius: var(--radius-mild);
 	border: var(--border-bold) var(--main-green);
 	margin: var(--space-medium) 4.5% ;
