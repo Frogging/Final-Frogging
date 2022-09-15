@@ -19,7 +19,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(FinalFroggingApplication.class);
+		return application.sources(FroggingApplication.class);
 	}
 	@Bean
 	public ConfigurableServletWebServerFactory configurableServletWebServerFactory(){
