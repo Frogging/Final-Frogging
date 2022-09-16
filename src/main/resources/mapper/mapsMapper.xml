@@ -15,4 +15,37 @@
 		insert into course_detail(course_no, waypoint, lat, log, addr)
 		value(${param1}, ${param2}, #{param3}, #{param4}, #{param5})
 	</insert>
+	<select id = "courseAllselect" resultType = "CourseVO">
+		select a.course_no course_no, a.course_name course_name, a.course_info course_info, a.distance distance, a.time time, b.addr startaddr, c.addr endaddr
+		from course a, (select * from course_detail where waypoint = 0) b left outer join 
+		(select course_no, addr from course_detail where waypoint = 99999) c 
+		on b.course_no = c.course_no where a.course_no = b.course_no;
+	</select>
+	<delete id = "courseDelete">
+		delete from course where course_no = ${param1}
+	</delete>
+	<select id = "courseSelect" resultType = "CourseVO">
+		select course_no, course_name, course_info, distance, time
+		from course where course_no = ${param1}
+	</select>
+	<select id = "detailSelect" resultType = "CourseVO">
+		select course_no, waypoint, lat, log, addr
+		from course_detail where course_no = ${param1} order by waypoint
+	</select>
+	<update id = "courseUpdate">
+		update course
+		set course_name = #{course_name}, course_info = #{course_info}, distance = #{distance}, time = #{time}
+		where course_no = ${course_no}
+	</update>
+	<select id = "waypointCheck" resultType = "int">
+		select count(course_no) from course_detail where course_no = ${param1}
+	</select>
+	<update id = "coursedetailUpdate">
+		update course_detail
+		set lat = #{param3}, log = #{param4}, addr = #{param5}
+		where course_no = ${param1} and waypoint = #{param2}
+	</update>
+	<delete id = "waypointDelete">
+		delete from course_detail where course_no = ${param1} and waypoint = #{param2}
+	</delete>
 </mapper>

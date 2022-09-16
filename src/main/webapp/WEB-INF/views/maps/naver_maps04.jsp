@@ -26,7 +26,7 @@
 					lat[i] = path._array[i].y;
 					log[i] = path._array[i].x;
 					
-					alert(lat[i] + " " + log[i]);
+					//alert(lat[i] + " " + log[i]);
 			}
 			
 			var course_name = $("#course_name").val();
@@ -34,12 +34,12 @@
 			
 			$.ajax({
 				type : 'POST',
-				url : '/maps/mapsOk',
+				url : '/maps/mapsEditOk/${course.course_no}',
 				data : {"lat": lat, "log": log, "distance" : distance, "time" : time, "course_name" : course_name, "course_info" : course_info, "address" : address},
 				success: function(result){
-					window.location.href = '/maps/maps03';
+					console.log(result);
 				}, error: function(e){
-					alert("코스 등록에 실패하였습니다.");
+					console.log(e);
 				}
 			});
 		});
@@ -49,13 +49,23 @@
 <body>
 	<div id="map" style="width:100%;height:400px;">dd</div>
 	<form method = "post" id = "courseForm">
-		코스명 : <input type = "text" id = "course_name" name = "course_name">
-		코스에 대한 메모 : <textarea id = "course_info" name = "course_info"></textarea>
+		코스명 : <input type = "text" id = "course_name" name = "course_name" value = "${course.course_name }">
+		코스에 대한 메모 : <textarea id = "course_info" name = "course_info">${course.course_info }</textarea>
 		<input type = "submit" id = "course" name = "course" value = "코스 만들기">
 	</form>
 </body>
 
 	<script>
+	var path;
+	var distance;
+	var time;
+	var marker = new Array();
+	var address = new Array();
+	var count = 0;
+	
+	var course_detail = JSON.parse('${course_detail}'); // 코스에 있는 위도, 경도 data를 JSON으로 저장
+	//console.log(course_detail);
+	
 	var map = new naver.maps.Map('map', {
 		center: new naver.maps.LatLng(37.5666805, 126.9784147),
 		zoom: 10
@@ -64,17 +74,42 @@
 	var infowindow = new naver.maps.InfoWindow();
 	
 	function onSuccessGeolocation(position) {
-	    var location = new naver.maps.LatLng(position.coords.latitude,
-	                                         position.coords.longitude);
+	    var location = new naver.maps.LatLng(course_detail[0].lat, course_detail[0].log);
 
 	    map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
 	    map.setZoom(17); // 지도의 줌 레벨을 변경합니다.
 
-	    infowindow.setContent('<div style="padding:20px;">' + 'geolocation.getCurrentPosition() 위치' + '</div>');
+	    infowindow.setContent('<div style="padding:20px;">' + course_detail[0].addr + '</div>');
 
-	    infowindow.open(map, location);
+	    //infowindow.open(map, location);
 	    console.log('Coordinates: ' + location.toString());
+	    
+		// 기존 코스 불러오는 부분 ////////////////////////////////////////////////////
+		for(i = 0; i < course_detail.length; i++){
+		 	marker[i] = new naver.maps.Marker({
+		        map: map,
+		        position: new naver.maps.LatLng(course_detail[i].lat, course_detail[i].log)
+		    });
+		 	
+		 	//console.log("count : " + count);
+		 	path = polyline.getPath();
+		 	
+		 	var point = marker[i].getPosition();
+		 	path.push(point);
+		 	//searchCoordinateToAddress(point);
+		 	address[i] = course_detail[i].addr;
+		 	//console.log("count4 : " + count);
+		 	//console.log(marker[0]);
+		 	count++;
+		}
+		//console.log("count2 : " + count);
+		distance = polyline.getDistance();
+		time = distance / 4.02 / 1000 * 60;
+		//console.log(distance);
+		//console.log(path);
+		//////////////////////////////////////////////////////////////////////////
 	}
+	//console.log("count3 : " + count);
 	function onErrorGeolocation() {
 	    var center = map.getCenter();
 
@@ -83,7 +118,7 @@
 
 	    infowindow.open(map, center);
 	}
-
+	
 	$(window).on("load", function() {
 	    if (navigator.geolocation) {
 	        /**
@@ -92,6 +127,7 @@
 	         * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
 	         */
 	        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+	      	
 	    } else {
 	        var center = map.getCenter();
 	        infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
@@ -106,13 +142,7 @@
 	    strokeWeight: 2,
 	    strokeLineJoin : "miter"
 	});
-
-	var path;
-	var distance;
-	var time;
-	var marker = new Array();
-	var address = new Array();
-	var count = 0;
+	
 	naver.maps.Event.addListener(map, 'click', function(e) {
 
 	    var point = e.coord;
@@ -120,7 +150,7 @@
 	    path = polyline.getPath();
 	    
 	    path.push(point);
-	    
+	    //console.log(path);
  		distance = polyline.getDistance();
  		time = distance / 4.02 / 1000 * 60;
 	    console.log(distance);
@@ -129,16 +159,16 @@
 	        map: map,
 	        position: point
 	    });
-	    //console.log(count);
+	    //console.log(marker[count].getPosition());
 	    searchCoordinateToAddress(point);
 	    //console.log(marker);
-	    count++;
-	   
+	    //count++;
+	    console.log(count);
 	});
 	
 	naver.maps.Event.addListener(map, 'rightclick', function(e){
 		path.pop();
-		console.log(marker[count-1]);
+		console.log(marker[3]);
 		marker[count-1].setMap(null);
 		marker.pop();
 		count--;
@@ -146,7 +176,7 @@
 	});
 	
 	function searchCoordinateToAddress(latlng){
-		console.log("count : " + count);
+		
 		naver.maps.Service.reverseGeocode({
 			coords: latlng,
 			orders:[
@@ -168,9 +198,12 @@
 			    }
 			var tempaddr = response.v2.address;
 			
-			address[count-1] = tempaddr.jibunAddress;
-			console.log(count + " " + address[count-1]);
+			address[count] = tempaddr.jibunAddress;
+			console.log(address[count] + "  askldgj;asdg " + count);
+			count++;
 		});
 	}
+	//console.log("count4 : " + count);
+	
 	</script>
 </html>

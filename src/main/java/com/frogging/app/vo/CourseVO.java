@@ -11,6 +11,8 @@ public class CourseVO {
 	private String lat;
 	private String log;
 	private String addr;
+	private String startaddr;
+	private String endaddr;
 	
 	public int getCourse_no() {
 		return course_no;
@@ -66,6 +68,22 @@ public class CourseVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	
-	
+	public String getStartaddr() {
+		return startaddr;
+	}
+	public void setStartaddr(String startaddr) {
+		this.startaddr = startaddr;
+	}
+	public String getEndaddr() {
+		return endaddr;
+	}
+	public void setEndaddr(String endaddr) {
+		this.endaddr = endaddr;
+	}
+	@Override
+	public String toString() {
+		return "CourseVO [course_no=" + course_no + ", course_name=" + course_name + ", course_info=" + course_info
+				+ ", distance=" + distance + ", time=" + time + ", waypoint=" + waypoint + ", lat=" + lat + ", log="
+				+ log + ", addr=" + addr + ", startaddr=" + startaddr + ", endaddr=" + endaddr + "]";
+	}
 }
