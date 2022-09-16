@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frogging.app.dao.CommunityDAO">
+	<select id="communityList" resultType="CommunityVO">
+		select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
+		from board_community
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>	
+		order by no desc
+		limit ${onePageRecord} offset ${offsetPoint}
+	</select>
+	<insert id="CommunityWriteOk">
+		insert into board_community(id, subject, content )
+		values(#{id}, #{subject}, #{content} )
+	</insert>
+	<select id="totalRecord" resultType="int">
+		select count(no) cnt from board_community
+		<if test='searchWord!=null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	<select id="getCommunity" resultType="CommunityVO" parameterType="int">
+		select no, subject, content, hit, id, writedate
+		from board_community
+		where no=${param1}
+	</select>
+	<update id="hitCount">
+		update board_community set hit = hit+1 where no = ${param1}
+	</update>
+	<delete id="communityDel">
+		delete from board_community where no=${param1} and id=#{param2}
+	</delete>
+	<update id="communityEditOk" parameterType="CommunityVO">
+		update board_community set subject=#{subject}, content=#{content} where no=${no} and id=#{id}
+	</update>
+	<delete id="communityMultiDel">
+		delete from board_community
+		<where>
+			<foreach item="item" index="index" collection="noList" open="no in (" separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</delete>   
+</mapper>
+
+
+
+
