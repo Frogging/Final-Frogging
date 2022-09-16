@@ -9,7 +9,7 @@
 	<script src="/js/k_script.js" type="text/javascript"></script>
 
 </head>
-<body onload='modal_club()'>
+<body onload='modal_club()' class="k_body">
 	<!-- --------- FIND PARTY --------- -->
 	<section class="find_party">
 		<div class="k_wrapper">

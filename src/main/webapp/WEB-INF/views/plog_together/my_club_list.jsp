@@ -8,7 +8,7 @@
 	<script src="/js/k_script.js" type="text/javascript"></script>
 
 </head>
-<body onload="modal_more()">
+<body onload="modal_more()" class="k_body">
 
 		<!-- --------- party_list --------- -->
 		<section class="k_new_party_rec_path">

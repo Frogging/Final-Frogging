@@ -42,8 +42,6 @@
 
 /* BASIC SETTINGS */
 *{
-	font-family: var(--basic-font-family);
-	font-size: var(--size-medium-2);
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -57,8 +55,10 @@
 i{
 	cursor: pointer;
 }
-body{
+.k_body{
 	position:static;
+	width: 100%;
+	height: 87%;
 }
 .k_wrapper{
 	width: var(--section-width);
@@ -66,6 +66,8 @@ body{
 }
 .k_wrapper *{
 	box-sizing: unset;
+	font-family: var(--basic-font-family);
+	font-size: var(--size-medium-2);
 }
 
 /* ------------------ SECTION TITLES ------------------ */
@@ -663,8 +665,8 @@ body{
 }
 .k_party_detail_join>div{ /*파티세부-시작버튼*/
 	width: 40%;
-	height: 10vh;
-	line-height: 10vh;
+	height: 8vh;
+	line-height: 8vh;
 	color: var(--main-white);
 	background-color: var(--main-green);
 	border: var(--border-bold) var(--main-green);
@@ -775,7 +777,7 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	display: none;
 	background-color: rgba(0, 0, 0, 0.4);
 }
@@ -784,7 +786,7 @@ body{
 }
 .modal_body {
   position: absolute;
-  top: 50%;
+  top: 51%;
   left: 50%;
   padding: 40px;
   transform: translateX(-50%) translateY(-50%);
