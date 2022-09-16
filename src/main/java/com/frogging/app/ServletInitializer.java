@@ -13,7 +13,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ServletInitializer extends SpringBootServletInitializer {
 
@@ -21,8 +20,9 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(FroggingApplication.class);
 	}
+
 	@Bean
-	public ConfigurableServletWebServerFactory configurableServletWebServerFactory(){
+	public ConfigurableServletWebServerFactory configurableServletWebServerFactory() {
 		return new TomcatServletWebServerFactory() {
 			@Override
 			protected void postProcessContext(Context context) {
@@ -36,9 +36,11 @@ public class ServletInitializer extends SpringBootServletInitializer {
 				jspPropertyGroup.addIncludeCoda("/WEB-INF/views/inc/bottom.jspf");
 				jspPropertyGroup.setTrimWhitespace("true");
 				jspPropertyGroup.setDefaultContentType("text/html");
-				
-				JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(jspPropertyGroup);
-				context.setJspConfigDescriptor(new JspConfigDescriptorImpl(Collections.singletonList(jspPropertyGroupDescriptor), Collections.emptyList()));
+
+				JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(
+						jspPropertyGroup);
+				context.setJspConfigDescriptor(new JspConfigDescriptorImpl(
+						Collections.singletonList(jspPropertyGroupDescriptor), Collections.emptyList()));
 			}
 		};
 	}

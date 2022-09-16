@@ -6,10 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IntroductionController {
-	@GetMapping("IntroductionForm")
+	@GetMapping("introductionForm")
 	public ModelAndView memberForm() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("Introduction/IntroductionForm");
+		mav.setViewName("introduction/introductionForm");
 		return mav;
 	}
 }

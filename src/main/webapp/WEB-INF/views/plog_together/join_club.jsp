@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="/js/k_script.js" type="text/javascript"></script>
 <!DOCTYPE html>
-<html lang="kor">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>파티 참여하기</title>
+	<title>새파티-추천경로</title>
 </head>
 <body onload='modal_club()'>
-	<header></header>
 	<!-- --------- FIND PARTY --------- -->
 	<section class="find_party">
 		<div class="k_wrapper">
@@ -102,7 +98,7 @@
 					</li>
 
 					<li class="k_one_box">
-						<ul>
+						<ul class="">
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
 							<li class="k_box_frogs">
@@ -250,7 +246,5 @@
 			</ul>
 		</div>
 	</section>
-
-	<footer></footer>
-</body>
+	</body>
 </html>
