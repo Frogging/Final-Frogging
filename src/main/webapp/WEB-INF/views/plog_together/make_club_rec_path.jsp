@@ -7,7 +7,7 @@
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
 </head>
-<body onload="modal_more()">
+<body onload="modal_more()" class="k_body">
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
