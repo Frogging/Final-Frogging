@@ -1,7 +1,6 @@
 package com.frogging.app.controller;
 
 import java.nio.charset.Charset;
-import java.util.function.Function;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.PartyDetailVO;
+import com.frogging.app.vo.PlogPagingVO;
 
 @RestController
 @RequestMapping("/club/*")
@@ -31,9 +31,17 @@ public class PartyController {
 
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
-	public ModelAndView start_party() {
+	public ModelAndView start_party(PlogPagingVO p_PageVO) {
+
+		// DB - 파티 가져오기 + 날짜 조건 + 위치 조건
+		// !!!!!!!!!!!!!!!! 위치 조건 가져오기 !!!!!!!!!!!!!!!! (course DB 들어오고 처리)
+
+		// 페이지 + 조건 검색 세팅
+		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
 
 		mav = new ModelAndView();
+		mav.addObject("list", p_service.getPartyList(p_PageVO));
+
 		mav.setViewName("plog_together/join_club");
 		return mav;
 	}
@@ -59,6 +67,8 @@ public class PartyController {
 	// 클럽관리 - 리스트
 	@GetMapping(value = "/my_club_list")
 	public ModelAndView my_club_list() {
+
+		// DB - 해당 아이디의 파티 가져오기
 
 		mav = new ModelAndView();
 		mav.setViewName("plog_together/my_club_list");

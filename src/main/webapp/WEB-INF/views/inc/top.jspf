@@ -126,7 +126,7 @@ a{
 	<!-- 상단 탭 메뉴 부분 -->
     <div class="p_headerWrap">
                 <span class="p_logo">
-                	<a href="#">
+                	<a href="/">
                     	<img src="../img/logo.png" alt="로고">
                     </a>
     			</span>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>새파티-추천경로</title>
+
 </head>
 
 <body>
@@ -35,6 +35,9 @@
 				<div class="k_section_title">
 					<div>원하는 파티가 없다면,</div>
 					<div class="k_green">나의 파티 만들기 <i class="fa-solid fa-circle-plus"></i></div>
+					<button class="k_my_party click-btn-l">
+						<a href="/club/my_club_list">나의 클럽 관리</a>
+					</button>
 				</div>
 			</div>
 
