@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="/js/k_script.js" type="text/javascript"></script>
 <!DOCTYPE html>
-<html lang="kor">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>파티 참여하기</title>
+
 </head>
-<body onload='modal_club()'>
-	<header></header>
+<body onload='modal_club()' class="k_body">
 	<!-- --------- FIND PARTY --------- -->
 	<section class="find_party">
 		<div class="k_wrapper">
@@ -33,30 +29,65 @@
 			</div>
 
 			<div class="k_section_title">
+				<%-- 위치 조건 검색 --%>
 				<form action="">
+				
 					<!-- script 처리 -->
 					<div class="k_green k_select_wrap" >
 						<select name="" id="" >
 							<option value="">서울시 성동구&nbsp;</option>
 						</select>
 					</div>
+				
+				<div>주변 파티를 찾아드릴께요 <i class="fa-solid fa-magnifying-glass k_green"></i></div>
+				<button class="k_my_party click-btn-l">
+					<a href="/club/my_club_list">나의 클럽 관리</a>
+				</button>
 				</form>
-				<div>주변 파티를 찾아드릴께요</div>
-				<button class="k_my_party"><a href="/club/my_club_list">나의 클럽 관리</a></button>
 			</div>
 		</div>
 		
 		<div class="k_party_list">
-			<!-- 데이터 뿌릴 영역 -->
 			<div class="k_wrapper">
-				<!-- script 처리 -->
+				<!-- 날짜 조건 검색 -->
 				<div class="k_party_list_date">
-					<i class="fa-solid fa-chevron-left"></i>
-					<span>9월 첫째주</span>
-					<i class="fa-solid fa-chevron-right"></i>
+					<form method="get" id="clubDateForm">
+						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
+						<span>클럽 날짜 검색 : </span>
+						<input type='date' name="searchDate" id="searchDate"/>
+						<input type='submit' value='검색' onclick='searchWithDate();'>
+					</form>
 				</div>
+
+				<!-- 데이터 뿌릴 영역 -->
 				<ul class="k_party_list_boxes">
-					<li class="k_one_box">
+					<%-- 파티 리스트 반복 --%>
+					<c:forEach var="vo" items="${list}">
+						<li class="k_one_box open_modal">
+							<ul>
+								<li class="k_box_title">${vo.course_name}</li>
+								<li>${vo.meeting_time} /총 ${vo.number}명</li> 
+
+								<%-- 개구리 아이콘 출력 반복 --%>
+								<li class="k_box_frogs">
+									<c:forEach var="i" begin="1" end="${vo.number}">
+										<%-- 참여자 있음 --%>
+										<c:if test="${i <= vo.current_number}">
+											<i class="fa-solid fa-frog active"></i>
+										</c:if>
+										<%-- 참여자 없음 --%>
+										<c:if test="${i > vo.current_number}">
+											<i class="fa-solid fa-frog"></i>
+										</c:if>
+
+									</c:forEach>
+								</li> 
+								<li>클럽명 : ${vo.partyname}</li>
+							</ul>
+						</li>
+					</c:forEach>
+
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -71,7 +102,7 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box">
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -86,7 +117,22 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box">
+					<li class="k_one_box open_modal">
+						<ul class="">
+							<li class="k_box_title">중량천 하류 산책로</li>
+							<li>9/1(목) 19:00 / 총 5명</li>
+							<li class="k_box_frogs">
+								<i class="fa-solid fa-frog active"></i>
+								<i class="fa-solid fa-frog active"></i>
+								<i class="fa-solid fa-frog active"></i>
+								<i class="fa-solid fa-frog"></i>
+								<i class="fa-solid fa-frog"></i>
+							</li>
+							<li>파티명 : 성동구 토박이들</li>
+						</ul>
+					</li>
+
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -101,7 +147,7 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box">
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -116,37 +162,7 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box">
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -167,7 +183,7 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box">
+					<li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -250,7 +266,5 @@
 			</ul>
 		</div>
 	</section>
-
-	<footer></footer>
-</body>
+	</body>
 </html>

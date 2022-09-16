@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>혼자하기-추천경로</title>
 </head>
-<body onload="modal_path()">
-	<header></header>
+<body onload="modal_more()" class="k_body">
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
@@ -68,7 +63,7 @@
 
 						<!-- path lists -->
 						<ul class="k_rec_path_list_view">
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -78,7 +73,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -88,7 +83,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -98,7 +93,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -108,7 +103,17 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
+								<ul class="k_rec_path_box">
+									<li class="k_rec_path_title k_green">응봉산 산책로</li>
+									<li>서울특별시 성동구 응봉동 산8-14</li>
+									<li class="k_box_space"></li>
+									<li>예상 소요시간: 70분</li>
+									<li>당월 방문 수: 12회</li>
+									<li class="k_more open_modal">더보기</li>
+								</ul>
+							</li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -131,12 +136,51 @@
 							<li><i class="fa-solid fa-chevron-right active"></i></li>
 						</ul>
 					</div>
+
+					<!-- --------- PARTY Details--------- -->
+					<section class="k_selected_path_detail modal">
+						<div class="k_wrapper modal_body">
+							<div class="k_path_detail_box">
+								<div class="k_path_map"></div>
+								<ul class="k_path_infos">
+									<li class="k_green">코스 이름</li>
+									<li>가볍게 응봉산 코스</li>
+									<li class="k_green">시작 위치</li>
+									<li>응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정</li>
+									<li class="k_green">도착 위치</li>
+									<li>응복역 4번 출구</li>
+									<li class="k_green">소요 시간</li>
+									<li>50 min</li>
+									<li class="k_green">이동 거리</li>
+									<li>4 km</li>
+									<li class="k_green">이번 달 방문 횟수</li>
+									<li>12회</li>
+								
+									<div>
+										<ul class="k_path_images">
+											<li><i class="fa-solid fa-chevron-left"></i></li>
+											<li><img src="/img/course_detail_sample.jpeg" alt=""></li>
+											<li><img src="" alt=""></li>
+											<li><img src="" alt=""></li>
+											<li><i class="fa-solid fa-chevron-right"></i></li>
+										</ul>
+									</div>
+								</ul>
+								
+							</div>
+
+							<div class="k_party_detail_join">
+								<div class="k_close_popup click-btn">돌아가기</div>
+								<div class="click-btn">파티 참여 신청하기</div>
+							</div>
+						</div>
+					</section>
+
 					<div class="k_alone_start_button">
 						<div>혼자 프로깅 시작</div>
 					</div>
 				</div>
 			</div>
 		</section>
-	<footer></footer>
-</body>
+	</body>
 </html>

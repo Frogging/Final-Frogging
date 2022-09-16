@@ -3,7 +3,7 @@
 function modal_club() {
 	const body = document.querySelector('body');
 	const modal = document.querySelector('.modal');
-	const openPopup = document.querySelectorAll('.k_box_title');
+	const openPopup = document.querySelectorAll('.open_modal');
 	const closePopup = document.querySelector('.k_close_popup');
 	
 	//클릭 시: 열기
@@ -60,7 +60,7 @@ function modal_more() {
 			//openPopup[i].style.color = 'blue';
 			//모달 위치 설정 
 			console.log(window.scrollY);
-			modal.style.top =  window.scrollY+'px';
+			modal.style.top = window.scrollY+'px';
 			modal.classList.toggle('show');
 			console.log("check",i,"th");
 		
@@ -92,6 +92,19 @@ function modal_more() {
 	});
 };
 
+//------------------------- 파티 검색 (날짜) -----------------------------
+function searchWithDate() {
+	$(function(){
+		if($("#searchDate").val() == ''){
+			alert("날짜를 입력하세요.");
+			return false;
+		}
+		else{
+			$("#clubDateForm").submit();
+		}
+	})
+}
+
 //---------------------- 버튼 클릭 --------------------
 function ask_join_in(party_no) {
 	if(confirm("클럽에 참여하시겠습니까?")){
@@ -103,6 +116,9 @@ function ask_join_in(party_no) {
 $(function(){
 
 	//------------------------ 마우스 이벤트 css 처리 ------------------------ 
+
+
+
 
 	//파티 박스
 	$(".k_one_box").on({
@@ -137,6 +153,24 @@ $(function(){
 			$(this).css('border-color', '#FFD500');
 		}, mouseleave: function() {
 			$(this).css('border-color', '#fafafa');
+		}
+	})
+
+	//클릭버튼-배경
+	$('.click-btn-l').on({
+		mouseenter: function() {
+			$(this).css('background-color', '#c7e5cb');
+		}, mouseleave: function() {
+			$(this).css('background-color', '#2fb86a');
+		}
+	})
+
+	//클릭버튼-색
+	$('.click-btn-c').on({
+		mouseenter: function() {
+			$(this).css('color', '#c7e5cb');
+		}, mouseleave: function() {
+			$(this).css('color', '#2fb86a');
 		}
 	})
 })
