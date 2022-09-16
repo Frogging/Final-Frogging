@@ -8,8 +8,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js" 
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>-->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -18,71 +16,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
   </head>
   <style>
-	html, body {
-      position: relative;
-      height: 100%;
-    }
-    body {
-      background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color:#000;
-      margin: 0;
-      padding: 0;
-    }
-    .swiper-container {
-      width: 100%;
-      height: 77.3%;
-      margin: 0 auto;
-      padding: auto;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: auto;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }    
-	.swiper-container-vertical>.swiper-pagination-bullets{
-    	top: unset !important;
-    	bottom: 10px;
-    	left: 0;
-    	width: 100%;
-	}
-	.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
-  		display : inline-block !important;
-  		margin: 6px 2px !important;
-	}
-        .card-body{
-          height:300px;
-        }
-        .row{
-          display: flex;
-          overflow: initial;
-        }
-        .p_plogging-btn:hover{
-	      background-color: #2fb86a;
-        }
-        .p_plogging-btn{
-        background-color:white; border-radius:10px; border : 1px solid white; color:#2fb86a;
-        }
-    </style>
+  </style>
 	<script>
 
 	</script>
 <body style="overflow-x: hidden">
+	<div class="p_container">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
@@ -122,7 +61,7 @@
 			</div>
 			<div class="swiper-slide">
 				<div class="p_main-event">               
-	                    <h2 style="font-weight: bold; font-family: 'Jua', sans-serif;">진행중인 이벤트</h2><br/>
+	                    <h2 class="p_title">진행중인 이벤트</h2><br/>
 	                    <h5>여러곳에서 진행하는 다양한 플로깅 이벤트를 확인해보세요.</h5>
 	                    <br/>	
 	                     <div class="container">
@@ -175,7 +114,7 @@
 	                        
 	                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>  
-	                   </div>
+	              </div>
 			</div>
 			<div class="swiper-pagination"></div>
 		
@@ -232,6 +171,7 @@
 				});
 			</script>
 		</div>
+	</div>
 	</div>   
 </body>
 </html>
