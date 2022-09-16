@@ -28,7 +28,7 @@
                 <span class="p_logo">
                 	<a href="/" style="height:100px;">
                     	<img src="../img/logo.png" alt="로고" style="	width:200px; height:100px;">
-                    </a>
+                  </a>
     			</span>
                 <ul id="p_menu">
                     <li><a href="/introductionForm">소개</a></li>

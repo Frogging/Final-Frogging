@@ -8,4 +8,47 @@
 		insert into party_detail(party_no, user_id, join_status)
 		values(#{party_no},#{user_id},#{join_status});
 	</insert>
+
+	<select id="getPartyList" resultType="PartyVO">
+		select 
+		party.no,
+		party.partyname, 
+		party.number,
+		party.current_number,
+		course.course_name, 
+		party.course_no, 
+		party.id, 
+		party.content, 
+		party.meeting_place,
+		party.meeting_time
+		from 
+
+		(select 
+		no, partyname, number, current_number, course_no, id, 
+		content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
+		from party
+		<if test="searchDate!=null">
+			where date_format(meeting_time,'%Y-%m-%d') like '%${searchDate}%'
+		</if>
+		order by meeting_time) party
+
+		left outer join
+
+		(select 
+		course_no, course_name
+		from course) course
+
+		on party.course_no = course.course_no
+	</select>
+
+	<select id="totalRecord" resultType="int">
+		select count(no) cnt from party
+		<!-- <if test="searchLoc!=null">
+			where ${searchLoc} like '%${searchLoc}%'
+		</if> -->
+
+		<if test="searchDate!=null">
+			where date_format(meeting_time,'%Y-%m-%d') like '%${searchDate}%'
+		</if>
+	</select>
 </mapper>
