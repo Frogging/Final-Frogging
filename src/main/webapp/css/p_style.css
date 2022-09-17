@@ -103,11 +103,20 @@ ul{
 .p_subMenu a {
 	color:#fff;
 }
+
 .p_login{
 	width:13%;
 	z-index: 999;
 	display:flex;
+	padding:30px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration:none;
 }
+
 .p_login >a{
 	display:block;
 	font-weight:bold;
@@ -116,8 +125,8 @@ ul{
 	color:#fff;
 	font-family: 'Noto Sans KR', sans-serif;
 	float:none;
-	font-size:1.1em;	
 }
+
 .footer {
 	border:none; 
 	padding-top: -116px; 
@@ -147,7 +156,7 @@ ul{
 	 float:right;
 	 font-size:1.3em;
 	 font-family: 'Noto Sans KR', sans-serif;
-	 margin:3px;		
+	 margin:25px;		
 }
 .swiper-container {
 	  width: 100%;
