@@ -8,7 +8,7 @@
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
 </head>
-<body onload="modal_more()">
+<body onload="modal_more()" class="k_body">
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
@@ -63,7 +63,7 @@
 
 						<!-- path lists -->
 						<ul class="k_rec_path_list_view">
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -73,7 +73,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -83,7 +83,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -93,7 +93,7 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -103,7 +103,17 @@
 									<li class="k_more open_modal">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
+								<ul class="k_rec_path_box">
+									<li class="k_rec_path_title k_green">응봉산 산책로</li>
+									<li>서울특별시 성동구 응봉동 산8-14</li>
+									<li class="k_box_space"></li>
+									<li>예상 소요시간: 70분</li>
+									<li>당월 방문 수: 12회</li>
+									<li class="k_more open_modal">더보기</li>
+								</ul>
+							</li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>

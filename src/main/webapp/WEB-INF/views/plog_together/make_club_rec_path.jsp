@@ -6,9 +6,8 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>새파티-추천경로</title>
 </head>
-<body onload="modal_more()">
+<body onload="modal_more()" class="k_body">
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
@@ -35,6 +34,9 @@
 				<div class="k_section_title">
 					<div>원하는 파티가 없다면,</div>
 					<div class="k_green">나의 파티 만들기 <i class="fa-solid fa-circle-plus"></i></div>
+					<button class="k_my_party click-btn-l">
+						<a href="/club/my_club_list">나의 클럽 관리</a>
+					</button>
 				</div>
 			</div>
 			<!-- ----------- recommendation path ------------->
@@ -62,60 +64,70 @@
 										</select>
 									</div>
 								</div>
-								<button class="k_rec_path_search_btn click-btn">검색</button>
+								<button class="k_rec_path_search_btn click-btn-l">검색</button>
 							</div>
 						</form>
 
 						<!-- path lists -->
 						<ul class="k_rec_path_list_view">
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
 									<li class="k_box_space"></li>
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal"><img src="/img/course_sample.png" alt="">더보기</li>
+									<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
 									<li class="k_box_space"></li>
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal"><img src="" alt="">더보기</li>
+									<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
 									<li class="k_box_space"></li>
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal"><img src="" alt="">더보기</li>
+									<li class="k_more"><img src="" alt="">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
 									<li class="k_box_space"></li>
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal"><img src="" alt="">더보기</li>
+									<li class="k_more"><img src="" alt="">더보기</li>
 								</ul>
 							</li>
-							<li>
+							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
 									<li class="k_box_space"></li>
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal"><img src="" alt="">더보기</li>
+									<li class="k_more"><img src="" alt="">더보기</li>
+								</ul>
+							</li>
+							<li class="open_modal">
+								<ul class="k_rec_path_box">
+									<li class="k_rec_path_title k_green">응봉산 산책로</li>
+									<li>서울특별시 성동구 응봉동 산8-14</li>
+									<li class="k_box_space"></li>
+									<li>예상 소요시간: 70분</li>
+									<li>당월 방문 수: 12회</li>
+									<li class="k_more"><img src="" alt="">더보기</li>
 								</ul>
 							</li>
 						</ul>

@@ -27,11 +27,11 @@
     <div class="p_headerWrap">
                 <span class="p_logo" style="height:100px;">
                 	<a href="/" style="height:100px;">
-                    	<img src="../img/logo3.png" alt="로고" style="width:200px; height:100px;">
+                    	<img src="../img/logo3.png" alt="로고" style="	width:180px; height:80px; margin-top:10px;">
                     </a>
     			</span>
                 <ul id="p_menu">
-                    <li><a href=/introductionForm">소개</a></li>
+                    <li><a href="/introductionForm">소개</a></li>
                     <li><a href="/rankingForm">랭킹</a></li>
                     <li><a href="#">프로깅 시작</a>
                     	<ul class="p_subMenu">

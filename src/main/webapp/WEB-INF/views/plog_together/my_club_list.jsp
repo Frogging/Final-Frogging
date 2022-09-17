@@ -6,9 +6,9 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-	<title>나의 클럽리스트</title>
+
 </head>
-<body onload="modal_more()">
+<body onload="modal_more()" class="k_body">
 
 		<!-- --------- party_list --------- -->
 		<section class="k_new_party_rec_path">
@@ -85,13 +85,20 @@
 							<li><a href="">서울숲 한바퀴</a></li>
 							<li><a href="">응봉산~서울숲 코스</a></li>
 							<li>10/11 18:00</li>
-							<li class="open_modal">3/6 &nbsp&nbsp<i class="fa-solid fa-n k_green"></i></li>
+							<li class="open_modal">
+								<span>2/6</span>
+								<i class="fa-solid fa-n k_green click-btn-c"></i>
+								<i class="fa-solid fa-gear k_green click-btn-c"></i>
+							</li>
 
 							<li>13</li>
 							<li><a href="">왕십리역 한바퀴</a></li>
 							<li><a href="">왕십리역~한강공원 코스</a></li>
 							<li>10/12 18:00</li>
-							<li class="open_modal">2/6 &nbsp&nbsp</li>
+							<li class="open_modal">
+								<span>2/6</span>
+								<i class="fa-solid fa-gear k_green click-btn-c"></i>
+							</li>
 					</ul>
 
 					<ul class="k_rec_path_page">
@@ -129,7 +136,7 @@
 						<li>중랑천 빠르게 걷기</li>
 						<li>샘플닉네임12</li>
 						<li>수락 완료</li>
-						<li><button>삭제</button></li>
+						<li><button>퇴장</button></li>
 
 						<li>11</li>
 						<li>중랑천 빠르게 걷기</li>
@@ -141,7 +148,7 @@
 						<li>중랑천 빠르게 걷기</li>
 						<li>샘플닉네임13</li>
 						<li>수락 완료</li>
-						<li><button>삭제</button></li>
+						<li><button>퇴장</button></li>
 					</ul>
 
 					<ul class="k_rec_path_page">

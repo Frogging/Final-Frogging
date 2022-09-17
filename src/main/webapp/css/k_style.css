@@ -42,8 +42,6 @@
 
 /* BASIC SETTINGS */
 *{
-	font-family: var(--basic-font-family);
-	font-size: var(--size-medium-2);
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -57,8 +55,10 @@
 i{
 	cursor: pointer;
 }
-body{
+.k_body{
 	position:static;
+	width: 100%;
+	height: 87%;
 }
 .k_wrapper{
 	width: var(--section-width);
@@ -66,6 +66,8 @@ body{
 }
 .k_wrapper *{
 	box-sizing: unset;
+	font-family: var(--basic-font-family);
+	font-size: var(--size-medium-2);
 }
 
 /* ------------------ SECTION TITLES ------------------ */
@@ -146,6 +148,16 @@ body{
 	font-size: var(--size-large-2);
 	font-weight: bold;
 }
+.k_party_list_date input{  /*날짜 입력 박스*/
+	border: none;
+	padding: 0 var(--space-medium);
+	border-radius: var(--radius-mild);
+	color: var(--ct-dark-grey);
+}
+.k_party_list_date input:last-child{ /*검색 버튼*/
+	background-color:var(--ct-light-green);
+	color:var(--main-black);
+}
 .k_party_list_date i{
 	margin: auto var(--space-large);
 }
@@ -158,11 +170,11 @@ body{
 .k_party_list_boxes .k_one_box{/*파티박스-속성*/
 	background-color: var(--main-white);
 	margin: var(--space-medium);
-	padding: calc(var(--space-medium)*1.5) var(--space-medium);
+	/* padding: calc(var(--space-medium)*1.5) var(--space-medium); */
 	border-radius: var(--radius-mild);
 	box-shadow: var(--shadow-basic);
 	width: 20%;
-	height: 150px;
+	height: 180px;
 	border: var(--border-bold) var(--main-white);
 }
 .k_party_list_boxes li.active{
@@ -173,6 +185,7 @@ body{
 	display:flex;
 	flex-direction:column;
 	justify-content:flex-start;
+	margin: calc(var(--space-medium)*1.5) var(--space-medium)
 }
 .k_one_box>ul>li{/*박스 내 폰트*/
 	font-size: var(--size-small-1);
@@ -199,7 +212,7 @@ body{
 .k_one_box>ul .k_box_frogs>i{ /*박스 개구리*/
 	font-size: var(--size-medium-1);
 	color: var(--ct-dark-grey);
-	margin: 5px;
+	margin: 4px;
 }
 .k_one_box>ul .k_box_frogs>.active{ /*박스 개구리 active*/
 	color: var(--main-green);
@@ -334,13 +347,14 @@ body{
 .k_rec_path_list_view{ /*경로박스 외부 정렬*/
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 }
 .k_rec_path_list_view>li { /*경로박스 속성*/
-	width: 40%;
+	width: 45%;
 	height: 160px;
 	border-radius: var(--radius-mild);
 	border: var(--border-bold) var(--main-green);
-	margin: var(--space-medium) 4.5% ;
+	margin: var(--space-medium)auto;
 }
 .k_rec_path_list_view .active{
 	border: var(--border-bold) var(--ct-yellow);
@@ -617,21 +631,21 @@ body{
 	line-height: 40px;
 	border-bottom: var(--basic-dot) var(--main-green);
 	border-right: var(--basic-dot) var(--main-green);
-	padding: 0 var(--space-medium);
+	/* padding: 0 var(--space-medium); */
 	/* 말줄임 */
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .k_party_detail_box_right li:nth-child(2n+1){ /*파티세부-박스-right-리스트명*/
-	width: 20%;
+	width: 25%;
 	color: var(--main-green);
 	font-weight: bold;
 	border-left: var(--basic-dot) var(--main-green);
 	text-align: center;
 }
 .k_party_detail_box_right li:nth-child(2n+2){ /*파티세부-박스-right-리스트내용*/
-	width: 71%;
+	width: 73%;
 }
 .k_party_detail_box_right li:nth-child(1), /*파티세부-박스-right-리스트속성*/
 .k_party_detail_box_right li:nth-child(2){
@@ -651,8 +665,8 @@ body{
 }
 .k_party_detail_join>div{ /*파티세부-시작버튼*/
 	width: 40%;
-	height: 10vh;
-	line-height: 10vh;
+	height: 8vh;
+	line-height: 8vh;
 	color: var(--main-white);
 	background-color: var(--main-green);
 	border: var(--border-bold) var(--main-green);
@@ -718,21 +732,22 @@ body{
 	line-height: 40px;
 	border-bottom: var(--basic-dot) var(--main-green);
 	border-right: var(--basic-dot) var(--main-green);
-	padding: 0 var(--space-medium);
+	/* padding: 0 var(--space-medium); */
+	/* text-align: center; */
 	/* 말줄임 */
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .k_path_infos>li:nth-child(2n+1){ /*경로세부-표영역-리스트명*/
-	width: 20%;
+	width: 30%;
 	color: var(--main-green);
 	font-weight: bold;
 	border-left: var(--basic-dot) var(--main-green);
 	text-align: center;
 }
 .k_path_infos>li:nth-child(2n+2){ /*경로세부-표영역-리스트내용*/
-	width: 68%;
+	width: 67%;
 }
 .k_path_infos>li:nth-child(1), /*경로세부-표영역-리스트속성*/
 .k_path_infos>li:nth-child(2){
@@ -762,7 +777,7 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	display: none;
 	background-color: rgba(0, 0, 0, 0.4);
 }
@@ -771,7 +786,7 @@ body{
 }
 .modal_body {
   position: absolute;
-  top: 50%;
+  top: 51%;
   left: 50%;
   padding: 40px;
   transform: translateX(-50%) translateY(-50%);
@@ -808,35 +823,39 @@ body{
 	margin: var(--space-large);
 }
 .k_my_party_grid>li{ /*리스트 목록*/
-	width: 12%;
+	width: 14%;
 	height: 30px;
 	line-height: 30px;
 	border-bottom: var(--basic-dot) var(--main-green);
-	padding: 0 var(--space-medium);
-	border-right:var(--basic-dot) var(--main-green);
+	/*padding: 0 var(--space-medium); */
+	border-right:var(--basic-dot) var(--main-green); 
+	text-align: center;
 }
 .k_my_party_grid .k_my_list_head{ /*리스트 제목*/
 	background-color: var(--main-green);
 	color: var(--main-white);
 	font-weight: bold;
-	text-align: center;
 	/* border: none; */
 }
 .k_my_party_grid .k_my_list_head:first-child{  /*리스트 속성*/
 	border-radius: var(--radius-mild) 0 0 0; 
+	text-align: center;
 }
 .k_my_party_grid .k_my_list_head:nth-child(5){  /*리스트 속성*/
 	border-radius: 0 var(--radius-mild) 0 0;
 }
 .k_my_party_grid>li:nth-child(5n+2), 
 .k_my_party_grid>li:nth-child(5n+3){  /*리스트 속성-제목/코스명*/
-	width: 28%;
+	width: 27%;
 }
 .k_my_party_grid>li:nth-child(5n+4){  /*리스트 속성-일시*/
-	width: 18%;
+	width: 17%;
 }
 .k_my_party_grid>li:nth-child(5n+5){  /*리스트 속성*/
 	border-right: none;
+}
+.k_my_party_grid>li:nth-child(5n+5)>*{
+	margin-left: var(--space-medium);
 }
 .k_my_party_grid>li>i{  /*리스트 내 N 아이콘*/
 	font-size: var(--size-small-2);
@@ -865,14 +884,14 @@ body{
 	height: 30px;
 	line-height: 30px;
 	border-bottom: var(--basic-dot) var(--main-green);
-	padding: 0 var(--space-medium);
+	/* padding: 0 var(--space-medium); */
 	border-right:var(--basic-dot) var(--main-green);
+	text-align: center;
 }
 .k_party_manage_infos .k_my_list_head{ /*리스트 제목*/
 	background-color: var(--main-green);
 	color: var(--main-white);
 	font-weight: bold;
-	text-align: center;
 	/* border: none; */
 }
 .k_party_manage_infos .k_my_list_head:first-child{  /*리스트 속성*/
