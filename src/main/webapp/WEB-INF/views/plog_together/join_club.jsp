@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
+	<script src="/js/k_club.js" type="text/javascript"></script>
 
 </head>
 <body onload='modal_club()' class="k_body">

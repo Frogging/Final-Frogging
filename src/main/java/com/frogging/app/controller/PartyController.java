@@ -97,6 +97,8 @@ public class PartyController {
 			p_detail_vo.setParty_no(party_no);
 			p_detail_vo.setUser_id((String) request.getSession().getAttribute("logId"));
 			p_detail_vo.setJoin_status(0);
+
+			// p_detail 추가 + party current number 증가 & 총 인원 검사
 			p_service.newPartyRequest(p_detail_vo);
 
 			// 신청 성공일 때 -> 마이 클럽 리스트로
