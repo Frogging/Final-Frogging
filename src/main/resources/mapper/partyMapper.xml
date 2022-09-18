@@ -28,7 +28,7 @@
 		content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
 		from party
 		<if test="searchDate!=null">
-			where date_format(meeting_time,'%Y-%m-%d') like '%${searchDate}%'
+			where meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
 		</if>
 		order by meeting_time) party
 
@@ -48,7 +48,7 @@
 		</if> -->
 
 		<if test="searchDate!=null">
-			where date_format(meeting_time,'%Y-%m-%d') like '%${searchDate}%'
+			where meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
 		</if>
 	</select>
 </mapper>

@@ -23,7 +23,7 @@
 						<i class="fa-solid fa-angle-right"></i>
 						함께하기
 						<i class="fa-solid fa-angle-right"></i>
-						클럽 찾기
+						모임 찾기
 					</a>
 				</div>
 			</div>
@@ -39,9 +39,9 @@
 						</select>
 					</div>
 				
-				<div>주변 파티를 찾아드릴께요 <i class="fa-solid fa-magnifying-glass k_green"></i></div>
+				<div>주변 모임을 찾아드릴께요 <i class="fa-solid fa-magnifying-glass k_green"></i></div>
 				<button class="k_my_party click-btn-l">
-					<a href="/club/my_club_list">나의 클럽 관리</a>
+					<a href="/club/my_club_list">나의 모임 관리</a>
 				</button>
 				</form>
 			</div>
@@ -53,7 +53,7 @@
 				<div class="k_party_list_date">
 					<form method="get" id="clubDateForm">
 						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
-						<span>클럽 날짜 검색 : </span>
+						<span>모임 날짜 검색 : </span>
 						<input type='date' name="searchDate" id="searchDate"/>
 						<input type='submit' value='검색' onclick='searchWithDate();'>
 					</form>
@@ -247,7 +247,7 @@
 			</div> 
 			<div class="k_party_detail_join">
 				<div class="k_close_popup click-btn">돌아가기</div>
-				<div class="click-btn"><a href="javascript:ask_join_in(1);">파티 참여 신청하기</a></div>
+				<div class="click-btn"><a href="javascript:ask_join_in(1);">모임 참여 신청하기</a></div>
 			</div>
 		</div>
 	</section>
@@ -257,7 +257,7 @@
 	<section class="k_start_new_party">
 		<div class="k_wrapper">
 			<div class="k_section_title">
-				<div>원하는 파티가 없다면,</div>
+				<div>원하는 모임이 없다면,</div>
 				<div class="k_green">나의 파티 만들기 <i class="fa-solid fa-circle-plus"></i></div>
 			</div>
 			<ul>

@@ -23,20 +23,20 @@
 							<i class="fa-solid fa-angle-right"></i>
 							함께하기
 							<i class="fa-solid fa-angle-right"></i>
-							클럽 찾기
+							모임 찾기
 						</a>
 						<i class="fa-solid fa-angle-right"></i>
-						클럽 만들기
+						모임 만들기
 						<i class="fa-solid fa-angle-right"></i>
 						나의 경로 만들기
 					</div>
 				</div>
 
 				<div class="k_section_title">
-					<div>원하는 파티가 없다면,</div>
-					<div class="k_green">나의 파티 만들기 <i class="fa-solid fa-circle-plus"></i></div>
+					<div>원하는 모임이 없다면,</div>
+					<div class="k_green">나의 모임 만들기 <i class="fa-solid fa-circle-plus"></i></div>
 					<button class="k_my_party click-btn-l">
-						<a href="/club/my_club_list">나의 클럽 관리</a>
+						<a href="/club/my_club_list">나의 모임 관리</a>
 					</button>
 				</div>
 			</div>
@@ -80,14 +80,14 @@
 				<form action="">
 				<div class="k_section_title">
 					<div>플로깅 할 사람 여기여기 모여라</div>
-					<div class="k_green">파티 세팅 <i class="fa-solid fa-gear"></i></div>
+					<div class="k_green">모임 세팅 <i class="fa-solid fa-gear"></i></div>
 				</div>
 
 				<div class="k_party_set">
 						<ul class="k_party_set_left">
-							<li>파티 가이드</li>
+							<li>모임 가이드</li>
 							<li class="k_party_set_guide"></li>
-							<li><input type="checkbox" name="" id="">위 파티 가이드를 확인하였습니다.</li>
+							<li><input type="checkbox" name="" id="">위 모임 가이드를 확인하였습니다.</li>
 						</ul>
 						<div class="k_party_set_line"></div>
 						<ul class="k_party_set_right">
@@ -103,7 +103,7 @@
 					
 				</div>
 				<div class="k_party_set_button">
-					<div class="click-btn">파티 등록</div>
+					<div class="click-btn">모임 등록</div>
 				</div>
 			</form>
 		</div>

@@ -38,10 +38,10 @@ public class PartyController {
 
 		// 페이지 + 조건 검색 세팅
 		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
+		System.out.println(p_PageVO.toString());
 
 		mav = new ModelAndView();
 		mav.addObject("list", p_service.getPartyList(p_PageVO));
-
 		mav.setViewName("plog_together/join_club");
 		return mav;
 	}

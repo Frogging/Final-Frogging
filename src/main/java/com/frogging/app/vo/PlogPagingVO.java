@@ -15,6 +15,13 @@ public class PlogPagingVO {
 	private String searchLoc; // 위치 검색
 	private String searchDate; // 날짜 검색
 
+	@Override
+	public String toString() {
+		return "PlogPagingVO [nowPage=" + nowPage + ", offsetPoint=" + offsetPoint + ", onePageCount=" + onePageCount
+				+ ", onePageRecord=" + onePageRecord + ", searchDate=" + searchDate + ", searchLoc=" + searchLoc
+				+ ", startPage=" + startPage + ", totalPage=" + totalPage + ", totalRecord=" + totalRecord + "]";
+	}
+
 	public int getNowPage() {
 		return nowPage;
 	}
