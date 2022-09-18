@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.PartyDetailVO;
+import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
 
 @RestController
@@ -38,7 +42,7 @@ public class PartyController {
 
 		// 페이지 + 조건 검색 세팅
 		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
-		System.out.println(p_PageVO.toString());
+		// System.out.println(p_PageVO.toString());
 
 		mav = new ModelAndView();
 		mav.addObject("list", p_service.getPartyList(p_PageVO));
@@ -75,13 +79,43 @@ public class PartyController {
 		return mav;
 	}
 
-	// 파티 참여 신청
+	// ---------------------- 모달 내 클럽 상세 정보
+	@GetMapping(value = "/getClubDetail")
+	public JSONObject getClubDetail(int no) {
+		JSONObject voList = new JSONObject();
+		try {
+			// 1) party 정보 가져오기 + course 이름 + 거리 + 소요시간
+			PartyVO vo = new PartyVO();
+			vo = p_service.getPartyDetail(no);
+
+			// 1-1) vo 객체 jsonString으로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(vo);
+			// System.out.println(jsonString);
+
+			// 1-2) jsonString -> JSONObject로 변환
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
+			voList.put("party", jObj_party);
+
+			// 2)party.id -> activity에서 group by id 해서 총 플로깅 횟수, 총 걸은 거리
+			// 2-1)id 가져오기
+			String p_id = vo.getId();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return voList;
+	}
+
+	// ------------------------ 클럽 참여 신청
 	@GetMapping("/ask_join_in")
 	public ResponseEntity<String> ask_join_in(HttpSession session, HttpServletRequest request,
 			@RequestParam("party_no") int party_no) {
 
 		// entity setting
-		ResponseEntity<String> entity = null;
+		// ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=utf-8");
@@ -99,6 +133,8 @@ public class PartyController {
 			p_detail_vo.setJoin_status(0);
 
 			// p_detail 추가 + party current number 증가 & 총 인원 검사
+
+			// p_service.countCurrentNum(party_no);
 			p_service.newPartyRequest(p_detail_vo);
 
 			// 신청 성공일 때 -> 마이 클럽 리스트로

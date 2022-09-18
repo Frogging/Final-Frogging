@@ -351,7 +351,7 @@ i{
 }
 .k_rec_path_list_view>li { /*경로박스 속성*/
 	width: 45%;
-	height: 160px;
+	height: 180px;
 	border-radius: var(--radius-mild);
 	border: var(--border-bold) var(--main-green);
 	margin: var(--space-medium)auto;
@@ -578,11 +578,12 @@ i{
 	width: 28%;
 	margin: 0 var(--space-medium);
 }
-.k_party_detail_box_left>span{ /*파티세부-박스-left-코스명*/
+.k_party_detail_box_left #k_course_name { /*파티세부-박스-left-코스명*/
 	color: var(--main-green);
 	margin-left: var(--space-large);
 	font-weight: bold;
 	font-size: var(--size-medium-1);
+	overflow: auto;
 }
 .k_party_detail_img{ /*파티세부-박스-left-이미지*/
 	height: 28vh;
@@ -606,10 +607,11 @@ i{
 }
 .k_party_detail_who ul:last-child{ /*파티세부-박스-left-파티원정렬*/
 	display: flex;
-	justify-content: space-around;
+	flex-wrap: wrap;
 }
 .k_party_detail_who ul:last-child>li{ /*파티세부-박스-left-파티원정렬*/
 	margin-top: var(--space-medium);
+	width: 16%;
 }
 .k_party_detail_who ul:last-child>li>i{ /*파티세부-박스-left-파티원정렬-아이콘*/
 	color: var(--ct-dark-grey);
@@ -677,7 +679,9 @@ i{
 	font-weight: bold;
 	text-align: center;
 }
-
+.k_party_detail_box_right>li>span{  /*파티 칸 내부 좌우 마진*/
+	margin: 0 var(--space-medium);
+}
 /* -------------------- alone button -------------- */
 .k_alone_start_button{ /*혼자하기 완료버튼-영역*/
 	margin: var(--size-large-2) 0 calc(var(--size-large-2)*2);

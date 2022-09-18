@@ -12,4 +12,8 @@ public interface PartyService {
 	public List<PartyVO> getPartyList(PlogPagingVO p_pageVO);
 
 	public int totalRecord(PlogPagingVO p_pageVO);
+
+	public void countCurrentNum(int party_no);
+
+	public PartyVO getPartyDetail(int no);
 }

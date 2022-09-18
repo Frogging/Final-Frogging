@@ -18,3 +18,48 @@ function ask_join_in(party_no) {
 		location.href = "/club/ask_join_in?party_no="+party_no ;
 	}
 }
+//-------------------파티 세부 모달 내용 가져오기-------------------
+function modal_data(no) {
+	alert(no);
+	$(function(){
+		
+		//모달 비우기 
+		//$('.modal_body').empty();
+
+		//비동기식 파티 데이터 가져오기 
+		var url = "/club/getClubDetail";
+		var params = {no:no};
+
+		$.ajax({
+			url: url,
+			data: params,
+			success: function(result){
+				//console.log(result.party);
+				var party_info = result.party;
+
+				//파티 세부 데이터 넣기 
+				$('#k_course_name').html(party_info.course_name);
+				$('#k_id').html(party_info.id);
+				$('#k_current_number').html('');
+
+				for (let idx = 0; idx < party_info.number; idx++) {
+					if (idx<=party_info.current_number) {
+						$('#k_current_number').append('<li><i class="fa-solid fa-circle active"></i></li>');
+					} else {
+						$('#k_current_number').append('<li><i class="fa-solid fa-circle"></i></li>');
+					}
+				}
+
+				$('#k_partyname>span').html(party_info.partyname);
+				$('#k_d_and_t>span').html(party_info.distance + "/ "+ party_info.time);
+				$('#k_number>span').html(party_info.number);
+				$('#k_meeting_time>span').html(party_info.meeting_time);
+				$('#k_meeting_place>span').html(party_info.meeting_place);
+				$('#k_content>span').html(party_info.content);
+
+			}, error:function(e){
+				console.log(e.responseTest);
+			}
+		});
+	})
+}

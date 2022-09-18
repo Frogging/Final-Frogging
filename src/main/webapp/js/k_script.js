@@ -12,17 +12,17 @@ function modal_club() {
 
 			//openPopup[i].style.color = 'blue';
 			//모달 위치 설정 
-			console.log(window.scrollY);
+			//console.log(window.scrollY);
 			modal.style.top =  window.scrollY+'px';
 			modal.classList.toggle('show');
-			console.log("check",i,"th");
+			//console.log("check",i,"th");
 		
 			//스크롤 금지
 			if (modal.classList.contains('show')) {
 				body.style.overflow = 'hidden';
 				}
 		})
-		console.log(i);
+		//console.log(i);
 		//index 값 저장할것
 	}
 
@@ -59,17 +59,17 @@ function modal_more() {
 
 			//openPopup[i].style.color = 'blue';
 			//모달 위치 설정 
-			console.log(window.scrollY);
+		//	console.log(window.scrollY);
 			modal.style.top = window.scrollY+'px';
 			modal.classList.toggle('show');
-			console.log("check",i,"th");
+			//console.log("check",i,"th");
 		
 			//스크롤 금지
 			if (modal.classList.contains('show')) {
 				body.style.overflow = 'hidden';
 				}
 		})
-		console.log(i);
+		//console.log(i);
 		//index 값 저장할것
 	}
 

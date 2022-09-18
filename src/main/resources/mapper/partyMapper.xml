@@ -51,4 +51,36 @@
 			where meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
 		</if>
 	</select>
+
+	<update id="countCurrentNum">
+		update party
+		set current_number = current_number + 1
+		where no = ${param1};
+	</update>
+
+	<select id="getPartyDetail" resultType="PartyVO" parameterType="int">
+		select 
+		party.no,	
+		party.partyname, 	
+		party.number,	
+		party.current_number,	
+		course.course_name, 	
+		party.course_no, 	
+		party.id, 	
+		party.content, 	
+		party.meeting_place,	
+		party.meeting_time,
+		course.time,
+		course.distance
+		from
+		(select 
+		no, partyname, number, current_number, course_no, id, 
+		content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
+		from party
+		where no=${param1}
+		order by meeting_time) party
+		left outer join
+		(select course_no, course_name ,distance, time from course) course
+		on party.course_no = course.course_no
+	</select>
 </mapper>

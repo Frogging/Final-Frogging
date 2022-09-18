@@ -32,4 +32,14 @@ public class PartyServiceImpl implements PartyService {
 		return dao.totalRecord(p_pageVO);
 	}
 
+	@Override
+	public void countCurrentNum(int party_no) {
+		dao.countCurrentNum(party_no);
+	}
+
+	@Override
+	public PartyVO getPartyDetail(int no) {
+		return dao.getPartyDetail(no);
+	}
+
 }

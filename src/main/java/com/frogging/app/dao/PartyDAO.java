@@ -21,4 +21,10 @@ public interface PartyDAO {
 
 	// 리스트 세팅
 	public int totalRecord(PlogPagingVO p_pageVO);
+
+	// 파티 인원 증가시키기
+	public void countCurrentNum(int party_no);
+
+	// 파티 세부 정보 가져오기
+	public PartyVO getPartyDetail(int no);
 }

@@ -13,6 +13,8 @@ public class PartyVO {
 
 	// course data
 	private String course_name;
+	private String time;
+	private String distance;
 
 	@Override
 	public String toString() {
@@ -99,6 +101,22 @@ public class PartyVO {
 
 	public void setCourse_name(String course_name) {
 		this.course_name = course_name;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
 	}
 
 }

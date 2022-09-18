@@ -64,7 +64,7 @@
 				<ul class="k_party_list_boxes">
 					<%-- 파티 리스트 반복 --%>
 					<c:forEach var="vo" items="${list}">
-						<li class="k_one_box open_modal">
+						<li class="k_one_box open_modal" onclick="modal_data(${vo.no});">
 							<ul>
 								<li class="k_box_title">${vo.course_name}</li>
 								<li>${vo.meeting_time} /총 ${vo.number}명</li> 
@@ -103,50 +103,7 @@
 						</ul>
 					</li>
 
-					<li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box open_modal">
-						<ul class="">
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
+			
 
 					<li class="k_one_box open_modal">
 						<ul>
@@ -209,40 +166,40 @@
 		<div class="k_wrapper modal_body">
 			<div class="k_party_detail_box">
 				<div class="k_party_detail_box_left">
-					<span>서울숲 외곽 코스</span>
+					<span id="k_course_name">서울숲 외곽 코스</span>
 					<div class="k_party_detail_img"></div>
 					<div class="k_party_detail_who">
 						<div>파티장 정보</div>
 						<ul>
-							<li>파티장 닉네임</li>
+							<li id="k_id">파티장 닉네임</li>
 							<li>이번 달 걸은 거리: </li>
 							<li>이번 달 플로깅 횟수: </li>
 						</ul>
 						<div>참여 파티원</div>
-						<ul>
-							<li><i class="fa-solid fa-circle active"></i></li>
+						<ul id="k_current_number">
+							<%-- <li><i class="fa-solid fa-circle active"></i></li>
 							<li><i class="fa-solid fa-circle active"></i></li>
 							<li><i class="fa-solid fa-circle active"></i></li>
 							<li><i class="fa-solid fa-circle"></i></li>
 							<li><i class="fa-solid fa-circle"></i></li>
-							<li><i class="fa-solid fa-circle"></i></li>
+							<li><i class="fa-solid fa-circle"></i></li> --%>
 						</ul>
 					</div>
 				
 				</div>
 				<ul class="k_party_detail_box_right">
-					<li>파티명</li>
-					<li>서울숲에서 만나실 분 모여라</li>
-					<li>소요시간/거리</li>
-					<li>45min/ 4km</li>
-					<li>모집 인원</li>
-					<li>6명</li>
-					<li>모집 일시</li>
-					<li>9월 6일 17:00</li>
-					<li>만남 장소</li>
-					<li>서울숲 큰 광장 입구 안내소</li>
-					<li>기타 안내</li>
-					<li>비닐 장갑 파티장이 제공! 종량제 봉투 필수 지참 부탁드려요!</li>
+					<li><span>파티명</span></li>
+					<li id="k_partyname"><span></span></li>
+					<li><span>소요시간/거리</span></li>
+					<li id="k_d_and_t"><span></span></li>
+					<li><span>모집 인원</span></li>
+					<li id="k_number"><span></span></li>
+					<li><span>모집 일시</span></li>
+					<li id="k_meeting_time"><span></span></li>
+					<li><span>만남 장소</span></li>
+					<li id="k_meeting_place"><span></span></li>
+					<li><span>기타 안내</span></li>
+					<li id="k_content"><span></span></li>
 				</ul>
 
 			</div> 
