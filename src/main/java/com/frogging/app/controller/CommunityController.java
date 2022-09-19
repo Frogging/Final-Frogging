@@ -53,7 +53,7 @@ public class CommunityController {
 	//글쓰기 DB
 	@PostMapping("communityFormOk")
 	public ResponseEntity<String> communityFormOk(CommunityVO vo, HttpServletRequest request){
-		vo.setId((String)request.getSession().getAttribute("logId"));//세션 로그인 아이디logId
+		vo.setId("sampleId3@gmail.com");//세션 로그인 아이디logId
 		
 		//세션 로그인 아이디		
 		String msg="<script>";
