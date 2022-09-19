@@ -13,6 +13,11 @@ public class PartyVO {
 
 	// course data
 	private String course_name;
+	private String time;
+	private String distance;
+
+	// detail data
+	private int join_status;
 
 	@Override
 	public String toString() {
@@ -99,6 +104,30 @@ public class PartyVO {
 
 	public void setCourse_name(String course_name) {
 		this.course_name = course_name;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public int getJoin_status() {
+		return join_status;
+	}
+
+	public void setJoin_status(int join_status) {
+		this.join_status = join_status;
 	}
 
 }
