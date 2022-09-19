@@ -13,8 +13,8 @@
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 	<insert id="CommunityWriteOk">
-		insert into board_community(id, subject, content )
-		values(#{id}, #{subject}, #{content} )
+		insert into board_community(id, subject, content, depth)
+		values(#{id}, #{subject}, #{content}, '0' )
 	</insert>
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from board_community
