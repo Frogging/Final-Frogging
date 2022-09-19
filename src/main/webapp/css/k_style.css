@@ -354,7 +354,7 @@ i{
 	height: 160px;
 	border-radius: var(--radius-mild);
 	border: var(--border-bold) var(--main-green);
-	margin: var(--space-medium)auto;
+	margin: var(--space-medium) auto;
 }
 .k_rec_path_list_view .active{
 	border: var(--border-bold) var(--ct-yellow);
@@ -725,7 +725,7 @@ i{
 	width: 43%;
 	display: flex;
 	flex-wrap: wrap;
-	margin: var(--space-medium) var(--space-medium) var(--space-medium)var(--space-large);
+	margin: var(--space-medium) var(--space-medium) var(--space-medium) var(--space-large);
 }
 .k_path_infos>li{ /*경로세부-표영역*/
 	height: 40px;
