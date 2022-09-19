@@ -50,4 +50,7 @@ public interface PartyDAO {
 
 	// 나의 모임 리스트
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO);
+
+	// 최근 추가 클럽넘버
+	public int getMaxNo();
 }

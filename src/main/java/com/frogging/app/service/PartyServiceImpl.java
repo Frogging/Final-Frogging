@@ -78,4 +78,9 @@ public class PartyServiceImpl implements PartyService {
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO) {
 		return dao.getMyJoinedClub(p_dVO);
 	}
+
+	@Override
+	public int getMaxNo() {
+		return dao.getMaxNo();
+	}
 }
