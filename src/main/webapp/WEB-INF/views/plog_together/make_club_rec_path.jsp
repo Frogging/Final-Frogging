@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
+	<script src="/js/k_path.js" type="text/javascript"></script>
 </head>
 <body onload="modal_more()" class="k_body">
 
@@ -70,6 +71,18 @@
 
 						<!-- path lists -->
 						<ul class="k_rec_path_list_view">
+							<c:forEach var="vo" items="${list}">
+								<li class="open_modal" onclick="modal_data(${vo.course_no})">
+									<ul class="k_rec_path_box">
+										<li class="k_rec_path_title k_green">${vo.course_name}</li>
+										<li>주소 detail</li>
+										<li class="k_box_space"></li>
+										<li>예상 소요시간: ${vo.time}</li>
+										<li>당월 방문 수: ${vo.plog_total}회</li>
+										<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
+									</ul>
+								</li>
+							</c:forEach>
 							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
@@ -88,36 +101,6 @@
 									<li>예상 소요시간: 70분</li>
 									<li>당월 방문 수: 12회</li>
 									<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="" alt="">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="" alt="">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="" alt="">더보기</li>
 								</ul>
 							</li>
 							<li class="open_modal">
@@ -134,13 +117,32 @@
 
 						<!-- recommand path paging -->
 						<ul class="k_rec_path_page">
-							<li><i class="fa-solid fa-chevron-left active"></i></li>
-							<li class="active">1</li>
-							<li>2</li>
-							<li>3</li>
-							<li>4</li>
-							<li>5</li>
-							<li><i class="fa-solid fa-chevron-right active"></i></li>
+						
+							<%-- 이전페이지 --%>
+							<c:if test="${p_pageVO.nowPage<=1}" > 
+								<li><i class="fa-solid fa-chevron-left active"></i></li>
+							</c:if>
+							<c:if test="${p_PageVO.nowPage>1}" >
+								<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+							</c:if>
+								
+							<c:forEach var="p" begin="${p_PageVO.startPage }" end="${p_PageVO.startPage + p_PageVO.onePageCount - 1 }" >
+								<c:if test="${p<=p_PageVO.totalPage }" >
+									<li
+									<c:if test="${p==p_PageVO.nowPage }">
+										style = "color:#2fb86a;"
+									</c:if>
+									><a href="/club/make_club_rec_path?nowPage=${p }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>">${p }</a></li>
+								</c:if>
+							</c:forEach>
+								
+							<!-- 다음페이지 -->
+							<c:if test="${p_PageVO.nowPage>=p_PageVO.totalPage }" > 
+								<li><i class="fa-solid fa-chevron-right active"></i></li>
+							</c:if>
+							<c:if test="${p_PageVO.nowPage<p_PageVO.totalPage}" > 
+									<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -182,7 +184,7 @@
 
 				<div class="k_party_detail_join">
 					<div class="k_close_popup click-btn">돌아가기</div>
-					<div class="click-btn">파티 참여 신청하기</div>
+					<div class="k_close_popup click-btn" onclick="select_path()">코스 선택하기</div>
 				</div>
 			</div>
 		</section>
@@ -192,7 +194,7 @@
 		<!-- k_new_party_setting -->
 		<section class="k_new_party_setting">
 			<div class="k_wrapper">
-				<form action="">
+				<form action="/club/makeNewClub" method="post" id="k_party_set_frm">
 				<div class="k_section_title">
 					<div>플로깅 할 사람 여기여기 모여라</div>
 					<div class="k_green">모임 세팅 <i class="fa-solid fa-gear"></i></div>
@@ -202,23 +204,25 @@
 						<ul class="k_party_set_left">
 							<li>모임 가이드</li>
 							<li class="k_party_set_guide"></li>
-							<li><input type="checkbox" name="" id="">위 모임 가이드를 확인하였습니다.</li>
+							<li><input type="checkbox" id="k_party_set_agree">위 모임 가이드를 확인하였습니다.</li>
 						</ul>
 						<div class="k_party_set_line"></div>
 						<ul class="k_party_set_right">
 							<li><label class="k_green" for="">모임명</label></li>
-							<li class="k_party_set_in"><input type="text" placeholder="파티명을 입력하세요"></li>
+							<li class="k_party_set_in"><input type="text" name="partyname" id="k_party_set_party_name" placeholder="파티명을 입력하세요"><input type="button" value="중복검사"></li>
+							<li><label class="k_green" for="">코스명</label></li>
+							<li class="k_party_set_in"><input type="text" name="course_no" id="k_party_set_course" value="" readonly></li>
 							<li><label class="k_green" for="">모집인원</label></li>
-							<li class="k_party_set_in"><input type="number" name="" id="" min="2" max="12" placeholder="인원 수"></li>
+							<li class="k_party_set_in"><input type="number" name="number" id="k_party_set_party_number" min="2" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
-							<li class="k_party_set_in"><input type="date" name="" id=""></li>
+							<li class="k_party_set_in"><input type="date" name="meeting_time" id="k_party_set_meeting_time" value=""></li>
 							<li><label class="k_green" for="">만남장소</label></li>
-							<li class="k_party_set_in"><input type="text" name="" id="" placeholder="만남장소를 입력하세요"></li>
+							<li class="k_party_set_in"><input type="text" name="meeting_place" id="k_party_set_meeting_place" placeholder="만남장소를 입력하세요"></li>
 						</ul>
 					
 				</div>
 				<div class="k_party_set_button">
-					<div class="click-btn">모임 등록</div>
+					<div class="click-btn k_party_frm_submit">모임 등록</div>
 				</div>
 			</form>
 			</div>

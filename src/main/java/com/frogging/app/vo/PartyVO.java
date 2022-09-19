@@ -16,6 +16,9 @@ public class PartyVO {
 	private String time;
 	private String distance;
 
+	// detail data
+	private int join_status;
+
 	@Override
 	public String toString() {
 		return "PartyVO [content=" + content + ", course_no=" + course_no + ", current_number=" + current_number
@@ -117,6 +120,14 @@ public class PartyVO {
 
 	public void setDistance(String distance) {
 		this.distance = distance;
+	}
+
+	public int getJoin_status() {
+		return join_status;
+	}
+
+	public void setJoin_status(int join_status) {
+		this.join_status = join_status;
 	}
 
 }

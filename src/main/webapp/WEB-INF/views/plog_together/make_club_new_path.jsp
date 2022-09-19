@@ -87,14 +87,16 @@
 						<ul class="k_party_set_left">
 							<li>모임 가이드</li>
 							<li class="k_party_set_guide"></li>
-							<li><input type="checkbox" name="" id="">위 모임 가이드를 확인하였습니다.</li>
+							<li><input type="checkbox" name="" id="k_party_set_agree">위 모임 가이드를 확인하였습니다.</li>
 						</ul>
 						<div class="k_party_set_line"></div>
 						<ul class="k_party_set_right">
 							<li><label class="k_green" for="">파티명</label></li>
-							<li class="k_party_set_in"><input type="text" placeholder="파티명을 입력하세요"></li>
+							<li class="k_party_set_in"><input type="text" placeholder="파티명을 입력하세요"><input type="button" value="중복검사"></li>
+							<li><label class="k_green" for="">코스번호</label></li>
+							<li class="k_party_set_in"><input type="text" id="k_party_set_course" value="" placeholder=""></li>
 							<li><label class="k_green" for="">모집인원</label></li>
-							<li class="k_party_set_in"><input type="number" name="" id="" min="2" max="12" placeholder="인원 수"></li>
+							<li class="k_party_set_in"><input type="number" name="" id="" min="3" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
 							<li class="k_party_set_in"><input type="date" name="" id=""></li>
 							<li><label class="k_green" for="">만남장소</label></li>

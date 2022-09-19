@@ -31,20 +31,14 @@
 
 			<div class="k_section_title">
 				<%-- 위치 조건 검색 --%>
-				<form action="">
-				
 					<!-- script 처리 -->
-					<div class="k_green k_select_wrap" >
-						<select name="" id="" >
-							<option value="">서울시 성동구&nbsp;</option>
-						</select>
-					</div>
-				
+				<div class="k_green" >
+					지금 당신 위치 : 
+				</div>
 				<div>주변 모임을 찾아드릴께요 <i class="fa-solid fa-magnifying-glass k_green"></i></div>
 				<button class="k_my_party click-btn-l">
 					<a href="/club/my_club_list">나의 모임 관리</a>
 				</button>
-				</form>
 			</div>
 		</div>
 		
@@ -54,9 +48,20 @@
 				<div class="k_party_list_date">
 					<form method="get" id="clubDateForm">
 						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
-						<span>모임 날짜 검색 : </span>
-						<input type='date' name="searchDate" id="searchDate"/>
-						<input type='submit' value='검색' onclick='searchWithDate();'>
+						<div class="k_select_wrap">
+							<span><i class="fa-solid fa-caret-right"></i>모임 장소: </span>
+							<select name="" id="" >
+								<option value="">서울특별시</option>
+							</select>
+							<select name="" id="" >
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div>
+							<span><i class="fa-solid fa-caret-right"></i>모임 날짜: </span>
+							<input type='date' name="searchDate" id="searchDate"/>
+							<input type='submit' value='검색' onclick='searchWithDate();'>
+						</div>
 					</form>
 				</div>
 
@@ -171,18 +176,12 @@
 					<div class="k_party_detail_who">
 						<div>파티장 정보</div>
 						<ul>
-							<li id="k_id">파티장 닉네임</li>
-							<li>이번 달 걸은 거리: </li>
-							<li>이번 달 플로깅 횟수: </li>
+							<li id="k_nickname">닉네임: <span></span></li>
+							<li id="k_total_km">이번 달 걸은 거리: <span></span></li>
+							<li id="k_plog_count">이번 달 플로깅 횟수: <span></span></li>
 						</ul>
 						<div>참여 파티원</div>
 						<ul id="k_current_number">
-							<%-- <li><i class="fa-solid fa-circle active"></i></li>
-							<li><i class="fa-solid fa-circle active"></i></li>
-							<li><i class="fa-solid fa-circle active"></i></li>
-							<li><i class="fa-solid fa-circle"></i></li>
-							<li><i class="fa-solid fa-circle"></i></li>
-							<li><i class="fa-solid fa-circle"></i></li> --%>
 						</ul>
 					</div>
 				
@@ -205,7 +204,7 @@
 			</div> 
 			<div class="k_party_detail_join">
 				<div class="k_close_popup click-btn">돌아가기</div>
-				<div class="click-btn"><a href="javascript:ask_join_in(1);">모임 참여 신청하기</a></div>
+				<div class="click-btn"><a href="javascript:ask_join_in();">모임 참여 신청하기</a></div>
 			</div>
 		</div>
 	</section>

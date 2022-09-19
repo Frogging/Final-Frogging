@@ -41,6 +41,40 @@
 		on party.course_no = course.course_no
 	</select>
 
+
+	<select id="getPathList" resultType="CourseVO">
+		select 
+		course.course_no,
+		course.course_name,
+		course.distance, 
+		course.time,
+		activity.plog_total
+		from 
+
+		(
+			select 
+			course_no, course_name, distance,time
+			from course
+
+			<!-- 
+				<if test="searchLoc!=null">
+			where ${searchLoc} like '%${searchLoc}%'
+		</if> 
+			-->
+		) course
+
+		left outer join
+
+		(
+			select 
+			course_no, count(course_no) plog_total
+			from activity
+			group by course_no
+		) activity
+
+		on activity.course_no = course.course_no
+	</select>
+
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from party
 		<!-- <if test="searchLoc!=null">
@@ -51,6 +85,24 @@
 			where meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
 		</if>
 	</select>
+
+	<select id="totalRecord_path" resultType="int">
+		select count(course_no) cnt from course
+		<!-- <if test="searchLoc!=null">
+			where - like '%${searchLoc}%'
+		</if> -->
+	</select>
+
+	<insert id="addNewParty">
+		insert into party(partyname, id,  number, current_number, course_no, content, meeting_place, meeting_time)
+		values(#{partyname}, #{id}, ${number}, ${current_number}, ${course_no}, #{content}, #{meeting_place}, #{meeting_time})
+	</insert>
+
+	<insert id="addNewPartyDetail">
+		insert into party_detail(party_no, user_id, join_status)
+		values(${party_no}, #{user_id}, ${join_status})
+	</insert>
+
 
 	<update id="countCurrentNum">
 		update party
@@ -82,5 +134,64 @@
 		left outer join
 		(select course_no, course_name ,distance, time from course) course
 		on party.course_no = course.course_no
+	</select>
+
+	<select id="getLeaderInfo" resultType="ActivityVO" parameterType="String">
+		select 
+		user.nickname, 
+		activity.total_distance, 
+		activity.plog_count 
+		from 
+		( 
+			select id, nickname 
+			from user 
+			where id = #{param1}
+		) user
+		left outer join 
+		( 
+			select id, sum(distance) total_distance, count(no) plog_count 
+			from activity 
+			where id = #{param1}
+			group by id
+		) activity
+		on user.id = activity.id
+	</select>
+
+	<select id="checkOverlap" resultType="int">
+		select count(no) 
+		from party_detail 
+		where user_id like #{user_id} and party_no = ${party_no}
+	</select>
+
+	<select id="getMyJoinedClub" resultType="PartyVO">
+		select
+		t2.no,
+		t2.partyname,
+		t2.id, 
+		t2.number,
+		t2.current_number, 
+		t2.course_no,
+		t2.content,
+		t2.meeting_place,
+		t2.meeting_time, 
+		t1.join_status
+		from
+		(
+			select party_no, user_id, join_status
+			from party_detail
+			where user_id = #{user_id}
+			<if test="join_status==4">
+				and join_status = 4
+			</if> 
+			<if test="join_status!=4">
+				and join_status != 4
+			</if> 
+		) t1
+		left outer join
+		(
+			select no, partyname, id,  number, current_number, course_no, content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
+			from party
+		) t2
+		on t1.party_no = t2.no
 	</select>
 </mapper>
