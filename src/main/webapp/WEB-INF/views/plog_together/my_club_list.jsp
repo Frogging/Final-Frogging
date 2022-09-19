@@ -48,6 +48,15 @@
 							<li class="k_my_list_head">일시</li>
 							<li class="k_my_list_head">상태</li>
 
+
+							<c:forEach var="vo" items="${join_list}">
+								<li>${vo.no}</li>
+								<li><a href="">${vo.partyname}</a></li>
+								<li><a href="">${vo.course_no}</a></li>
+								<li>${vo.meeting_time}</li>
+								<li>${vo.join_status}</li>
+							</c:forEach>
+							
 							<li>12</li>
 							<li><a href="">서울숲 한바퀴</a></li>
 							<li><a href="">응봉산~서울숲 코스</a></li>
@@ -80,6 +89,18 @@
 							<li class="k_my_list_head">코스</li>
 							<li class="k_my_list_head">일시</li>
 							<li class="k_my_list_head">관리</li>
+
+
+							<c:forEach var="vo" items="${manage_list}">
+								<li>${vo.no}</li>
+								<li><a href="">${vo.partyname}</a></li>
+								<li><a href="">${vo.course_no}</a></li>
+								<li>${vo.meeting_time}</li>
+								<li class="open_modal">
+									<span>${vo.current_number}/${vo.number}</span>
+									<i class="fa-solid fa-gear k_green click-btn-c"></i>
+								</li>
+							</c:forEach>
 
 							<li>12</li>
 							<li><a href="">서울숲 한바퀴</a></li>
