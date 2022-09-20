@@ -194,4 +194,8 @@
 		) t2
 		on t1.party_no = t2.no
 	</select>
+
+	<select id="getMaxNo" resultType="int">
+		select max(no) from party;
+	</select>
 </mapper>

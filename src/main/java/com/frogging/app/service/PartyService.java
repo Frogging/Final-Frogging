@@ -32,4 +32,6 @@ public interface PartyService {
 	public List<CourseVO> getPathList(PlogPagingVO p_pageVO);
 
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO);
+
+	public int getMaxNo();
 }

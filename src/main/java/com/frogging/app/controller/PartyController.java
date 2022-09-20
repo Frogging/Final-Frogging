@@ -206,14 +206,14 @@ public class PartyController {
 			// DB:party
 			// party vo세팅
 			pVO.setId((String) request.getSession().getAttribute("logId"));
-			pVO.setCourse_no(1); // 현재 참여인원 1명
+			pVO.setCurrent_number(1); // 현재 참여인원 1명
 			// System.out.println(pVO.toString());
 			p_service.addNewParty(pVO);
 
 			// DB:party_detail (파티장) - status:4
 			// party_detail vo 세팅
 			PartyDetailVO p_detailVO = new PartyDetailVO();
-			p_detailVO.setParty_no(pVO.getCourse_no());
+			p_detailVO.setParty_no(p_service.getMaxNo());
 			p_detailVO.setUser_id(pVO.getId());
 			p_detailVO.setJoin_status(4);
 			// System.out.println(p_detailVO.toString());
@@ -233,8 +233,8 @@ public class PartyController {
 
 	// 임의의 유저 세션 세팅 -> db 추가할 것
 	public void set_sample_user(HttpSession session) {
-		session.setAttribute("logId", "sampleId3@gmail.com");
-		session.setAttribute("logNickName", "sampleNickname3");
+		session.setAttribute("logId", "sampleId2@gmail.com");
+		session.setAttribute("logNickName", "sampleNickname2");
 		session.setAttribute("logStatus", "Y");
 	}
 }
