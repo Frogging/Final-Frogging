@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="/js_css/jquery-1.12.3.js"></script>
 <link rel="stylesheet" href="/css/p_style.css" type="text/css"/>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
@@ -10,7 +9,7 @@
 </style>
 <script>
 $(function(){
-	$(".p_searchFrom").submit(function(){
+	$(".p_searchForm").submit(function(){
 		if($(".p_searchWord").val()==""){
 			alert("검색어를 입력하세요.");
 			return false;
@@ -96,13 +95,14 @@ $(function(){
 		</ul>
 		</div>
         <div>
-            <form method="get" action="/community/communityList" class="p_searchFrom">
+            <form method="get" action="/community/communityList" class="p_searchForm">
                 <select name="searchKey" class="p_searchKey">
                     <option value="subject">제목</option>
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
                 <input type="text" name="searchWord" class="p_searchWord" style="height:30px;"/>
+                <input type="submit" value="찾기" class="p_communitysearch-btn"/>
             </form>	
             <div class="p_communitywrite">
                     <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'"/>
