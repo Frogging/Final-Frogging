@@ -50,11 +50,15 @@
 						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
 						<div class="k_select_wrap">
 							<span><i class="fa-solid fa-caret-right"></i>모임 장소: </span>
-							<select name="" id="" >
-								<option value="">서울특별시</option>
+							<select name="addr_section_1" id="addr_section_1" onchange="changeAddr()" >
+								<c:forEach var="vo" items="${addr_1}">
+									<option value="${vo.addr_section_1}">${vo.addr_section_1}</option>
+								</c:forEach>					
 							</select>
-							<select name="" id="" >
-								<option value="">전체</option>
+							<select name="addr_section_2" id="addr_section_2" >
+								<c:forEach var="vo" items="${addr_2}">
+									<option value="">${vo.addr_section_2}</option>
+								</c:forEach>			
 							</select>
 						</div>
 						<div>

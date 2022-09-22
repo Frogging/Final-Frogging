@@ -5,8 +5,13 @@
   
 <mapper namespace="com.frogging.app.dao.DataDAO">
 	<select id="getAddr_1" resultType="AddrVO">
-		select addr_section_1 
+		select DISTINCT addr_section_1 
 		from addr_detail 
-		group by addr_section_1
+	</select>
+
+	<select id="getAddr_2" resultType="AddrVO">
+		select no, addr_section_2
+		from addr_detail 
+		where addr_section_1 like '%${param1}%'
 	</select>
 </mapper>

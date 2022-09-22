@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frogging.app.service.AddrService;
+import com.frogging.app.service.DataService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
@@ -35,6 +37,9 @@ public class PartyController {
 	@Inject
 	PartyService p_service;
 
+	@Inject
+	DataService d_service;
+
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
 	public ModelAndView start_party(PlogPagingVO p_PageVO) {
@@ -47,6 +52,9 @@ public class PartyController {
 		// System.out.println(p_PageVO.toString());
 
 		mav = new ModelAndView();
+
+		mav.addObject("addr_1", d_service.getAddr_1());
+		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
 		mav.addObject("list", p_service.getPartyList(p_PageVO));
 		mav.setViewName("plog_together/join_club");
 		return mav;

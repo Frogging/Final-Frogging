@@ -1,6 +1,14 @@
 //------------------------- 파티 검색 (날짜) -----------------------------
 function searchWithDate() {
 	$(function(){
+		if($("#addr_section_1").val() == ''){
+			alert("주소 대분류 선택하세요.");
+			return false;
+		}
+		if($("#addr_section_2 option:selected").val()='전체'){
+			alert("주소 소분류 선택하세요.");
+			return false;
+		}
 		if($("#searchDate").val() == ''){
 			alert("날짜를 입력하세요.");
 			return false;
@@ -77,15 +85,26 @@ function ask_join_in() {
 	}
 }
 //----------------- 주소 처리 --------------------
-// $(function(){
-// 	//대분류 처리
-// 	$.ajax({
-// 		url: "/data/getAddr_1",
-// 		data: {},
-// 		success: function(result){
+function changeAddr() {
+	//대분류 바꿨을 때
+	$(function(){
+		//소분류 처리
+		$.ajax({
+			url: "/data/getAddr_2",
+			data: {addr_1:$("#addr_section_1 option:selected").val()},
+			success: function(result){				
+				var tag = "";
 
-// 		}, error:function(e){
-// 			console.log(e.responseText);
-// 		}
-// 	})
-// });
+				for (let index = 0; index < result.idx; index++) {
+					tag += "<option value='"+result[index].addr_section_2+"'>"+result[index].addr_section_2+"</option>";
+					console.log(result[index].addr_section_2);
+				}
+
+				$("#addr_section_2").empty("");
+				$("#addr_section_2").html(tag);
+			}, error:function(e){
+				console.log(e.responseText);
+			}
+		})
+	});
+}
