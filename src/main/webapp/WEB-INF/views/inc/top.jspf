@@ -45,12 +45,22 @@
                     	</ul>
                     </li>	     
                     <!-- 로그인 버튼 -->
-				</ul>	
+				</ul>
+				<c:if test="${logStatus!='Y'&&adStatus!='Y'}">	
 					<span class="p_login">
-							<a href="#" class="p_menu-log">로그인</a>
+							<a href="/login" class="p_menu-log">로그인</a>
 							<a href="#" class="p_menu-join">회원가입</a>
 					</span>
-                
+                 </c:if>
+                 <c:if test="${logStatus=='Y'&&adStatus!='Y'}">
+                 	<span class="p_login">
+        					<a href="/logout" class="p_menu-log">로그아웃</a>
+							<a href="#" class="p_menu-join">마이페이지</a>
+					</span>
+     			   </c:if>
+         
+     
+     
 	</div>
 	<script>
 		// 마우스오버 메뉴
