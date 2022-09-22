@@ -14,22 +14,26 @@
 	<link rel="stylesheet" href="/css/p_style.css" type="text/css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
-  </head>
-  <style>
-  </style>
+   	</head>
+   	<style>
+   	.p_container1 {
+    min-height: 100%;
+    position: relative;
+	}
+    </style>
 	<script>
 
 	</script>
 <body style="overflow-x: hidden">
-	<div class="p_container">
+	<div class="p_container1">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<div class="p_mainContent">
 	                    <div class="p_nav">
 	                        <h3>함께하는 플로깅 <br/> Frog-ging</h3> <br/> 환경보호 활동과 운동을 한번에! <br/><br/>					
-	                        <input type="button" value="함께하기" class="p_plogging-btn" onclick=""/>
-	                        <input type="button" value="혼자하기" class="p_plogging-btn" onclick=""/>					
+	                        <input type="button" value="함께하기" class="p_plogging-btn" onclick="location.href='/club/join_club'"/>
+	                        <input type="button" value="혼자하기" class="p_plogging-btn" onclick="location.href='/alone/alone_rec_path'"/>					
 	                    </div>
 	                    <div class="p_section">
 	                        <h3>이번주 기록</h3> <h4>금주의 기록을 확인하세요!</h4><br/>
@@ -55,12 +59,13 @@
 	                        작은 실천에 동참하자는 취지로 행하는 환경보호운동이라 할 수 있어요.<br/>
 	                        </h5>
 	                        <h1> </h1><br/>
-	                        <a href="#">프로젝트 소개 보러가기</a>
+	                        <a href="/introductionForm">프로젝트 소개 보러가기</a>
 	                    </div>
 	                </div>
 			</div>
 			<div class="swiper-slide">
-				<div class="p_main-event">               
+				<div class="p_main-event"> 
+				<br/>              
 	                    <h2 class="p_title">진행중인 이벤트</h2><br/>
 	                    <h5>여러곳에서 진행하는 다양한 플로깅 이벤트를 확인해보세요.</h5>
 	                    <br/>	
@@ -108,7 +113,7 @@
 	                            </div>
 	                          </div>
 	                          <div class="p_event-btn-area">
-	                            <input type="button" value="더보기" onclick="location.href='eventList.html';" class="p_event-btn">
+	                            <input type="button" value="더보기" onclick="location.href='/event/eventList';" class="p_event-btn">
 	                          </div>
 	                        </div>
 	                        

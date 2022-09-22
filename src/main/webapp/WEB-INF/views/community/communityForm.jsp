@@ -23,16 +23,18 @@
 		});
 	});
 </script>
-<div class="p_container">
-	<h1 class="p_title">글쓰기</h1>
-	<form method="post" action="/community/communityFormOk" id="communityFrm">
-	<div id="p_textwrite">
-		<ul>
-			<li>제목</li>
-			<li><input type="text" name="subject" id="p_subject"/></li>
-			<li><textarea name="content" id="p_content"></textarea></li>
-			<li><input type="submit" value="글등록" id="p_textok" style="margin:10px;"/></li>
-		</ul>
-	</div>	
-	</form>		
-</div>
+<body>
+	<div class="p_container">
+		<h1 class="p_title">글쓰기</h1>
+		<form method="post" action="/community/communityFormOk" id="communityFrm">
+		<div id="p_textwrite">
+			<ul>
+				<li>제목</li>
+				<li><input type="text" name="subject" id="p_subject"/></li>
+				<li><textarea name="content" id="p_content"></textarea></li>
+				<li><input type="submit" value="글등록" id="p_textok" style="margin:10px;"/></li>
+			</ul>
+		</div>	
+		</form>		
+	</div>
+</body>

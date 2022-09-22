@@ -2,6 +2,7 @@ package com.frogging.app.vo;
 
 public class UserVO {
 
+
 	private String id;
 	private String name;
 	private String nickname;
