@@ -12,8 +12,13 @@ spring:
     #url: jdbc:mysql://127.0.0.1/frogging?characterEncoding=utf-8
     url: jdbc:mysql://127.0.0.1:8020/frogging?characterEncoding=utf-8
     username: root
+<<<<<<< HEAD
     password: "root1234"
+=======
+    password: rlaqkstjr00@
+>>>>>>> 0f3acaaa2d5ca52001388c3f80f9689fd0726e34
 
 mybatis:
   type-aliases-package: com.frogging.app.vo
   mapper-locations: mapper/*Mapper.xml
+
