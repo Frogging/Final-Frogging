@@ -58,7 +58,7 @@ i{
 .k_body{
 	position:static;
 	width: 100%;
-	height: 87%;
+	/* height: 100%; */
 }
 .k_wrapper{
 	width: var(--section-width);
@@ -401,11 +401,13 @@ i{
 	border: var(--border-bold) var(--main-green);
 	display: flex;
 	align-items:center;
-	height: 420px;
+	height: 680px;
+	flex-wrap: wrap;
+	width: 100%;
 }
 .k_party_set ul{ /*파티세팅 박스-마진*/
 	margin: var(--space-large) 3%;
-	width: 50%;
+	width: 43%;
 }
 .k_party_set>ul>li{ /*파티세팅 박스-리스트 줄간격*/
 	margin: var(--space-medium) 0;
@@ -471,6 +473,26 @@ i{
 	height: 340px;
 	width: 0.1px;
 	border-right: var(--border-dot) var(--main-green);
+}
+.k_party_set_buttom{ /*파티 칸 세부 노트*/
+	width: 100%;
+	margin: var(--space-large) 3%;
+}
+.k_party_set_buttom label{
+	font-weight: bold;
+	font-size: var(--size-medium-1);
+	position: relative;
+	left: 20px;
+	top: -10px;
+}
+.k_party_set_buttom textarea{
+	width: 98%;
+	height: 150px;
+	background-color: var(--ct-light-grey);
+	border-radius: var(--radius-mild);
+	box-shadow: var(--shadow-basic);
+	padding: var(--space-medium);
+	border: none;
 }
 .k_party_set_button{ /*파티세팅 완료버튼-영역*/
 	margin: var(--size-large-2) 0 calc(var(--size-large-2)*2);
@@ -576,7 +598,7 @@ i{
 	background-color: var(--main-white);
 	display: flex;
 	align-items:flex-start;
-	/* flex-wrap: wrap; */
+	flex-wrap:nowrap;
 	padding: var(--space-large);
 }
 .k_party_detail_box_left{ /*파티세부-박스-left*/
@@ -687,6 +709,7 @@ i{
 .k_party_detail_box_right>li>span{  /*파티 칸 내부 좌우 마진*/
 	margin: 0 var(--space-medium);
 }
+
 /* -------------------- alone button -------------- */
 .k_alone_start_button{ /*혼자하기 완료버튼-영역*/
 	margin: var(--size-large-2) 0 calc(var(--size-large-2)*2);
@@ -779,14 +802,16 @@ i{
 	border-radius: var(--radius-mild);
 	border: 1px solid var(--ct-dark-grey);
 }
-
+.k_path_infos>li>span{  /*파티 칸 내부 좌우 마진*/
+	margin: 0 var(--space-medium);
+}
 /* ------------------ modal setting --------------------- */
 .modal{
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	display: none;
 	background-color: rgba(0, 0, 0, 0.4);
 }
@@ -870,6 +895,9 @@ i{
 	font-size: var(--size-small-2);
 	position: relative;
 	top:-1.5px;
+}
+.k_my_party_grid li>span{
+	margin: var(--space-medium) 0;
 }
 
 /* ------------------ my_party_list: manage+detail --------------------- */

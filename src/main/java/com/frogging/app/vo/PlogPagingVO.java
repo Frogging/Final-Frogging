@@ -13,13 +13,16 @@ public class PlogPagingVO {
 
 	// 검색
 	private String searchLoc; // 위치 검색
+	private String addr_section_1;
+	private String addr_section_2;
 	private String searchDate; // 날짜 검색
 
 	@Override
 	public String toString() {
-		return "PlogPagingVO [nowPage=" + nowPage + ", offsetPoint=" + offsetPoint + ", onePageCount=" + onePageCount
-				+ ", onePageRecord=" + onePageRecord + ", searchDate=" + searchDate + ", searchLoc=" + searchLoc
-				+ ", startPage=" + startPage + ", totalPage=" + totalPage + ", totalRecord=" + totalRecord + "]";
+		return "PlogPagingVO [addr_section_1=" + addr_section_1 + ", addr_section_2=" + addr_section_2 + ", nowPage="
+				+ nowPage + ", offsetPoint=" + offsetPoint + ", onePageCount=" + onePageCount + ", onePageRecord="
+				+ onePageRecord + ", searchDate=" + searchDate + ", searchLoc=" + searchLoc + ", startPage=" + startPage
+				+ ", totalPage=" + totalPage + ", totalRecord=" + totalRecord + "]";
 	}
 
 	public int getNowPage() {
@@ -103,4 +106,21 @@ public class PlogPagingVO {
 	public void setSearchDate(String searchDate) {
 		this.searchDate = searchDate;
 	}
+
+	public String getAddr_section_1() {
+		return addr_section_1;
+	}
+
+	public void setAddr_section_1(String addr_section_1) {
+		this.addr_section_1 = addr_section_1;
+	}
+
+	public String getAddr_section_2() {
+		return addr_section_2;
+	}
+
+	public void setAddr_section_2(String addr_section_2) {
+		this.addr_section_2 = addr_section_2;
+	}
+
 }

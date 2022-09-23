@@ -83,4 +83,44 @@ public class PartyServiceImpl implements PartyService {
 	public int getMaxNo() {
 		return dao.getMaxNo();
 	}
+
+	@Override
+	public CourseVO getPathDetail(int no) {
+		return dao.getPathDetail(no);
+	}
+
+	@Override
+	public int partynameCheck(String partyname) {
+		return dao.partynameCheck(partyname);
+	}
+
+	@Override
+	public int rewriteParty(PartyVO pVO) {
+		return dao.rewriteParty(pVO);
+	}
+
+	@Override
+	public int deleteClub(int no) {
+		return dao.deleteClub(no);
+	}
+
+	@Override
+	public int deleteClubDetail(int no) {
+		return dao.deleteClubDetail(no);
+	}
+
+	@Override
+	public int deleteClubDetail_2(int no, String id) {
+		return dao.deleteClubDetail_2(no, id);
+	}
+
+	@Override
+	public void decreaseCurrentNum(int party_no) {
+		dao.decreaseCurrentNum(party_no);
+	}
+
+	@Override
+	public List<PartyDetailVO> getMemberDetail(int no) {
+		return dao.getMemberDetail(no);
+	}
 }
