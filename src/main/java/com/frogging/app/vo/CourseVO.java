@@ -10,7 +10,8 @@ public class CourseVO {
 	private int waypoint;
 	private String lat;
 	private String log;
-	private String addr;
+	private String addr; // 출발지 주소
+
 	private String startaddr;
 	private String endaddr;
 

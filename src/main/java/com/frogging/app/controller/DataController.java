@@ -8,13 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frogging.app.service.DataService;
 import com.frogging.app.vo.AddrVO;
 
-import java.lang.invoke.VolatileCallSite;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;

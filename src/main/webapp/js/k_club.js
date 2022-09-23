@@ -1,26 +1,27 @@
-//------------------------- 파티 검색 (날짜) -----------------------------
-function searchWithDate() {
-	$(function(){
-		if($("#addr_section_1").val() == ''){
-			alert("주소 대분류 선택하세요.");
-			return false;
-		}
-		if($("#addr_section_2 option:selected").val()='전체'){
-			alert("주소 소분류 선택하세요.");
-			return false;
-		}
-		if($("#searchDate").val() == ''){
-			alert("날짜를 입력하세요.");
-			return false;
-		}
-		else{
-			$("#clubDateForm").submit();
-		}
-	})
-}
 
 // 전역 변수 
 var party_no;
+
+$(function(){
+	// alert("ee");
+	//--------------- date picker에서 오늘 이후 선택 처리 ----------
+			//날짜입력창 최소 선택: 현재날짜 
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day;
+		$('#searchDate').attr('min', dateString);
+		
+			//날짜 최대 입력값 제한 : 2개월 이후 
+		today.setMonth(today.getMonth() + 2);
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day;
+		$('#searchDate').attr('max', dateString);
+	
+	})
 
 //-------------------파티 세부 모달 내용 가져오기-------------------
 function modal_data(no) {
@@ -61,6 +62,7 @@ function modal_data(no) {
 				}
 
 				$('#k_partyname>span').html(party_info.partyname);
+				$('#k_addr>span').html(party_info.addr);
 				$('#k_d_and_t>span').html(party_info.distance + "/ "+ party_info.time);
 				$('#k_number>span').html(party_info.number);
 				$('#k_meeting_time>span').html(party_info.meeting_time);
@@ -75,7 +77,30 @@ function modal_data(no) {
 				console.log(e.responseText);
 			}
 		});
-	})
+
+	})		
+}
+
+function searchClub() {
+	$(function(){
+	//------------------------- 파티 검색 (날짜/주소) -----------------------------
+		$("#clubSearchForm").submit(function(){
+			// if($("#addr_section_1").val() == ''){
+			// 	alert("주소 대분류 선택하세요.");
+			// 	return false;
+			// }
+
+			if($("#addr_section_2").val()==""){
+				alert("주소 소분류 선택하세요.");
+				return false;
+			}
+			if($("#searchDate").val() == ""){
+				alert("검색 날짜를 선택하세요.");
+				return false;
+			}
+			return true;
+		})
+	});
 }
 //----------------- 신청 버튼 클릭 --------------------
 function ask_join_in() {
@@ -95,6 +120,7 @@ function changeAddr() {
 			success: function(result){				
 				var tag = "";
 
+				tag += "<option value=''>세부 선택</option>";
 				for (let index = 0; index < result.idx; index++) {
 					tag += "<option value='"+result[index].addr_section_2+"'>"+result[index].addr_section_2+"</option>";
 					console.log(result[index].addr_section_2);
@@ -106,5 +132,11 @@ function changeAddr() {
 				console.log(e.responseText);
 			}
 		})
+	});
+}
+function changeAddr_2() {
+	//소분류 바꿨을 때
+	$(function(){
+		console.log($("#addr_section_2").val());
 	});
 }

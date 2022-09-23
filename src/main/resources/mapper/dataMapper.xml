@@ -13,5 +13,6 @@
 		select no, addr_section_2
 		from addr_detail 
 		where addr_section_1 like '%${param1}%'
+		order by addr_section_2
 	</select>
 </mapper>

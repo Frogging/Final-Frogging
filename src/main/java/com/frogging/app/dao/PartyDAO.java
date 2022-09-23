@@ -36,6 +36,9 @@ public interface PartyDAO {
 	// 파티 인원 증가시키기
 	public void countCurrentNum(int party_no);
 
+	// 파티 인원 감소시키기
+	public void decreaseCurrentNum(int party_no);
+
 	// 파티 세부 정보 가져오기
 	public PartyVO getPartyDetail(int no);
 
@@ -53,4 +56,24 @@ public interface PartyDAO {
 
 	// 최근 추가 클럽넘버
 	public int getMaxNo();
+
+	// 파티 세부 정보 가져오기
+	public CourseVO getPathDetail(int no);
+
+	// 파티이름 중복검사
+	public int partynameCheck(String partyname);
+
+	// 파티정보 수정
+	public int rewriteParty(PartyVO pVO);
+
+	// 파티 삭제
+	public int deleteClub(int no);
+
+	// 파티 디테일 삭제
+	public int deleteClubDetail(int no);
+
+	public int deleteClubDetail_2(int no, String id);
+
+	// 파티 참여 멤버 정보 가져오기
+	public List<PartyDetailVO> getMemberDetail(int no);
 }

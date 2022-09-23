@@ -46,7 +46,7 @@
 			<div class="k_wrapper">
 				<!-- 날짜 조건 검색 -->
 				<div class="k_party_list_date">
-					<form method="get" id="clubDateForm">
+					<form method="get" id="clubSearchForm" onclick="searchClub();" action="/club/join_club">
 						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
 						<div class="k_select_wrap">
 							<span><i class="fa-solid fa-caret-right"></i>모임 장소: </span>
@@ -55,16 +55,17 @@
 									<option value="${vo.addr_section_1}">${vo.addr_section_1}</option>
 								</c:forEach>					
 							</select>
-							<select name="addr_section_2" id="addr_section_2" >
+							<select name="addr_section_2" id="addr_section_2" onchange="changeAddr_2()" >
+								<option value="">세부 선택</option>
 								<c:forEach var="vo" items="${addr_2}">
-									<option value="">${vo.addr_section_2}</option>
+									<option value="${vo.addr_section_2}">${vo.addr_section_2}</option>
 								</c:forEach>			
 							</select>
 						</div>
 						<div>
 							<span><i class="fa-solid fa-caret-right"></i>모임 날짜: </span>
 							<input type='date' name="searchDate" id="searchDate"/>
-							<input type='submit' value='검색' onclick='searchWithDate();'>
+							<input type='submit' value='검색'>
 						</div>
 					</form>
 				</div>
@@ -92,7 +93,7 @@
 
 									</c:forEach>
 								</li> 
-								<li>클럽명 : ${vo.partyname}</li>
+								<li>/${vo.addr}/ 클럽명 : ${vo.partyname}</li>
 							</ul>
 						</li>
 					</c:forEach>
@@ -193,6 +194,8 @@
 				<ul class="k_party_detail_box_right">
 					<li><span>파티명</span></li>
 					<li id="k_partyname"><span></span></li>
+					<li><span>코스 위치</span></li>
+					<li id="k_addr"><span></span></li>
 					<li><span>소요시간/거리</span></li>
 					<li id="k_d_and_t"><span></span></li>
 					<li><span>모집 인원</span></li>
