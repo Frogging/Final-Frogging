@@ -5,6 +5,7 @@
 	--main-black: #010101;
 	--ct-yellow: #FFD500;
 	--ct-light-green: #c7e5cb;
+	--ct-dark-green: #255f2d;
 	--ct-dark-grey: #918F8F;
 	--ct-light-grey: #efefef;
 
@@ -74,7 +75,7 @@ i{
 .k_section_title{ /*간격*/
 	margin: 80px;
 	padding-bottom: 10px;
-	border-bottom: var(--border-bold) var(--main-green);
+	border-bottom: var(--border-bold) var(--ct-dark-green);
 }
 .k_section_title, .k_section_title *{ /*폰트*/
 	font-size: var(--size-large-1);
