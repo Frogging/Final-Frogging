@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/data/*")
@@ -53,4 +54,17 @@ public class DataController {
 		return voList;
 	}
 
+	@GetMapping(value = "/api_1")
+	public ModelAndView getKakao() {
+		mav = new ModelAndView();
+		mav.setViewName("/apiTest/kakao");
+		return mav;
+	}
+
+	@GetMapping(value = "/api_2")
+	public ModelAndView getTmap() {
+		mav = new ModelAndView();
+		mav.setViewName("/apiTest/tmap");
+		return mav;
+	}
 }
