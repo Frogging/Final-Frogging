@@ -1,43 +1,55 @@
-//------------------------- 코스 검색 (날짜) -----------------------------
-function searchWithDate() {
+//------------------------- 코스 검색  -----------------------------
+function searchPath() {
 	$(function(){
-		if($("#searchDate").val() == ''){
-			alert("날짜를 입력하세요.");
-			return false;
-		}
-		else{
-			$("#clubDateForm").submit();
-		}
-	})
+		//------------------------- 경로 검색 (주소) -----------------------------
+			$("#pathSearchForm").submit(function(){
+				if($("#addr_section_2").val()==""){
+					alert("주소 소분류 선택하세요.");
+					return false;
+				}
+				return true;
+			})
+		});
 }
 
 // 전역 변수 
 var course_no;
 var select_course_no;
+var select_course_name;
+var partyname_checked=false;
 
 //-------------------경로 세부 모달 내용 가져오기-------------------
 function modal_data(no) {
 	$(function(){
 		
 		course_no = no;
-		alert(no);
+		//alert(no);
 		//모달 비우기 
 
-		//비동기식 파티 데이터 가져오기 
-		// var url = "/club/getPathDetail";
-		// var params = {no:no};
+		var url = "/club/getPathDetail";
+		var params = {no:no};
+		console.log("코스번호:"+no);
+		
+		$.ajax({
+			url: url,
+			data: params,
+			success: function(result){
+				var path = result.path;
+				console.log(path);
 
-		// $.ajax({
-		// 	url: url,
-		// 	data: params,
-		// 	success: function(result){
-
-
+				//세부 데이터 넣기
+				$('#k_coursename>span').html(path.course_name);
+				$('#k_startaddr>span').html(path.startaddr);
+				$('#k_endaddr>span').html(path.endaddr);
+				$('#k_time>span').html(path.time+" 분");
+				$('#k_distance>span').html(path.distance+" km");
+				$('#k_plog_total>span').html(path.plog_total+" 회");
 			
-		// 	}, error:function(e){
-		// 		console.log(e.responseText);
-		// 	}
-		// });
+				select_course_name = path.course_name;
+			}, error:function(e){
+				console.log(e.responseText);
+			}
+		});
 
 	})
 }
@@ -51,10 +63,36 @@ function select_path() {
 		//선택한 파티 -> 폼
 		$(function(){
 			console.log('------');
-			$("#k_party_set_course").val(select_course_no);
+			console.log(select_course_name);
+			$("#k_party_set_course_no").val(select_course_no);
+			$("#k_party_set_course_name").val(select_course_name);
 		});
 	}
 }
+//---------------- 파티이름 중복검사 ---------------
+function checkPartyname() {
+	$(function(){
+		$.ajax({
+			type : "post",
+			url: "/club/checkPartyname",
+			data: {partyname: $('#k_party_set_party_name').val()},
+			success: function(result){
+				if (result=="yes"){
+					alert("모임명 사용가능");
+					partyname_checked = true;
+				}else{
+					alert("모임명 사용 불가능");
+					partyname_checked = false;
+					$('#k_party_set_party_name').val('');
+				}
+			}, error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		
+	})
+}
+
 //----------------- 클럽  유효성 검사 --------------------
 $(function(){
 	$('.k_party_frm_submit').click(function(){
@@ -64,6 +102,10 @@ $(function(){
 		}
 		if($('#k_party_set_party_name').val() == ""){
 			alert("모임명을 입력해주세요");
+			return false;
+		}
+		if(!partyname_checked){
+			alert("모임명 중복검사를 해주세요");
 			return false;
 		}
 		if($('#k_party_set_course').val() == ""){
@@ -90,3 +132,29 @@ $(function(){
 		$("#k_party_set_frm").submit();
 	});
 });
+
+//----------------- 주소 처리 --------------------
+function changeAddr() {
+	//대분류 바꿨을 때
+	$(function(){
+		//소분류 처리
+		$.ajax({
+			url: "/data/getAddr_2",
+			data: {addr_1:$("#addr_section_1 option:selected").val()},
+			success: function(result){				
+				var tag = "";
+
+				tag += "<option value=''>세부 선택</option>";
+				for (let index = 0; index < result.idx; index++) {
+					tag += "<option value='"+result[index].addr_section_2+"'>"+result[index].addr_section_2+"</option>";
+					console.log(result[index].addr_section_2);
+				}
+
+				$("#addr_section_2").empty("");
+				$("#addr_section_2").html(tag);
+			}, error:function(e){
+				console.log(e.responseText);
+			}
+		})
+	});
+}

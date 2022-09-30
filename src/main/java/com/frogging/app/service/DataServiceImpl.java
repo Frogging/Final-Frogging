@@ -20,4 +20,9 @@ public class DataServiceImpl implements DataService {
 		return dao.getAddr_1();
 	}
 
+	@Override
+	public List<AddrVO> getAddr_2(String addr_1) {
+		return dao.getAddr_2(addr_1);
+	}
+
 }

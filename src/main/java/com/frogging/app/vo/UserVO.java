@@ -1,12 +1,21 @@
 package com.frogging.app.vo;
 
 public class UserVO {
+
+
 	private String id;
 	private String name;
 	private String nickname;
 	private int height;
 	private int sex;
 	private int restriction;
+
+	
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", name=" + name + ", nickname=" + nickname + ", height=" + height + ", sex=" + sex
+				+ ", restriction=" + restriction + "]";
+	}
 
 	public String getId() {
 		return id;
@@ -56,4 +65,5 @@ public class UserVO {
 		this.restriction = restriction;
 	}
 
+	
 }

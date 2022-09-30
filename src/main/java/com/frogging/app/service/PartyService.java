@@ -32,4 +32,22 @@ public interface PartyService {
 	public List<CourseVO> getPathList(PlogPagingVO p_pageVO);
 
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO);
+
+	public int getMaxNo();
+
+	public CourseVO getPathDetail(int no);
+
+	public int partynameCheck(String partyname);
+
+	public int rewriteParty(PartyVO pVO);
+
+	public int deleteClub(int no);
+
+	public int deleteClubDetail(int no);
+
+	public int deleteClubDetail_2(int no, String id);
+
+	public void decreaseCurrentNum(int party_no);
+
+	public List<PartyDetailVO> getMemberDetail(int no);
 }

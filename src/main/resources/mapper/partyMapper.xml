@@ -20,7 +20,8 @@
 		party.id, 
 		party.content, 
 		party.meeting_place,
-		party.meeting_time
+		party.meeting_time,
+		detail.addr
 		from 
 
 		(select 
@@ -33,12 +34,20 @@
 		order by meeting_time) party
 
 		left outer join
-
 		(select 
 		course_no, course_name
 		from course) course
-
 		on party.course_no = course.course_no
+
+		left outer join
+		(select course_no, addr
+		from course_detail
+		where waypoint = 1 ) detail
+		on course.course_no = detail.course_no
+		
+		<if test="searchLoc!=null">
+			where detail.addr like "%${addr_section_1}%" and detail.addr like "%${addr_section_2}%"
+		</if>
 	</select>
 
 
@@ -48,19 +57,14 @@
 		course.course_name,
 		course.distance, 
 		course.time,
-		activity.plog_total
+		activity.plog_total,
+		detail.addr
 		from 
 
 		(
 			select 
 			course_no, course_name, distance,time
 			from course
-
-			<!-- 
-				<if test="searchLoc!=null">
-			where ${searchLoc} like '%${searchLoc}%'
-		</if> 
-			-->
 		) course
 
 		left outer join
@@ -73,6 +77,18 @@
 		) activity
 
 		on activity.course_no = course.course_no
+
+		left outer join
+
+		(select course_no, addr
+		from course_detail
+		where waypoint = 1 ) detail
+		on course.course_no = detail.course_no
+
+		<if test="searchLoc!=null">
+			where detail.addr like "%${addr_section_1}%" and detail.addr like "%${addr_section_2}%"
+		</if>
+		
 	</select>
 
 	<select id="totalRecord" resultType="int">
@@ -110,6 +126,13 @@
 		where no = ${param1};
 	</update>
 
+
+	<update id="decreaseCurrentNum">
+		update party
+		set current_number = current_number -1
+		where no = ${param1};
+	</update>
+
 	<select id="getPartyDetail" resultType="PartyVO" parameterType="int">
 		select 
 		party.no,	
@@ -123,7 +146,9 @@
 		party.meeting_place,	
 		party.meeting_time,
 		course.time,
-		course.distance
+		course.distance,
+		detail.addr
+
 		from
 		(select 
 		no, partyname, number, current_number, course_no, id, 
@@ -131,9 +156,16 @@
 		from party
 		where no=${param1}
 		order by meeting_time) party
+
 		left outer join
 		(select course_no, course_name ,distance, time from course) course
 		on party.course_no = course.course_no
+
+		left outer join
+		(select course_no, addr
+		from course_detail
+		where waypoint = 1 ) detail
+		on course.course_no = detail.course_no
 	</select>
 
 	<select id="getLeaderInfo" resultType="ActivityVO" parameterType="String">
@@ -174,7 +206,9 @@
 		t2.content,
 		t2.meeting_place,
 		t2.meeting_time, 
-		t1.join_status
+		t1.join_status,
+		t3.course_name
+
 		from
 		(
 			select party_no, user_id, join_status
@@ -193,5 +227,89 @@
 			from party
 		) t2
 		on t1.party_no = t2.no
+
+		left outer join
+		(
+			select course_no, course_name
+			from course
+		) t3
+		on t2.course_no = t3.course_no
+	</select>
+
+	<select id="getMaxNo" resultType="int">
+		select max(no) from party;
+	</select>
+
+	<select id="getPathDetail" resultType="CourseVO">
+		select 
+		course.course_no,
+		course.course_name,
+		course.distance, 
+		course.time,
+		activity.plog_total,
+		(select addr from course_detail as detail 
+		where waypoint = 1 and detail.course_no = course.course_no) startaddr ,
+		(select addr from course_detail as detail 
+		where waypoint = 99999 and detail.course_no = course.course_no) endaddr 
+		from 
+
+		(
+			select 
+			course_no, course_name, distance,time
+			from course
+			where course_no = ${param1}
+		) course
+
+		left outer join
+
+		(
+			select 
+			course_no, count(course_no) plog_total
+			from activity
+			group by course_no
+		) activity
+
+		on activity.course_no = course.course_no
+	</select>
+
+	<select id="partynameCheck" resultType="int">
+		select count(*) from party where partyname = #{partyname}
+	</select>	
+
+	<insert id="rewriteParty" parameterType="PartyVO">
+		update party
+		set partyname=#{partyname}, number=${number}, meeting_time=#{meeting_time}, meeting_place=#{meeting_place},content=#{content}
+		where no=${no} and id=#{id};
+	</insert>
+
+	<delete id="deleteClub">
+		delete from party
+		where no = ${param1}
+	</delete>
+
+	<delete id="deleteClubDetail">
+		delete from party_detail
+		where party_no = ${param1}
+	</delete>
+
+	<delete id="deleteClubDetail_2">
+		delete from party_detail
+		where party_no = ${param1}
+		<if test="#{param2}!=null">
+				and user_id = #{param2}
+			</if> 
+	</delete>
+
+	<select id="getMemberDetail" resultType="PartyDetailVO">
+		select 
+		detail.party_no, 
+		detail.user_id, 
+		detail.join_status,
+		(select nickname from user where user.id = detail.user_id ) nickname, 
+		(select partyname from party where party.no = detail.party_no ) partyname
+		from 
+		(select party_no, user_id, join_status
+		from party_detail 
+		where party_no = #{param1}) detail
 	</select>
 </mapper>

@@ -16,14 +16,18 @@ public class PartyVO {
 	private String time;
 	private String distance;
 
-	// detail data
+	// p_detail data
 	private int join_status;
+
+	// c_detail dat
+	private String addr;
 
 	@Override
 	public String toString() {
-		return "PartyVO [content=" + content + ", course_no=" + course_no + ", current_number=" + current_number
-				+ ", meeting_place=" + meeting_place + ", meeting_time=" + meeting_time + ", no=" + no + ", number=" + number
-				+ ", partyname=" + partyname + "]";
+		return "PartyVO [addr=" + addr + ", content=" + content + ", course_name=" + course_name + ", course_no="
+				+ course_no + ", current_number=" + current_number + ", distance=" + distance + ", id=" + id + ", join_status="
+				+ join_status + ", meeting_place=" + meeting_place + ", meeting_time=" + meeting_time + ", no=" + no
+				+ ", number=" + number + ", partyname=" + partyname + ", time=" + time + "]";
 	}
 
 	public int getNo() {
@@ -128,6 +132,14 @@ public class PartyVO {
 
 	public void setJoin_status(int join_status) {
 		this.join_status = join_status;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 }
