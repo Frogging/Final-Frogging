@@ -2,12 +2,14 @@ package com.frogging.app.vo;
 
 public class UserVO {
 
+
 	private String id;
 	private String name;
 	private String nickname;
 	private int height;
 	private int sex;
 	private int restriction;
+
 	
 	@Override
 	public String toString() {

@@ -15,20 +15,36 @@
 		.nickchk2{
 			display:none;
 		}
+		.nickchk3{
+			display:none;
+		}
+		.nickchk4{
+			display:none;
+		}
 		</style>
 	</head>
 <script>
+function maxLengthChk(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
+  }
+</script>
+<script>
+
 $(document).ready(function(){      
 	var pattern_blank = /[\s]/g;//공백
 	var pattern_num = /[0-9]/;	// 숫자     	
 	var pattern_eng = /[a-zA-Z]/;	// 문자     	
 	var pattern_spc = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g; // 특수문자    	
 	var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ]/; // 한글체크
+	var check=0;
+
+
 	//유효성 검사
 	$("#sign").submit(function(){
 		
 		//문자열에 공백이 있는 경우
-		
 		if(pattern_blank.test($("#nickname").val()) == true){
 		    alert('닉네임에 공백을 사용할수없습니다.');
 		    return false;
@@ -56,11 +72,14 @@ $(document).ready(function(){
 			alert("키를 입력하세요.");
 			return false;
 		}
+		if(check==0){
+			alert("닉네임 확인바람");
+			return false;
+		}
 		return true;
 	});
 	
 	$('#nickname').on("propertychange change keyup paste input", function() {
-
 		var nickname = $('#nickname').val();
 		var data = {nickname : nickname}
 		$.ajax({
@@ -68,24 +87,50 @@ $(document).ready(function(){
 			url : "/login/nicknameCheck",
 			data : data,
 			success : function(result){
-				if((result !='fail') && !(pattern_blank.test(nickname)) && !(pattern_spc.test(nickname)) && !(pattern_kor.test(nickname)) && nickname.length > 1 && nickname.length<9){
-					$('.nickchk2').css("display",'none');
-					$('.nickchk1').css("display","inline-block");
-			
+				// 닉네임 중복
+				if(result !='success'){
+					 check=0;
+					 $('.nickchk1').css("display","inline-block");
+					 $('.nickchk2').css("display",'none');
+		             $('.nickchk3').css("display",'none');
+		             $('.nickchk4').css("display",'none');
+		        //공백 및 특수문자
+				}else if(nickname.match(pattern_blank) || nickname.match(pattern_spc) || nickname.match(pattern_kor)){
+					 check=0;
+					 $('.nickchk2').css("display","inline-block");
+					 $('.nickchk1').css("display",'none');
+		             $('.nickchk3').css("display",'none');
+		             $('.nickchk4').css("display",'none');
+		        //닉네임 입력칸 비어있을때 
 				}else if(nickname.length==0){
-					$('.nickchk1').css("display",'none');
-					$('.nickchk2').css("display",'none');
+					 check=0;
+		             $('.nickchk1').css("display",'none');
+		             $('.nickchk2').css("display",'none');
+		             $('.nickchk3').css("display",'none');
+			         $('.nickchk4').css("display",'none');
+		        }else if(nickname.length < 2 && nickname.length>8){
+		        	 check=0;
+		        	 $('.nickchk3').css("display","inline-block");
+		             $('.nickchk2').css("display",'none');
+		             $('.nickchk1').css("display",'none');
+			         $('.nickchk4').css("display",'none');
+		        }else{
+		        	 check=1;
+		        	 $('.nickchk4').css("display","inline-block");
+		             $('.nickchk1').css("display",'none');
+		             $('.nickchk2').css("display",'none');
+			         $('.nickchk3').css("display",'none');
+		        }
+		
 				}
-				else{
-					$('.nickchk1').css("display",'none');
-					$('.nickchk2').css("display","inline-block");
-					
-				}
-			}
+		
 		});
 	});
+
 });
+	
 </script>
+
 
 <body>
 <div id="#">
@@ -98,13 +143,14 @@ $(document).ready(function(){
 			<ul>
 				<li>아이디</li>
 					<li><input type="text" name="id" id="id" value="${vo.id }" readonly/></li>
-				<li>아이디</li>
+				<li>이름</li>
 					<li><input type="text" name="name" id="name" value="${vo.name }" readonly/></li>
 				<li>닉네임</li>
 					<li><input type="text" name="nickname" id="nickname" />
-					<li><span class="nickchk1">사용 가능한 닉네임입니다.</span></li>
-					<li><span class="nickchk2">사용 불가능한 닉네임입니다.</span></li>
-					
+					<li><span class="nickchk1">이미 사용중인 닉네임입니다.</span></li>
+					<li><span class="nickchk2">닉네임에 공백 및 특수문자를 사용할 수 없습니다.</span></li>
+					<li><span class="nickchk3">닉네임은2~8글자 사이여야합니다.</span></li>
+					<li><span class="nickchk4">사용 가능한 닉네임 입니다.</span></li>
 				<li id="sex">성별</li>
 				<li >
 					<select name="sex">
@@ -113,7 +159,7 @@ $(document).ready(function(){
 					</select>
 				</li>
 				<li>키</li>
-				<li><input type="number" name="height" id="height"/>cm</li>
+				<li><input type="number" name="height" id="height" maxlength="3" oninput="maxLengthChk(this)" style="width:50px"/>cm</li>
 				<li><input type="submit" value="가입하기"/></li>
 			</ul>
 			
