@@ -80,4 +80,16 @@ public class MapsServiceImpl implements MapsService{
 		
 		return dao.waypointDelete(course_no, waypoint);
 	}
+
+	@Override
+	public List<CourseVO> courseAllselect_t() {
+		
+		return dao.courseAllselect_t();
+	}
+
+	@Override
+	public List<CourseVO> detailAllselect_t() {
+		// TODO Auto-generated method stub
+		return dao.detailAllselect_t();
+	}
 }

@@ -48,4 +48,12 @@
 	<delete id = "waypointDelete">
 		delete from course_detail where course_no = ${param1} and waypoint = #{param2}
 	</delete>
+	<select id = "courseAllselect_t" resultType = "CourseVO">
+		select course_no, course_name, course_info, distance, time
+		from course
+	</select>
+	<select id = "detailAllselect_t" resultType = "CourseVO">
+		select course_no, waypoint, lat, log, addr
+		from course_detail
+	</select>
 </mapper>

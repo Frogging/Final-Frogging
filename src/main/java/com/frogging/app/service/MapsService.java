@@ -20,4 +20,7 @@ public interface MapsService {
 	public int waypointCheck(int course_no);
 	public int coursedetailUpdate(int course_no, int waypoint, String lat, String log, String addr);
 	public int waypointDelete(int course_no, int waypoint);
+	
+	public List<CourseVO> courseAllselect_t();
+	public List<CourseVO> detailAllselect_t();
 }
