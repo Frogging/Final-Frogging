@@ -1,6 +1,8 @@
 package com.frogging.app.controller;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frogging.app.service.AddrService;
+import com.frogging.app.service.DataService;
 import com.frogging.app.service.PartyService;
+import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
@@ -35,18 +40,33 @@ public class PartyController {
 	@Inject
 	PartyService p_service;
 
+	@Inject
+	DataService d_service;
+
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
 	public ModelAndView start_party(PlogPagingVO p_PageVO) {
 
 		// DB - 파티 가져오기 + 날짜 조건 + 위치 조건
-		// !!!!!!!!!!!!!!!! 위치 조건 가져오기 !!!!!!!!!!!!!!!! (course DB 들어오고 처리)
+		// 위치 조건 가져오기 addr_1 + addr_2
+		if (p_PageVO.getAddr_section_1() != null) {
+
+			// 시군구 뒤에 \n 있는거 처리
+			String pull = p_PageVO.getAddr_section_2();
+			String[] words = pull.split("\\s");
+			p_PageVO.setAddr_section_2(words[0]);
+
+			p_PageVO.setSearchLoc(p_PageVO.getAddr_section_1() + " " + p_PageVO.getAddr_section_2());
+		}
 
 		// 페이지 + 조건 검색 세팅
 		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
 		// System.out.println(p_PageVO.toString());
 
 		mav = new ModelAndView();
+
+		mav.addObject("addr_1", d_service.getAddr_1());
+		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
 		mav.addObject("list", p_service.getPartyList(p_PageVO));
 		mav.setViewName("plog_together/join_club");
 		return mav;
@@ -58,9 +78,22 @@ public class PartyController {
 
 		// DB - 경로 가져오기 + 위치 조건
 		// !!!!!!!!!!!!!!!! 위치 조건 검색 !!!!!!!!!!!!!!!!
+		if (p_PageVO.getAddr_section_1() != null) {
+
+			// 시군구 뒤에 \n 있는거 처리
+			String pull = p_PageVO.getAddr_section_2();
+			String[] words = pull.split("\\s");
+			p_PageVO.setAddr_section_2(words[0]);
+
+			p_PageVO.setSearchLoc(p_PageVO.getAddr_section_1() + " " + p_PageVO.getAddr_section_2());
+		}
+
 		p_PageVO.setTotalRecord(p_service.totalRecord_path(p_PageVO));
 
 		mav = new ModelAndView();
+		mav.addObject("addr_1", d_service.getAddr_1());
+		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
+
 		mav.addObject("list", p_service.getPathList(p_PageVO));
 		mav.addObject("p_PageVO", p_PageVO);
 		mav.setViewName("plog_together/make_club_rec_path");
@@ -79,10 +112,11 @@ public class PartyController {
 	// 클럽관리 - 리스트
 	@GetMapping(value = "/my_club_list")
 	public ModelAndView my_club_list(HttpSession session, HttpServletRequest request) {
+		// set_sample_user(session);
 		mav = new ModelAndView();
 
 		// DB - 해당 아이디의 파티 가져오기
-		set_sample_user(session);
+		// set_sample_user(session);
 		PartyDetailVO p_dVO = new PartyDetailVO();
 		p_dVO.setUser_id((String) request.getSession().getAttribute("logId"));
 
@@ -133,6 +167,63 @@ public class PartyController {
 		return voList;
 	}
 
+	// ---------------------- 모달 내 클럽 멤버 상세 정보
+	@GetMapping(value = "/getMemberDetail")
+	public JSONObject getMemberDetail(int no) {
+		JSONObject voList = new JSONObject();
+		try {
+			// party_detail + nickname + partyname => list
+
+			int idx = 0;
+			ObjectMapper mapper = new ObjectMapper();
+			List<PartyDetailVO> p_list = p_service.getMemberDetail(no);
+
+			for (PartyDetailVO vo : p_list) {
+				String jsonString = mapper.writeValueAsString(vo);
+				// System.out.println(jsonString);
+
+				JSONParser jsonParser = new JSONParser();
+				JSONObject jObj_p = (JSONObject) jsonParser.parse(jsonString);
+				voList.put(idx, jObj_p);
+				idx += 1;
+			}
+			voList.put("idx", idx);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return voList;
+	}
+
+	// ---------------------- 모달 내 코스 상세 정보
+	@GetMapping(value = "/getPathDetail")
+	public JSONObject getPathDetail(int no) {
+		JSONObject voList = new JSONObject();
+		System.out.println(no);
+		try {
+			// 1) path 정보 가져오기 courseVO + 시작/도착 위치 + 방문횟수
+			CourseVO vo = new CourseVO();
+			vo = p_service.getPathDetail(no);
+			// System.out.println(vo.toString());
+
+			// 1-1) vo 객체 jsonString으로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(vo);
+			// System.out.println(jsonString);
+
+			// 1-2) jsonString -> JSONObject로 변환
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
+			voList.put("path", jObj_party);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return voList;
+	}
+
 	// ------------------------ 클럽 참여 신청
 	@GetMapping("/ask_join_in")
 	public ResponseEntity<String> ask_join_in(HttpSession session, HttpServletRequest request,
@@ -146,7 +237,7 @@ public class PartyController {
 		String msg = "<script>";
 
 		// 임의의 유저 세팅 (차후 로그인으로 대체)
-		set_sample_user(session);
+		// set_sample_user(session);
 
 		try {
 			// DB에 쓸 파티 세부 정보 세팅
@@ -202,15 +293,16 @@ public class PartyController {
 		String msg = "<script>";
 
 		try {
-			set_sample_user(session);
-			// DB:party
+			// set_sample_user(session);
+
+			// 1) DB:party
 			// party vo세팅
 			pVO.setId((String) request.getSession().getAttribute("logId"));
 			pVO.setCurrent_number(1); // 현재 참여인원 1명
 			// System.out.println(pVO.toString());
 			p_service.addNewParty(pVO);
 
-			// DB:party_detail (파티장) - status:4
+			// 2) DB:party_detail (파티장) - status:4
 			// party_detail vo 세팅
 			PartyDetailVO p_detailVO = new PartyDetailVO();
 			p_detailVO.setParty_no(p_service.getMaxNo());
@@ -231,10 +323,135 @@ public class PartyController {
 		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 	}
 
+	// ---------파티이름 중복검사
+	@PostMapping(value = "/checkPartyname")
+	public String ckeckPartyname(String partyname) {
+		try {
+			int result = p_service.partynameCheck(partyname);
+			if (result != 0) {
+				return "no";
+			} else {
+				return "yes";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "no";
+	}
+
+	// ------------------------ 파티 관리 - 세부 ------------------
+	@GetMapping(value = "/club_view")
+	public ModelAndView clubView(int no, String l_id) {
+		mav = new ModelAndView();
+		mav.addObject("pvo", p_service.getPartyDetail(no));
+		mav.addObject("avo", p_service.getLeaderInfo(l_id));
+		mav.setViewName("/plog_together/club_view");
+		return mav;
+	}
+
+	// ------------------ 파티 수정: 폼 -------------------------
+	@GetMapping(value = "/club_edit")
+	public ModelAndView clubEdit(int no, String l_id) {
+		mav = new ModelAndView();
+		mav.addObject("pvo", p_service.getPartyDetail(no));
+		mav.addObject("avo", p_service.getLeaderInfo(l_id));
+		mav.setViewName("/plog_together/club_edit");
+		return mav;
+	}
+
+	// ------------------ 파티 수정:DB -------------------------
+	@PostMapping(value = "/rewriteParty")
+	public ResponseEntity<String> rewriteParty(PartyVO pvo) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		try {
+			// System.out.println(pvo.toString());
+			int result = p_service.rewriteParty(pvo);
+			if (result != 0) {
+				msg += "alert('모임 정보가 수정되었습니다.');";
+				msg += "location.href='/club/club_view?no=" + pvo.getNo() + "&l_id=" + pvo.getId() + "';";
+			} else {
+				msg += "alert('모임 정보를 수정 실패하였습니다.');";
+				msg += "history.go(-1)";
+			}
+
+		} catch (Exception e) {
+			msg += "alert('모임 정보를 수정 실패하였습니다.');";
+			msg += "history.go(-1)";
+			e.printStackTrace();
+		}
+
+		msg += "</script>";
+
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
+	// ------------------ 파티 삭제 -------------------------
+	@GetMapping(value = "/deleteClub")
+	public ResponseEntity<String> deleteClub(int no) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		try {
+			// party를 참조하는 party_detail 먼저 삭제
+
+			p_service.deleteClubDetail(no);
+			// System.out.println(no);
+			int result = p_service.deleteClub(no);
+			if (result != 0) {
+				msg += "alert('모임이 삭제되었습니다.');";
+				msg += "location.href='/club/my_club_list';";
+			} else {
+				msg += "alert('모임 삭제를 실패하였습니다.');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
+	// ------------------ 파티 참여취소 -------------------------
+	@GetMapping(value = "/leaveClub")
+	public ResponseEntity<String> leaveClub(int no, HttpSession session) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		try {
+			// party_detail에 해당 파티/유저 체크 후 삭제
+			// party에서 현재 인원 1 감소
+			String id = (String) session.getAttribute("logId");
+			int result = p_service.deleteClubDetail_2(no, id);
+			// System.out.println(no);
+			p_service.decreaseCurrentNum(no);
+
+			if (result != 0) {
+				msg += "alert('모임 참여가 취소되었습니다.');";
+				msg += "location.href='/club/my_club_list';";
+			} else {
+				msg += "alert('모임 참여 취소를 실패하였습니다.');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
 	// 임의의 유저 세션 세팅 -> db 추가할 것
 	public void set_sample_user(HttpSession session) {
-		session.setAttribute("logId", "sampleId2@gmail.com");
-		session.setAttribute("logNickName", "sampleNickname2");
+		session.setAttribute("logId", "sampleId@gmail.com");
+		session.setAttribute("logNickName", "sampleNickname");
 		session.setAttribute("logStatus", "Y");
 	}
+
 }

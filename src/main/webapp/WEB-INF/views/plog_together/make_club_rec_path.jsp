@@ -50,22 +50,27 @@
 
 					<div class="k_path_list_bg">
 						<!-- recommendation path select -->
-						<form action="">
+						<form action="/club/make_club_rec_path" method="get" id="pathSearchFrm" onclick="searchPath();">
 							<div class="k_rec_path_select">
 								<span>내 근처의 플로깅 코스: </span>
 								<div>
 									<div>
-										<select name="" id="">
-											<option value="">서울특별시</option>
+										<select name="addr_section_1" id="addr_section_1"  onchange="changeAddr()">
+											<c:forEach var="vo" items="${addr_1}">
+												<option value="${vo.addr_section_1}">${vo.addr_section_1}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<div>
-										<select name="" id="">
-											<option value="">성동구</option>
+										<select name="addr_section_2" id="addr_section_2">
+											<option value="">세부 선택</option>
+											<c:forEach var="vo" items="${addr_2}">
+												<option value="${vo.addr_section_2}">${vo.addr_section_2}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
-								<button class="k_rec_path_search_btn click-btn-l">검색</button>
+								<input type="submit" value="검색" class="k_rec_path_search_btn click-btn-l"></input>
 							</div>
 						</form>
 
@@ -75,7 +80,7 @@
 								<li class="open_modal" onclick="modal_data(${vo.course_no})">
 									<ul class="k_rec_path_box">
 										<li class="k_rec_path_title k_green">${vo.course_name}</li>
-										<li>주소 detail</li>
+										<li>${vo.addr}</li>
 										<li class="k_box_space"></li>
 										<li>예상 소요시간: ${vo.time}</li>
 										<li>당월 방문 수: ${vo.plog_total}회</li>
@@ -83,6 +88,7 @@
 									</ul>
 								</li>
 							</c:forEach>
+
 							<li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
@@ -157,17 +163,17 @@
 					<div class="k_path_map"></div>
 					<ul class="k_path_infos">
 						<li class="k_green">코스 이름</li>
-						<li>가볍게 응봉산 코스</li>
+						<li id="k_coursename"><span></span></li>
 						<li class="k_green">시작 위치</li>
-						<li>응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정</li>
+						<li id="k_startaddr"><span></span></li>
 						<li class="k_green">도착 위치</li>
-						<li>응복역 4번 출구</li>
+						<li id="k_endaddr"><span></span></li>
 						<li class="k_green">소요 시간</li>
-						<li>50 min</li>
+						<li id="k_time"><span></span></li>
 						<li class="k_green">이동 거리</li>
-						<li>4 km</li>
+						<li id="k_distance"><span></span></li>
 						<li class="k_green">이번 달 방문 횟수</li>
-						<li>12회</li>
+						<li id="k_plog_total"><span></span></li>
 					
 						<div>
 							<ul class="k_path_images">
@@ -195,6 +201,7 @@
 		<section class="k_new_party_setting">
 			<div class="k_wrapper">
 				<form action="/club/makeNewClub" method="post" id="k_party_set_frm">
+				<input type="hidden" name="course_no"  id="k_party_set_course_no"/>
 				<div class="k_section_title">
 					<div>플로깅 할 사람 여기여기 모여라</div>
 					<div class="k_green">모임 세팅 <i class="fa-solid fa-gear"></i></div>
@@ -209,9 +216,9 @@
 						<div class="k_party_set_line"></div>
 						<ul class="k_party_set_right">
 							<li><label class="k_green" for="">모임명</label></li>
-							<li class="k_party_set_in"><input type="text" name="partyname" id="k_party_set_party_name" placeholder="파티명을 입력하세요"><input type="button" value="중복검사"></li>
+							<li class="k_party_set_in"><input type="text" name="partyname" id="k_party_set_party_name" placeholder="파티명을 입력하세요"><input type="button" value="중복검사" onclick="checkPartyname()"></li>
 							<li><label class="k_green" for="">코스명</label></li>
-							<li class="k_party_set_in"><input type="text" name="course_no" id="k_party_set_course" value="" readonly></li>
+							<li class="k_party_set_in"><input type="text" name="course_name" id="k_party_set_course_name" value="" readonly></li>
 							<li><label class="k_green" for="">모집인원</label></li>
 							<li class="k_party_set_in"><input type="number" name="number" id="k_party_set_party_number" min="2" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
@@ -219,7 +226,10 @@
 							<li><label class="k_green" for="">만남장소</label></li>
 							<li class="k_party_set_in"><input type="text" name="meeting_place" id="k_party_set_meeting_place" placeholder="만남장소를 입력하세요"></li>
 						</ul>
-					
+						<div class="k_party_set_buttom">
+							<label class="k_green" for="">세부 알림 사항</label>
+							<textarea name="content" id="k_content" ></textarea>
+						</div>
 				</div>
 				<div class="k_party_set_button">
 					<div class="click-btn k_party_frm_submit">모임 등록</div>
