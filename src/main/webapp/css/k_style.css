@@ -5,7 +5,7 @@
 	--main-black: #010101;
 	--ct-yellow: #FFD500;
 	--ct-light-green: #c7e5cb;
-	--ct-dark-green: #255f2d;
+	--ct-dark-green: #017935;
 	--ct-dark-grey: #918F8F;
 	--ct-light-grey: #efefef;
 
@@ -93,7 +93,7 @@ i{
 	top: calc(var(--space-large)*(-1));
 	border: none;
 	text-align: right;
-	background-color: var(--main-green);
+	background-color: var(--ct-dark-green);
 	color: var(--main-white);
 	width: 22%;
 	height: 30px;
@@ -231,8 +231,8 @@ i{
 	height: 8vh;
 	line-height: 8vh;
 	color: var(--main-white);
-	background-color: var(--main-green);
-	border: var(--border-bolder) var(--main-green);
+	background-color: var(--ct-dark-green);
+	border: var(--border-bolder) var(--ct-dark-green);
 	border-radius: var(--radius-strong);
 	box-shadow: var(--shadow-basic);
 	margin: 0 var(--space-large) var(--space-large);
@@ -958,4 +958,142 @@ i{
 }
 .k_party_manage_infos button:first-child{
 	margin-right: var(--space-medium);
+}
+
+/*  ------------------ 액티비티 써머리 --------------------- */
+.k_activity_sum{
+	background-color: var(--ct-light-green);
+	padding: var(--space-large);
+}
+.k_activity_sum>.k_wrapper{
+	margin: 50px auto;
+	border-radius: var(--radius-strong);
+	background-color: var(--main-white);
+	padding: var(--space-medium);
+}
+.k_a_title{
+	font-size: var(--size-medium-1);
+	text-align: center;
+	font-weight: bold;
+	margin: var(--space-large) auto;
+	color: var(--main-white);
+	background-color: var(--ct-dark-grey);
+	border-radius:var(--radius-mild) ;
+	height: 40px;
+	line-height:40px;
+}
+.k_a_select{
+	display: flex;
+	width: 98%;
+	text-align: center;
+	background-color: var(--ct-light-grey);
+	border-radius: var(--radius-mild);
+	margin: var(--space-medium);
+}
+.k_a_select>li{
+	width: 25%;
+}
+.k_a_select>li.active{
+	background-color: var(--ct-dark-green);
+	border-radius: var(--radius-mild);
+	color: var(--main-white);
+}
+#k_a_select_detail{
+	margin-left: var(--space-large);
+}
+.k_a_chart{
+	margin: var(--space-medium);
+	border-radius: var(--radius-mild);
+	border: var(--border-bold) var(--ct-dark-green);
+	/* height: 400px; */
+	padding: var(--space-large);
+	width: 93%;
+	display: flex;
+}
+.k_a_chart>ul{
+	width: 40%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content:space-around;
+}
+.k_a_chart>ul>li>span{
+	font-size: var(--size-large-2);
+	font-weight: bold;
+}
+.k_a_chart_graph{
+	width: 50%;
+	height: 250px;
+	border-radius: var(--radius-mild);
+	border: 1px solid var(--ct-light-grey);
+	margin-left: 8%;
+}
+.k_a_chart_graph>img{
+	width: 100%;
+	height: 250px;
+	border-radius: var(--radius-mild);
+}
+/*  ------------------ 액티비티 리스트 --------------------- */
+.k_activity_list{
+	background-color: var(--ct-light-grey);
+	padding: var(--space-large);
+}
+.k_activity_list>.k_wrapper{
+	margin: 50px auto;
+	border-radius: var(--radius-strong);
+	/* border: var(--border-bold) var(--ct-dark-green); */
+	background-color: var(--main-white);
+	padding: var(--space-medium);
+}
+.k_activity_list>.k_wrapper>ul{
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+.k_activity_list>.k_wrapper>ul>li{
+	width: 30%;
+	margin: var(--space-medium);
+}
+.k_a_each_box{
+	border-radius: var(--radius-mild);
+	border: var(--border-bold) var(--ct-dark-grey);
+}
+.k_a_each_box>li{
+	color: var(--ct-dark-grey);
+	margin: auto var(--space-medium);
+	font-size: var(--size-small-1);
+}
+.k_a_each_box>li:first-child{
+	margin: var(--space-medium);
+	height: 250px;
+	border-radius: var(--radius-mild);
+	border: 1px solid var(--ct-dark-grey);
+}
+.k_a_each_box img{
+	height: 250px;
+	width: 100%;
+	border-radius: var(--radius-mild);
+	border: 1px solid var(--ct-dark-grey);
+}
+.k_a_each_box .k_a_main_info{
+	font-weight: bold;
+	color: var(--main-black);
+	margin: var(--space-medium);
+	font-size: var(--size-medium-2);
+}
+.k_a_each_box .k_a_div{
+	border-top: var(--basic-dot) var(--ct-dark-grey);
+	margin: var(--space-medium);
+}
+.k_a_each_box>li:last-child{
+	margin-bottom: var(--space-medium);
+}
+.k_list_more{
+	text-align: center;
+	margin: var(--space-large);
+}
+.k_list_more i{
+	color: var(--ct-dark-green);
+	font-size: var(--size-large-2);
 }

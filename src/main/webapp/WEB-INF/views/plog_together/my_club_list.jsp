@@ -181,7 +181,7 @@
 
 					</ul>
 
-					<ul class="k_rec_path_page">
+					<%-- <ul class="k_rec_path_page">
 							<li><i class="fa-solid fa-chevron-left active"></i></li>
 							<li class="active">1</li>
 							<li>2</li>
@@ -189,7 +189,7 @@
 							<li>4</li>
 							<li>5</li>
 							<li><i class="fa-solid fa-chevron-right active"></i></li>
-						</ul>
+						</ul> --%>
 				</div>
 
 				<div class="k_party_detail_join">

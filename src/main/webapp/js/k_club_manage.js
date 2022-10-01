@@ -1,6 +1,8 @@
 // 전역 변수 
 var partyname_checked=false;
 var new_name=false;
+var party_no;
+
 // ------------------ 클럽 삭제하기/신청 취소하기 -------------------
 function deleteClub(no) {
 	if(confirm("이 모임을 삭제하시겠습니까?")){
@@ -73,10 +75,12 @@ $(function(){
 });
 
 // --------------------------- member manage modal ----------------------
+var arr = [];
 function modal_data(no) {
 	$(function(){
 		var url = "/club/getMemberDetail";
 		var params = {no:no};
+		party_no = no;
 
 		$.ajax({
 			url: url,
@@ -91,22 +95,27 @@ function modal_data(no) {
 					tag += "<li><span>"+result[index].party_no+"</span></li>";
 					tag += "<li><span>"+result[index].user_id+"</span></li>";
 					tag += "<li><span>"+result[index].nickname+"</span></li>";
+					arr[index] = result[index].user_id;
 
 					if (result[index].join_status == 4){//관리자
 						tag += "<li><span>관리자</span></li>";
 						tag += "<li><span>-</span></li>";
 					} else if (result[index].join_status == 3 ){//퇴장
-						tag += "<li><span>퇴장</span></li>";
+						tag += "<li><span>퇴장 처리</span></li>";
 						tag += "<li><span>-</span></li>";
 					} else if (result[index].join_status == 2 ){//신청 - 거절
-						tag += "<li><span>퇴장</span></li>";
+						tag += "<li><span>거절 처리</span></li>";
 						tag += "<li><span>-</span></li>";
-					} else if (result[index].join_status == 2 ){//신청 - 수락
+					} else if (result[index].join_status == 1 ){//신청 - 수락
 						tag += "<li><span>수락 완료</span></li>";
-						tag += "<li class='k_btn'><span><button class='k_manage_3'>퇴장</button></span></li>";
-					} else{
+						tag += "<li class='k_btn'><span><button id='k_manage_3_"+index+"' onmouseover='k_btn_3("+index+");'>퇴장</button></span></li>";
+					}else if (result[index].join_status == 0 ){
 						tag += "<li><span>수락 대기</span></li>";
-						tag += "<li class='k_btn'><span><button class='k_manage_1'>수락</button><button class='k_manage_2'>거절</button></span></li>";
+						tag += "<li class='k_btn'><span><button id='k_manage_1_"+index+"' onmouseover='k_btn_1("+index+");'>수락</button>";
+						tag += "<button id='k_manage_2_"+index+"' onmouseover='k_btn_2("+index+");'>거절</button></span></li>";
+					} else{
+						tag += "<li><span>기타</span></li>";
+						tag += "<li><span>-</span></li>";
 					}
 				}
 
@@ -117,21 +126,62 @@ function modal_data(no) {
 		});
 
 
-		$('.k_manage_1').on({
-			mouseenter: function() {
-				console.log("in");
-				$(this).css('color', 'red');
-			}, mouseleave: function() {
-				$(this).css('color', 'green');
-			}
-		});
-
 
 	})		
 }
 
 // ---------------- member manage button ------------------
-// $(function(){
-// 	alert("jqeury");
-	
-// });
+function k_btn_1(no) { //수락
+	$(function(){
+		var userid = arr[no];
+		console.log("in/"+no+"/"+userid);
+		var name = "k_manage_1_" + no;
+		$("#"+name).css('color', 'green');
+		$("#"+name).on({
+			mouseenter: function() {
+				console.log("in");
+				$(this).css('color', 'green');
+			}, mouseleave: function() {
+				$(this).css('color', 'black');
+			}, click: function(){
+				location.href= "/club/allowClub?partyno="+party_no+"&userid="+userid;
+			}
+		});
+	});
+}
+function k_btn_2(no) { //거절
+	$(function(){
+		var userid = arr[no];
+		console.log("in/"+no+"/"+userid);
+		var name = "k_manage_2_" + no;
+		$("#"+name).css('color', 'green');
+		$("#"+name).on({
+			mouseenter: function() {
+				console.log("in");
+				$(this).css('color', 'green');
+			}, mouseleave: function() {
+				$(this).css('color', 'black');
+			}, click: function(){
+				location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid;
+			}
+		});
+	});
+}
+function k_btn_3(no) { //퇴출
+	$(function(){
+		var userid = arr[no];
+		console.log("in/"+no+"/"+userid);
+		var name = "k_manage_3_" + no;
+		$("#"+name).css('color', 'green');
+		$("#"+name).on({
+			mouseenter: function() {
+				console.log("in");
+				$(this).css('color', 'green');
+			}, mouseleave: function() {
+				$(this).css('color', 'black');
+			}, click: function(){
+				location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid;
+			}
+		});
+	});
+}

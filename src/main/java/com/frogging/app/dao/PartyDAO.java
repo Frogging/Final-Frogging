@@ -76,4 +76,11 @@ public interface PartyDAO {
 
 	// 파티 참여 멤버 정보 가져오기
 	public List<PartyDetailVO> getMemberDetail(int no);
+
+	// 파티 참여 상태 변경
+	public int changeStatus(int partyno, String userid); // 승인
+
+	public int changeStatus_2(int partyno, String userid); // 거절
+
+	public int changeStatus_3(int partyno, String userid); // 퇴출
 }

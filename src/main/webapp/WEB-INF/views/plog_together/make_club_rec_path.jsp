@@ -236,6 +236,6 @@
 				</div>
 			</form>
 			</div>
-
+	</section>
 </body>
 </html>

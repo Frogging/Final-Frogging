@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.frogging.app.dao.ActivityDAO">
+	<select id="getWeeklyKm" resultType="ActivityVO">
+		select @rownum:= @rownum - 1 as rownum, (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance) distance
+		from activity t1, (SELECT @rownum :=4) AS r
+		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
+		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		group by id order by sum(distance) desc
+	</select>
+
+	<select id="getWeeklyCount" resultType="ActivityVO">
+		select  @rownum:= @rownum - 1 as rownum, (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count
+		from activity as t1,
+		(SELECT @rownum :=4) AS r
+		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
+		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		group by id order by count(id) desc
+	</select>
+
+	<select id="getMonthlyKm" resultType="ActivityVO">
+		select @rownum:= @rownum - 1 as rownum, (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance) distance
+		from activity t1, (SELECT @rownum :=4) AS r
+		where date between date_format(now(), '%Y-%m-01') and now()
+		group by id order by sum(distance) desc
+	</select>
+
+	<select id="getMonthlyCount" resultType="ActivityVO">
+		select  @rownum:= @rownum - 1 as rownum, (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count
+		from activity as t1,
+		(SELECT @rownum :=4) AS r
+		where date between date_format(now(), '%Y-%m-01') and now()
+		<!-- where date > LAST_DAY(NOW() - interval 1 month) AND date <= LAST_DAY(NOW())  -->
+		group by id order by count(id) desc
+	</select>
+
+
+</mapper>

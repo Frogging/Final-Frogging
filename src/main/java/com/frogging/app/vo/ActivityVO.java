@@ -19,6 +19,8 @@ public class ActivityVO {
 	private int total_distance;
 	private int plog_count;
 
+	private int rownum;
+
 	public String getId() {
 		return id;
 	}
@@ -121,6 +123,14 @@ public class ActivityVO {
 
 	public void setPlog_count(int plog_count) {
 		this.plog_count = plog_count;
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 }

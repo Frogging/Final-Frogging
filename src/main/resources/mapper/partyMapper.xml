@@ -312,4 +312,16 @@
 		from party_detail 
 		where party_no = #{param1}) detail
 	</select>
+
+	<update id="changeStatus">
+		update party_detail
+		set join_status = join_status + 1
+		where party_no = ${param1} and user_id = #{param2};
+	</update>
+
+	<update id="changeStatus_2">
+		update party_detail
+		set join_status = join_status + 2
+		where party_no = ${param1} and user_id = #{param2};
+	</update>
 </mapper>
