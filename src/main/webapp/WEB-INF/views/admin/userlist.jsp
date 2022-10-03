@@ -15,8 +15,6 @@
 	<div class="#">
 	<h1>로그인</h1>
 		<ul>
-			<div id="buttonDiv"></div> 
-			<li id="s_singup"><a href="https://accounts.google.com/"/>google 가입하러가기</a></li>
 		</ul>
 	</div>
 </body>
