@@ -36,6 +36,7 @@ public class EventController {
 		pVO.setTotalRecord(service.totalRecord(pVO));
 		System.out.println(pVO.toString());
 		
+		
 		mav.addObject("list", service.eventList(pVO));
 		mav.addObject("pVO", pVO);
 		mav.setViewName("event/eventList");
@@ -61,10 +62,9 @@ public class EventController {
 	}
 	//글쓰기 DB
 	@PostMapping("eventFormOk")
-	public ResponseEntity<String> eventFormOk(EventVO vo, HttpServletRequest request){
-		
-		//vo.setId((String)request.getSession().getAttribute("logId"));//세션 로그인 아이디logId
-		
+	public ResponseEntity<String> eventFormOk(EventVO vo, HttpServletRequest request){		
+		vo.setId((String)request.getSession().getAttribute("logId"));//세션 로그인 아이디logId
+		//vo.setId("testid1");
 		
 		String msg="<script>";
 		try {

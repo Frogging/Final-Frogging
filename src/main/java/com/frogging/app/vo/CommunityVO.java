@@ -12,6 +12,8 @@ public class CommunityVO {
 	private int depth;
 	//여러개의 레코드 번호를 저장
 	private List<Integer> noList;
+	
+	private int reply_count;
 	@Override
 	public String toString() {
 		return "CommunityVO [no=" + no + ", subject=" + subject + ", content=" + content + ", id=" + id + ", hit=" + hit
@@ -64,6 +66,12 @@ public class CommunityVO {
 	}
 	public void setNoList(List<Integer> noList) {
 		this.noList = noList;
+	}
+	public int getReply_count() {
+		return reply_count;
+	}
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
 	}
 	
 	

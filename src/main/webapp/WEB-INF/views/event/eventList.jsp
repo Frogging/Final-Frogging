@@ -48,8 +48,13 @@ $(function(){
          <!--  <p class="p_eventList">no${vo.no } 조회수:${vo.hit } 게시날짜:${vo.writedate } 관리자:${vo.id }</p><hr/>--> 
           <div class="card">
             <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../img/event1.png" alt="이벤트" class="card-img" />
+              <div class="col-4" >
+        		<c:if test="${vo.imgName!=null}">
+              		<img alt="이벤트 사진" src="${vo.imgName}" class="card-img"/>
+              	</c:if>
+              	<c:if test="${vo.imgName==null}">
+              		<img alt="이벤트 사진" src="/img/event1.png" class="card-img"/>
+              	</c:if>
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -60,58 +65,6 @@ $(function(){
             </div>
           </div>
         </div>
-        <!-- 지구도 지키고 건강도 지키는 플로깅 이벤트
-        <div class="col-8">
-            <p></p>
-            <div class="card">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  <img src="../img/event2.png" alt="이벤트" class="card-img" />
-                </div>
-                <div class="col-8">
-                  <div class="card-body">
-                    <p class="card-subject">'함께 줍깅-아름다운 바다를 위해 걷고, 담고, 응원해요'</p><hr/>
-                    <p class="card-text">마녀공장은 오는 9월 6일 자원 순환의 날을 맞아 국제구호개발NGO ‘휴먼인러브’와 내달 1일 충남 보령 원산도 해수욕장에서 탄소저감과 환경보호를 위한 플로깅 행사를 개최한다.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-8">
-            <p></p>
-            <div class="card">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  <img src="../img/event3.png" alt="이벤트" class="card-img" />
-                </div>
-                <div class="col-8">
-                  <div class="card-body">
-                    <p class="card-subject">KB금융 한강공원 플로깅 캠페인</p><hr/>
-                    <p class="card-text">KB금융, 28일 반포 한강공원에서 플로깅 캠페인 진행한다. KB금융은 이번 프로젝트를 통해 국민들이 자연스럽게 플로깅 문화를 익히고, 환경정화 활동에 손쉽게 참여할 수 있도록 할 계획이다.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-8">
-            <p></p>
-            <div class="card">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  <img src="../img/event4.png" alt="이벤트" class="card-img" />
-                </div>
-                <div class="col-8">
-                  <div class="card-body">
-                    <p class="card-subject">거제 씨월드 플로깅 캠페인</p><hr/>
-                    <p class="card-text">플로깅 하고! 환경 생각도 하고! 거제씨월드 무료입장도 하고! <br/>
-                        지구를 살리는 아름다운 달리기를 거제씨월드와 함께해요</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-         --> 
        </div>
        </c:forEach>
     </div>

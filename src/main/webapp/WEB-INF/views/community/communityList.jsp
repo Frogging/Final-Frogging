@@ -43,7 +43,7 @@ $(function(){
 </script>
 <body>
     <div class="p_container">
-        <span class="p_title"><h1>게시판</h1></span>
+        <span class="p_title"><h1>커뮤니티 게시판</h1></span>
                    
         <div class="p_communityList">
               <input type="button" value="선택삭제" class="p_multiDel"/>   
@@ -59,7 +59,16 @@ $(function(){
                 <c:forEach var="vo" items="${list }">
 				<li><input type="checkbox" name="noList" value="${vo.no}"/></li>
 				<li>${vo.no }</li>
-				<li><a href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a></li>
+				<li>
+				<div
+				<c:if test="${vo.subject.length() >= 30}">
+					style='width:90%'
+				</c:if>
+				>	
+				<a href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a></div>
+				<c:if test="${vo.reply_count>0}">
+					<span style="margin: auto 10px;">(${vo.reply_count})</span>			
+				</c:if></li>
 				<li>${vo.id }</li>
 				<li>${vo.hit }</li>
 				<li>${vo.writedate }</li>
@@ -90,7 +99,7 @@ $(function(){
 				<li>다음</li>
 			</c:if>
 			<c:if test="${pVO.nowPage<pVO.totalPage }">
-				<li><a href="/community/communityList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">next</a></li>
+				<li><a href="/community/communityList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
 			</c:if>
 		</ul>
 		</div>
