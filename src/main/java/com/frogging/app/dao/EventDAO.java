@@ -14,7 +14,7 @@ public interface EventDAO {
 	//이벤트게시판 글목록
 	public List<EventVO> eventList(EventPagingVO pVO);
 	//이벤트등록 추후 관리자만 버튼이 보이도록
-	public int EventWrite(EventVO vo);
+	public int eventWrite(EventVO vo);
 	//이벤트 내용보기
 	public EventVO getEvent(int no);
 	//수정
@@ -25,4 +25,5 @@ public interface EventDAO {
 	public void hitCount(int no);
 	//총레코드 수
 	public int totalRecord(EventPagingVO pVO);
+	public EventVO getImgName(String imgName);
 }
