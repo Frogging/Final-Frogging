@@ -2,6 +2,7 @@ package com.frogging.app.service;
 
 import java.util.List;
 
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 
 public interface MapsService {
@@ -22,8 +23,9 @@ public interface MapsService {
 	public int coursedetailUpdate(int course_no, int waypoint, String lat, String log, String addr);
 	public int waypointDelete(int course_no, int waypoint);
 	
-	public List<CourseVO> courseAllselect_t();
-	public List<CourseVO> detailAllselect_t();
+	public List<CourseVO> courseAllselect_t(CoursePagingVO cpvo);
+	public List<CourseVO> detailAllselect_t(int startCourse, int endCourse);
 	
 	public int nameCheck(String course_name);
+	public int totalCourse(CoursePagingVO cpvo);
 }

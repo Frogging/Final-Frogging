@@ -115,14 +115,6 @@ var distance = 0;
 				temp_position = new Tmapv2.LatLng(detail_arr[i].lat, detail_arr[i].log);
 				if(detail_arr[i].waypoint != 1){
 					point.push(temp_position);
-					marker = new Tmapv2.Marker(
-						{
-							position : temp_position,
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
-							iconSize : new Tmapv2.Size(24, 38),
-							map : map
-						});
-					markers.push(marker);
 					reverseGeo(detail_arr[i].log, detail_arr[i].lat);
 				} else {
 					end_point = new Tmapv2.LatLng(detail_arr[i].lat, detail_arr[i].log);
@@ -130,15 +122,18 @@ var distance = 0;
 			}
 	
 			point.push(end_point);
-			marker = new Tmapv2.Marker(
-				{
-					position : end_point,
-					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
-					iconSize : new Tmapv2.Size(24, 38),
-					map : map
-				});
-			markers.push(marker);
 			reverseGeo(end_point._lng, end_point._lat);
+			
+			for(var k = 0; k < point.length; k++){
+				marker = new Tmapv2.Marker({
+						position: new Tmapv2.LatLng(point[k]._lat, point[k]._lng), //Marker의 중심좌표 설정.
+						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(k+1)+".png",
+						iconSize : new Tmapv2.Size(24, 38),
+						map: map, //Marker가 표시될 Map 설정.
+						zIndex : 99999
+					});
+				markers.push(marker);
+			}
 			
 			polyline.setPath(point);
 			

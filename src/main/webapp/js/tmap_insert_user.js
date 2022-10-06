@@ -150,7 +150,7 @@ var distance = 0;
 		marker = new Tmapv2.Marker(
 					{
 						position : point[point.length-1],
-						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+point.length+".png",
 						iconSize : new Tmapv2.Size(24, 38),
 						map : map
 					});

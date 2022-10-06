@@ -35,8 +35,41 @@
 							}
 							lat.push(detail_arr[j].lat);
 							log.push(detail_arr[j].log);
-						}
+							
+							if(detail_arr[j].waypoint == 0){
+								//console.log("start marker");
+								marker_s = new Tmapv2.Marker({
+										position : new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log),
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map : map[i],
+										zIndex : 99999
+									});
+								markers.push(marker_s);
+							} else if (detail_arr[j].waypoint == 1){
+								//console.log("end marker");
+								marker_e = new Tmapv2.Marker({
+										position : new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log),
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map : map[i],
+										zIndex : 99999
+									});
+								markers.push(marker_e);
+							} else {
+								//console.log("waypoint marker");
+								marker = new Tmapv2.Marker({
+										position: new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log), //Marker의 중심좌표 설정.
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(detail_arr[j].waypoint-1)+".png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map: map[i], //Marker가 표시될 Map 설정.
+										zIndex : 99999
+									});
+								markers.push(marker);
+							}
+						}	
 					}
+					console.log(markers);
 					searchRoute(lat, log, map[i]);
 					setBoundary(lat, log, map[i]);
 					//setTimeout(searchRoute, 1500, lat, log, map[i]);
@@ -69,6 +102,17 @@
 							}
 						}
 						point.push(end_point);
+						
+						for(var k = 0; k < point.length; k++){
+							marker = new Tmapv2.Marker({
+									position: new Tmapv2.LatLng(point[k]._lat, point[k]._lng), //Marker의 중심좌표 설정.
+									icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(k+1)+".png",
+									iconSize : new Tmapv2.Size(24, 38),
+									map: map[i], //Marker가 표시될 Map 설정.
+									zIndex : 99999
+								});
+							markers.push(marker);
+						}
 						drawLine(point, map[i]);
 				}
 			}, i * 500)
@@ -225,7 +269,8 @@
 									lat : convertPoint._lat,
 									pointType : pType
 								};
-
+								
+								/*
 								// Marker 추가
 								marker_p = new Tmapv2.Marker(
 										{
@@ -236,6 +281,7 @@
 											iconSize : size,
 											map : maplist
 										});
+								*/
 							}
 						}//for문 [E]
 						drawLine(drawInfoArr, maplist);

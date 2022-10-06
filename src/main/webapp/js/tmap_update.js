@@ -406,7 +406,8 @@
 									lat : convertPoint._lat,
 									pointType : pType
 								};
-
+								
+								/*
 								// Marker 추가
 								marker_p = new Tmapv2.Marker(
 										{
@@ -418,6 +419,7 @@
 											map : map,
 											zIndex : 99999
 										});
+								*/
 							}
 						}//for문 [E]
 						

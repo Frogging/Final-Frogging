@@ -47,16 +47,39 @@ function initTmap() {
 		<div id="map_wrap" class="map_wrap3">
 			<c:forEach var = "courseList" items = "${courseList }">
 				<div id="map_div_${courseList.course_no }"></div>
-				${courseList.course_name }, ${courseList.course_info }, ${courseList.distance },${courseList.time }
+				${courseList.course_no }, ${courseList.course_name }, ${courseList.course_info }, ${courseList.distance },${courseList.time }
 			</c:forEach>
 		</div>
 		<div class="map_act_btn_wrap clear_box"></div>
 		<p id="result"></p>
 		<br />
-		<div class="rst mCustomScrollbar">
-			<ul id="searchResult" name="searchResult">
-				<li>검색결과</li>
-			</ul>
-		</div>
+			<div>
+		<ul id = "page">
+		<!-- page 번호 -->
+			<c:if test = "${cpvo.nowPage > 1 }"><!-- 이전 page가 있을 때 -->
+				<li><a href = "/maps/tmap02?nowPage=${cpvo.nowPage-1 }">prev</a></li>
+			</c:if>
+			
+			<c:forEach var = "p" begin = "${cpvo.startPage }" end = "${cpvo.startPage + cpvo.onePageCount - 1 }">
+				<!-- 출력할 page 번호가 총 page보다 작거나 같을 때 -->
+				<c:if test = "${p <= cpvo.totalPage}">
+					
+					<li 
+					
+					<c:if test = "${p == cpvo.nowPage }">
+						style = "background-color : #f00"; color : #fff;"
+					</c:if>
+					
+					><a href = "/maps/tmap02?nowPage=${p }">${p }</a></li>
+					
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 page -->
+			<c:if test = "${cpvo.nowPage < cpvo.totalPage }">
+				<li><a href = "/maps/tmap02?nowPage=${cpvo.nowPage + 1 }">next</a></li>
+			</c:if>
+		</ul>
+	</div>
 </body>
 </html>

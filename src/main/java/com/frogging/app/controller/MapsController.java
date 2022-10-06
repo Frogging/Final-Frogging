@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.MapsService;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 
 @Controller
@@ -180,12 +181,21 @@ public class MapsController {
 	
 	@GetMapping("/maps/tmap02")
 	@ResponseBody
-	public ModelAndView tmaps02() {
+	public ModelAndView tmaps02(CoursePagingVO cpvo) {
 		
 		mav = new ModelAndView();
 		
-		mav.addObject("courseList", service.courseAllselect_t());
-		mav.addObject("courseDetail", service.detailAllselect_t());
+		cpvo.setTotalRecord(service.totalCourse(cpvo));
+		
+		List<CourseVO> courseList = service.courseAllselect_t(cpvo);
+		
+		int startCourse = courseList.get(courseList.size()-1).getCourse_no();
+		int endCourse = courseList.get(0).getCourse_no();
+
+		mav.addObject("courseList", courseList);
+		mav.addObject("cpvo", cpvo);
+		mav.addObject("courseDetail", service.detailAllselect_t(startCourse, endCourse));
+		
 		mav.setViewName("maps/tmap02");
 		return mav;
 	}

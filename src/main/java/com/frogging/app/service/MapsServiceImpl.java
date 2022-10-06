@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 
 import com.frogging.app.dao.MapsDAO;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 
 @Controller
@@ -82,15 +83,15 @@ public class MapsServiceImpl implements MapsService{
 	}
 
 	@Override
-	public List<CourseVO> courseAllselect_t() {
+	public List<CourseVO> courseAllselect_t(CoursePagingVO cpvo) {
 		
-		return dao.courseAllselect_t();
+		return dao.courseAllselect_t(cpvo);
 	}
 
 	@Override
-	public List<CourseVO> detailAllselect_t() {
+	public List<CourseVO> detailAllselect_t(int startCourse, int endCourse) {
 		// TODO Auto-generated method stub
-		return dao.detailAllselect_t();
+		return dao.detailAllselect_t(startCourse, endCourse);
 	}
 
 	@Override
@@ -103,5 +104,11 @@ public class MapsServiceImpl implements MapsService{
 	public int courseCheck(int course_no) {
 		// TODO Auto-generated method stub
 		return dao.courseCheck(course_no);
+	}
+
+	@Override
+	public int totalCourse(CoursePagingVO cpvo) {
+	
+		return dao.totalCourse(cpvo);
 	}
 }

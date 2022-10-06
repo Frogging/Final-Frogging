@@ -51,15 +51,21 @@
 	<select id = "courseAllselect_t" resultType = "CourseVO">
 		select course_no, course_name, course_info, distance, time, type
 		from course
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 	<select id = "detailAllselect_t" resultType = "CourseVO">
 		select course_no, waypoint, lat, log, addr
 		from course_detail
+		where course_no between ${param1} and ${param2}
 	</select>
 	<select id = "nameCheck" resultType = "int">
 		select count(course_name) from course where course_name = #{param1}
 	</select>
 	<select id = "courseCheck" resultType = "int">
 		select count(course_no) from course where course_no = ${param1}
+	</select>
+	<select id = "totalCourse" resultType = "int">
+		select count(course_no) from course;
 	</select>
 </mapper>
