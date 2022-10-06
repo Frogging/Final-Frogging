@@ -24,7 +24,7 @@ public class EventServiceImpl implements EventService{
 
 	@Override
 	public int eventWrite(EventVO vo) {
-		return dao.EventWrite(vo);
+		return dao.eventWrite(vo);
 	}
 
 	@Override
@@ -51,6 +51,11 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public int totalRecord(EventPagingVO pVO) {
 		return dao.totalRecord(pVO);
+	}
+
+	@Override
+	public EventVO getImgName(String imgName) {
+		return dao.getImgName(imgName);
 	}
 	
 }

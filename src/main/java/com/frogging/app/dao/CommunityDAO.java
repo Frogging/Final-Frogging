@@ -15,7 +15,7 @@ public interface CommunityDAO {
 		//커뮤니티게시판 글목록
 		public List<CommunityVO> communityList(PagingVO pVO);
 		//글등록
-		public int CommunityWriteOk(CommunityVO vo);
+		public int communityWriteOk(CommunityVO vo);
 		//글선택(수정), 글내용보기
 		public CommunityVO getCommunity(int no);
 		//글수정
