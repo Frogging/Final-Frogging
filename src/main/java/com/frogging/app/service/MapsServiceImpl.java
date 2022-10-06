@@ -92,4 +92,16 @@ public class MapsServiceImpl implements MapsService{
 		// TODO Auto-generated method stub
 		return dao.detailAllselect_t();
 	}
+
+	@Override
+	public int nameCheck(String course_name) {
+		
+		return dao.nameCheck(course_name);
+	}
+
+	@Override
+	public int courseCheck(int course_no) {
+		// TODO Auto-generated method stub
+		return dao.courseCheck(course_no);
+	}
 }

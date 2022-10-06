@@ -196,9 +196,15 @@ public class MapsController {
 		
 		mav = new ModelAndView();
 		
-		mav.addObject("course", service.courseSelect(course_no));
-		mav.addObject("courseDetail", service.detailSelect(course_no));
-		
+		int result = service.courseCheck(course_no);
+		if(result == 0) {
+			CourseVO cvo = new CourseVO();
+			cvo.setCourse_no(-1);
+			mav.addObject("course", cvo);
+		} else {
+			mav.addObject("course", service.courseSelect(course_no));
+			mav.addObject("courseDetail", service.detailSelect(course_no));
+		}
 		mav.setViewName("maps/tmap03");
 		return mav;
 	}
@@ -238,7 +244,7 @@ public class MapsController {
 		int result4 = 0;
 		
 		if (waypoint_number > lat.size()) {
-			for (int i = lat.size()-1; i < waypoint_number; i++) {
+			for (int i = lat.size(); i < waypoint_number; i++) {
 				result4 = service.waypointDelete(course_no, i);
 				if(result4 > 0) {
 					System.out.println("경유지 삭제 성공");
@@ -250,5 +256,35 @@ public class MapsController {
 		System.out.println("course_name : " + vo.getCourse_name() + ", course_info : " + vo.getCourse_info());
 		System.out.println(vo.getLat());
 		System.out.println(vo.getLog());
+	}
+	
+	@PostMapping("/maps/nameCheck")
+	@ResponseBody
+	public int nameCheck(String course_name) {
+		int result = service.nameCheck(course_name);
+		return result;
+	}
+	
+	@GetMapping("/maps/tmap04")
+	public String tmaps04() {
+		return "maps/tmap04";
+	}
+	
+	@GetMapping("/maps/tmap05/{course_no}")
+	public ModelAndView tmap05(@PathVariable("course_no") int course_no) {
+		
+		mav = new ModelAndView();
+		
+		int result = service.courseCheck(course_no);
+		if(result == 0) {
+			CourseVO cvo = new CourseVO();
+			cvo.setCourse_no(-1);
+			mav.addObject("course", cvo);
+		} else {
+			mav.addObject("course", service.courseSelect(course_no));
+			mav.addObject("courseDetail", service.detailSelect(course_no));
+		}
+		mav.setViewName("maps/tmap05");
+		return mav;
 	}
 }

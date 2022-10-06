@@ -6,6 +6,7 @@ import com.frogging.app.vo.CourseVO;
 
 public interface MapsService {
 	public int courseInsert(CourseVO vo);
+	public int courseCheck(int course_no);
 	public int coursenoSearch(String course_name);
 	public int coursedetailInsert(int course_no, int waypoint, String lat, String log, String addr);
 	
@@ -23,4 +24,6 @@ public interface MapsService {
 	
 	public List<CourseVO> courseAllselect_t();
 	public List<CourseVO> detailAllselect_t();
+	
+	public int nameCheck(String course_name);
 }
