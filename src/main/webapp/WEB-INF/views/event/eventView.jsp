@@ -39,7 +39,6 @@ img{
 			<div id="p_content">
 				<ul>
 					<h5><li>이벤트 내용</li>
-					<img src="../img/event1.png" alt="이벤트" class="card-img" />
 					<span style="padding:1px;"><li>${vo.content}</li></span></h5>
 				</ul>
 			</div>	

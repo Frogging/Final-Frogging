@@ -12,6 +12,8 @@ public class EventVO {
 	
 	private List<Integer> noList;
 	
+	private String imgName;
+	
 	@Override
 	public String toString() {
 		return "EventVO [no=" + no + ", subject=" + subject + ", content=" + content + ", id=" + id + ", hit=" + hit
@@ -72,6 +74,26 @@ public class EventVO {
 
 	public void setNoList(List<Integer> noList) {
 		this.noList = noList;
+	}
+
+	public String getImgName() {
+		//첫번째 이미지 파일명 구하기
+		//  <img alt=  위치 찾기
+		//System.out.println("------"+content);
+		if(content!=null && !content.equals("")) {
+			int idx1 = content.indexOf("<img alt=");
+			if(idx1>=0) {
+				int src1 = content.indexOf("src=", idx1);
+				int last = content.indexOf("/>", src1);
+				imgName = content.substring(src1+5,last-2);
+			}
+		}
+		System.out.println(imgName);
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 	
 }

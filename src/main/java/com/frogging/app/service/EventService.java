@@ -20,4 +20,6 @@ public interface EventService {
 	public void hitCount(int no);
 	//총레코드 수
 	public int totalRecord(EventPagingVO pVO);
+	
+	public EventVO getImgName(String imgName);
 }

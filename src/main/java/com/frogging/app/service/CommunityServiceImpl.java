@@ -21,8 +21,8 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public int CommunityWriteOk(CommunityVO vo) {
-		return dao.CommunityWriteOk(vo);
+	public int communityWriteOk(CommunityVO vo) {
+		return dao.communityWriteOk(vo);
 	}
 
 	@Override

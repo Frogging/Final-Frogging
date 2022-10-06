@@ -4,17 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frogging.app.dao.CommunityDAO">
 	<select id="communityList" resultType="CommunityVO">
-		select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
+		select b1.no, b1.subject, b1.id, b1.hit, b1.writedate, b2.reply_count
+		from
+		(select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
 		from board_community
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'
 		</if>	
 		order by no desc
-		limit ${onePageRecord} offset ${offsetPoint}
+		limit ${onePageRecord} offset ${offsetPoint}) b1
+		left outer join
+		(select no, count(no) reply_count from reply_community group by no) b2
+		on b1.no=b2.no
 	</select>
-	<insert id="CommunityWriteOk">
-		insert into board_community(id, subject, content, depth)
-		values(#{id}, #{subject}, #{content}, '0' )
+	<insert id="communityWriteOk">
+		insert into board_community(id, subject, content)
+		values(#{id}, #{subject}, #{content})
 	</insert>
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from board_community
