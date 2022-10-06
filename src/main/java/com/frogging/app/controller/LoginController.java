@@ -61,7 +61,7 @@ public class LoginController {
 						mav.setViewName("redirect:/");
 					}else {
 						session.setAttribute("logId",id);
-						session.setAttribute("logNickName",vo.getName() + "(관리자)");
+						session.setAttribute("logNickName","관리자");
 						session.setAttribute("logStatus", "Admin");
 						mav.setViewName("redirect:/");
 					}
