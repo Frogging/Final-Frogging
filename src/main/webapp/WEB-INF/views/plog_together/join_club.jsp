@@ -98,7 +98,7 @@
 						</li>
 					</c:forEach>
 
-					<li class="k_one_box open_modal">
+					<%-- <li class="k_one_box open_modal">
 						<ul>
 							<li class="k_box_title">중량천 하류 산책로</li>
 							<li>9/1(목) 19:00 / 총 5명</li>
@@ -164,7 +164,7 @@
 							</li>
 							<li>파티명 : 성동구 토박이들</li>
 						</ul>
-					</li>
+					</li> --%>
 				</ul>
 				<div class="k_party_list_more"><i class="fa-solid fa-caret-down"></i></div>
 			</div>

@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
-	<script src="/js/k_script.js" type="text/javascript"></script>
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+<script src="/js/tmap_insert.js"></script>
 </head>
-<body class="k_body">
+<body class="k_body" onload="initTmap();">
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
@@ -46,17 +48,17 @@
 						<!-- recommendation path select -->
 						<form action="">
 							<div class="k_make_path">
-								<div class="k_make_path_map"></div>
+								<div class="k_make_path_map" id = "map_div"></div>
 								<ul class="k_make_path_detail">
 									<li class="k_green"><label for="">코스명</label></li>
-									<li class="k_path_detail_in"><input type="text" id="" name=""><input type="button" value="중복검사"></li>
+									<li class="k_path_detail_in"><input type="text" id="course_name" name="course_name"><input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()"></li>
 									<li class="k_green"><label for="">시작 위치</label></li>
-									<li class="k_path_detail_in"><input type="text" id="" name=""></li>
+									<li class="k_path_detail_in"><input type="text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></li>
 									<li class="k_green"><label for="">경유 위치</label></li>
-									<li class="k_path_detail_in"><input type="text" id="" name=""></li>
+									<li class="k_path_detail_in"><div id = "waypoint"></div></li>
 									<li class="k_green"><label for="">도착 위치</label></li>
-									<li class="k_path_detail_in"><input type="text" id="" name=""></li>
-									<li class="k_make_path_total" ><span>예상 소요 시간: / 예상 거리: </span></li>
+									<li class="k_path_detail_in"><input type="text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></li>
+									<li class="k_make_path_total" ><span id = "result">예상 소요 시간: / 예상 거리: </span></li>
 									<li class="k_make_path_total"><input type="submit" value="코스 저장"></li>
 								</ul>
 							</div>

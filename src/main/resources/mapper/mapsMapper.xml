@@ -5,8 +5,8 @@
   
 <mapper namespace="com.frogging.app.dao.MapsDAO">
 	<insert id = "courseInsert">
-		insert into course(course_name, course_info, distance, time)
-		values(#{course_name}, #{course_info}, #{distance}, #{time})
+		insert into course(course_name, course_info, distance, time, type)
+		values(#{course_name}, #{course_info}, #{distance}, #{time}, #{type})
 	</insert>
 	<select id = "coursenoSearch" resultType = "int">
 		select course_no from course where course_name = #{param1}
@@ -25,7 +25,7 @@
 		delete from course where course_no = ${param1}
 	</delete>
 	<select id = "courseSelect" resultType = "CourseVO">
-		select course_no, course_name, course_info, distance, time
+		select course_no, course_name, course_info, distance, time, type
 		from course where course_no = ${param1}
 	</select>
 	<select id = "detailSelect" resultType = "CourseVO">
@@ -34,7 +34,7 @@
 	</select>
 	<update id = "courseUpdate">
 		update course
-		set course_name = #{course_name}, course_info = #{course_info}, distance = #{distance}, time = #{time}
+		set course_name = #{course_name}, course_info = #{course_info}, distance = #{distance}, time = #{time}, type = #{type}
 		where course_no = ${course_no}
 	</update>
 	<select id = "waypointCheck" resultType = "int">
@@ -48,4 +48,24 @@
 	<delete id = "waypointDelete">
 		delete from course_detail where course_no = ${param1} and waypoint = #{param2}
 	</delete>
+	<select id = "courseAllselect_t" resultType = "CourseVO">
+		select course_no, course_name, course_info, distance, time, type
+		from course
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
+	</select>
+	<select id = "detailAllselect_t" resultType = "CourseVO">
+		select course_no, waypoint, lat, log, addr
+		from course_detail
+		where course_no between ${param1} and ${param2}
+	</select>
+	<select id = "nameCheck" resultType = "int">
+		select count(course_name) from course where course_name = #{param1}
+	</select>
+	<select id = "courseCheck" resultType = "int">
+		select count(course_no) from course where course_no = ${param1}
+	</select>
+	<select id = "totalCourse" resultType = "int">
+		select count(course_no) from course;
+	</select>
 </mapper>

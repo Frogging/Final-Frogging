@@ -9,6 +9,62 @@
 		margin:10px;
 		height:100px;
 	}
+    #modal.modal-overlay {
+       width: 100%;
+       height: 100%;
+       position: absolute;
+       left: 0;
+       top: 0;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       background: rgba(255, 255, 255, 0.25);
+       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+       backdrop-filter: blur(1.5px);
+       -webkit-backdrop-filter: blur(1.5px);
+       border-radius: 10px;
+       border: 1px solid rgba(255, 255, 255, 0.18);
+   }
+   #modal .modal-window {
+       background: #e7e8e6;
+       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+       backdrop-filter: blur( 13.5px );
+       -webkit-backdrop-filter: blur( 13.5px );
+       border-radius: 10px;
+       border: 1px solid rgba( 255, 255, 255, 0.18 );
+       width: 400px;
+       height: 500px;
+       position: relative;
+       top: -100px;
+       padding: 10px;
+       
+   }
+   #modal .title {
+       padding-left: 10px;
+       display: inline;
+       text-shadow: 1px 1px 2px gray;
+       color: white;
+       
+   }
+   #modal .title h2 {
+       display: inline;
+   }
+   #modal .close-area {
+       display: inline;
+       float: right;
+       padding-right: 10px;
+       cursor: pointer;
+       text-shadow: 1px 1px 2px gray;
+       color: white;
+   }
+   
+   #modal .content {
+       margin-top: 20px;
+       padding: 0px 10px;
+       text-shadow: 1px 1px 2px gray;
+       color: white;
+   }
 </style>
 <script>
 function communityDel(){
@@ -78,6 +134,13 @@ function communityDel(){
 			event.preventDefault();
 			var params = $("#p_replyForm").serialize();
 			
+			
+				if($("#p_replycontent").val()==""){
+					alert("내용을 입력하세요.");
+					return false;
+				}
+		
+			
 			$.ajax({	
 				url:"/reply/replyWrite",
 				data:params,
@@ -143,7 +206,7 @@ function communityDel(){
 		//대댓글 쓰기
 		$(document).on('click','#p_replyList input[value=답글]',function(){
 			
-			$("#p_reReplyForm").css("display","block");
+			$("#modal").css("display","flex");
 			$("#reply_no").val($(this).prev().attr("value"));
 		});
 		
@@ -159,6 +222,7 @@ function communityDel(){
 				success:function(result){
 					//댓글등록여부
 					alert("댓글등록되었습니다." + result);
+					$("#modal").css("display","none");
 					
 					//이미등록된 글 지우기
 					$("#p_rereplycontent").val("");
@@ -215,13 +279,47 @@ function communityDel(){
 		</ul>
 	</div>
 		
-		<form method="post" id="p_reReplyForm" style="display:none;">
-			<input type="hidden" name="reply_no" id="reply_no" />
-			<textarea maxlength="100" name="content" id="p_rereplycontent" cols="50" rows="3" style="height:120px;"></textarea>
-			<input type="submit" value="답글쓰기"class="p_rereply-btn"/>
-		</form>
-
 		
+	<div id="modal" class="modal-overlay" style="display:none;">
+        <div class="modal-window">
+            <div class="title">
+                <h2>대댓글 등록</h2>
+            </div>
+            <div class="close-area">X</div>
+            <div class="content">
+				<form method="post" id="p_reReplyForm">
+					<input type="hidden" name="reply_no" id="reply_no" />
+					<textarea maxlength="100" name="content" id="p_rereplycontent" cols="50" rows="3" style="height:120px;"></textarea>
+					<input type="submit" value="답글쓰기"class="p_rereply-btn"/>
+				</form>
+                
+            </div>
+        </div>
+    </div>	
+<script>
+const loremIpsum = document.getElementById("lorem-ipsum")
+	fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+    .then(response => response.text())
+    .then(result => loremIpsum.innerHTML = result)
+    
+const closeBtn = modal.querySelector(".close-area")
+	closeBtn.addEventListener("click", e => {
+    modal.style.display = "none"
+})
+
+modal.addEventListener("click", e => {
+    const evTarget = e.target
+    if(evTarget.classList.contains("modal-overlay")) {
+        modal.style.display = "none"
+    }
+})
+
+window.addEventListener("keyup", e => {
+    if(modal.style.display === "flex" && e.key === "Escape") {
+        modal.style.display = "none"
+    }
+})
+</script>		
 	
 </div>
 

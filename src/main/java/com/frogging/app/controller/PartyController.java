@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frogging.app.service.AddrService;
 import com.frogging.app.service.DataService;
@@ -215,6 +217,7 @@ public class PartyController {
 			// 1-2) jsonString -> JSONObject로 변환
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
+
 			voList.put("path", jObj_party);
 
 		} catch (Exception e) {
@@ -438,6 +441,70 @@ public class PartyController {
 				msg += "location.href='/club/my_club_list';";
 			} else {
 				msg += "alert('모임 참여 취소를 실패하였습니다.');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
+	// ------------------------ 멤버 상태 변화: 승인
+	@GetMapping(value = "/club/allowClub")
+	public ResponseEntity<String> allowClub(int partyno, String userid) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		// System.out.println(partyno + "/" + userid);
+		// join_status: 0 -> 1 (+1)
+		try {
+			int result = p_service.changeStatus(partyno, userid);
+			if (result != 0) {
+				msg += "alert('멤버 승인 완료');";
+				msg += "location.href='/club/my_club_list';";
+			} else {
+				msg += "alert('멤버 승인 실패');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
+	// ------------------------ 멤버 상태 변화 :거절
+	@GetMapping(value = "/club/refuseClub")
+	public ResponseEntity<String> refuseClub(int partyno, String userid, String reason) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		int rea = Integer.parseInt(reason);
+
+		// System.out.println(partyno + "/" + userid);
+		// join_status: 0 -> 2 or 1->3 (+2)
+		// party의 current_number 감소
+		// party_request 추가
+
+		try {
+			// System.out.println(partyno + "/" + userid);
+			int party_detail_no = p_service.getPartyDetailNo(partyno, userid);
+			// System.out.println(party_detail_no);
+
+			int result_1 = p_service.changeStatus_2(partyno, userid);
+			p_service.decreaseCurrentNum(partyno);
+			int result_2 = p_service.addReason(partyno, party_detail_no, rea);
+
+			if (result_1 != 0 && result_2 != 0) {
+				msg += "alert('멤버 거절 완료');";
+				msg += "location.href='/club/my_club_list';";
+			} else {
+				msg += "alert('멤버 거절 실패');";
 				msg += "history.go(-1)";
 			}
 		} catch (Exception e) {

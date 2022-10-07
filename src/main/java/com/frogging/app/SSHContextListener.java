@@ -24,6 +24,7 @@ public class SSHContextListener implements ServletContextListener{
 		System.out.println("init destory!");
 		try {
 			sshConnection.shutdown();
+			System.out.println("shutdown");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
