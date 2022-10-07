@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frogging.app.dao.EventDAO">
 	
-	<insert id="eventWriteOk">
+	<insert id="eventWrite">
 		insert into board_event(id, subject, content )
 		values(#{id}, #{subject}, #{content} )
 	</insert>
 		
 	<select id="eventList" resultType="EventVO">
-		select no, subject, id, hit, date_format(writedate, '%y년%m월%d일') writedate
+		select no, subject, content, id, hit, date_format(writedate, '%y년%m월%d일') writedate
 		from board_event
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'

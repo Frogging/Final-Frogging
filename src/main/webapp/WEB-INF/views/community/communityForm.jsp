@@ -10,7 +10,7 @@
 	$(function(){
 		CKEDITOR.replace("content");
 		
-		$("#communityFrm").submit(function(){
+		$("#p_communityForm").submit(function(){
 			if($("#p_subject").val()==""){
 				alert("제목을 입력하세요.");
 				return false;
@@ -26,7 +26,7 @@
 <body>
 	<div class="p_container">
 		<h1 class="p_title">글쓰기</h1>
-		<form method="post" action="/community/communityFormOk" id="communityFrm">
+		<form method="post" action="/community/communityFormOk" id="p_communityForm">
 		<div id="p_textwrite">
 			<ul>
 				<li>제목</li>

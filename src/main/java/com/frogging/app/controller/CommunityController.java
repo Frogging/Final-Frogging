@@ -56,12 +56,13 @@ public class CommunityController {
 	// 글쓰기 DB
 	@PostMapping("communityFormOk")
 	public ResponseEntity<String> communityFormOk(CommunityVO vo, HttpServletRequest request) {
-		vo.setId("sampleId3@gmail.com");// 세션 로그인 아이디logId
+		vo.setId((String) request.getSession().getAttribute("logId"));
+		// vo.setId("testid1@gmail.com");
 
 		// 세션 로그인 아이디
 		String msg = "<script>";
 		try {
-			service.CommunityWriteOk(vo);
+			service.communityWriteOk(vo);
 			msg += "location.href='/community/communityList';";
 		} catch (Exception e) {
 			msg += "alert('글등록이 실패하였습니다.');";
@@ -107,6 +108,7 @@ public class CommunityController {
 	public ResponseEntity<String> communityEditOk(CommunityVO vo, HttpSession session) {
 		// 세션의 아이디를 구한다.
 		vo.setId((String) session.getAttribute("logId")); // logId
+		// vo.setId("testid1@gmail.com");
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
