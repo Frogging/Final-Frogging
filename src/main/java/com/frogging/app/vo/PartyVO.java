@@ -19,8 +19,11 @@ public class PartyVO {
 	// p_detail data
 	private int join_status;
 
-	// c_detail dat
+	// c_detail data
 	private String addr;
+
+	// p_request data
+	private int reason;
 
 	@Override
 	public String toString() {
@@ -140,6 +143,14 @@ public class PartyVO {
 
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+
+	public int getReason() {
+		return reason;
+	}
+
+	public void setReason(int reason) {
+		this.reason = reason;
 	}
 
 }

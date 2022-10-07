@@ -16,4 +16,7 @@
 <select id="nicknameCheck" resultType="int">
 		select count(*) from user where nickname = #{nickname}
 </select>
+<select id="checkAdmin" resultType="int">
+		select count(*) from manager where id = #{id}
+</select>
 </mapper>

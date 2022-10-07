@@ -42,6 +42,7 @@ public class LoginController {
 		
 		//db 확인 
 				int result = service.loginCheck(id);
+				int cAdmin;
 				if (result==0) { 
 					System.out.println("신규회원");
 					//회원아님 -> 회원가입
@@ -52,14 +53,21 @@ public class LoginController {
 					System.out.println("기존회원");
 					//회원임 -> 로그인 절차 
 					vo = service.loginOk(id);
+					cAdmin = service.checkAdmin(id);
+					if(cAdmin == 0) {
+						session.setAttribute("logId",id);
+						session.setAttribute("logNickName",vo.getNickname());
+						session.setAttribute("logStatus", "Y");
+						mav.setViewName("redirect:/");
+					}else {
+						session.setAttribute("logId",id);
+						session.setAttribute("logNickName","관리자");
+						session.setAttribute("logStatus", "Admin");
+						mav.setViewName("redirect:/");
+					}
 					
-					session.setAttribute("logId",id);
-					session.setAttribute("logNickName",vo.getNickname());
-					//session.setAttribute("logMode",vo.getUser_role() ); //0: 유저모드, 1: 관리자모드
-					session.setAttribute("logStatus", "Y");
-					mav.setViewName("redirect:/");
 					
-				} else {
+				}else {
 					//예외
 					mav.setViewName("redirect:/");
 				}

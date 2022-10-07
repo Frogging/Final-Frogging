@@ -50,4 +50,14 @@ public interface PartyService {
 	public void decreaseCurrentNum(int party_no);
 
 	public List<PartyDetailVO> getMemberDetail(int no);
+
+	public int changeStatus(int partyno, String userid);
+
+	public int changeStatus_2(int partyno, String userid);
+
+	// public int changeStatus_3(int partyno, String userid);
+
+	public int getPartyDetailNo(int partyno, String userid);
+
+	public int addReason(int partyno, int party_detail_no, int reason);
 }
