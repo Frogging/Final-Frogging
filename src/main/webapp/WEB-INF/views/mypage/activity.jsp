@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <head>
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
@@ -13,10 +12,10 @@
 			<div class="k_section_title_links">
 				<div>
 					<i class="fa-solid fa-square-caret-right k_green"></i>
-					<a href="/">
+					<a href="/mypage/my">
 						마이페이지
 					</a>
-					<a href="/">
+					<a href="/mypage/activity">
 						<i class="fa-solid fa-angle-right"></i>
 						나의 플로깅 활동
 					</a>
@@ -111,12 +110,4 @@
 		</div>
 	</section>
 
-
-	<section class="k_activity_sum">
-		<div class="k_wrapper">
-
-			<div class="k_a_title">달성 기록</div>
-
-		</div>
-	</section>
 </body>

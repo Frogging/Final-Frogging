@@ -29,6 +29,7 @@ public class RankingController {
 		mav.addObject("list_2", a_service.getWeeklyKm());
 		mav.addObject("list_3", a_service.getMonthlyCount());
 		mav.addObject("list_4", a_service.getMonthlyKm());
+
 		mav.setViewName("ranking/rankingForm");
 		return mav;
 	}

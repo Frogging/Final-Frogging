@@ -39,6 +39,11 @@
 					</ul>
 				</c:forEach>
 				<%-- <ul id="s_weeklist">
+						<li>${vo.rownum}위</li>
+						<li>${vo.nickname}</li>
+						<li>${vo.plog_count}회</li>
+					</ul> --%>
+				<%-- <ul id="s_weeklist">
 					<li>1위</li>
 					<li>프로거</li>
 					<li>125회</li>

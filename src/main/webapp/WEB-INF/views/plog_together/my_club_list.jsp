@@ -56,18 +56,35 @@
 								<li><a href="">${vo.course_name}</a></li>
 								<li>${vo.meeting_time}</li>
 								<li>
-								${vo.join_status}
-									<c:if test="${vo.join_status}==0">
+									<c:if test="${vo.join_status==0}">
 										수락대기
 									</c:if>
-									<c:if test="${vo.join_status}==1">
+									<c:if test="${vo.join_status==1}">
 										수락완료
 									</c:if>
-									<c:if test="${vo.join_status}==2">
-										수락거절
+									<c:if test="${vo.join_status==2}">
+										수락거절 
+										<c:if test="${vo.reason==1}">
+											(부적절한 언행)
+										</c:if>
+										<c:if test="${vo.reason==2}">
+											(신청 마감)
+										</c:if>
+										<c:if test="${vo.reason==3}">
+											(기타사유)
+										</c:if>
 									</c:if>
-									<c:if test="${vo.join_status}==3">
+									<c:if test="${vo.join_status==3}">
 										퇴출
+										<c:if test="${vo.reason==1}">
+											(부적절한 언행)
+										</c:if>
+										<c:if test="${vo.reason==2}">
+											(신청 마감)
+										</c:if>
+										<c:if test="${vo.reason==3}">
+											(기타사유)
+										</c:if>
 									</c:if>
 								</li>
 							</c:forEach>

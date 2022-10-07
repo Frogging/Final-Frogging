@@ -35,4 +35,14 @@ public class ActivityServiceImpl implements ActivityService {
 		return dao.getMonthlyKm();
 	}
 
+	@Override
+	public int getRank_p(String id) {
+		return dao.getRank_p(id);
+	}
+
+	@Override
+	public int getRank_k(String id) {
+		return dao.getRank_k(id);
+	}
+
 }

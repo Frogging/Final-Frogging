@@ -134,8 +134,18 @@ public class PartyServiceImpl implements PartyService {
 		return dao.changeStatus_2(partyno, userid);
 	}
 
+	// @Override
+	// public int changeStatus_3(int partyno, String userid) {
+	// return dao.changeStatus_3(partyno, userid);
+	// }
+
 	@Override
-	public int changeStatus_3(int partyno, String userid) {
-		return dao.changeStatus_3(partyno, userid);
+	public int getPartyDetailNo(int partyno, String userid) {
+		return dao.getPartyDetailNo(partyno, userid);
+	}
+
+	@Override
+	public int addReason(int partyno, int party_detail_no, int reason) {
+		return dao.addReason(partyno, party_detail_no, reason);
 	}
 }

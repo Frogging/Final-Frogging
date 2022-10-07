@@ -217,6 +217,7 @@ public class PartyController {
 			// 1-2) jsonString -> JSONObject로 변환
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
+
 			voList.put("path", jObj_party);
 
 		} catch (Exception e) {
@@ -477,19 +478,29 @@ public class PartyController {
 
 	// ------------------------ 멤버 상태 변화 :거절
 	@GetMapping(value = "/club/refuseClub")
-	public ResponseEntity<String> refuseClub(int partyno, String userid) {
+	public ResponseEntity<String> refuseClub(int partyno, String userid, String reason) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		String msg = "<script>";
 
+		int rea = Integer.parseInt(reason);
+
 		// System.out.println(partyno + "/" + userid);
 		// join_status: 0 -> 2 or 1->3 (+2)
 		// party의 current_number 감소
+		// party_request 추가
+
 		try {
-			int result = p_service.changeStatus_2(partyno, userid);
+			// System.out.println(partyno + "/" + userid);
+			int party_detail_no = p_service.getPartyDetailNo(partyno, userid);
+			// System.out.println(party_detail_no);
+
+			int result_1 = p_service.changeStatus_2(partyno, userid);
 			p_service.decreaseCurrentNum(partyno);
-			if (result != 0) {
+			int result_2 = p_service.addReason(partyno, party_detail_no, rea);
+
+			if (result_1 != 0 && result_2 != 0) {
 				msg += "alert('멤버 거절 완료');";
 				msg += "location.href='/club/my_club_list';";
 			} else {

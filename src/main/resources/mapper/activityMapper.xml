@@ -37,5 +37,21 @@
 		group by id order by count(id) desc
 	</select>
 
+	<select id="getRank_p" resultType="int">
+		select t3.rank_count
+		from
+		(select rank() over(order by count(id) desc ) rank_count,  (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count, id
+		from activity as t1 
+		group by id order by count(id) desc) t3
+		where t3.id = #{param1}
+	</select>
 
+	<select id="getRank_k" resultType="int">
+		select t3.rank_count
+		from
+		(select rank() over(order by sum(distance) desc ) rank_count,  (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance), id
+		from activity as t1 
+		group by id order by count(id) desc) t3
+		where t3.id = #{param1}
+	</select>
 </mapper>

@@ -162,7 +162,13 @@ function k_btn_2(no) { //거절
 			}, mouseleave: function() {
 				$(this).css('color', 'black');
 			}, click: function(){
-				location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid;
+				if(confirm("이 멤버의 요청을 거절하겠습니까?")){
+					var reason = prompt("거절 사유를 입력하세요.\n1)부적절한 언행\n2)신청 마감\n3)기타 사유");
+					//alert(reason);
+					if (reason>0 && reason<4){
+						location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid+"&reason="+reason;
+					}
+				}
 			}
 		});
 	});
@@ -180,7 +186,12 @@ function k_btn_3(no) { //퇴출
 			}, mouseleave: function() {
 				$(this).css('color', 'black');
 			}, click: function(){
-				location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid;
+				if(confirm("이 멤버의 요청을 거절하겠습니까?")){
+					var reason = prompt("거절 사유를 입력하세요.\n1)부적절한 언행\n2)신청 마감\n3)기타 사유");
+					if (reason>0 && reason<4){
+						location.href= "/club/refuseClub?partyno="+party_no+"&userid="+userid+"&reason="+reason;
+					} 
+				}
 			}
 		});
 	});
