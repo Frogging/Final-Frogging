@@ -7,4 +7,11 @@
 		select id, name, nickname, height, sex, restriction 
 		from user 
 	</select>
+	<delete id="listDel">
+		delete from user where id=#{param1 }
+	</delete>
+	<select id="listEdit1" resultType="UserVO">
+		select id, name, nickname, height, sex, restriction 
+		from user where id=#{param1 }
+	</select>
 </mapper>

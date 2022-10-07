@@ -35,6 +35,7 @@
 .b{font-weight: bold;}
 </style>
 <body>
+<form method="post" action="/editlist" id="sign">
 <div id="userlist">
 	<ul id="list">
 		<li class="b">아이디(이메일)</li>
@@ -44,7 +45,7 @@
 		<li class="b">성별</li>
 		<li class="b">상태</li>
 		<c:forEach var="vo" items="${userList }">
-			<li>${vo.id }</li>
+			<li><input type="text" name="id" id="id" value="${vo.id }" style="border:none" readonly/></li>
 			<li>${vo.name }</li>
 			<li>${vo.nickname }</li>
 			<li>${vo.height }</li>
@@ -52,22 +53,24 @@
 			<c:if test="${vo.sex==2 }"><li>여</li></c:if>
 			<c:if test="${vo.restriction==0 }">
 				<li>
-					<select>
-						<option value="O" selected>정상</option>
-						<option value="X">불량</option>
+					<select name ="restriction">
+						<option id ="restriction" value=0 selected>정상</option>
+						<option id ="restriction" value=1>불량</option>
 					</select>
 				</li>
 			</c:if>
 			<c:if test="${vo.restriction==1 }">
 				<li>	
-					<select>
-						<option value="O" >정상</option>
-						<option value="X" selected>불량</option>
+					<select name ="restriction">
+						<option id ="restriction" value=0 >정상</option>
+						<option id ="restriction" value=1 selected>불량</option>
 					</select>
 				</li>
 			</c:if>
 		</c:forEach>
 	</ul>
+	<input type="submit" value="수정" >
 </div>	
+</form>
 </body>
 </html>

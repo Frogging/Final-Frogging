@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.jdbc.core.SqlReturnResultSet;
 import org.springframework.stereotype.Service;
 
 import com.frogging.app.dao.AdminDAO;
@@ -19,6 +20,25 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return dao.userList();
 	}
+
+
+	@Override
+	public int listDel(String id) {
+		// TODO Auto-generated method stub
+		return dao.listDel(id);
+	}
+
+
+	@Override
+	public UserVO listEdit1(String id) {
+		// TODO Auto-generated method stub
+		return dao.listEdit1(id);
+	}
+
+
+
+
+
 	
 
 }

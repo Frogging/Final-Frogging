@@ -42,11 +42,12 @@
                     	<ul class="p_subMenu">
                     	<li><a href="/community/communityList">커뮤니티</a></li>
                     	<li><a href="/event/eventList">이벤트</a></li>
+                    	<li><a href="/qna/qnaList">QnA</a></li>
                     	</ul>
                     </li>	     
                     <!-- 로그인 버튼 -->
-				</ul>
-				<c:if test="${logStatus!='Y'|| logstatus!=Admin}">	
+				</ul>	
+				<c:if test="${logStatus==null}">	
 					<span class="p_login">
 							<a href="/login" class="p_menu-log">로그인</a>
 							<a href="#" class="p_menu-join">회원가입</a>
@@ -65,9 +66,7 @@
 							<a href="/adminPage" class="p_menu-join">관리자페이지</a>
 					</span>
      			   </c:if>
-         
-     
-     
+                
 	</div>
 	<script>
 		// 마우스오버 메뉴

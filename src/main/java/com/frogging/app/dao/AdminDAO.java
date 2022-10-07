@@ -11,4 +11,7 @@ import com.frogging.app.vo.UserVO;
 @Repository
 public interface AdminDAO {
 	public List<UserVO> userList();
+	public UserVO listEdit1(String id);
+	public int listDel(String id);
+	
 }

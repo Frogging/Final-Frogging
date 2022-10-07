@@ -16,16 +16,8 @@
 		</script>
 	</head>
 <body>
-<div>
-	<ul class="menu">
-		<li><a href="listtest">사용자목록</a></li>
-		<li><a href="notice">게시판관리</a></li>
-		<li><a href="qna">고객센터관리</a></li>
-		<li><a href="course">코스관리</a></li>
-		<li><a href="party">파티관리</a></li>
-		<li><a href="data">데이터관리</a></li>
-	</ul>
-</div>
+	<div class="container">
 
+	</div>
 </body>
 </html>
