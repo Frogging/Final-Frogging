@@ -1,5 +1,5 @@
 	var map;
-	var marker_s, marker_e, marker_p1, marker_p2;
+	var marker_s, marker_e;
 	var marker;
 	var markerArr = [];
 	var markers = [];
@@ -85,6 +85,9 @@
 					*/
 					map.setCenter(new Tmapv2.LatLng(lat,lon));
 					map.setZoom(15);
+					map.MousePosition(true);
+					console.log(new Tmapv2.LatLng(lat,lon));
+					console.log(map.getCenter());
 				});
 		}
 		map.addListener("click", onClick); //map 클릭 이벤트를 등록합니다.
@@ -182,6 +185,7 @@
 		if(count > 1){
 			searchRoute();
 		}
+		console.log(map.getDiv());
 		//console.log(markers[markers.length-1].getPosition()._lat);
 	}
 	

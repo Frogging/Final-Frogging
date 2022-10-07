@@ -352,8 +352,9 @@ var distance = 0;
 	}
 	
 	function setPoint(position){
+		var length = markers.length;
 		if(markers.length > 0){
-					for(var i in markers){
+					for(var i = 0; i < length; i++){
 						point.pop();
 						markers[markers.length - 1].setMap(null);
 						markers.pop();

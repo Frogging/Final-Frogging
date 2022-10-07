@@ -66,22 +66,25 @@
 					var lon = position.coords.longitude;
 						
 					//팝업 생성
+					/*
 					var content = "<div style=' position: relative; border-bottom: 1px solid #dcdcdc; line-height: 18px; padding: 0 35px 2px 0;'>"
 							+ "<div style='font-size: 12px; line-height: 15px;'>"
 							+ "<span style='display: inline-block; width: 14px; height: 14px; background-image: url(/resources/images/common/icon_blet.png); vertical-align: middle; margin-right: 5px;'></span>현재위치"
 							+ "</div>" + "</div>";
-
-					marker = new Tmapv2.Marker({
-						position : new Tmapv2.LatLng(lat,lon),
-						map : map
-					});
-
+					
+					
 					InfoWindow = new Tmapv2.InfoWindow({
 						position : new Tmapv2.LatLng(lat,lon),
 						content : content,
 						type : 2,
 						map : map
 					});
+					*/
+					marker = new Tmapv2.Marker({
+						position : new Tmapv2.LatLng(lat,lon),
+						map : map
+					});
+					
 					map.setCenter(new Tmapv2.LatLng(lat,lon));
 					map.setZoom(15);
 				});

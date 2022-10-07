@@ -45,7 +45,7 @@
 										map : map[i],
 										zIndex : 99999
 									});
-								markers.push(marker_s);
+								//markers.push(marker_s);
 							} else if (detail_arr[j].waypoint == 1){
 								//console.log("end marker");
 								marker_e = new Tmapv2.Marker({
@@ -55,7 +55,7 @@
 										map : map[i],
 										zIndex : 99999
 									});
-								markers.push(marker_e);
+								//markers.push(marker_e);
 							} else {
 								//console.log("waypoint marker");
 								marker = new Tmapv2.Marker({
@@ -65,7 +65,7 @@
 										map: map[i], //Marker가 표시될 Map 설정.
 										zIndex : 99999
 									});
-								markers.push(marker);
+								//markers.push(marker);
 							}
 						}	
 					}
