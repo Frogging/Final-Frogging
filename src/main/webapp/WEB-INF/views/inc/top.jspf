@@ -31,7 +31,7 @@
     			</span>
                 <ul id="p_menu">
                     <li><a href="/introductionForm">소개</a></li>
-                    <li><a href="/rankingForm">랭킹</a></li>
+                    <li><a href="/ranking/rankingForm">랭킹</a></li>
                     <li><a href="#">프로깅 시작</a>
                     	<ul class="p_subMenu">
                     	<li><a href="/club/join_club">함께하기</a></li>
@@ -56,7 +56,7 @@
                  <c:if test="${logStatus=='Y'&&adStatus!='Y'}">
                  	<span class="p_login">
         					<a href="/logout" class="p_menu-log">로그아웃</a>
-							<a href="#" class="p_menu-join">마이페이지</a>
+							<a href="/mypage/my" class="p_menu-join">마이페이지</a>
 					</span>
      			 </c:if>
                 

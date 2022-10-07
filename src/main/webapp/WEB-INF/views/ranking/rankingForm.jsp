@@ -31,7 +31,19 @@
 			</div>		
 <!-- 예시내용 ============================================== -->	
 				<div class="s_rankList">
-				<ul id="s_weeklist">
+				<c:forEach var="vo" items="${list_1}">
+					<ul id="s_weeklist">
+						<li>${vo.rownum}위</li>
+						<li>${vo.nickname}</li>
+						<li>${vo.plog_count}회</li>
+					</ul>
+				</c:forEach>
+				<%-- <ul id="s_weeklist">
+						<li>${vo.rownum}위</li>
+						<li>${vo.nickname}</li>
+						<li>${vo.plog_count}회</li>
+					</ul> --%>
+				<%-- <ul id="s_weeklist">
 					<li>1위</li>
 					<li>프로거</li>
 					<li>125회</li>
@@ -45,7 +57,7 @@
 					<li>3위</li>
 					<li>프로거</li>
 					<li>95회</li>
-				</ul>
+				</ul> --%>
 			</div>
 <!-- ============================================== -->		
 		</div>
@@ -66,12 +78,14 @@
 		</div>		
 <!-- 예시내용 ============================================== -->
 			<div class="s_rankList">
+			<c:forEach var="vo" items="${list_2}">
 			<ul id="s_kmweeklist">
-				<li>1위</li>
-				<li>프로거</li>
-				<li>150km</li>
+				<li>${vo.rownum}위</li>
+				<li>${vo.nickname}</li>
+				<li>${vo.distance}km</li>
 			</ul>
-			<ul id="s_kmweeklist2">
+			</c:forEach>
+			<%-- 			<ul id="s_kmweeklist2">
 				<li>1위</li>
 				<li>프로거</li>
 				<li>100km</li>
@@ -80,7 +94,7 @@
 				<li>1위</li>
 				<li>프로거</li>
 				<li>86km</li>
-			</ul>
+			</ul> --%>
 		</div>
 <!-- ============================================== -->	
 		</div>
@@ -103,7 +117,14 @@
 			</div>		
 	<!-- 예시내용 ============================================== -->
 			<div class="s_rankListGlay">
-				<ul id="s_monthlist2">
+				<c:forEach var="vo" items="${list_3}">
+					<ul id="s_monthlist2">
+						<li>${vo.rownum}위</li>
+						<li>${vo.nickname}</li>
+						<li>${vo.plog_count}회</li>
+					</ul>
+				</c:forEach>
+				<%-- <ul id="s_monthlist2">
 					<li>1위</li>
 					<li>프로거</li>
 					<li>125회</li>
@@ -112,7 +133,7 @@
 					<li>1위</li>
 					<li>프로거</li>
 					<li>125회</li>
-				</ul>
+				</ul> --%>
 			</div>
 	<!-- ============================================== -->		
 		</div>
@@ -131,7 +152,14 @@
 			</div>		
 	<!-- 예시내용 ============================================== -->
 				<div class="s_rankListGlay">
-				<ul id="s_kmmonthlist2">
+				<c:forEach var="vo" items="${list_4}">
+					<ul id="s_kmmonthlist2">
+						<li>${vo.rownum}위</li>
+						<li>${vo.nickname}</li>
+						<li>${vo.distance}회</li>
+					</ul>
+				</c:forEach>
+				<%-- <ul id="s_kmmonthlist2">
 					<li>1위</li>
 					<li>프로거</li>
 					<li>500km</li>
@@ -140,7 +168,7 @@
 					<li>1위</li>
 					<li>프로거</li>
 					<li>480km</li>
-				</ul>
+				</ul> --%>
 			</div>
 	<!-- ============================================== -->	
 		</div>

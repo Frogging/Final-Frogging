@@ -89,7 +89,7 @@
 								</li>
 							</c:forEach>
 
-							<li class="open_modal">
+							<%-- <li class="open_modal">
 								<ul class="k_rec_path_box">
 									<li class="k_rec_path_title k_green">응봉산 산책로</li>
 									<li>서울특별시 성동구 응봉동 산8-14</li>
@@ -118,7 +118,7 @@
 									<li>당월 방문 수: 12회</li>
 									<li class="k_more"><img src="" alt="">더보기</li>
 								</ul>
-							</li>
+							</li> --%>
 						</ul>
 
 						<!-- recommand path paging -->
@@ -236,6 +236,6 @@
 				</div>
 			</form>
 			</div>
-
+	</section>
 </body>
 </html>

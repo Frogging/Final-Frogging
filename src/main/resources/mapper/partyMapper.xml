@@ -28,10 +28,11 @@
 		no, partyname, number, current_number, course_no, id, 
 		content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
 		from party
+		where meeting_time > now()
 		<if test="searchDate!=null">
-			where meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
+			and meeting_time between '${searchDate}' and date_add('${searchDate}', interval 7 day)
 		</if>
-		order by meeting_time) party
+		order by meeting_time )party
 
 		left outer join
 		(select 
@@ -207,11 +208,11 @@
 		t2.meeting_place,
 		t2.meeting_time, 
 		t1.join_status,
-		t3.course_name
-
+		t3.course_name,
+		(select reason from party_request t4 where t4.party_no = t2.no and t4.party_detail_no = t1.no) reason
 		from
 		(
-			select party_no, user_id, join_status
+			select no, party_no, user_id, join_status
 			from party_detail
 			where user_id = #{user_id}
 			<if test="join_status==4">
@@ -312,4 +313,27 @@
 		from party_detail 
 		where party_no = #{param1}) detail
 	</select>
+
+	<update id="changeStatus">
+		update party_detail
+		set join_status = join_status + 1
+		where party_no = ${param1} and user_id = #{param2};
+	</update>
+
+	<update id="changeStatus_2">
+		update party_detail
+		set join_status = join_status + 2
+		where party_no = ${param1} and user_id = #{param2};
+	</update>
+
+	<select id="getPartyDetailNo" resultType="int">
+		select no 
+		from party_detail
+		where party_no = ${param1} and user_id like #{param2}
+	</select>
+
+	<insert id="addReason">
+		insert into party_request(party_no, party_detail_no, reason)
+		value(${param1}, ${param2}, ${param3})
+	</insert>
 </mapper>
