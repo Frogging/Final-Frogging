@@ -10,8 +10,11 @@
 	<delete id="listDel">
 		delete from user where id=#{param1 }
 	</delete>
-	<select id="listEdit1" resultType="UserVO">
+	<select id="getProfile" resultType="UserVO">
 		select id, name, nickname, height, sex, restriction 
 		from user where id=#{param1 }
 	</select>
+	<update id="editProfile">
+		update user set restriction=${param2 } where id=#{param1}
+	</update>
 </mapper>

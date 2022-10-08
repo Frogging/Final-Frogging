@@ -39,9 +39,9 @@ public class AdminController {
 		mav.setViewName("admin/listtest");
 		return mav;
 	}
-	/*
-	@PostMapping("editlist")
-	public ResponseEntity<String> editlist(UserVO vo){
+
+	@PostMapping("editProfile")
+	public ResponseEntity<String> editProfile(String id, int restriction){
 		// RestController에서는 ResponseBody를 보낼 수 있다.
 		// 클라이언트에게 데이터와 뷰파일을 담을 수 있는 뷰페이지를 별도로 만들 필요가 없다.
 		ResponseEntity<String> entity = null;
@@ -51,11 +51,11 @@ public class AdminController {
 		
 		
 		try {
-			service.editOk(vo);
+			service.editProfile(id,restriction);
 			
 			String msg = "<script>";
-			msg += "alert('수정되었습니다.');";
-			msg += "location.href='/userlist'";
+			msg += "alert('회원정보가 수정되었습니다.');";
+			msg += "location.href='/listtest'";
 			msg += "</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//성공:200
@@ -70,7 +70,7 @@ public class AdminController {
 		}
 		return entity;
 	}
-	*/
+
 
 		
 	@GetMapping("listDel")
@@ -80,11 +80,12 @@ public class AdminController {
 		return mav;
 	}
 	
-	@GetMapping("listEdit")
-	public ModelAndView listEdit(String id) {
+	@GetMapping("profile")
+	public ModelAndView profile(String id) {
 		 
-		mav.addObject("vo", service.listEdit1(id));
+		mav.addObject("vo", service.getProfile(id));
 		mav.setViewName("admin/editView");
 		return mav;
 	}
+	
 }

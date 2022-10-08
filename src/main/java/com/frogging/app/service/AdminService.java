@@ -6,6 +6,7 @@ import com.frogging.app.vo.UserVO;
 
 public interface AdminService {
 	public List<UserVO> userList();
-	public UserVO listEdit1(String id);
+	public UserVO getProfile(String id);
 	public int listDel(String id);
+	public int editProfile(String id,int restriction);
 }

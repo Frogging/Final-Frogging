@@ -30,9 +30,16 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public UserVO listEdit1(String id) {
+	public UserVO getProfile(String id) {
 		// TODO Auto-generated method stub
-		return dao.listEdit1(id);
+		return dao.getProfile(id);
+	}
+
+
+	@Override
+	public int editProfile(String id, int restriction) {
+		// TODO Auto-generated method stub
+		return dao.editProfile(id, restriction);
 	}
 
 
