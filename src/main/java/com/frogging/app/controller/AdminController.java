@@ -33,10 +33,10 @@ public class AdminController {
 		return mav;
 	}
 	
-	@GetMapping("listtest")
+	@GetMapping("userlist")
 	public ModelAndView userlist() {
 		mav.addObject("userList", service.userList());
-		mav.setViewName("admin/listtest");
+		mav.setViewName("admin/userlist");
 		return mav;
 	}
 
@@ -55,7 +55,7 @@ public class AdminController {
 			
 			String msg = "<script>";
 			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/listtest'";
+			msg += "location.href='/userlist'";
 			msg += "</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//성공:200
@@ -76,7 +76,7 @@ public class AdminController {
 	@GetMapping("listDel")
 	public ModelAndView listDel(String id) {
 		service.listDel(id);
-		mav.setViewName("redirect:/listtest");
+		mav.setViewName("redirect:/userlist");
 		return mav;
 	}
 	

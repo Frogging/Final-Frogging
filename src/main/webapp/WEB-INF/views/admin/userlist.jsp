@@ -17,6 +17,7 @@
 </script>
 </head>
 <body>
+
 <table width="70%" class="table01">
                     <colgroup>
                         <col width="20%" />
@@ -59,6 +60,6 @@
                      
                     </tbody>    
                 </table>
-       
+
 </body>
 </html>
