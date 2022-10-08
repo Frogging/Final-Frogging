@@ -17,6 +17,7 @@
 	</head>
 <body>
 <h1>회원정보수정</h1>
+<form method="post" action="/editProfile">
 <table width="50%" class="table01">
                     <colgroup>
                         <col width="40%" />
@@ -24,7 +25,7 @@
                     </colgroup>
                         <tr>
                             <th>아이디(이메일)</th>
-                            <th>${vo.id }</th>
+                            <th><input type="text" name="id" value="${vo.id}" readonly }></th>
                         </tr>  
                          <tr>
                             <th>이름</th>
@@ -45,10 +46,26 @@
                         </tr>
                         <tr>
                             <th>상태</th>
-                          	<c:if test="${vo.restriction==0 }"><th>정상</th></c:if>
-                            <c:if test="${vo.restriction==1 }"><th>불량</th></c:if>
+                          	<c:if test="${vo.restriction==0 }">
+                          		<th>
+                          			<select name="restriction">
+                          				<option selected value=0>정상</option>
+                          				<option value=1>불량</option>
+                          			</select>
+                          		</th>
+                          	</c:if>
+                            <c:if test="${vo.restriction==1 }">
+                          		<th>
+                          			<select name="restriction">
+                          				<option selected value=1>불량</option>
+                          				<option value=0>정상</option>
+                          			</select>
+                          		</th>
+                          	</c:if>
                         </tr>
                 </table>
-                <input type="button" value="수정하기">
+                
+                <input type="submit" value="수정하기"><input type="button" value="뒤로가기" onclick="history.back()">
+                </form>
 </body>
 </html>
