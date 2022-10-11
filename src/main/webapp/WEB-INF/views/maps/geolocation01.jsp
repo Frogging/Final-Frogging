@@ -9,7 +9,7 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
-<script src="/js/watch_position.js"></script>
+<script src="/js/watch_position.js" ></script>
 <link rel = "stylesheet" href = "/js_css/style.css" type = "text/css">
 <style>
 </style>

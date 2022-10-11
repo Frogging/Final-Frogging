@@ -178,9 +178,9 @@ var distance = 0;
 		}
 		console.log(address[address.length-1]);
 		
-		tDistance = 0;
+		Distance = 0;
 		for(var i = 1; i < point.length; i++){
-			tDistance += point[i].distanceTo(point[i-1]);
+			Distance += point[i].distanceTo(point[i-1]);
 		}
 		console.log(tDistance);
 	}
