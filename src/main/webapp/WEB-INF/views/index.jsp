@@ -16,15 +16,62 @@
 	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
    	</head>
    	<style>
+   	@media screen and (min-width:152px) and (max-width:1024px){
+	.p_container1{display:none;}
+	.mobileHome{display:block; z-index:1;}
+	}
    	.p_container1 {
     min-height: 100%;
     position: relative;
+	}
+	.mobileTop{
+		display:flex;
+		justify-content: space-between;
+		background-color:#2fb86a;
+	}
+	.mobileMenu > ul >li{
+		display: inline-block;
+		font-family: 'Noto Sans KR', sans-serif;
+		line-height: 80px;
+		font-size: 18px;
+		margin: auto 20px;
+		font-weight: bold;
+		text-decoration:none;
+	}
+	.mobileMenu > ul >li>a{
+		color:white;
+	}
+	.mobileMenu-log{
+		width:350px;
+		float:left;
+	}
+	.mobileBody{
+	height:100%;
+	 background-image:url(../img/plogging4.jfif);
+	}
+	.mobile-plogging-btn{
+		height:100px;
+		width:100px;
+		background-color: #2fb86a;
+		font-family: 'Noto Sans KR', sans-serif;
+		color:white;
+		font-weight: bold;
+		font-size: 24px;
+		border : 1px solid white;
+  			border-radius:5px;
+		position: absolute;
+		left:50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.mobile-plogging-btn:hover{
+		
 	}
     </style>
 	<script>
 
 	</script>
-<body style="overflow-x: hidden">
+<body>
 	<div class="p_container1">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -80,7 +127,7 @@
 	                                  <h5 class="card-title"></h5>
 	                                  <img src="./img/event1.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
 	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a;">이벤트 바로가기</a>
+	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
 	                                </div>
 	                              </div>
 	                            </div>
@@ -94,7 +141,7 @@
 	                                  <h5 class="card-title"></h5>
 	                                  <img src="./img/event2.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
 	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a;">이벤트 바로가기</a>
+	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
 	                                </div>
 	                              </div>
 	                            </div>
@@ -107,7 +154,7 @@
 	                                  <h5 class="card-title"></h5>
 	                                    <img src="./img/event3.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
 	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a;">이벤트 바로가기</a>
+	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
 	                                </div>
 	                              </div>
 	                            </div>
@@ -179,4 +226,22 @@
 	</div>
 	</div>   
 </body>
+<div class="mobileHome">
+	<div class="container" style="height:100vh; width:100vh; margin:0 auto 0 -15px;">
+		<div class="mobileTop">
+		    <div class="moble_logo" style="height:100px;">
+	       	<img src="../img/logo.png" alt="로고" style="width:150px; height:80px; margin-top:10px;">
+			</div>
+			<div class="mobileMenu">
+			<ul>
+              	<li><a href="/login" class="mobileMenu-log">로그인</a></li>         
+			</ul>
+			</div>
+		</div>
+		<div class="mobileBody">
+			<!--  <input type="button" value="모바일페이지" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>-->			
+				  <input type="button" value="시작하기" name="시작버튼" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>		
+		</div>	
+	</div>
+</div>	
 </html>

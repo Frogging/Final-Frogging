@@ -26,16 +26,16 @@
     });
         
     /** 게시판 - 목록 페이지 이동 */
-    function goQnaList(){                
-        location.href = "/qna/qnaList";
+    function gocustomerServiceList(){                
+        location.href = "/customerService/customerServiceList";
     }
     
     
     $(document).ready(function(){        
-        CKEDITOR.replace("qna_replyContent");
+        CKEDITOR.replace("customerService_replyContent");
         
-    	$("#qnaReplyForm").submit(function(){
-    		if($("#qna_replySubject").val()==""){
+    	$("#customerServiceReplyForm").submit(function(){
+    		if($("#customerService_replySubject").val()==""){
     			alert("제목을 입력하세요.");
     			return false;
     		}
@@ -48,7 +48,7 @@
     });
     
     /** 게시판 - 작성 콜백 함수 */
-    function qnaReplyCallback(obj){
+    function customerServiceReplyCallback(obj){
     
         if(obj != null){        
             
@@ -56,7 +56,7 @@
             
             if(result == "SUCCESS"){                
                 alert("게시글 답글 등록을 성공하였습니다.");                
-                goQnaList();                 
+                gocustomerServiceList();                 
             } else {                
                 alert("게시글 답글 등록을 실패하였습니다.");    
                 return;
@@ -69,12 +69,11 @@
 <body>
     <div class="p_container">
         <div class="inner">        
-            <br/><h1 class="p_title">Qna 답글작성</h1><br/>
-            <form id="qnaReplyForm" name="qnaReplyForm" method="post" action="/qna/qnaReplyOk">
-                <input type="hidden" id="qna_parent_seq" name="qna_parent_seq" value="${vo.no}"/> <!-- 부모 게시글 번호 -->
-                <input type="hidden" id="qna_reply_group" name="reply_group" value="${vo.reply_group}"/>
-                <input type="hidden" id="qna_depth" name="qna_depth" value="${vo.depth}"/>
-                <input type="hidden" id="qna_reply_seq" name="qna_reply_seq" value="${vo.reply_seq}"/>
+            <br/><h1 class="p_title">고객센터 답글작성</h1><br/>
+            <form id="customerServiceReplyForm" name="customerServiceReplyForm" method="post" action="/customerService/customerServiceReplyOk">
+                <input type="hidden" id="customerService_parent_seq" name="customerService_parent_seq" value="${vo.no}"/> <!-- 부모 게시글 번호 -->
+                <input type="hidden" id="customerService_reply_group" name="reply_group" value="${vo.reply_group}"/>
+                <input type="hidden" id="customerService_depth" name="customerService_depth" value="${vo.depth}"/>
                 <table width="100%" class="table02">
                 <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
                     <colgroup>
@@ -84,16 +83,16 @@
                     <tbody id="tbody">
                         <tr>
                             <th>제목<span class="t_red">*</span></th>
-                            <td><input id="qna_replySubject" name="subject" value="" class="tbox01"/></td>
+                            <td><input id="customerService_replySubject" name="subject" value="" class="tbox01"/></td>
                         </tr>
                         <tr>
                             <th>내용<span class="t_red">*</span></th>
-                            <td><textarea id="qna_replyContent" name="content" cols="10" rows="5" class="textarea01"></textarea></td>
+                            <td><textarea id="customerService_replyContent" name="content" cols="10" rows="5" class="textarea01"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
 				<div class="btn_right mt15" style="width:80%; margin:0 auto; float:center;">
-	                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
+	                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceList'">목록으로</button>
 		            <input type="submit" class="btn black" value="등록하기"/>
             	</div>                
             </form>

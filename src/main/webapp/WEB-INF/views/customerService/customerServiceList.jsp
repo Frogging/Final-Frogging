@@ -24,15 +24,14 @@
 <body>
     <div class="p_container">
         <div class="inner">        
-            <br/><h1 class="p_title">QnA</h1><br/>            
-            <form id="qnaForm" name="qnaForm">
-            	<input type="hidden" id="function_name" name="function_name" value="getQnaList" />
+            <br/><h1 class="p_title">고객센터</h1><br/>            
+            <form id="customerServiceForm" name="customerServiceForm">
+            	<input type="hidden" id="function_name" name="function_name" value="getCustomerServiceList" />
 				<input type="hidden" id="current_page_no" name="current_page_no" value="1" />
                 <table class="table01">
                     <colgroup>
                         <col width="4%" />
-                        <col width="42%" />
-                        <col width="4%" />
+                        <col width="46%" />
                         <col width="20%" />
                         <col width="10%" />
                     </colgroup>
@@ -40,7 +39,6 @@
                         <tr>
                             <th>글번호</th>
                             <th>제목</th>
-                            <th>조회수</th>
                             <th>작성자</th>
                             <th>작성일</th>             
                         </tr>                        
@@ -51,14 +49,13 @@
                             <td>${vo.no}</td>
                             <td style="text-align:left;">                           
                             <c:if test="${vo.depth== 0 }">
-                            	<a href="/qna/qnaDetail?no=${vo.no }">Q: ${vo.subject }</a>
+                            	<a href="/customerService/customerServiceDetail?no=${vo.no }">문의사항: ${vo.subject }</a>
                             
                             </c:if>
                             <c:if test="${vo.depth > 0 }">
-                            	<a href="/qna/qnaDetail?no=${vo.no }"><span style="padding-left:${vo.depth *40}px;"> A:</span>${vo.subject }</a>
+                            	<a href="/customerService/customerServiceDetail?no=${vo.no }"><span style="padding-left:${vo.depth *40}px;"> 답변:</span>${vo.subject }</a>
                             </c:if> 
                            </td>
-                            <td>${vo.hit}</td>
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                         </tr>
@@ -66,17 +63,17 @@
                     </tbody>    
                 </table>               
              <div class="btn_right mt15" style="width:70%; margin:5px auto; float:right;">
-                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaWrite'">작성하기</button>
+                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceWrite'">작성하기</button>
             </div>    
             </form>
-     	<div class="p_qnaPage">
+     	<div class="p_customerServicePage">
 			<ul>
 			<!-- 페이지 번호 -->
 				<c:if test="${pVO.nowPage<=1 }"><!-- 이전페이지가 없을때 -->
 					<li>이전</li>
 				</c:if>
 				<c:if test="${pVO.nowPage>1 }"><!-- 이전페이지가 있을때 -->
-					<li><a href="/qna/qnaList?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">이전</a></li>
+					<li><a href="/customerService/customerServiceList?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">이전</a></li>
 				</c:if>
 				<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage+pVO.onePageCount-1 }">
 					<!--  출력할 페이지번호 총페이지수 보다 작거나 같을 떄 -->
@@ -84,7 +81,7 @@
 						<li
 						<c:if test="${p==pVO.nowPage }">
 						</c:if>
-						><a href="/qna/qnaList?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
+						><a href="/customerService/customerServiceList?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
 					</c:if>
 				</c:forEach>
 				
@@ -93,18 +90,18 @@
 					<li>다음</li>
 				</c:if>
 				<c:if test="${pVO.nowPage<pVO.totalPage }">
-					<li><a href="/qna/qnaList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
+					<li><a href="/customerService/customerServiceList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
 				</c:if>
 			</ul>
-			<div style="display: flex;">
-			 <form method="get" action="/qna/qnaList" class="p_searchForm" style="width:33%;">
+			<div>
+			 <form method="get" action="/customerService/customerServiceList" class="p_searchForm" style="width:33%;">
                 <select name="searchKey" class="p_searchKey">
                     <option value="subject">제목</option>
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
                 <input type="text" name="searchWord" class="p_searchWord" style="height:30px; width:250px;"/>
-                <input type="submit" value="찾기" class="p_qnasearch-btn"/>
+                <input type="submit" value="찾기" class="p_customerServicesearch-btn"/>
             </form>
             </div>	
 		</div>            

@@ -25,31 +25,31 @@
 
 <script type="text/javascript">
 	
-	function qnaDel(){
+	function customerServiceDel(){
 	if(confirm("글을 삭제하시겠습니까?")){
-		location.href="/qna/qnaDel?no=${vo.no}";
+		location.href="/customerService/customerServiceDel?no=${vo.no}";
 	}
 }
      
     $(document).ready(function(){        
-        getQnaDetail();        
+        getcustomerServiceDetail();        
     });
    
     
     /* 수정 페이지 이동 */
-    function goQnaUpdate(){
+    function gocustomerServiceUpdate(){
         
-        var no = $("#qna_seq").val();
+        var no = $("#customerService_seq").val();
         
-        location.href = "/qna/qnaUpdate?no="+ no;
+        location.href = "/customerService/customerServiceUpdate?no="+ no;
     }
     
     /* 답글 페이지 이동 */
-	function goQnaReply(){
+	function gocustomerServiceReply(){
 		
-		var no = $("#qna_seq").val();
+		var no = $("#customerService_seq").val();
 		
-		location.href = "/qna/qnaReply?no="+ no;
+		location.href = "/customerService/customerServiceReply?no="+ no;
 	}
         
     
@@ -59,8 +59,8 @@
 
     <div class="p_container">
         <div class="inner">    
-           <br/><h1 class="p_title">Qna 내용</h1><br/>
-            <form id="qnaForm" name="qnaForm">        
+           <br/><h1 class="p_title">고객센터 내용</h1><br/>
+            <form id="customerServiceForm" name="customerServiceForm">        
                 <table width="100%" class="table01">
                     <colgroup>
                         <col width="15%">
@@ -87,17 +87,22 @@
             			</tr>	   
                     </tbody>
                 </table>        
-                <input type="hidden" id="qna_seq"      name="qna_seq"    	value="${vo.no}"/> <!-- 게시글 번호 -->
-                 <input type="hidden" id="qna_reply_group"      name="qna_seq"    	value="${vo.reply_group}"/>
+                <input type="hidden" id="customerService_seq"      name="customerService_seq"    	value="${vo.no}"/> <!-- 게시글 번호 -->
+                 <input type="hidden" id="customerService_reply_group"      name="customerService_seq"    	value="${vo.reply_group}"/>
                 <input type="hidden" id="search_type"    name="search_type"		value="S"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
             </form>
             <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center; padding:5px;">
-                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
-                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaEdit/${vo.no }'">수정하기</button>
-                <input type="button" class="btn black" value="삭제하기" onclick="location.href='javascript:qnaDel();'"/>
-                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaReply?no=${vo.no }'">답글쓰기</button>
-               <!--   <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaReply'">답글쓰기</button>-->
-               
+                <c:if test="${logStatus=='Admin'}">
+                	<button type="button" class="btn black mr5" onclick="location.href='/customerServiceList'" style="width:150px;">관리자페이지로</button>
+                </c:if>
+                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceList'">목록으로</button>
+                <c:if test="${vo.id==logId}">
+                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'">수정하기</button>
+                <input type="button" class="btn black" value="삭제하기" onclick="location.href='javascript:customerServiceDel();'"/>
+                </c:if>
+                <c:if test="${logStatus=='Admin'}">
+                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceReply?no=${vo.no }'">답글쓰기</button>
+				</c:if>                              
             </div>
         </div>
     </div>
