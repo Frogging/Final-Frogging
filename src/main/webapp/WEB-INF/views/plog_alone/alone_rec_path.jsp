@@ -7,9 +7,10 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
+	<script src="/js/k_path.js" type="text/javascript"></script>
 </head>
 <body onload="modal_more()" class="k_body">
-		<!-- --------- NEW PARTY with rec paths --------- -->
+		<!-- --------- ALONE with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
 				<div class="k_section_title_links">
@@ -42,18 +43,23 @@
 
 					<div class="k_path_list_bg">
 						<!-- recommendation path select -->
-						<form action="">
+						<form  method="get" id="pathSearchFrm" onclick="searchPath();">
 							<div class="k_rec_path_select">
 								<span>내 근처의 플로깅 코스: </span>
 								<div>
 									<div>
-										<select name="" id="">
-											<option value="">서울특별시</option>
+										<select name="addr_section_1" id="addr_section_1"  onchange="changeAddr()">
+											<c:forEach var="vo" items="${addr_1}">
+												<option value="${vo.addr_section_1}">${vo.addr_section_1}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<div>
-										<select name="" id="">
-											<option value="">성동구</option>
+										<select name="addr_section_2" id="addr_section_2">
+											<option value="">세부 선택</option>
+											<c:forEach var="vo" items="${addr_2}">
+												<option value="${vo.addr_section_2}">${vo.addr_section_2}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
@@ -63,77 +69,48 @@
 
 						<!-- path lists -->
 						<ul class="k_rec_path_list_view">
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more open_modal">더보기</li>
-								</ul>
-							</li>
+							<c:forEach var="vo" items="${list}">
+								<li class="open_modal" onclick="modal_data(${vo.course_no})">
+									<ul class="k_rec_path_box">
+										<li class="k_rec_path_title k_green">${vo.course_name}</li>
+										<li>${vo.addr}</li>
+										<li class="k_box_space"></li>
+										<li>예상 소요시간: ${vo.time}</li>
+										<li>당월 방문 수: ${vo.plog_total}회</li>
+										<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
+									</ul>
+								</li>
+							</c:forEach>
 						</ul>
-
+					
 						<!-- recommand path paging -->
 						<ul class="k_rec_path_page">
-							<li><i class="fa-solid fa-chevron-left active"></i></li>
-							<li class="active">1</li>
-							<li>2</li>
-							<li>3</li>
-							<li>4</li>
-							<li>5</li>
-							<li><i class="fa-solid fa-chevron-right active"></i></li>
+						
+							<%-- 이전페이지 --%>
+							<c:if test="${p_pageVO.nowPage<=1}" > 
+								<li><i class="fa-solid fa-chevron-left active"></i></li>
+							</c:if>
+							<c:if test="${p_PageVO.nowPage>1}" >
+								<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+							</c:if>
+								
+							<c:forEach var="p" begin="${p_PageVO.startPage }" end="${p_PageVO.startPage + p_PageVO.onePageCount - 1 }" >
+								<c:if test="${p<=p_PageVO.totalPage }" >
+									<li
+									<c:if test="${p==p_PageVO.nowPage }">
+										style = "color:#2fb86a;"
+									</c:if>
+									><a href="/club/make_club_rec_path?nowPage=${p }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>">${p }</a></li>
+								</c:if>
+							</c:forEach>
+								
+							<!-- 다음페이지 -->
+							<c:if test="${p_PageVO.nowPage>=p_PageVO.totalPage }" > 
+								<li><i class="fa-solid fa-chevron-right active"></i></li>
+							</c:if>
+							<c:if test="${p_PageVO.nowPage<p_PageVO.totalPage}" > 
+									<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 

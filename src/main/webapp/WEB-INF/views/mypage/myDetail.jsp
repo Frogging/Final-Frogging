@@ -71,6 +71,6 @@
 			<c:if test="${u_vo.id == logId}">
 				<div><a href="/mypage/myDetailEdit">수정하기</a></div>
 			</c:if>
-			</div>
+		</div>
 	</section>
 </body>

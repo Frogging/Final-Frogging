@@ -87,4 +87,7 @@ public interface PartyDAO {
 
 	// 파티 리퀘스트 거절 사유 추가
 	public int addReason(int partyno, int party_detail_no, int reason);
+
+	// 파티 관리자 리스트
+	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
 }

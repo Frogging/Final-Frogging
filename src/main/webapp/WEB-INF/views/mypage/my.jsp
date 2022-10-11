@@ -5,6 +5,8 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_script.js" type="text/javascript"></script>
+	<script src="/js/k_mypage.js" type="text/javascript"></script>
 </head>
 <body class="k_body">
 <%-- 나의 프로필 --%>
@@ -29,7 +31,12 @@
 
 				<div class="k_pro_left">
 					<div class="k_pro_img"><img src="/img/profile.png" alt=""></div>
-					${logNickName}
+					
+					<ul>
+						<li class="k_nick">${logNickName}</li>
+						<li>거리 랭킹: ${plog_count}위</li>
+						<li>횟수 랭킹: ${distance}위</li>
+					</ul>
 				</div>
 
 				<div class="k_pro_line">
@@ -37,10 +44,10 @@
 
 				<div class="k_pro_right">
 					<ul>
-						<li>거리 랭킹: ${plog_count}위</li>
-						<li>횟수 랭킹: ${distance}위</li>
-						<li><a href="/mypage/myDetail">나의 상세정보</a></li>
-						<li><a href="/mypage/activity">나의 플로깅 활동</a></li>
+						<li class="click-btn"><a href="/mypage/myDetail">나의 상세정보</a></li>
+						<li class="click-btn"><a href="/mypage/activity">나의 플로깅 활동</a></li>
+						<li class="click-btn"><a href="/club/my_club_list">나의 클럽 관리</a></li>
+						<li class="click-btn"><a href="/mypage/myCourse">나의 코스 관리</a></li>
 					</ul>
 				</div>
 
@@ -54,35 +61,36 @@
 		<div class="k_section_title">
 				<div>내가 쓴 글 보기</div>
 			</div>
+
 		<div class="k_wrapper">
 			
+			<%-- 내가 쓴 글 탭메뉴 --%>
+			<div class="my_write_tab">
+				<div><button class="active click-btn k_write_tab_c">커뮤니티</button></div>
+				<div><button class="click-btn k_write_tab_q">QnA</button></div>
+			</div>
 
-			<ul class="k_my_party_grid">
-				<li class="k_my_list_head"><span>분류</span></li>
+			<ul class="k_my_write_grid">
+				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>제목</span></li>
 				<li class="k_my_list_head"><span>작성일</span></li>
-				<li class="k_my_list_head"><span>댓글수</span></li>
 				<li class="k_my_list_head"><span>조회수</span></li>
 
 				<c:forEach var="vo" items="${c_list}">
-					<li><span>커뮤니티</span></li>
-					<li><span>${vo.subject}</span></li>
-					<li><span>${vo.writedate}</span></li>
-					<li><span>-</span></li>
-					<li><span>${vo.hit}</span></li>
+					<li class="k_my_write_c"><span>${vo.no}</span></li>
+					<li class="k_my_write_c"><span>${vo.subject}</span></li>
+					<li class="k_my_write_c"><span>${vo.writedate}</span></li>
+					<li class="k_my_write_c"><span>${vo.hit}</span></li>
 				</c:forEach>
 
-				<li><span>커뮤니티</span></li>
-				<li><span>10월 가을 프로깅 코스 추천!</span></li>
-				<li><span>2022-10-02</span></li>
-				<li><span>3</span></li>
-				<li><span>23</span></li>
+				<c:forEach var="vo" items="${q_list}">
+					<li class="k_my_write_q"><span>${vo.no}</span></li>
+					<li class="k_my_write_q"><span>${vo.subject}</span></li>
+					<li class="k_my_write_q"><span>${vo.writedate}</span></li>
+					<li class="k_my_write_q"><span>${vo.hit}</span></li>
+				</c:forEach>
 
-				<li><span>고객센터</span></li>
-				<li><span>프로깅 기록이 이상해요</span></li>
-				<li><span>2022-10-01</span></li>
-				<li><span>1</span></li>
-				<li><span>3</span></li>
+	
 			</ul>
 		</div>
 	</section>
@@ -98,10 +106,21 @@
 			<div class="k_achieve_badge">
 				<i class="fa-solid fa-caret-left"></i>
 				<ul>
-					<li><img src="/img/5k.png" alt=""></li>
-					<li><img src="/img/10k.png" alt=""></li>
-					<li><img src="/img/10l.png" alt=""></li>
-					<li><img src="/img/20l.png" alt=""></li>
+					
+					<%-- km badge --%>
+					<c:forEach var="i" begin="5" end="50" step="5">
+						<c:if test="${a_vo.total_distance>i}">
+							<li><img src="/img/badge/${i}K.png" alt=""></li>
+						</c:if>
+					</c:forEach>
+
+					<%-- liter badge --%>
+					<c:forEach var="i" begin="10" end="50" step="10">
+						<c:if test="${a_vo.trash_sum>i}">
+							<li><img src="/img/badge/${i}L.png" alt=""></li>
+						</c:if>
+					</c:forEach>
+
 				</ul>
 				<i class="fa-solid fa-caret-right"></i>		
 				</div>	

@@ -60,4 +60,6 @@ public interface PartyService {
 	public int getPartyDetailNo(int partyno, String userid);
 
 	public int addReason(int partyno, int party_detail_no, int reason);
+
+	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
 }
