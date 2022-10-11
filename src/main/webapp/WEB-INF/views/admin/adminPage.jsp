@@ -18,7 +18,7 @@
 <body>
 <div>
 	<ul class="menu">
-		<li><a href="listtest">사용자목록</a></li>
+		<li><a href="userlist">사용자목록</a></li>
 		<li><a href="notice">게시판관리</a></li>
 		<li><a href="qna">고객센터관리</a></li>
 		<li><a href="course">코스관리</a></li>

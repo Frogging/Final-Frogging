@@ -10,26 +10,11 @@ body, ul, li{
 				padding: 0;
 				text-align: center;
 				width: 100%;
-				margin: 20% auto;
-			}
-			
-h1 {
-		font-size: 40px;
-		margin-top: 20px;
-		margin-bottom: 40px;
-		color: #2FB86A;
-		font-family: 나눔바른고딕 OTF;
-	}
+			}			
 	
 #s_log input[type=image]{
 	width: 320px;
 	
-}
-
-#s_singup a{
-	text-decoration: none;
-	color: black;
-	font-family: 나눔바른고딕 OTF;
 }
 
 #s_singup a:hover{

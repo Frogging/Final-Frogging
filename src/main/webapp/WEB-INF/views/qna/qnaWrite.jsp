@@ -11,7 +11,16 @@
 	height:100%;
 }
 /* button */
-.btn {font-family:'malgunbd';display:inline-block;padding:3px 20px 6px 20px;margin:0;border:1px solid #aaa;cursor:pointer;color:#333;border-radius:2px;vertical-align:middle;font-size:13px;letter-spacing:-1px;line-height:normal;background-color:#feffff;text-decoration:none;}
+/*.btn {font-family:'malgunbd';display:inline-block;padding:3px 20px 6px 20px;margin:0;border:1px solid #aaa;cursor:pointer;color:#333;border-radius:2px;vertical-align:middle;font-size:13px;letter-spacing:-1px;line-height:normal;background-color:#feffff;text-decoration:none;}*/
+.btn {    height: 30px;
+    width: 90px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0 2px;}
 .btn.black {border-color:#191919;color:#fff;background-color:#333;text-decoration:none;}
 </style>
 <script type="text/javascript">
@@ -39,7 +48,7 @@
 <body>
     <div class="p_container">
         <div class="inner">        
-           <br/> <h1 class="p_title">QnA 작성</h1><br/>
+           <br/> <h1 class="p_title">QnA 글쓰기</h1><br/>
             <form id="qnaForm" name="qnaForm" method="post" action="/qna/qnaWriteOk">
                 <table class="table02" style="height:600px; width:100%;">
                 <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
@@ -52,14 +61,9 @@
                             <th>제목<span class="t_red">*</span></th>
                             <td><input id="qna_subject" name="subject" value="" class="tbox01"/></td>
                         </tr>
-                        <!--  
-                        <tr>
-                            <th>작성자<span class="t_red">*</span></th>
-                            <td><input id="qna_writer" name="qna_writer" value="" class="tbox01"/></td>
-                        </tr>-->
                         <tr>
                             <th>내용<span class="t_red">*</span></th>
-                            <td><textarea id="qna_content" name="content" class="textarea01" style="background-color:pink; height:100%;"></textarea></td>
+                            <td><textarea id="qna_content" name="content" class="textarea01"></textarea></td>
                         </tr>
                     </tbody>
                     

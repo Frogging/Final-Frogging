@@ -336,4 +336,38 @@
 		insert into party_request(party_no, party_detail_no, reason)
 		value(${param1}, ${param2}, ${param3})
 	</insert>
+
+
+	<select id="getTotalClub" resultType="PartyVO">
+		select
+		t2.no,
+		t2.partyname,
+		t2.id, 
+		t2.number,
+		t2.current_number, 
+		t2.course_no,
+		t2.content,
+		t2.meeting_place,
+		t2.meeting_time, 
+		t1.join_status,
+		t3.course_name
+		from
+		(
+			select no, party_no, user_id, join_status
+			from party_detail
+		) t1
+		left outer join
+		(
+			select no, partyname, id,  number, current_number, course_no, content, meeting_place, date_format(meeting_time,'%m-%d %h:%i') meeting_time
+			from party
+		) t2
+		on t1.party_no = t2.no
+
+		left outer join
+		(
+			select course_no, course_name
+			from course
+		) t3
+		on t2.course_no = t3.course_no
+	</select>
 </mapper>

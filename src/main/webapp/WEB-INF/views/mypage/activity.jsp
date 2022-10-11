@@ -4,8 +4,11 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+	<script src="/js/k_chart.js" ></script>
+
 </head>
-<body class="k_body">
+<body class="k_body" onload="draw_myplog()">
 	<section>
 		<div class="k_wrapper">
 
@@ -39,25 +42,51 @@
 
 			<form action="">
 				<ul class="k_a_select">
-					<li>주</li>
-					<li class="active">월</li>
-					<li>년</li>
-					<li>전체</li>
+					<li class="k_a_select_w">주</li>
+					<li class="k_a_select_m active">월</li>
+					<li class="k_a_select_y ">년</li>
+					<li class="k_a_select_t">전체</li>
 				</ul>
 
-				<select name="" id="k_a_select_detail">
-					<option value="">8월</option>
-				</select>
+				<%-- <select name="" id="k_a_select_detail">
+					<option value="">2019년</option>
+					<option value="">2020년</option>
+					<option value="">2021년</option>
+					<option value="" selected >2022년</option>
+				</select> --%>
 			</form>
 
 			<div class="k_a_chart">
 				<ul>
 					<li>TOTAL</li>
-					<li><span>6</span> km</li>
-					<li><span>12000</span> steps</li>
-					<li><span>3</span> bin bags</li>
+
+					<li class="k_weekly"><span>${a_vo_w.total_distance}</span> km</li>
+					<li class="k_weekly"><span>${a_vo_w.total_step}</span> steps</li>
+					<li class="k_weekly"><span>${a_vo_w.plog_count}</span> th plogging</li>
+					<li class="k_weekly"><span>${a_vo_w.trash_sum}</span> L of trash</li>
+
+					<li class="k_monthly active"><span>${a_vo_m.total_distance}</span> km</li>
+					<li class="k_monthly active"><span>${a_vo_m.total_step}</span> steps</li>
+					<li class="k_monthly active"><span>${a_vo_m.plog_count}</span> th plogging</li>
+					<li class="k_monthly active"><span>${a_vo_m.trash_sum}</span> L of trash</li>
+
+					<li class="k_yearly"><span>${a_vo_y.total_distance}</span> km</li>
+					<li class="k_yearly"><span>${a_vo_y.total_step}</span> steps</li>
+					<li class="k_yearly"><span>${a_vo_y.plog_count}</span> th plogging</li>
+					<li class="k_yearly"><span>${a_vo_y.trash_sum}</span> L of trash</li>
+
+					<li class="k_totally"><span>${a_vo_t.total_distance}</span> km</li>
+					<li class="k_totally"><span>${a_vo_t.total_step}</span> steps</li>
+					<li class="k_totally"><span>${a_vo_t.plog_count}</span> th plogging</li>
+					<li class="k_totally"><span>${a_vo_t.trash_sum}</span> L of trash</li>
 				</ul>
-				<div class="k_a_chart_graph"><img src="/img/chart_sample.jpeg" alt=""></div>
+
+				<div class="k_a_chart_wrap">
+					<div class="k_a_chart_graph" id="k_weekly_chart"><canvas id="myChart_w"></canvas></div>
+					<div class="k_a_chart_graph" id="k_monthly_chart"><canvas id="myChart_m"></canvas></div>
+					<div class="k_a_chart_graph" id="k_yearly_chart"><canvas id="myChart_y"></canvas></div>
+					<div class="k_a_chart_graph" id="k_totally_chart"><canvas id="myChart_t"></canvas></div>
+				</div>
 			</div>
 
 		</div>
@@ -69,41 +98,27 @@
 			<div class="k_a_title">최근 활동</div>
 
 			<ul>
-				<li>
-					<ul class="k_a_each_box">
-						<li><img src="/img/course_sample.png" alt=""></li>
-						<li class="k_a_main_info">2022.09.29</li>
-						<li class="k_a_main_info">정릉천~청계천 코스</li>
-						<li class="k_a_div"></li>
-						<li>거리: 4km, 걸음 수 : 8000보</li>
-						<li>주운 쓰레기: 1l</li>
-						<li>함께한 파티: 환경러버들</li>
-					</ul>
-				</li>
+				<c:forEach var="vo" items="${a_list}">
+					<li>
+						<ul class="k_a_each_box">
+							<li><img src="/img/course_sample.png" alt=""></li>
+							<li class="k_a_main_info">${vo.date}</li>
+							<li class="k_a_main_info">${vo.course_name}</li>
+							<li class="k_a_div"></li>
+							<li>거리: ${vo.distance}km, 걸음 수 : ${vo.step}보</li>
+							<li>주운 쓰레기: ${vo.amount_trash}l</li>
+							<li>
+								<c:if test="${vo.sort == 0 }">
+									혼자한 플로깅
+								</c:if>
+								<c:if test="${vo.sort > 0}">
+									같이한 플로깅
+								</c:if>
+							</li>
+						</ul>
+					</li>
+				</c:forEach>
 
-				<li>
-					<ul class="k_a_each_box">
-						<li><img src="/img/course_sample.png" alt=""></li>
-						<li class="k_a_main_info">2022.09.29</li>
-						<li class="k_a_main_info">정릉천~청계천 코스</li>
-						<li class="k_a_div"></li>
-						<li>거리: 4km, 걸음 수 : 8000보</li>
-						<li>주운 쓰레기: 1l</li>
-						<li>함께한 파티: 환경러버들</li>
-					</ul>
-				</li>
-
-				<li>
-					<ul class="k_a_each_box">
-						<li><img src="/img/course_sample.png" alt=""></li>
-						<li class="k_a_main_info">2022.09.29</li>
-						<li class="k_a_main_info">정릉천~청계천 코스</li>
-						<li class="k_a_div"></li>
-						<li>거리: 4km, 걸음 수 : 8000보</li>
-						<li>주운 쓰레기: 1l</li>
-						<li>함께한 파티: 환경러버들</li>
-					</ul>
-				</li>
 			</ul>
 
 			<div class="k_list_more"><i class="fa-solid fa-caret-down"></i></div>

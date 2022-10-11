@@ -1,76 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="/css/login.css" type="text/css"/>
-		<script src="https://accounts.google.com/gsi/client" async defer></script>
-	</head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="/js_css/style.css" type="text/css"/>
+		<style>
 
-<style>
-#userlist {
-	width: 1600px;
-	overflow: auto;
-	margin: 0 auto 50px;
-}
+		</style>
+<script>
 
-#list {
-	overflow: auto;
-}
-
-#list li {
-	float: left;
-	line-height: 40px;
-	border-bottom: 1px solid gray;
-	width: 10%;
-}
-
-#list li:nth-child(6n+1) {
-	width: 20%;
-}
-#list li:nth-child(n+1) {
-	width: 15%;
-}
-
-.b{font-weight: bold;}
-</style>
+</script>
+</head>
 <body>
-<form method="post" action="/editlist" id="sign">
-<div id="userlist">
-	<ul id="list">
-		<li class="b">아이디(이메일)</li>
-		<li class="b">이름</li>
-		<li class="b">닉네임</li>
-		<li class="b">키</li>
-		<li class="b">성별</li>
-		<li class="b">상태</li>
-		<c:forEach var="vo" items="${userList }">
-			<li><input type="text" name="id" id="id" value="${vo.id }" style="border:none" readonly/></li>
-			<li>${vo.name }</li>
-			<li>${vo.nickname }</li>
-			<li>${vo.height }</li>
-			<c:if test="${vo.sex==1 }"><li>남</li></c:if>
-			<c:if test="${vo.sex==2 }"><li>여</li></c:if>
-			<c:if test="${vo.restriction==0 }">
-				<li>
-					<select name ="restriction">
-						<option id ="restriction" value=0 selected>정상</option>
-						<option id ="restriction" value=1>불량</option>
-					</select>
-				</li>
-			</c:if>
-			<c:if test="${vo.restriction==1 }">
-				<li>	
-					<select name ="restriction">
-						<option id ="restriction" value=0 >정상</option>
-						<option id ="restriction" value=1 selected>불량</option>
-					</select>
-				</li>
-			</c:if>
-		</c:forEach>
-	</ul>
-	<input type="submit" value="수정" >
-</div>	
-</form>
+
+<table width="70%" class="table01">
+                    <colgroup>
+                        <col width="20%" />
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="3%" />
+                        <col width="5%" />
+                        <col width="5%" />
+                        <col width="5%" />
+                    </colgroup>
+                    <thead>        
+                        <tr>
+                            <th>아이디(이메일)</th>
+                            <th>이름</th>
+                            <th>닉네임</th>
+                            <th>성별</th>
+                            <th>키</th>
+              				<th>상태</th>
+              				<th>수정/삭제</th>
+                        </tr>  
+                       
+                    </thead>
+                    <tbody id="tbody">
+   
+                    <c:forEach var="vo" items="${userList }">
+                    	<tr>
+                    	
+                            <td>${vo.id}</td>
+                            <td>${vo.name}</td>
+                            <td>${vo.nickname}</td>
+                            <c:if test="${vo.sex==1 }"><td>남</td></c:if>
+                            <c:if test="${vo.sex==2 }"><td>여</td></c:if>
+                            <td>${vo.height}</td>
+                            <c:if test="${vo.restriction==0 }"><td>정상</td></c:if>
+                            <c:if test="${vo.restriction==1 }"><td>불량</td></c:if>
+                            <td><input type="button" value="수정" onclick="location.href='/profile?id=${vo.id }'">/<input type="button" id="listDel" value="삭제" onclick="location.href='/listDel?id=${vo.id }'"></td>
+                       
+                        </tr>
+                     </c:forEach>
+                     
+                    </tbody>    
+                </table>
+
 </body>
 </html>

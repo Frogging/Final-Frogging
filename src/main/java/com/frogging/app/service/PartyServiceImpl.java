@@ -148,4 +148,9 @@ public class PartyServiceImpl implements PartyService {
 	public int addReason(int partyno, int party_detail_no, int reason) {
 		return dao.addReason(partyno, party_detail_no, reason);
 	}
+
+	@Override
+	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO) {
+		return dao.getTotalClub(p_dVO);
+	}
 }

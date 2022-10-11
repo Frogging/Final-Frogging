@@ -27,7 +27,7 @@
 	});
 </script>
 <div class="p_container">
-	<h1 class="p_title">글쓰기</h1>
+	<h1 class="p_title">이벤트 글쓰기</h1>
 	<form method="post" action="/event/eventFormOk" id="eventFrm">
 	<div id="p_textwrite">
 		<ul>

@@ -110,7 +110,7 @@ $(function(){
 		mouseenter: function() {
 			$(this).css('border-color', '#FFD500');
 		}, mouseleave: function() {
-			$(this).css('border-color', '#2fb86a');
+			$(this).css('border-color', '#017935');
 		}
 	})
 

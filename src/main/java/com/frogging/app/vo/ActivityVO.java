@@ -13,13 +13,22 @@ public class ActivityVO {
 	private String before_image;
 	private String after_image;
 	private String date;
+	private int sort;
 
 	// user+total info
 	private String nickname;
-	private int total_distance;
+	private double total_distance;
+	private int total_step;
 	private int plog_count;
+	private double trash_sum;
+	private double total_time;
 
 	private int rownum;
+
+	// date
+	private String year;
+	private String month;
+	private String week;
 
 	public String getId() {
 		return id;
@@ -109,11 +118,19 @@ public class ActivityVO {
 		this.nickname = nickname;
 	}
 
-	public int getTotal_distance() {
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
+	public double getTotal_distance() {
 		return total_distance;
 	}
 
-	public void setTotal_distance(int total_distance) {
+	public void setTotal_distance(double total_distance) {
 		this.total_distance = total_distance;
 	}
 
@@ -125,12 +142,60 @@ public class ActivityVO {
 		this.plog_count = plog_count;
 	}
 
-	public int getRownum() {
-		return rownum;
+	public double getTrash_sum() {
+		return trash_sum;
 	}
 
-	public void setRownum(int rownum) {
-		this.rownum = rownum;
+	public void setTrash_sum(double trash_sum) {
+		this.trash_sum = trash_sum;
+	}
+
+	public int getTotal_step() {
+		return total_step;
+	}
+
+	public void setTotal_step(int total_step) {
+		this.total_step = total_step;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getWeek() {
+		return week;
+	}
+
+	public void setWeek(String week) {
+		this.week = week;
+	}
+
+	public double getTotal_time() {
+		return total_time;
+	}
+
+	public void setTotal_time(double total_time) {
+		this.total_time = total_time;
 	}
 
 }

@@ -21,7 +21,7 @@
 	});
 </script>
 <div class="p_container">
-	<h1 class="p_title">글수정</h1>
+	<h1 class="p_title">커뮤니티 글수정</h1>
 		<div id="p_writeedit">
 			<form method="post" action="/community/communityEditOk" id="communityFrm">
 				<input type="hidden" name="no" value="${vo.no}"/>
