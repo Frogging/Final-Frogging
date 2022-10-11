@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" 
        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <style>
-#cke_qna_content{
+#cke_customerService_content{
 	height:100%;
 }
 /* button */
@@ -27,10 +27,10 @@
 
 
     $(document).ready(function(){        
-        CKEDITOR.replace("qna_content");
+        CKEDITOR.replace("customerService_content");
         
-    	$("#qnaForm").submit(function(){
-    		if($("#qna_subject").val()==""){
+    	$("#customerServiceForm").submit(function(){
+    		if($("#customerService_subject").val()==""){
     			alert("제목을 입력하세요.");
     			return false;
     		}
@@ -48,8 +48,8 @@
 <body>
     <div class="p_container">
         <div class="inner">        
-           <br/> <h1 class="p_title">QnA 글쓰기</h1><br/>
-            <form id="qnaForm" name="qnaForm" method="post" action="/qna/qnaWriteOk">
+           <br/> <h1 class="p_title">고객센터 글쓰기</h1><br/>
+            <form id="customerServiceForm" name="customerServiceForm" method="post" action="/customerService/customerServiceWriteOk">
                 <table class="table02" style="height:600px; width:100%;">
                 <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
                     <colgroup>
@@ -59,18 +59,23 @@
                     <tbody id="tbody">
                         <tr>
                             <th>제목<span class="t_red">*</span></th>
-                            <td><input id="qna_subject" name="subject" value="" class="tbox01"/></td>
+                            <td><input id="customerService_subject" name="subject" value="" class="tbox01"/></td>
                         </tr>
+                        <!--  
+                        <tr>
+                            <th>작성자<span class="t_red">*</span></th>
+                            <td><input id="customerService_writer" name="customerService_writer" value="" class="tbox01"/></td>
+                        </tr>-->
                         <tr>
                             <th>내용<span class="t_red">*</span></th>
-                            <td><textarea id="qna_content" name="content" class="textarea01"></textarea></td>
+                            <td><textarea id="customerService_content" name="content" class="textarea01" style="background-color:pink; height:100%;"></textarea></td>
                         </tr>
                     </tbody>
                     
                     
                 </table>
 				 <div class="btn_right mt15" style="width:80%; margin:0 auto; float:right;">
-		                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
+		                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceList'">목록으로</button>
 		                <input type="submit" class="btn black" value="등록하기"/>
 				 </div> 
             </form>
