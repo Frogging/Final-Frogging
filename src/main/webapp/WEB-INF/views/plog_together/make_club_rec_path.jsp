@@ -89,36 +89,6 @@
 								</li>
 							</c:forEach>
 
-							<%-- <li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
-								</ul>
-							</li>
-							<li class="open_modal">
-								<ul class="k_rec_path_box">
-									<li class="k_rec_path_title k_green">응봉산 산책로</li>
-									<li>서울특별시 성동구 응봉동 산8-14</li>
-									<li class="k_box_space"></li>
-									<li>예상 소요시간: 70분</li>
-									<li>당월 방문 수: 12회</li>
-									<li class="k_more"><img src="" alt="">더보기</li>
-								</ul>
-							</li> --%>
 						</ul>
 
 						<!-- recommand path paging -->
@@ -222,7 +192,9 @@
 							<li><label class="k_green" for="">모집인원</label></li>
 							<li class="k_party_set_in"><input type="number" name="number" id="k_party_set_party_number" min="2" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
-							<li class="k_party_set_in"><input type="date" name="meeting_time" id="k_party_set_meeting_time" value=""></li>
+							<li class="k_party_set_in">
+								<input type="datetime-local" name="meeting_time" id="k_party_set_meeting_time" value="">
+							</li>
 							<li><label class="k_green" for="">만남장소</label></li>
 							<li class="k_party_set_in"><input type="text" name="meeting_place" id="k_party_set_meeting_place" placeholder="만남장소를 입력하세요"></li>
 						</ul>

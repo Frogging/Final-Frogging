@@ -99,7 +99,7 @@
 							<li><label class="k_green" for="">모집인원</label></li>
 							<li class="k_party_set_in"><input type="number" name="number" id="k_party_set_party_number" min="2" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
-							<li class="k_party_set_in"><input type="date" name="meeting_time" id="k_party_set_meeting_time" value=""></li>
+							<li class="k_party_set_in"><input type="datetime-local" name="meeting_time" id="k_party_set_meeting_time" value=""></li>
 							<li><label class="k_green" for="">만남장소</label></li>
 							<li class="k_party_set_in"><input type="text" name="meeting_place" id="k_party_set_meeting_place" placeholder="만남장소를 입력하세요"></li>
 						</ul>

@@ -51,11 +51,11 @@
 
 
 							<c:forEach var="vo" items="${join_list}">
-								<li>${vo.no}</li>
-								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}">${vo.partyname}</a></li>
-								<li><a href="">${vo.course_name}</a></li>
-								<li>${vo.meeting_time}</li>
-								<li>
+								<li><span>${vo.no}</span></li>
+								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
+								<li><a href=""><span>${vo.course_name}</span></a></li>
+								<li><span>${vo.meeting_time}</span></li>
+								<li><span>
 									<c:if test="${vo.join_status==0}">
 										수락대기
 									</c:if>
@@ -86,6 +86,7 @@
 											(기타사유)
 										</c:if>
 									</c:if>
+									</span>
 								</li>
 							</c:forEach>
 							
@@ -123,10 +124,10 @@
 							<li class="k_my_list_head"><span>관리</span></li>
 
 							<c:forEach var="vo" items="${manage_list}">
-								<li>${vo.no}</li>
-								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}">${vo.partyname}</a></li>
-								<li><a href="">${vo.course_name}</a></li>
-								<li>${vo.meeting_time}</li>
+								<li><span>${vo.no}</span></li>
+								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
+								<li><a href=""><span>${vo.course_name}</span></a></li>
+								<li><span>${vo.meeting_time}</span></li>
 								<li class="open_modal" onclick="modal_data(${vo.no});">
 									<span>${vo.current_number}/${vo.number}</span>
 									<i class="fa-solid fa-gear k_green click-btn-c"></i>
