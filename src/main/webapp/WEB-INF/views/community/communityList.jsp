@@ -37,8 +37,10 @@ $(function(){
 			return false;
 		}
 		
-		$(".p_communityForm").submit();
+		$("#p_communityForm").submit();
 	});
+	
+	
 });
 </script>
 <body>

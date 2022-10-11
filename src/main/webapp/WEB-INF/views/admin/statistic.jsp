@@ -8,6 +8,14 @@
 	<script src="/js/k_admin.js" type="text/javascript"></script>
 	<script src="/js/k_chart.js" type="text/javascript"></script>
 </head>
+	<ul class="adminMenu">
+		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
+		<li class="tabMenu"><a href="notice">게시판관리</a></li>
+		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
+		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
+	</ul>
 <body class="k_body" onload="draw_adminplog()">
 	<section>
 		<div class="k_wrapper">
@@ -16,7 +24,7 @@
 				<div>
 					<i class="fa-solid fa-square-caret-right k_green"></i>
 					<a href="/admin/">
-						관리자 페이지
+						관리자
 					</a>
 					<a href="/admin/statistic">
 						<i class="fa-solid fa-angle-right"></i>
@@ -24,7 +32,9 @@
 					</a>
 				</div>
 			</div>
-
+			<div class="k_section_title">
+				<div>통계 관리</div>
+			</div>
 		</div>
 	</section>
 
