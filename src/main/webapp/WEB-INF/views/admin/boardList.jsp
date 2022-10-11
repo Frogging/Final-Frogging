@@ -16,16 +16,6 @@
 		</script>
 	</head>
 <body>
-<div>
-	<ul class="menu">
-		<li><a href="/admin/userlist">사용자목록</a></li>
-		<li><a href="/admin/notice">게시판관리</a></li>
-		<li><a href="/admin/qna">고객센터관리</a></li>
-		<li><a href="/admin/course">코스관리</a></li>
-		<li><a href="/admin/party">파티관리</a></li>
-		<li><a href="/admin/data">데이터관리</a></li>
-	</ul>
-</div>
-
+	
 </body>
 </html>

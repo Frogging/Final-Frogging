@@ -1,11 +1,9 @@
 package com.frogging.app.controller;
 
 
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import java.nio.charset.Charset;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -15,13 +13,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
-import com.frogging.app.vo.UserVO;
+
 
 
 @Controller
+@RequestMapping("/admin/*")
 public class AdminController {
 	@Autowired
 	AdminService service;
@@ -55,7 +55,7 @@ public class AdminController {
 			
 			String msg = "<script>";
 			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/userlist'";
+			msg += "location.href='/admin/userlist'";
 			msg += "</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//성공:200
@@ -76,7 +76,7 @@ public class AdminController {
 	@GetMapping("listDel")
 	public ModelAndView listDel(String id) {
 		service.listDel(id);
-		mav.setViewName("redirect:/userlist");
+		mav.setViewName("redirect:/admin/userlist");
 		return mav;
 	}
 	

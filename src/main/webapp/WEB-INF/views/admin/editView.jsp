@@ -17,7 +17,7 @@
 	</head>
 <body>
 <h1>회원정보수정</h1>
-<form method="post" action="/editProfile">
+<form method="post" action="/admin/editProfile">
 <table width="50%" class="table01">
                     <colgroup>
                         <col width="40%" />

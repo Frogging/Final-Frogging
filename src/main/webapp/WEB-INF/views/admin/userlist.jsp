@@ -12,7 +12,15 @@
 		<style>
 
 		</style>
+
 <script>
+$(function(){
+	$('#listDel').on("click", function() {
+		if (confirm("삭제하시겠습니까?")) {
+			return true;
+		}
+	});
+});
 
 </script>
 </head>
@@ -53,8 +61,8 @@
                             <td>${vo.height}</td>
                             <c:if test="${vo.restriction==0 }"><td>정상</td></c:if>
                             <c:if test="${vo.restriction==1 }"><td>불량</td></c:if>
-                            <td><input type="button" value="수정" onclick="location.href='/profile?id=${vo.id }'">/<input type="button" id="listDel" value="삭제" onclick="location.href='/listDel?id=${vo.id }'"></td>
-                       
+                            <td><input type="button" value="수정" onclick="location.href='/admin/profile?id=${vo.id }'">/<input type="button" id="listDel" value="삭제" onclick="location.href='/admin/listDel?id=${vo.id }'"></td>
+                      
                         </tr>
                      </c:forEach>
                      
