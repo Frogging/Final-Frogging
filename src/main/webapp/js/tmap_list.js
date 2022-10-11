@@ -26,7 +26,8 @@
 							height : "400px",
 							zoom : 15,
 							zoomControl : false,
-							scrollwheel : false
+							scrollwheel : false,
+							httpsMode : true
 						});
 					for(var j = 0; j < detail_arr.length; j++){
 						if(map_arr[i].course_no == detail_arr[j].course_no){

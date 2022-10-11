@@ -297,4 +297,9 @@ public class MapsController {
 		mav.setViewName("maps/tmap05");
 		return mav;
 	}
+	
+	@RequestMapping("/maps/geolocation01")
+	public String geolocation01() {
+		return "maps/geolocation01";
+	}
 }

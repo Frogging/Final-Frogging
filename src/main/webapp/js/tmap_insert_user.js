@@ -74,7 +74,8 @@ var distance = 0;
 			center : new Tmapv2.LatLng(37.56520450, 126.98702028), // 지도 초기 좌표
 			width : "100%", // 지도의 넓이
 			height : "400px", // 지도의 높이
-			zoom : 17	// 지도의 줌레벨
+			zoom : 17,	// 지도의 줌레벨
+			httpsMode : true
 		});
 		
 		if (navigator.geolocation) {

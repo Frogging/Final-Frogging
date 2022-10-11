@@ -100,7 +100,8 @@ var distance = 0;
 			strokeOpacity:1,
 			strokeWeight: 4,
 			directionColor:"blue",
-			map: map
+			map: map,
+			httpsMode : true
 		});
 		mapload();
 		map.addListener("click", onClick); //map 클릭 이벤트를 등록합니다.

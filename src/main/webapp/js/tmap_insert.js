@@ -12,7 +12,8 @@
 	var address = new Array();
 	var tDistance;
 	var tTime;
-	
+	var startLat;
+	var startLon;
 
 	$(function(){
 		var lat = new Array();
@@ -47,54 +48,54 @@
 		});
 		
 	});
-	function initTmap() {
+
+	window.onload = setGeolocation();
+	
+	function initTmap(){
 		// 1. 지도 띄우기
+		alert("init Start!");
 		map = new Tmapv2.Map("map_div", {
-		center : new Tmapv2.LatLng(37.56520450, 126.98702028),
+		center : new Tmapv2.LatLng(startLat, startLon),
 			width : "100%",
 			height : "400px",
 			zoom : 17,
 			zoomControl : true,
-			scrollwheel : true
+			scrollwheel : true,
+			httpsMode : true
 		});
+		//alert(startLat + ", " + startLon);
+		marker = new Tmapv2.Marker({
+						position : new Tmapv2.LatLng(startLat,startLon),
+						map : map
+					});
 		
-		// 현재 위치 HTML Geolocaiton 을 통해 확인 GPS 아님
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				function(position) {
-					var lat = position.coords.latitude;
-					var lon = position.coords.longitude;
-					//팝업 생성
-					/*
-					var content = "<div style=' position: relative; border-bottom: 1px solid #dcdcdc; line-height: 18px; padding: 0 35px 2px 0;'>"
-							+ "<div style='font-size: 12px; line-height: 15px;'>"
-							+ "<span style='display: inline-block; width: 14px; height: 14px; background-image: url(/resources/images/common/icon_blet.png); vertical-align: middle; margin-right: 5px;'></span>현재위치"
-							+ "</div>" + "</div>";
-					*/
-					marker = new Tmapv2.Marker({
-						position : new Tmapv2.LatLng(lat,lon),
-						map : map
-					});
-					/*
-					InfoWindow = new Tmapv2.InfoWindow({
-						position : new Tmapv2.LatLng(lat,lon),
-						content : content,
-						type : 2,
-						map : map
-					});
-					*/
-					map.setCenter(new Tmapv2.LatLng(lat,lon));
-					map.setZoom(15);
-					map.MousePosition(true);
-					console.log(new Tmapv2.LatLng(lat,lon));
-					console.log(map.getCenter());
-				});
-		}
+		//map.setCenter(new Tmapv2.LatLng(startLat,startLon));
+		//map.setZoom(15);
+		map.MousePosition(true);
+		
 		map.addListener("click", onClick); //map 클릭 이벤트를 등록합니다.
 		map.addListener("contextmenu", onrightClick);
-
 	}
-
+	function showError(error) {
+		  switch(error.code) {
+		    case error.PERMISSION_DENIED:
+		    alert("User denied the request for Geolocation.");
+		      x.innerHTML = "User denied the request for Geolocation.";
+		      break;
+		    case error.POSITION_UNAVAILABLE:
+		    alert("Location information is unavailable.");
+		      x.innerHTML = "Location information is unavailable.";
+		      break;
+		    case error.TIMEOUT:
+		    alert("The request to get user location timed out.");
+		      x.innerHTML = "The request to get user location timed out.";
+		      break;
+		    case error.UNKNOWN_ERROR:
+		    alert("An unknown error occurred.");
+		      x.innerHTML = "An unknown error occurred.";
+		      break;
+		  	}
+		}
 	function addComma(num) {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');
@@ -135,7 +136,7 @@
 			marker_s = new Tmapv2.Marker(
 					{
 						position : new Tmapv2.LatLng(lonlat.lat(),lonlat.lng()),
-						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+						icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
 						iconSize : new Tmapv2.Size(24, 38),
 						map : map
 					});
@@ -146,7 +147,7 @@
 			marker_e = new Tmapv2.Marker(
 					{
 						position : new Tmapv2.LatLng(lonlat.lat(),lonlat.lng()),
-						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+						icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
 						iconSize : new Tmapv2.Size(24, 38),
 						map : map
 					});
@@ -158,7 +159,7 @@
 				marker_s = new Tmapv2.Marker(
 						{
 							position : new Tmapv2.LatLng(lonlat.lat(),lonlat.lng()),
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+							icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
 							iconSize : new Tmapv2.Size(24, 38),
 							map : map
 						});
@@ -171,7 +172,7 @@
 				}
 				marker = new Tmapv2.Marker({
 					position: new Tmapv2.LatLng(lonlat.lat(),lonlat.lng()), //Marker의 중심좌표 설정.
-					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
+					icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
 					iconSize : new Tmapv2.Size(24, 38),
 					map: map //Marker가 표시될 Map 설정.
 				});
@@ -275,7 +276,7 @@
 					success : function(response) {
 						console.log(response);
 						var resultData = response.features;
-
+						//console.log(checkPoint(response));
 						//결과 출력
 						tDistance = ((resultData[0].properties.totalDistance) / 1000)
 										.toFixed(1);
@@ -323,15 +324,15 @@
 								var size;
 
 								if (properties.pointType == "S") { //출발지 마커
-									markerImg = "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png";
+									markerImg = "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png";
 									pType = "S";
 									size = new Tmapv2.Size(24, 38);
 								} else if (properties.pointType == "E") { //도착지 마커
-									markerImg = "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png";
+									markerImg = "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png";
 									pType = "E";
 									size = new Tmapv2.Size(24, 38);
 								} else { //각 포인트 마커
-									markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
+									markerImg = "https://topopen.tmap.co.kr/imgs/point.png";
 									pType = "P";
 									size = new Tmapv2.Size(8, 8);
 								}
@@ -428,15 +429,15 @@
 					
 					marker = new Tmapv2.Marker({
 				 		position : markerPosition,
-				 		//icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_a.png",
-				 		icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png",
+				 		//icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_a.png",
+				 		icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png",
 						iconSize : new Tmapv2.Size(24, 38),
 						title : name,
 						map:map,
 						zIndex : 99999
 				 	});
 
-					innerHtml += "<li onclick = 'setPointbyli("+ markerPosition +"," + number +")'><img src='http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png' style='vertical-align:middle;'/><span>"+name+"</span></li>";
+					innerHtml += "<li onclick = 'setPointbyli("+ markerPosition +"," + number +")'><img src='https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png' style='vertical-align:middle;'/><span>"+name+"</span></li>";
 					
 					markerArr.push(marker);
 					positionBounds.extend(markerPosition);	// LatLngBounds의 객체 확장
@@ -467,7 +468,7 @@
 				marker_s = new Tmapv2.Marker(
 						{
 							position : position,
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+							icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
 							iconSize : new Tmapv2.Size(24, 38),
 							map : map,
 							zIndex : 99999
@@ -488,7 +489,7 @@
 				marker_e = new Tmapv2.Marker(
 						{
 							position : position,
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+							icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
 							iconSize : new Tmapv2.Size(24, 38),
 							map : map,
 							zIndex : 99999
@@ -508,7 +509,7 @@
 			} else {
 				marker = new Tmapv2.Marker({
 					position: position, //Marker의 중심좌표 설정.
-					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
+					icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
 					iconSize : new Tmapv2.Size(24, 38),
 					map: map, //Marker가 표시될 Map 설정.
 					zIndex : 99999
@@ -528,7 +529,7 @@
 				marker_s = new Tmapv2.Marker(
 						{
 							position : markerPosition,
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+							icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
 							iconSize : new Tmapv2.Size(24, 38),
 							map : map,
 							zIndex : 99999
@@ -551,7 +552,7 @@
 				marker_e = new Tmapv2.Marker(
 						{
 							position : markerPosition,
-							icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+							icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
 							iconSize : new Tmapv2.Size(24, 38),
 							map : map,
 							zIndex : 99999
@@ -572,7 +573,7 @@
 			} else {
 				marker = new Tmapv2.Marker({
 					position: markerPosition, //Marker의 중심좌표 설정.
-					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
+					icon : "https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(count-1)+".png",
 					iconSize : new Tmapv2.Size(24, 38),
 					map: map, //Marker가 표시될 Map 설정.
 					zIndex : 99999
@@ -759,4 +760,32 @@
 					alert("중복 검사 실패");
 				}
 		})
+	}
+	
+	function setGeolocation(){
+		//alert("setGeolocation!");
+		if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                    function(pos) {
+						startLat = pos.coords.latitude;
+						startLon = pos.coords.longitude;
+						//alert("in setGeolocation 1 : "+ startLat + ", " + startLon);
+						initTmap();
+                    }, showError);
+            
+        } else {
+            alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+        }
+	}
+	
+	function checkPoint(course){
+		var pointArray = [];
+		for(let i = 0; i < course.features.length; i++){
+			if(course.features[i].geometry.type == "Point"){
+				var epsg3857 = new Tmapv2.Point(course.features[i].geometry.coordinates[0],course.features[i].geometry.coordinates[1]);
+				var wgs84 = Tmapv2.Projection.convertEPSG3857ToWGS84GEO(epsg3857);
+				pointArray.push(wgs84);
+			}
+		}
+		return pointArray;
 	}
