@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
+import com.frogging.app.vo.PagingVO;
 
 
 
@@ -88,4 +89,17 @@ public class AdminController {
 		return mav;
 	}
 	
+	@GetMapping("communityList")
+	public ModelAndView communityList(PagingVO pVO) {
+		mav = new ModelAndView();
+		
+		pVO.setTotalRecord(service.totalRecord(pVO));
+		System.out.println(pVO.toString());
+		
+		mav.addObject("list", service.communityList(pVO));
+		mav.addObject("pVO", pVO);
+		
+		mav.setViewName("admin/communityList");
+		return mav;
+	}
 }
