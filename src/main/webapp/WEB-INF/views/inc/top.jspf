@@ -31,7 +31,7 @@
     			</span>
                 <ul id="p_menu">
                     <li><a href="/introductionForm">소개</a></li>
-                    <li><a href="/rankingForm">랭킹</a></li>
+                    <li><a href="/ranking/rankingForm">랭킹</a></li>
                     <li><a href="#">프로깅 시작</a>
                     	<ul class="p_subMenu">
                     	<li><a href="/club/join_club">함께하기</a></li>
@@ -43,10 +43,12 @@
                     	<li><a href="/community/communityList">커뮤니티</a></li>
                     	<li><a href="/event/eventList">이벤트</a></li>
                     	<li><a href="/qna/qnaList">QnA</a></li>
+						<li><a href="/customerService/customerServiceList">고객센터</a></li>
                     	</ul>
                     </li>	     
                     <!-- 로그인 버튼 -->
 				</ul>	
+
 				<c:if test="${logStatus==null}">	
 					<span class="p_login">
 							<a href="/login" class="p_menu-log">로그인</a>
@@ -56,8 +58,9 @@
                  <c:if test="${logStatus=='Y'}">
                  	<span class="p_login">
         					<a href="/logout" class="p_menu-log">로그아웃</a>
-							<a href="#" class="p_menu-join">마이페이지</a>
+							<a href="/mypage/my" class="p_menu-join">마이페이지</a>
 					</span>
+
      			   </c:if>
      			   
      			    <c:if test="${logStatus=='Admin'}">
@@ -66,6 +69,7 @@
 							<a href="/admin/adminPage" class="p_menu-join">관리자페이지</a>
 					</span>
      			   </c:if>
+
                 
 	</div>
 	<script>

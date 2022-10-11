@@ -6,7 +6,7 @@
 	<select id="communityList" resultType="CommunityVO">
 		select b1.no, b1.subject, b1.id, b1.hit, b1.writedate, b2.reply_count
 		from
-		(select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
+		(select no, subject, id, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
 		from board_community
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'

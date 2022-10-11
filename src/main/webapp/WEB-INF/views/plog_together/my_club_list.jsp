@@ -51,24 +51,42 @@
 
 
 							<c:forEach var="vo" items="${join_list}">
-								<li>${vo.no}</li>
-								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}">${vo.partyname}</a></li>
-								<li><a href="">${vo.course_name}</a></li>
-								<li>${vo.meeting_time}</li>
-								<li>
-								${vo.join_status}
-									<c:if test="${vo.join_status}==0">
+								<li><span>${vo.no}</span></li>
+								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
+								<li><a href=""><span>${vo.course_name}</span></a></li>
+								<li><span>${vo.meeting_time}</span></li>
+								<li><span>
+									<c:if test="${vo.join_status==0}">
 										수락대기
 									</c:if>
-									<c:if test="${vo.join_status}==1">
+									<c:if test="${vo.join_status==1}">
 										수락완료
 									</c:if>
-									<c:if test="${vo.join_status}==2">
-										수락거절
+									<c:if test="${vo.join_status==2}">
+										수락거절 
+										<c:if test="${vo.reason==1}">
+											(부적절한 언행)
+										</c:if>
+										<c:if test="${vo.reason==2}">
+											(신청 마감)
+										</c:if>
+										<c:if test="${vo.reason==3}">
+											(기타사유)
+										</c:if>
 									</c:if>
-									<c:if test="${vo.join_status}==3">
+									<c:if test="${vo.join_status==3}">
 										퇴출
+										<c:if test="${vo.reason==1}">
+											(부적절한 언행)
+										</c:if>
+										<c:if test="${vo.reason==2}">
+											(신청 마감)
+										</c:if>
+										<c:if test="${vo.reason==3}">
+											(기타사유)
+										</c:if>
 									</c:if>
+									</span>
 								</li>
 							</c:forEach>
 							
@@ -106,10 +124,10 @@
 							<li class="k_my_list_head"><span>관리</span></li>
 
 							<c:forEach var="vo" items="${manage_list}">
-								<li>${vo.no}</li>
-								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}">${vo.partyname}</a></li>
-								<li><a href="">${vo.course_name}</a></li>
-								<li>${vo.meeting_time}</li>
+								<li><span>${vo.no}</span></li>
+								<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
+								<li><a href=""><span>${vo.course_name}</span></a></li>
+								<li><span>${vo.meeting_time}</span></li>
 								<li class="open_modal" onclick="modal_data(${vo.no});">
 									<span>${vo.current_number}/${vo.number}</span>
 									<i class="fa-solid fa-gear k_green click-btn-c"></i>
@@ -181,7 +199,7 @@
 
 					</ul>
 
-					<ul class="k_rec_path_page">
+					<%-- <ul class="k_rec_path_page">
 							<li><i class="fa-solid fa-chevron-left active"></i></li>
 							<li class="active">1</li>
 							<li>2</li>
@@ -189,7 +207,7 @@
 							<li>4</li>
 							<li>5</li>
 							<li><i class="fa-solid fa-chevron-right active"></i></li>
-						</ul>
+						</ul> --%>
 				</div>
 
 				<div class="k_party_detail_join">

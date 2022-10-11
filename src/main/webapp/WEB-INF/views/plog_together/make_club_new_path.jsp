@@ -74,10 +74,11 @@
 			</div>
 		</section>
 
-		<!-- k_new_party_setting -->
+	<!-- k_new_party_setting -->
 		<section class="k_new_party_setting">
 			<div class="k_wrapper">
-				<form action="">
+				<form action="/club/makeNewClub" method="post" id="k_party_set_frm">
+				<input type="hidden" name="course_no"  id="k_party_set_course_no"/>
 				<div class="k_section_title">
 					<div>플로깅 할 사람 여기여기 모여라</div>
 					<div class="k_green">모임 세팅 <i class="fa-solid fa-gear"></i></div>
@@ -87,29 +88,32 @@
 						<ul class="k_party_set_left">
 							<li>모임 가이드</li>
 							<li class="k_party_set_guide"></li>
-							<li><input type="checkbox" name="" id="k_party_set_agree">위 모임 가이드를 확인하였습니다.</li>
+							<li><input type="checkbox" id="k_party_set_agree">위 모임 가이드를 확인하였습니다.</li>
 						</ul>
 						<div class="k_party_set_line"></div>
 						<ul class="k_party_set_right">
-							<li><label class="k_green" for="">파티명</label></li>
-							<li class="k_party_set_in"><input type="text" placeholder="파티명을 입력하세요"><input type="button" value="중복검사"></li>
-							<li><label class="k_green" for="">코스번호</label></li>
-							<li class="k_party_set_in"><input type="text" id="k_party_set_course" value="" placeholder=""></li>
+							<li><label class="k_green" for="">모임명</label></li>
+							<li class="k_party_set_in"><input type="text" name="partyname" id="k_party_set_party_name" placeholder="파티명을 입력하세요"><input type="button" value="중복검사" onclick="checkPartyname()"></li>
+							<li><label class="k_green" for="">코스명</label></li>
+							<li class="k_party_set_in"><input type="text" name="course_name" id="k_party_set_course_name" value="" readonly></li>
 							<li><label class="k_green" for="">모집인원</label></li>
-							<li class="k_party_set_in"><input type="number" name="" id="" min="3" max="12" placeholder="인원 수"></li>
+							<li class="k_party_set_in"><input type="number" name="number" id="k_party_set_party_number" min="2" max="12" placeholder="인원 수"></li>
 							<li><label class="k_green" for="">모집일시</label></li>
-							<li class="k_party_set_in"><input type="date" name="" id=""></li>
+							<li class="k_party_set_in"><input type="datetime-local" name="meeting_time" id="k_party_set_meeting_time" value=""></li>
 							<li><label class="k_green" for="">만남장소</label></li>
-							<li class="k_party_set_in"><input type="text" name="" id="" placeholder="만남장소를 입력하세요"></li>
+							<li class="k_party_set_in"><input type="text" name="meeting_place" id="k_party_set_meeting_place" placeholder="만남장소를 입력하세요"></li>
 						</ul>
-					
+						<div class="k_party_set_buttom">
+							<label class="k_green" for="">세부 알림 사항</label>
+							<textarea name="content" id="k_content" ></textarea>
+						</div>
 				</div>
 				<div class="k_party_set_button">
-					<div class="click-btn">모임 등록</div>
+					<div class="click-btn k_party_frm_submit">모임 등록</div>
 				</div>
 			</form>
-		</div>
-		</section>
+			</div>
+	</section>
 
 </body>
 </html>

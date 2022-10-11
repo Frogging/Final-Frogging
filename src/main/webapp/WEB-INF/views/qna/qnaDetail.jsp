@@ -7,7 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
 <style>
 /* button */
-.btn {font-family:'malgunbd';display:inline-block;padding:3px 20px 6px 20px;margin:0;border:1px solid #aaa;cursor:pointer;color:#333;border-radius:2px;vertical-align:middle;font-size:13px;letter-spacing:-1px;line-height:normal;background-color:#feffff;text-decoration:none;}
+.btn {    height: 30px;
+    width: 90px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0 2px;}
 .btn.black {border-color:#191919;color:#fff;background-color:#333;text-decoration:none;}
 </style>
 
@@ -51,7 +59,7 @@
 
     <div class="p_container">
         <div class="inner">    
-           <br/><h1 class="p_title">게시글 상세</h1><br/>
+           <br/><h1 class="p_title">Qna 내용</h1><br/>
             <form id="qnaForm" name="qnaForm">        
                 <table width="100%" class="table01">
                     <colgroup>
@@ -83,7 +91,7 @@
                  <input type="hidden" id="qna_reply_group"      name="qna_seq"    	value="${vo.reply_group}"/>
                 <input type="hidden" id="search_type"    name="search_type"		value="S"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
             </form>
-            <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center;">
+            <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center; padding:5px;">
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaEdit/${vo.no }'">수정하기</button>
                 <input type="button" class="btn black" value="삭제하기" onclick="location.href='javascript:qnaDel();'"/>

@@ -3,6 +3,7 @@ package com.frogging.app.controller;
 
 
 
+
 import java.nio.charset.Charset;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
+import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.PagingVO;
 
 
@@ -98,8 +100,32 @@ public class AdminController {
 		
 		mav.addObject("list", service.communityList(pVO));
 		mav.addObject("pVO", pVO);
-		
 		mav.setViewName("admin/communityList");
+
+	//고객센터 리스트 가져오기
+	@GetMapping("customerServiceList")
+	public ModelAndView customerServiceList() {
+		mav.addObject("customerServiceList", service.customerServiceList());
+		mav.setViewName("admin/customerServiceList");
+		return mav;
+	}
+	//고객센터 글삭제
+	@GetMapping("customerServiceDel")
+	public ModelAndView customerServiceDel(int no, String id) {
+		service.customerServiceDel(no, id); 
+		mav = new ModelAndView();
+		mav.setViewName("redirect:/customerServiceList");
+		return mav;
+	}
+	
+	@GetMapping("customerServiceDetail")
+	public ModelAndView customerServiceDetail(int no, CustomerServiceVO VO) {
+		mav = new ModelAndView();
+		
+		mav.addObject("vo", service.getcustomerService(no));
+		mav.addObject("VO", VO);
+		mav.setViewName("admin/customerServiceDetail");
+		mav.addObject("reply_group", VO);
 		return mav;
 	}
 }

@@ -41,7 +41,7 @@ $(function(){
 </script>
   <body style="overflow-x: hidden">
     <div class="p_container">
-        <br/><h1 class="p_title">이벤트 게시판</h1><br/>
+        <br/><h1 class="p_title">이벤트</h1><br/>
       <c:forEach var="vo" items="${list }">
       <div class="row">
         <div class="col-8" style="font-family: 'Noto Sans KR', sans-serif;">

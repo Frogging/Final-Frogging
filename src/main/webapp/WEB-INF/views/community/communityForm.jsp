@@ -25,7 +25,7 @@
 </script>
 <body>
 	<div class="p_container">
-		<h1 class="p_title">글쓰기</h1>
+		<h1 class="p_title">커뮤니티 글쓰기</h1>
 		<form method="post" action="/community/communityFormOk" id="p_communityForm">
 		<div id="p_textwrite">
 			<ul>
