@@ -101,7 +101,8 @@ public class AdminController {
 		mav.addObject("list", service.communityList(pVO));
 		mav.addObject("pVO", pVO);
 		mav.setViewName("admin/communityList");
-
+		return mav;
+	}
 	//고객센터 리스트 가져오기
 	@GetMapping("customerServiceList")
 	public ModelAndView customerServiceList() {
