@@ -22,12 +22,12 @@
 <script type="text/javascript">
     
     $(document).ready(function(){        
-        getQnaDetail();        
+        getcustomerServiceDetail();        
     });
     
     /* 목록 페이지 이동 */
-    function goQnaList(){                
-        location.href = "/qna/qnaList";
+    function gocustomerServiceList(){                
+        location.href = "/customerService/customerServiceList";
     }
      
     
@@ -38,8 +38,8 @@
 <body>
     <div class="p_container">
         <div class="inner">    
-            <br/><h1 class="p_title">QnA 수정</h1><br/>
-            <form id="qnaForm" name="qnaForm" method="post" action="/qna/qnaEditOk">    
+            <br/><h1 class="p_title">고객센터 수정</h1><br/>
+            <form id="customerServiceForm" name="customerServiceForm" method="post" action="/customerService/customerServiceEditOk">    
                 <table width="100%" class="table02">
                 <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
                     <colgroup>
@@ -49,7 +49,7 @@
                     <tbody id="tbody">
                        <tr>
                             <th>제목<span class="t_red">*</span></th>
-                            <td><input id="qna_subject" name="subject" value="${vo.subject}" class="tbox01"/></td>
+                            <td><input id="customerService_subject" name="subject" value="${vo.subject}" class="tbox01"/></td>
                         </tr>
                         <tr>
                             <th>내용<span class="t_red">*</span></th>
@@ -57,10 +57,9 @@
                         </tr>
                     </tbody>
                 </table>    
-                <input type="hidden" id="qna_seq" name="no" value="${vo.no}"/> <!-- 게시글 번호 -->
-                <input type="hidden" id="search_type"	 name="search_type"    	value="U"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
+                <input type="hidden" id="customerService_seq" name="no" value="${vo.no}"/> <!-- 게시글 번호 -->
               	<div class="btn_right mt15" style="width:80%; margin:0 auto; float:center;">
-	                <button type="button" class="btn black mr5" onclick="javascript:goQnaList();">목록으로</button>
+	                <button type="button" class="btn black mr5" onclick="javascript:gocustomerServiceList();">목록으로</button>
 	                <input type="submit" class="btn black" value="수정하기"/>
            		 </div>
             </form>

@@ -43,7 +43,7 @@ $(function(){
 </script>
 <body>
     <div class="p_container">
-        <span class="p_title"><h1>커뮤니티 게시판</h1></span>
+        <span class="p_title"><h1>커뮤니티</h1></span>
                    
         <div class="p_communityList">
               <input type="button" value="선택삭제" class="p_multiDel"/>   
@@ -110,7 +110,7 @@ $(function(){
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
-                <input type="text" name="searchWord" class="p_searchWord" style="height:30px;"/>
+                <input type="text" name="searchWord" class="p_searchWord" style="height:30px; width:250px;"/>
                 <input type="submit" value="찾기" class="p_communitysearch-btn"/>
             </form>	
             <div class="p_communitywrite">

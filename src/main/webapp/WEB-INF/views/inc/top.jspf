@@ -43,6 +43,7 @@
                     	<li><a href="/community/communityList">커뮤니티</a></li>
                     	<li><a href="/event/eventList">이벤트</a></li>
                     	<li><a href="/qna/qnaList">QnA</a></li>
+						<li><a href="/customerService/customerServiceList">고객센터</a></li>
                     	</ul>
                     </li>	     
                     <!-- 로그인 버튼 -->
