@@ -47,36 +47,6 @@
 			top: 50%;
 			transform: translate(-50%, -50%);
 		}
-		.mobile-alone-btn{
-			height:100px;
-			width:100px;
-			background-color: #2fb86a;
-			font-family: 'Noto Sans KR', sans-serif;
-			color:white;
-			font-weight: bold;
-			font-size: 24px;
-			border : 1px solid white;
-   			border-radius:5px;
-			position: absolute;
-			left:30%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
-		.mobile-party-btn{
-			height:100px;
-			width:100px;
-			background-color: #2fb86a;
-			font-family: 'Noto Sans KR', sans-serif;
-			color:white;
-			font-weight: bold;
-			font-size: 24px;
-			border : 1px solid white;
-   			border-radius:5px;
-			position: absolute;
-			right:2%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
 		.mobile-plogging-btn:hover{
 			
 		}
@@ -90,13 +60,12 @@
 			</div>
 			<div class="mobileMenu">
 			<ul>	
-              	<li><a href="/login" class="mobileMenu-log">로그인</a></li> 
-              	<a href="/logout" class="mobileMenu-log">로그아웃</a>       
+              	<li><a href="/logout" class="mobileMenu-log">로그아웃</a></li>       
 			</ul>
 			</div>
 		</div>
 		<div class="mobileBody">	
-            <input type="button" value="측정하기" class="mobile-alone-btn" onclick="location.href='maps/geolocation01'"/>
+            <input type="button" value="측정하기" class="mobile-plogging-btn" onclick="location.href='maps/geolocation01'"/>
 		</div>	
 	</div>
 </body>
