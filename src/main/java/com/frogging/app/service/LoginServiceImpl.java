@@ -33,5 +33,11 @@ public class LoginServiceImpl implements LoginService {
 		return dao.nicknameCheck(nickname);
 	}
 
+	@Override
+	public int checkAdmin(String id) {
+		// TODO Auto-generated method stub
+		return dao.checkAdmin(id);
+	}
+
 
 }

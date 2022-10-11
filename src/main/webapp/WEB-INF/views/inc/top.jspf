@@ -47,18 +47,28 @@
                     </li>	     
                     <!-- 로그인 버튼 -->
 				</ul>	
-				<c:if test="${logStatus!='Y'&&adStatus!='Y'}">	
+
+				<c:if test="${logStatus==null}">	
 					<span class="p_login">
 							<a href="/login" class="p_menu-log">로그인</a>
 							<a href="#" class="p_menu-join">회원가입</a>
 					</span>
                  </c:if>
-                 <c:if test="${logStatus=='Y'&&adStatus!='Y'}">
+                 <c:if test="${logStatus=='Y'}">
                  	<span class="p_login">
         					<a href="/logout" class="p_menu-log">로그아웃</a>
 							<a href="/mypage/my" class="p_menu-join">마이페이지</a>
 					</span>
-     			 </c:if>
+
+     			   </c:if>
+     			   
+     			    <c:if test="${logStatus=='Admin'}">
+                 	<span class="p_login">
+        					<a href="/logout" class="p_menu-log">로그아웃</a>
+							<a href="/adminPage" class="p_menu-join">관리자페이지</a>
+					</span>
+     			   </c:if>
+
                 
 	</div>
 	<script>
