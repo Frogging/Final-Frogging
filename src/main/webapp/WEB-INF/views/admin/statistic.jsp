@@ -10,7 +10,8 @@
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="notice">게시판관리</a></li>
+		<li class="tabMenu"><a href="notice">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
 		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>

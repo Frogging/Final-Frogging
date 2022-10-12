@@ -4,10 +4,12 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_admin.js"></script>
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="notice">게시판관리</a></li>
+		<li class="tabMenu"><a href="notice">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
 		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
@@ -26,7 +28,7 @@
 					</a>
 					<a href="/admin/manageClub">
 						<i class="fa-solid fa-angle-right"></i>
-						클럽 관리하기
+							클럽 관리하기
 					</a>
 				</div>
 			</div>
@@ -40,7 +42,7 @@
 
 	<section class="k_mycourse">
 		<div class="k_wrapper">
-			<form action="">
+			<form method="post" action="/admin/clubMultiDel" id="listFrm">
 			<ul class="k_my_club_grid">
 				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>파티명</span></li>
@@ -57,12 +59,12 @@
 					<li class="open_modal" onclick="modal_data(${vo.no});">
 						<span>${vo.current_number}/${vo.number}</span>
 					</li>
-					<li><span><input type="checkbox"></span></li>
+					<li><span><input type="checkbox" name="noList" value="${vo.no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
-				<input type="checkbox">
-				<input type="button" value="삭제하기">
+				<input type="checkbox" class="allChk">
+				<input type="submit" class="delBtn" value="삭제하기">
 			</div>
 
 			</form>

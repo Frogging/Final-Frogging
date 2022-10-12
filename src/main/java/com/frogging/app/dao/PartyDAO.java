@@ -90,4 +90,10 @@ public interface PartyDAO {
 
 	// 파티 관리자 리스트
 	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
+
+	// 파티 여러개 삭제
+	public int clubMultiDel(PartyVO vo);
+
+	// 파티 리퀘스트 삭제
+	public int deleteClubRequest(int no);
 }

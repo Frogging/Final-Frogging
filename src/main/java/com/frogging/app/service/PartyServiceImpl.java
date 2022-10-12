@@ -153,4 +153,14 @@ public class PartyServiceImpl implements PartyService {
 	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO) {
 		return dao.getTotalClub(p_dVO);
 	}
+
+	@Override
+	public int clubMultiDel(PartyVO vo) {
+		return dao.clubMultiDel(vo);
+	}
+
+	@Override
+	public int deleteClubRequest(int no) {
+		return dao.deleteClubRequest(no);
+	}
 }

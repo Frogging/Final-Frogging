@@ -43,22 +43,52 @@ $(function(){
 })
 
 
-
-$(".allChk").click(function(){
-	$(".board input[type=checkbox]").prop("checked",$(".allChk").prop("checked"));
-});
-
-$(".delBtn").click(function(){
-	//체크 갯수 확인
-	var countChk = 0;//				반복문					input input input
-	$(".board input[name=noList]").each(function(idx,obj){
-		if(obj.checked){ // input 태그가 체크 상태이면 true
-			countChk++;
-		}
+// -------------------- 여러개 삭제 
+$(function(){
+	$(".allChk").click(function(){
+		console.log("allcheck");
+		$(".k_my_club_grid input[type=checkbox]").prop("checked",$(".allChk").prop("checked"));
 	});
-	if(countChk<=0){
-		alert("삭제할 레코드를 선택 후 삭제하세요.");
-		return false;
-	}
-	$("#listFrm").submit();
-});
+	
+	$(".delBtn").click(function(){
+		//체크 갯수 확인
+		var countChk = 0;//				반복문					input input input
+		$(".k_my_club_grid input[name=noList]").each(function(idx,obj){
+			if(obj.checked){ // input 태그가 체크 상태이면 true
+				countChk++;
+				//console.log("checked++");
+			}
+		});
+		if(countChk<=0){
+			alert("삭제할 레코드를 선택 후 삭제하세요.");
+			return false;
+		}
+		$("#listFrm").submit();
+	});
+
+})
+
+$(function(){
+	$(".allChk").click(function(){
+		console.log("allcheck");
+		$(".k_my_course_grid input[type=checkbox]").prop("checked",$(".allChk").prop("checked"));
+	});
+	
+	$(".delBtn").click(function(){
+		//체크 갯수 확인
+		var countChk = 0;//				반복문					input input input
+		$(".k_my_course_grid input[name=noList]").each(function(idx,obj){
+			if(obj.checked){ // input 태그가 체크 상태이면 true
+				countChk++;
+				//console.log("checked++");
+			}
+		});
+		if(countChk<=0){
+			alert("삭제할 레코드를 선택 후 삭제하세요.");
+			return false;
+		}
+		$("#listFrm").submit();
+	});
+
+})
+

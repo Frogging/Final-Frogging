@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.ActivityService;
+import com.frogging.app.service.PartyService;
 import com.frogging.app.service.UserService;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CourseVO;
 
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class MypageController {
 
 	@Inject
 	UserService u_service;
+
+	@Inject
+	PartyService p_service;
 
 	// 마이페이지
 	@GetMapping(value = "/my")
@@ -138,7 +143,7 @@ public class MypageController {
 		return t_graph;
 	}
 
-	// ------------------------------------------------------
+	// ------------------------내가 만든 코스 ------------------------------
 	@GetMapping("myCourse")
 	public ModelAndView getMyCourse(HttpSession session) {
 
@@ -151,6 +156,7 @@ public class MypageController {
 		return mav;
 	}
 
+	// 내가 만든 코스 보기
 	@GetMapping("myCourseView")
 	public ModelAndView getMyCourseView(HttpSession session, int no) {
 
@@ -158,7 +164,10 @@ public class MypageController {
 
 		String id = (String) session.getAttribute("logId");
 
-		// mav.addObject("c_list", u_service.getUserCourse(id));
+		// CourseVO vo = new CourseVO();
+		// vo = p_service.getPathDetail(no);
+
+		mav.addObject("vo", p_service.getPathDetail(no));
 		mav.setViewName("/mypage/myCourseView");
 		return mav;
 	}

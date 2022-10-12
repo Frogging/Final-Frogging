@@ -401,8 +401,9 @@ public class PartyController {
 		String msg = "<script>";
 
 		try {
-			// party를 참조하는 party_detail 먼저 삭제
+			// party_request-> party_detail ->party 순서로 삭제
 
+			p_service.deleteClubRequest(no);
 			p_service.deleteClubDetail(no);
 			// System.out.println(no);
 			int result = p_service.deleteClub(no);

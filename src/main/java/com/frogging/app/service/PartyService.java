@@ -62,4 +62,8 @@ public interface PartyService {
 	public int addReason(int partyno, int party_detail_no, int reason);
 
 	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
+
+	public int clubMultiDel(PartyVO vo);
+
+	public int deleteClubRequest(int no);
 }

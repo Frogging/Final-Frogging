@@ -370,4 +370,19 @@
 		) t3
 		on t2.course_no = t3.course_no
 	</select>
+
+	<delete id="deleteClubRequest">
+		delete from party_request
+		where party_no = ${param1}
+	</delete>
+
+	<delete id="clubMultiDel">
+		delete from party
+		<where>
+			<foreach item="item" index="index" collection="noList" open="no in (" separator="," close=")">
+              ${item}
+			</foreach>
+		</where>
+	</delete>
+
 </mapper>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.QnaVO;
 
 @Mapper
@@ -13,7 +14,7 @@ import com.frogging.app.vo.QnaVO;
 public interface QnaDAO {
 	
 	//Qna게시판 글목록
-	public List<QnaVO> qnaList(QnaVO VO);
+	public List<QnaVO> qnaList(PagingVO pVO);
 	//Qna등록 추후 관리자만 버튼이 보이도록
 	public int qnaWriteOk(QnaVO vo);
 	//Qna 내용보기
@@ -29,6 +30,7 @@ public interface QnaDAO {
 	
 	public QnaVO getQnaReplyInfo(QnaVO vo);
 	
+	public int totalRecord(PagingVO pVO);
 	//답글 깊이 순서 정렬
 	public int qnaUpdate(QnaVO vo);
 	

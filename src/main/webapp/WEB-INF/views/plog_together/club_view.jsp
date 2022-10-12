@@ -24,11 +24,11 @@
 							</a>
 							<a href="/admin/manageClub">
 								<i class="fa-solid fa-angle-right"></i>
-								파티 관리
+								클럽 관리
 							</a>
 							<a href="#">
 								<i class="fa-solid fa-angle-right"></i>
-								파티 보기
+								클럽 보기
 							</a>
 						</c:if>
 
@@ -120,11 +120,14 @@
 						<div class="click-btn"><a href="/club/club_edit?no=${pvo.no}&l_id=${pvo.id}">모임 수정</a></div>
 						<div class="click-btn"><a href="javascript:deleteClub(${pvo.no})">모임 삭제</a></div>
 					</c:if>
+					<div class="click-btn"><a href="/club/my_club_list">돌아가기</a></div>
 				</c:if>
 
-				
-				<div class="click-btn"><a href="/admin/manageClub">돌아가기</a></div>
-
+				<c:if test="${logStatus =='Admin'}">
+					<div class="click-btn"><a href="/club/club_edit?no=${pvo.no}&l_id=${pvo.id}">모임 수정</a></div>
+					<div class="click-btn"><a href="javascript:deleteClub(${pvo.no})">모임 삭제</a></div>
+					<div class="click-btn"><a href="/admin/manageClub">돌아가기</a></div>
+				</c:if>
 			</div>
 		</div>
 	</section>

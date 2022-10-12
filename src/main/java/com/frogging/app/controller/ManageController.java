@@ -1,11 +1,17 @@
 package com.frogging.app.controller;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +20,7 @@ import com.frogging.app.service.ActivityService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.PartyDetailVO;
+import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
 
 @RestController
@@ -90,5 +97,36 @@ public class ManageController {
 		mav.addObject("c_list", p_service.getTotalClub(p_dVO));
 		mav.setViewName("/admin/manageClub");
 		return mav;
+	}
+
+	// 파티 여러개 삭제
+	@PostMapping("/clubMultiDel")
+	public ResponseEntity<String> clubMultiDel(PartyVO p_vo) {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		int result = 1;
+		System.out.println(p_vo.getNolist());
+
+		// 파티삭제 : 파티 디테일 테이블 삭제 -> 파티 테이블 삭제
+
+		try {
+			// p_service.clubMultiDel(p_vo);
+
+			if (result != 0) {
+				msg += "alert('삭제완료');";
+				msg += "location.href='/admin/manageClub';";
+			} else {
+				msg += "alert('삭제실패');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 	}
 }

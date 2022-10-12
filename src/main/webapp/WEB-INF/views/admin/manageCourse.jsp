@@ -8,7 +8,8 @@
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="notice">게시판관리</a></li>
+		<li class="tabMenu"><a href="notice">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
 		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
@@ -41,7 +42,8 @@
 
 	<section class="k_mycourse">
 		<div class="k_wrapper">
-			<form action="">
+		<%-- courseMultiDel로 변경해야 --%>
+			<form method="post" action="/admin/clubMultiDel" id="listFrm"">
 			<ul class="k_my_course_grid">
 				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>코스명</span></li>
@@ -56,12 +58,12 @@
 					<li><span>${vo.addr}</span></li>
 					<li><span>${vo.time}</span></li>
 					<li><span>${vo.distance}</span></li>
-					<li><span><input type="checkbox"></span></li>
+					<li><span><input type="checkbox" name="noList" value="${vo.course_no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
-				<input type="checkbox">
-				<input type="button" value="삭제하기">
+				<input type="checkbox" class="allChk">
+				<input type="submit" class="delBtn" value="삭제하기">
 			</div>
 
 			</form>

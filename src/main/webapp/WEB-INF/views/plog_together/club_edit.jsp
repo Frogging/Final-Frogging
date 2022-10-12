@@ -15,30 +15,49 @@
 			<div class="k_wrapper">
 				<div class="k_section_title_links">
 					<div>
-						<i class="fa-solid fa-square-caret-right k_green"></i>
-						<a href="/">
-							플로깅하기 
-						</a>
-						<a href="/club/join_club">
-							<i class="fa-solid fa-angle-right"></i>
-							함께하기
-							<i class="fa-solid fa-angle-right"></i>
-							클럽 찾기
-						</a>
-						<a href="/club/my_club_list">
-							<i class="fa-solid fa-angle-right"></i>
-							나의 클럽 관리
-							<i class="fa-solid fa-angle-right"></i>
-							참여 중인 클럽
-						</a>
-						
+						<%-- 링크 --%>
+						<c:if test="${logStatus =='Admin'}">
+							<i class="fa-solid fa-square-caret-right k_green"></i>
+							<a href="/">
+								관리자
+							</a>
+							<a href="/admin/manageClub">
+								<i class="fa-solid fa-angle-right"></i>
+								클럽 관리
+							</a>
+							<a href="#">
+								<i class="fa-solid fa-angle-right"></i>
+								클럽 보기
+							</a>
+						</c:if>
+
+						<c:if test="${logStatus !='Admin'}">
+							<i class="fa-solid fa-square-caret-right k_green"></i>
+							<a href="/">
+								플로깅하기 
+							</a>
+							<a href="/club/join_club">
+								<i class="fa-solid fa-angle-right"></i>
+								함께하기
+								<i class="fa-solid fa-angle-right"></i>
+								클럽 찾기
+							</a>
+							<a href="/club/my_club_list">
+								<i class="fa-solid fa-angle-right"></i>
+								나의 클럽 관리
+								<i class="fa-solid fa-angle-right"></i>
+								참여 중인 클럽
+							</a>
+						</c:if>
 					</div>
 				</div>
 
+				<c:if test="${logStatus !='Admin'}">
 				<div class="k_section_title">
 					<div>플로깅 약속 잊지말기!</div>
 					<div class="k_green">나의 클럽 관리하기&nbsp<i class="fa-solid fa-list-check"></i></div>
 				</div>
+				</c:if>
 			</div>
 	<!-- --------- PARTY Details--------- -->
 	<section class="k_selected_party_detail">

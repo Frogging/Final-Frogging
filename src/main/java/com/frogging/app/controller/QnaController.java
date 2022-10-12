@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.QnaService;
 import com.frogging.app.vo.CommunityVO;
+import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.QnaVO;
 
 @Controller
@@ -31,12 +32,13 @@ public class QnaController {
 	ModelAndView mav = null;
 	
 	@GetMapping("qnaList")
-	public ModelAndView qnaList(QnaVO VO) {
+	public ModelAndView qnaList(PagingVO pVO) {
 		
 		mav = new ModelAndView();
-		System.out.println(VO.toString());
-		
-		mav.addObject("list", service.qnaList(VO));
+		System.out.println(pVO.toString());
+		pVO.setTotalRecord(service.totalRecord(pVO));
+		mav.addObject("list", service.qnaList(pVO));
+		mav.addObject("pVO", pVO);
 		mav.setViewName("qna/qnaList");
 		return mav;	
 	}

@@ -1400,12 +1400,20 @@ i{
 .k_mycourse{
 	background-color: var(--ct-light-grey);
 	padding: var(--space-large);
+
+	/* 페이징 하기전 처리 */
+	height: 70%;
+	overflow: scroll;
 }
 .k_mycourse>.k_wrapper{
 	margin: 50px auto;
 	border-radius: var(--radius-strong);
 	background-color: var(--main-white);
 	padding: var(--space-medium);
+
+	/* 페이징 하기전 처리 */
+	height: 90%;
+	overflow: scroll;
 }
 .k_mycourse_list{
 	display: flex;
