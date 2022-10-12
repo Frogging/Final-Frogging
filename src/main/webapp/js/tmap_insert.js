@@ -486,11 +486,7 @@
 			if(count > 1){
 				searchRoute();
 			}
-<<<<<<< HEAD
-			reverseGeo(lon, lat, 0);
-=======
 			reverseGeo(position.lng(), position.lat(), 0);
->>>>>>> f68f3053b868a037249a9c4dbf38a5f38d9774b5
 		}else if(number == 1){
 			if(count < 2){
 				marker_e = new Tmapv2.Marker(
@@ -509,11 +505,7 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
-<<<<<<< HEAD
-			reverseGeo(lon, lat, 1);
-=======
 			reverseGeo(position.lng(), position.lat(), 1);
->>>>>>> f68f3053b868a037249a9c4dbf38a5f38d9774b5
 		}else if(number == 2){
 			if(count < 2){
 				alert('출발지, 도착지부터 선택해주세요.');
