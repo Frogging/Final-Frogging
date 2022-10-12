@@ -259,4 +259,14 @@
 		group by month
 		order by month
 	</select>
+	
+	<insert id = "activityInsert">
+		insert into activity(id, course_no, course_name, distance, step, time, amount_trash, date, sort)
+		values(#{id}, #{course_no}, #{course_name}, #{distance}, ${step}, #{time}, #{amount_trash}, now(), ${sort})
+	</insert>
+	
+	<insert id = "courseuserInsert">
+		insert into course_user(course_no, id, waypoint, lat, log)
+		values(${param1}, #{param2}, ${param3}, #{param4}, #{param5})
+	</insert>
 </mapper>

@@ -6,13 +6,72 @@ var locationList = [];
 var polyline;
 var total_distance = 0;
 var start_time, end_time, total_time = 0;
+var saved_course = [];
 
+var drawInfoArr = [];
+var resultdrawArr = [];
+
+$(function(){
+	$("#checkCourseForm").submit(function(){
+		event.preventDefault();
+		
+		let course_no = detail_arr[0].course_no;
+		let amount_trash = $("#amount_trash").val();
+		let tDistance = parseFloat(total_distance.toFixed(4));
+		let tTime = parseFloat(total_time.toFixed(4));
+		let dnt = [tDistance, tTime];
+		let sort = $("#sort").val();
+		if(sort == ""){
+			alert(sort);
+			sort = 0;
+		}
+		
+		loadCourse(detail_arr, courseType);
+		console.log(locationList);
+		console.log(saved_course);
+		var check = checkCourse(locationList, saved_course);
+		
+		alert(check);
+		var lat = new Array();
+		var lon = new Array();
+		
+		for(var i = 0; i < locationList.length; i++){
+			if(i == 0){
+				lat[i] = locationList[i].lat();
+				lon[i] = locationList[i].lng();
+			}else if(i == 1){
+				lat[i] = locationList[locationList.length - 1].lat();
+				lon[i] = locationList[locationList.length - 1].lng();
+			}else{
+				lat[i] = locationList[i-1].lat();
+				lon[i] = locationList[i-1].lng();
+			}
+		}
+			
+		$.ajax({
+			type : 'POST',
+			url : '/mobile/activityOk/'+ course_no,
+			data : {"lat" : lat, "log" : lon, "distance" : tDistance, "time" : tTime, "amount_trash" : amount_trash, "sort" : sort},
+			success : function(result){
+				if(check == true){
+					alert("지정하신 코스로 이동하셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+				} else {
+					alert("지정하신 코스를 이용하지는 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+				}
+			}, error : function(e) {
+				console.log(e.responseText);
+				alert("실제 이동 경로 및 확인에 실패하였습니다.");
+			}
+		});
+	});
+});
 function initTmap() {
 		alert("initTmap");
+		
 		// 1. 지도 띄우기
 		// 현재 위치 HTML Geolocaiton 을 통해 확인 GPS 아님
 		map = new Tmapv2.Map("map_div", {
-		center : new Tmapv2.LatLng(37.56520450, 126.98702028),
+			center : new Tmapv2.LatLng(37.56520450, 126.98702028),
 			width : "100%",
 			height : "400px",
 			zoom : 17,
@@ -20,6 +79,7 @@ function initTmap() {
 			scrollwheel : true,
 			httpsMode : true
 		});
+		loadCourse(detail_arr, courseType);
 		//alert("test1");
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -39,8 +99,8 @@ function initTmap() {
                     //alert("test3");
 					map.setCenter(new Tmapv2.LatLng(lat,lon));
 					map.setZoom(15);
-					console.log(new Tmapv2.LatLng(lat,lon));
-					console.log(map.getCenter());
+					//console.log(new Tmapv2.LatLng(lat,lon));
+					//console.log(map.getCenter());
 					
 				}, showError);
 			}
@@ -53,13 +113,6 @@ function initTmap() {
 				directionColor:"blue",
 				map: map
 			});
-			
-			var vertical = verticalLength(
-				new Tmapv2.LatLng(37.50651442225382,127.09805488586466),
-				new Tmapv2.LatLng(37.506434986069,127.097582817078),
-				new Tmapv2.LatLng(37.506417964018404,127.09859848022501)
-			);
-			$('#vertical_length').html(vertical);
 		}
 
 function startChecking(){
@@ -150,7 +203,6 @@ function endChecking(){
 			alert(distance_check);
 			alert("200m이내를 이동하셨습니다.");
 		}
-		locationList = [];
 	} else {
 		alert('위치 확인을 시작해주십시오.');
 	}
@@ -199,7 +251,7 @@ function checkCourse(user_course, saved_course){
 			vertical_length1 = verticalLength(user_course[i], saved_course[index], saved_course[index+1]);
 			if(index < saved_course.length - 2){
 				vertical_length2 = verticalLength(user_course[i], saved_course[index+1], saved_course[index+2]);
-				if(vertical_length1 >= vertical_length2){
+				if(vertical_length1 <= vertical_length2){
 					checker = vertical_length1;
 				} else {
 					checker = vertical_length2;
@@ -212,14 +264,181 @@ function checkCourse(user_course, saved_course){
 			vertical_length1 = verticalLength(user_course[i], saved_course[saved_course.length-2], saved_course[saved_course.length-1]);
 		}
 		
-		if(checker < 5){
+		if(checker < 10){
 			flag++;
 		}
+		alert(checker);
 	}
 	
-	if(flag >= 3){
+	if(flag >= 1){
 		courseIn = true;
 	}
 	
 	return courseIn;
+}
+
+function loadCourse(loaded_course, type){
+	if(type == 1){
+		alert("loadcourse!");
+		var waypoint = "";
+		for (let i = 2; i < loaded_course.length; i++){
+			waypoint += loaded_course[i].log + ",";
+			waypoint += loaded_course[i].lat;
+			if(i == loaded_course.length - 1){
+				break;
+			}
+			waypoint += "_";
+		}
+		
+		$.ajax({
+					method : "POST",
+					url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+					async : false,
+					data : {
+						"appKey" : "l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2",
+						"startX" : loaded_course[0].log,
+						"startY" : loaded_course[0].lat,
+						"endX" : loaded_course[1].log,
+						"endY" : loaded_course[1].lat,
+						"passList" : waypoint,
+						"reqCoordType" : "WGS84GEO",
+						"resCoordType" : "EPSG3857",
+						"startName" : "출발지",
+						"endName" : "도착지"
+					},
+					success : function(response) {
+						console.log(response);
+						saved_course = checkPoint(response);
+						var resultData = response.features;
+						
+						//기존 그려진 라인 & 마커가 있다면 초기화
+						if (resultdrawArr.length > 0) {
+							for ( var i in resultdrawArr) {
+								resultdrawArr[i]
+										.setMap(null);
+							}
+							resultdrawArr = [];
+						}
+						
+						drawInfoArr = [];
+
+						for ( var i in resultData) { //for문 [S]
+							var geometry = resultData[i].geometry;
+							var properties = resultData[i].properties;
+							var polyline_;
+
+
+							if (geometry.type == "LineString") {
+								for ( var j in geometry.coordinates) {
+									// 경로들의 결과값(구간)들을 포인트 객체로 변환 
+									var latlng = new Tmapv2.Point(
+											geometry.coordinates[j][0],
+											geometry.coordinates[j][1]);
+									// 포인트 객체를 받아 좌표값으로 변환
+									var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+											latlng);
+									// 포인트객체의 정보로 좌표값 변환 객체로 저장
+									var convertChange = new Tmapv2.LatLng(
+											convertPoint._lat,
+											convertPoint._lng);
+									// 배열에 담기
+									drawInfoArr.push(convertChange);
+								}
+							} else {
+								var markerImg = "";
+								var pType = "";
+								var size;
+
+								if (properties.pointType == "S") { //출발지 마커
+									markerImg = "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png";
+									pType = "S";
+									size = new Tmapv2.Size(24, 38);
+								} else if (properties.pointType == "E") { //도착지 마커
+									markerImg = "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png";
+									pType = "E";
+									size = new Tmapv2.Size(24, 38);
+								} else { //각 포인트 마커
+									markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
+									pType = "P";
+									size = new Tmapv2.Size(8, 8);
+								}
+
+								// 경로들의 결과값들을 포인트 객체로 변환 
+								var latlon = new Tmapv2.Point(
+										geometry.coordinates[0],
+										geometry.coordinates[1]);
+
+								// 포인트 객체를 받아 좌표값으로 다시 변환
+								var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+										latlon);
+
+								var routeInfoObj = {
+									markerImage : markerImg,
+									lng : convertPoint._lng,
+									lat : convertPoint._lat,
+									pointType : pType
+								};
+								
+								/*
+								// Marker 추가
+								marker_p = new Tmapv2.Marker(
+										{
+											position : new Tmapv2.LatLng(
+													routeInfoObj.lat,
+													routeInfoObj.lng),
+											icon : routeInfoObj.markerImage,
+											iconSize : size,
+											map : map,
+											zIndex : 99999
+										});
+								*/
+							}
+						}//for문 [E]
+						
+						var boundary = new Tmapv2.LatLngBounds();
+						console.log(saved_course);
+						for(let z = 0; z < saved_course.length; z++){
+							var point = new Tmapv2.LatLng(saved_course[z].lat(), saved_course[z].lng());
+							boundary.extend(point);
+						}
+						//map.fitBounds(boundary);
+						console.log(drawInfoArr);
+						drawLine(drawInfoArr);
+					},
+					error : function(request, status, error) {
+						console.log("code:" + request.status + "\n"
+								+ "message:" + request.responseText + "\n"
+								+ "error:" + error);
+					}
+				});
+	} else {
+		for(let i = 0; i < loaded_course.length; i++){
+			saved_course.push(new Tmapv2.point(loaded_course.lat[i], loaded_course.log[i]));
+		}
+	}
+}
+
+
+function checkPoint(course){
+		var pointArray = [];
+		for(let i = 0; i < course.features.length; i++){
+			if(course.features[i].geometry.type == "Point"){
+				var epsg3857 = new Tmapv2.Point(course.features[i].geometry.coordinates[0],course.features[i].geometry.coordinates[1]);
+				var wgs84 = Tmapv2.Projection.convertEPSG3857ToWGS84GEO(epsg3857);
+				pointArray.push(wgs84);
+			}
+		}
+		return pointArray;
+	}
+	
+function drawLine(arrPoint) {
+	var polyline_;
+
+	polyline_ = new Tmapv2.Polyline({
+		path : arrPoint,
+		strokeColor : "#DD0000",
+		strokeWeight : 6,
+		map : map
+	});
+	resultdrawArr.push(polyline_);
 }

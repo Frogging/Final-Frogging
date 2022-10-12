@@ -46,5 +46,9 @@ public interface ActivityService {
 	public int numberOfUnactive();
 
 	public List<ActivityVO> getTrashGraph();
+	
+	public int activityInsert(ActivityVO avo);
+	
+	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log);
 
 }
