@@ -17,6 +17,7 @@
 	<update id="editProfile">
 		update user set restriction=${param2 } where id=#{param1}
 	</update>
+
 	<select id="communityList" resultType="CommunityVO">
 		select b1.no, b1.subject, b1.id, b1.hit, b1.writedate, b2.reply_count
 		from
