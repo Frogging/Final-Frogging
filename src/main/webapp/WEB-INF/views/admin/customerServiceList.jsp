@@ -32,9 +32,9 @@
 <div style="height:100%;">
 <table width="80%" class="table01">
 	<ul class="adminMenu">
-		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="notice">게시판관리</a></li>
-		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
+		<li class="tabMenu"><a href="/admin/communityList">게시판관리</a></li>
+		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
@@ -98,7 +98,7 @@
                             <c:if test="${vo.depth > 0 }">
                             <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'"> / 
                             </c:if>
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/customerServiceDel?no=${vo.no}'"></td>
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
                      
