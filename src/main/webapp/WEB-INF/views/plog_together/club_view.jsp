@@ -15,30 +15,52 @@
 			<div class="k_wrapper">
 				<div class="k_section_title_links">
 					<div>
-						<i class="fa-solid fa-square-caret-right k_green"></i>
-						<a href="/">
-							플로깅하기 
+
+						<%-- 링크 --%>
+						<c:if test="${logStatus =='Admin'}">
+							<i class="fa-solid fa-square-caret-right k_green"></i>
+							<a href="/">
+								관리자
+							</a>
+							<a href="/admin/manageClub">
+								<i class="fa-solid fa-angle-right"></i>
+								파티 관리
+							</a>
+							<a href="#">
+								<i class="fa-solid fa-angle-right"></i>
+								파티 보기
+							</a>
+						</c:if>
+
+						<c:if test="${logStatus !='Admin'}">
+							<i class="fa-solid fa-square-caret-right k_green"></i>
+							<a href="/">
+								플로깅하기 
+							</a>
+							<a href="/club/join_club">
+								<i class="fa-solid fa-angle-right"></i>
+								함께하기
+								<i class="fa-solid fa-angle-right"></i>
+								클럽 찾기
+							</a>
+							<a href="/club/my_club_list">
+								<i class="fa-solid fa-angle-right"></i>
+								나의 클럽 관리
+								<i class="fa-solid fa-angle-right"></i>
+								참여 중인 클럽
 						</a>
-						<a href="/club/join_club">
-							<i class="fa-solid fa-angle-right"></i>
-							함께하기
-							<i class="fa-solid fa-angle-right"></i>
-							클럽 찾기
-						</a>
-						<a href="/club/my_club_list">
-							<i class="fa-solid fa-angle-right"></i>
-							나의 클럽 관리
-							<i class="fa-solid fa-angle-right"></i>
-							참여 중인 클럽
-						</a>
+						
+						</c:if>
 						
 					</div>
 				</div>
-
+				
+				<c:if test="${logStatus !='Admin'}">
 				<div class="k_section_title">
 					<div>플로깅 약속 잊지말기!</div>
 					<div class="k_green">나의 클럽 관리하기&nbsp<i class="fa-solid fa-list-check"></i></div>
 				</div>
+				</c:if>
 			</div>
 	<!-- --------- PARTY Details--------- -->
 	<section class="k_selected_party_detail">
@@ -90,14 +112,19 @@
 			</div> 
 			<div class="k_party_detail_join">
 				<%-- <div class="k_close_popup click-btn">수정하기</div> --%>
-				<c:if test="${pvo.id!=logId}">
-					<div class="click-btn"><a href="javascript:leaveClub(${pvo.no})">참여 취소</a></div>
+				<c:if test="${logStatus !='Admin'}">
+					<c:if test="${pvo.id!=logId}">
+						<div class="click-btn"><a href="javascript:leaveClub(${pvo.no})">참여 취소</a></div>
+					</c:if>
+					<c:if test="${logStatus=='Y'&& pvo.id==logId}">
+						<div class="click-btn"><a href="/club/club_edit?no=${pvo.no}&l_id=${pvo.id}">모임 수정</a></div>
+						<div class="click-btn"><a href="javascript:deleteClub(${pvo.no})">모임 삭제</a></div>
+					</c:if>
 				</c:if>
-				<c:if test="${logStatus=='Y'&& pvo.id==logId}">
-					<div class="click-btn"><a href="/club/club_edit?no=${pvo.no}&l_id=${pvo.id}">모임 수정</a></div>
-					<div class="click-btn"><a href="javascript:deleteClub(${pvo.no})">모임 삭제</a></div>
-				</c:if>
-				<div class="click-btn"><a href="/club/my_club_list">돌아가기</a></div>
+
+				
+				<div class="click-btn"><a href="/admin/manageClub">돌아가기</a></div>
+
 			</div>
 		</div>
 	</section>

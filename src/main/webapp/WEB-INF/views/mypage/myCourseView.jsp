@@ -8,26 +8,45 @@
 <body class="k_body">
 	<section>
 		<div class="k_wrapper">
-
 			<div class="k_section_title_links">
 				<div>
-					<i class="fa-solid fa-square-caret-right k_green"></i>
-					<a href="/">
-						코스
-					</a>
-					<a href="/">
-						<i class="fa-solid fa-angle-right"></i>
-						코스 상세보기
-					</a>
+					<c:if test="${logStatus =='Admin'}">
+						<i class="fa-solid fa-square-caret-right k_green"></i>
+						<a href="/">
+							관리자
+						</a>
+						<a href="/admin/manageCourse">
+							<i class="fa-solid fa-angle-right"></i>
+								파티 관리
+						</a>
+						<a href="#">
+							<i class="fa-solid fa-angle-right"></i>
+							파티 보기
+						</a>
+					</c:if>
+
+					<c:if test="${logStatus !='Admin'}">
+						<i class="fa-solid fa-square-caret-right k_green"></i>
+						<a href="/">
+							코스
+						</a>
+						<a href="/">
+							<i class="fa-solid fa-angle-right"></i>
+							코스 상세보기
+						</a>
+					</c:if>
 				</div>
 			</div>
+			
 
+			<c:if test="${logStatus !='Admin'}">
 			<div class="k_section_title">
 				<div class="k_green" >
 					프로거 ${logNickName }가
 				</div>
 				<div>작성한 코스</div>
 			</div>
+			</c:if>
 
 		</div>
 	</section>

@@ -33,18 +33,18 @@ public class AdminController {
 	AdminService service;
 	ModelAndView mav = new ModelAndView();
 
-	// @GetMapping("adminPage")
-	// public ModelAndView adiminPage() {
-	// mav.setViewName("admin/adminPage");
-	// return mav;
-	// }
+	@GetMapping("adminPage")
+	public ModelAndView adiminPage() {
+		mav.setViewName("admin/adminPage");
+		return mav;
+	}
 
-	// @GetMapping("userlist")
-	// public ModelAndView userlist() {
-	// mav.addObject("userList", service.userList());
-	// mav.setViewName("admin/userlist");
-	// return mav;
-	// }
+	@GetMapping("userlist")
+	public ModelAndView userlist() {
+		mav.addObject("userList", service.userList());
+		mav.setViewName("admin/userlist");
+		return mav;
+	}
 
 	// @PostMapping("editProfile")
 	// public ResponseEntity<String> editProfile(String id, int restriction) {
@@ -77,12 +77,12 @@ public class AdminController {
 	// return entity;
 	// }
 
-	// @GetMapping("listDel")
-	// public ModelAndView listDel(String id) {
-	// service.listDel(id);
-	// mav.setViewName("redirect:/userlist");
-	// return mav;
-	// }
+	@GetMapping("listDel")
+	public ModelAndView listDel(String id) {
+		service.listDel(id);
+		mav.setViewName("redirect:/userlist");
+		return mav;
+	}
 
 	// @GetMapping("profile")
 	// public ModelAndView profile(String id) {

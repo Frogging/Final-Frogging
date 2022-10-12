@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_admin.js"></script>
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
