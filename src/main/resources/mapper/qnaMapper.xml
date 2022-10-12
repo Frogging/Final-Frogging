@@ -15,18 +15,20 @@
 	</insert>
 		
 	<select id="qnaList" resultType="QnaVO">
-		select no, subject, id, reply_group, reply_seq, depth, hit, date_format(writedate, '%y년%m월%d일') writedate
-		from board_question order by reply_group desc, depth asc
-		
-		
-		<!--  <if test="searchWord!=null">
+		select no, subject, id, reply_group, reply_seq, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
+		from board_question 
+		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'
-		</if>	
-		order by no desc
-		limit ${onePageRecord} offset ${offsetPoint}-->
+		</if>
+		order by reply_group desc, depth asc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 	
 	<delete id="qnaDel">
+		delete from board_question where no=${param1} and id=#{param2}
+	</delete>
+	
+	<delete id="qnaParentDel">
 		delete from board_question where no=${param1} and id=#{param2}
 	</delete>
 	
@@ -62,8 +64,7 @@
 		values(#{id}, #{subject}, #{content}, #{reply_group}, #{reply_seq} +1, #{depth} +1 )
 	</insert>
 		
-	
-	
+
 	
 	<update id="qnaEditOk" parameterType="QnaVO">
 		update board_question set subject=#{subject}, content=#{content} where no=${no} and id=#{id}
@@ -71,9 +72,9 @@
 		
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from board_question
-		<!--  <if test='searchWord!=null'>
+		  <if test='searchWord!=null'>
 			where ${searchKey} like '%${searchWord}%'
-		</if>-->
+		</if>
 	</select>
 	<select id="getQna" resultType="QnaVO" parameterType="int">
 		select no,reply_group, subject, content, hit, id, writedate

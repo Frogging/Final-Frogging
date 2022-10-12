@@ -6,7 +6,40 @@
 		<link rel="stylesheet" href="/css/login.css" type="text/css"/>
 		<script src="https://accounts.google.com/gsi/client" async defer></script>
 	</head>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">	
+<style>
+.s_container{
+height:100%;
+ background-image:url(./img/plogging2.jpg);
+}
+.loginForm{
+	width: 300px;
+	height:300px;
+    background-color: #f8f8f8;
+    opacity: 0.85;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.google-btn{
+	text-decoration: none;
+	height: 50px;
+    width: 200px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 130px 20px 10px 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 <script>
 
 	function handleCredentialResponse(response) {
@@ -47,11 +80,15 @@
 </script>
 <body>
 	<div class="s_container">
-	<h1>로그인</h1>
-		<ul>
-			<div id="buttonDiv"></div> 
-			<li id="s_singup"><a href="https://accounts.google.com/"/>google 가입하러가기</a></li>
-		</ul>
+	</br><h1 style="color:white;">로그인 페이지</h1></br>
+		<div class="loginForm">
+			<h2>구글 로그인</h2>
+			<hr/>
+			<ul>
+				<div id="buttonDiv"></div> 
+				<input type="button" value="google 가입하러가기" class="google-btn" onclick="location.href='https://accounts.google.com/'"/>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
