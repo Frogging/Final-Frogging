@@ -12,8 +12,7 @@
 	var address = new Array();
 	var tDistance;
 	var tTime;
-	var startLat;
-	var startLon;
+	
 
 	$(function(){
 		var lat = new Array();
@@ -46,56 +45,59 @@
 				}
 			});
 		});
-		
 	});
-
-	window.onload = setGeolocation();
-	
-	function initTmap(){
+	window.onload = function initTmap() {
 		// 1. 지도 띄우기
-		//alert("init Start!");
 		map = new Tmapv2.Map("map_div", {
-		center : new Tmapv2.LatLng(startLat, startLon),
+		center : new Tmapv2.LatLng(37.56520450, 126.98702028),
 			width : "100%",
 			height : "400px",
 			zoom : 17,
 			zoomControl : true,
-			scrollwheel : true,
-			httpsMode : true
+			scrollwheel : true
 		});
-		//alert(startLat + ", " + startLon);
-		marker = new Tmapv2.Marker({
-						position : new Tmapv2.LatLng(startLat,startLon),
+		
+		// 현재 위치 HTML Geolocaiton 을 통해 확인 GPS 아님
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+
+					marker = new Tmapv2.Marker({
+						position : new Tmapv2.LatLng(lat,lon),
 						map : map
 					});
-		
-		//map.setCenter(new Tmapv2.LatLng(startLat,startLon));
-		//map.setZoom(15);
-		map.MousePosition(true);
-		
+
+					map.setCenter(new Tmapv2.LatLng(lat,lon));
+					map.setZoom(15);
+					map.MousePosition(true);
+					console.log(new Tmapv2.LatLng(lat,lon));
+					console.log(map.getCenter());
+				}, showError);
+		}
 		map.addListener("click", onClick); //map 클릭 이벤트를 등록합니다.
 		map.addListener("contextmenu", onrightClick);
+
 	}
-	function showError(error) {
-		  switch(error.code) {
-		    case error.PERMISSION_DENIED:
-		    alert("User denied the request for Geolocation.");
-		      x.innerHTML = "User denied the request for Geolocation.";
-		      break;
-		    case error.POSITION_UNAVAILABLE:
-		    alert("Location information is unavailable.");
-		      x.innerHTML = "Location information is unavailable.";
-		      break;
-		    case error.TIMEOUT:
-		    alert("The request to get user location timed out.");
-		      x.innerHTML = "The request to get user location timed out.";
-		      break;
-		    case error.UNKNOWN_ERROR:
-		    alert("An unknown error occurred.");
-		      x.innerHTML = "An unknown error occurred.";
-		      break;
-		  	}
-		}
+
+function showError(error) {
+	  switch(error.code) {
+	    case error.PERMISSION_DENIED:
+	    alert("User denied the request for Geolocation.");
+	      break;
+	    case error.POSITION_UNAVAILABLE:
+	    alert("Location information is unavailable.");
+	      break;
+	    case error.TIMEOUT:
+	    alert("The request to get user location timed out.");
+	      break;
+	    case error.UNKNOWN_ERROR:
+	    alert("An unknown error occurred.");
+	      break;
+	  	}
+	}
+
 	function addComma(num) {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');
@@ -125,10 +127,8 @@
 		drawInfoArr = [];
 	}
 	function onClick(e){
-		console.log(e);
-		console.log($(document.body).scrollTop());
-		//var temp = map.screenToReal(new Tmap.Pixel(e.screenPoint.x, e.screenPoint.y + $(document.body).scrollTop()));
-		//console.log(map.screenToReal(new Tmap.Pixel(e.screenPoint.x, e.screenPoint.y + $(document.body).scrollTop())));
+		// 클릭한 위치에 새로 마커를 찍기 위해 이전에 있던 마커들을 제거
+		//removeMarkers();
 		
 		lonlat = e.latLng;
 		console.log(lonlat.lat(),lonlat.lng());
@@ -188,7 +188,7 @@
 		if(count > 1){
 			searchRoute();
 		}
-		//console.log(map.getDiv());
+		console.log(map.getDiv());
 		//console.log(markers[markers.length-1].getPosition()._lat);
 	}
 	
@@ -278,7 +278,7 @@
 					success : function(response) {
 						console.log(response);
 						var resultData = response.features;
-						//console.log(checkPoint(response));
+
 						//결과 출력
 						tDistance = ((resultData[0].properties.totalDistance) / 1000)
 										.toFixed(1);
@@ -438,7 +438,7 @@
 						map:map,
 						zIndex : 99999
 				 	});
-					
+
 					innerHtml += "<li onclick = 'setPointbyli("+ markerPosition +"," + number +")'><img src='https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png' style='vertical-align:middle;'/><span>"+name+"</span></li>";
 					
 					markerArr.push(marker);
@@ -452,10 +452,10 @@
 						setPoint(markerArr[k].getPosition(), number);
 					});
 				}
-				
 				$("#searchResult").html(innerHtml);	//searchResult 결과값 노출
 				map.panToBounds(positionBounds);	// 확장된 bounds의 중심으로 이동시키기
-				map.zoomOut();	
+				map.zoomOut();
+				
 			},
 			error:function(request,status,error){
 				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -486,11 +486,6 @@
 			if(count > 1){
 				searchRoute();
 			}
-<<<<<<< HEAD
-			reverseGeo(lon, lat, 0);
-=======
-			reverseGeo(position.lng(), position.lat(), 0);
->>>>>>> f68f3053b868a037249a9c4dbf38a5f38d9774b5
 		}else if(number == 1){
 			if(count < 2){
 				marker_e = new Tmapv2.Marker(
@@ -509,11 +504,6 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
-<<<<<<< HEAD
-			reverseGeo(lon, lat, 1);
-=======
-			reverseGeo(position.lng(), position.lat(), 1);
->>>>>>> f68f3053b868a037249a9c4dbf38a5f38d9774b5
 		}else if(number == 2){
 			if(count < 2){
 				alert('출발지, 도착지부터 선택해주세요.');
@@ -530,9 +520,7 @@
 				markers.push(marker);
 			}
 			searchRoute();
-			reverseGeo(position.lng(), position.lat(), 2);
 		}
-		reverseGeo(lon, lat, 2);
 	}
 	
 	// 검색 결과를 클릭해서 경로 설정
@@ -559,9 +547,7 @@
 			if(count > 1){
 				searchRoute();
 			}
-			reverseGeo(lon, lat, 0);
 			console.log(count);
-			reverseGeo(lon, lat, 0);
 		}
 		else if(number == 1){
 			if(count < 2){
@@ -581,7 +567,6 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
-			reverseGeo(lon, lat, 1);
 		}
 		else if(number == 2){
 			if(count < 2){
@@ -599,9 +584,7 @@
 				markers.push(marker);
 			}
 			searchRoute();
-			reverseGeo(lon, lat, 2);
 		}
-		reverseGeo(lon, lat, 2);
 	}
 	
 	// 좌표를 주소로(도로명, 지번 가능)
@@ -779,32 +762,4 @@
 					alert("중복 검사 실패");
 				}
 		})
-	}
-	
-	function setGeolocation(){
-		//alert("setGeolocation!");
-		if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                    function(pos) {
-						startLat = pos.coords.latitude;
-						startLon = pos.coords.longitude;
-						//alert("in setGeolocation 1 : "+ startLat + ", " + startLon);
-						initTmap();
-                    }, showError);
-            
-        } else {
-            alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-        }
-	}
-	
-	function checkPoint(course){
-		var pointArray = [];
-		for(let i = 0; i < course.features.length; i++){
-			if(course.features[i].geometry.type == "Point"){
-				var epsg3857 = new Tmapv2.Point(course.features[i].geometry.coordinates[0],course.features[i].geometry.coordinates[1]);
-				var wgs84 = Tmapv2.Projection.convertEPSG3857ToWGS84GEO(epsg3857);
-				pointArray.push(wgs84);
-			}
-		}
-		return pointArray;
 	}

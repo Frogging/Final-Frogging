@@ -64,4 +64,8 @@ public interface ActivityDAO {
 
 	// 쓰레기 통계
 	public List<ActivityVO> getTrashGraph();
+	
+	public int activityInsert(ActivityVO avo);
+	
+	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log);
 }

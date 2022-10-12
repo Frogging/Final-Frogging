@@ -14,7 +14,7 @@ import com.frogging.app.interceptor.MloginInterceptor;
 public class ServerConfigure implements WebMvcConfigurer {
 	//인터셉트가 처리될 매핑주소를 List컬렉션으로 작성한다.
 	private static final List<String> URL_PATTERNS = Arrays.asList(
-			"/alone/*","together/*"
+			"/alone/*","/together/*"
 			);
 	private static final List<String> URL_PATTERNS2 = Arrays.asList(
 			"/admin/*"

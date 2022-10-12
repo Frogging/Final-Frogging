@@ -74,7 +74,8 @@ var distance = 0;
 			center : new Tmapv2.LatLng(37.56520450, 126.98702028), // 지도 초기 좌표
 			width : "100%", // 지도의 넓이
 			height : "400px", // 지도의 높이
-			zoom : 17	// 지도의 줌레벨
+			zoom : 17,	// 지도의 줌레벨
+			httpsMode : true
 		});
 		
 		if (navigator.geolocation) {
@@ -162,6 +163,7 @@ var distance = 0;
 			distance += point[i].distanceTo(point[i-1]);
 		}
 		console.log(distance);
+		console.log(point);
 	}
 	
 	function onrightClick(){
@@ -177,11 +179,11 @@ var distance = 0;
 		}
 		console.log(address[address.length-1]);
 		
-		tDistance = 0;
+		distance = 0;
 		for(var i = 1; i < point.length; i++){
-			tDistance += point[i].distanceTo(point[i-1]);
+			distance += point[i].distanceTo(point[i-1]);
 		}
-		console.log(tDistance);
+		console.log(distance);
 	}
 	
 	function reverseGeo(lon, lat) {
@@ -352,8 +354,9 @@ var distance = 0;
 	}
 	
 	function setPoint(position){
+		var length = markers.length;
 		if(markers.length > 0){
-					for(var i in markers){
+					for(var i = 0; i < length; i++){
 						point.pop();
 						markers[markers.length - 1].setMap(null);
 						markers.pop();
