@@ -5,7 +5,16 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 </head>
+	<ul class="adminMenu">
+		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
+		<li class="tabMenu"><a href="notice">게시판관리</a></li>
+		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
+		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
+	</ul>
 <body class="k_body">
+	<div style="height:100%;">
 	<section>
 		<div class="k_wrapper">
 
@@ -60,4 +69,5 @@
 		
 		</div>
 	</section>
+	</div>	
 </body>

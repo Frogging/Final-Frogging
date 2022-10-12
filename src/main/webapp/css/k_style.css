@@ -161,7 +161,7 @@ i{
 	border-radius: var(--radius-mild);
 	box-shadow: var(--shadow-basic);
 	width: 22%;
-	height: 180px;
+	height: 205px;
 	border: var(--border-bold) var(--main-white);
 }
 .k_party_list_boxes li.active{
@@ -205,7 +205,7 @@ i{
 	color: var(--main-green);
 }
 .k_one_box>ul>li:last-child{ /*파티명*/
-	text-align: right;
+	/* text-align: right; */
 	/* 말줄임 */
 	white-space: nowrap;
 	overflow: hidden;
@@ -472,6 +472,12 @@ i{
 	border-radius: var(--radius-mild);
 	box-shadow: var(--shadow-basic);
 	padding: var(--space-medium);
+}
+.k_party_set_guide>div{
+	font-size: var(--size-small-2);
+	overflow: scroll;
+	width: inherit;
+	height: 250px;
 }
 .k_party_set_line{ /*파티세팅 박스-중앙선*/
 	height: 340px;
@@ -1404,8 +1410,11 @@ i{
 .k_mycourse_list{
 	display: flex;
 }
-.k_mycourse_list_one{
+.k_mycourse_list>*{
 	width: 30%;
+	margin: var(--space-medium) 2%;
+}
+.k_mycourse_list_one{
 	margin: var(--space-medium) 2%;
 }
 /* ------------------------- 관리자 통계 차트 ---------------------- */
@@ -1447,6 +1456,9 @@ i{
 	/*padding: 0 var(--space-medium); */
 	border-right:var(--basic-dot) var(--ct-dark-green); 
 	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .k_my_club_grid .k_my_list_head{ /*리스트 제목*/
 	background-color: var(--ct-dark-green);
@@ -1502,6 +1514,9 @@ i{
 	/*padding: 0 var(--space-medium); */
 	border-right:var(--basic-dot) var(--ct-dark-green); 
 	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .k_my_course_grid .k_my_list_head{ /*리스트 제목*/
 	background-color: var(--ct-dark-green);

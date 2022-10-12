@@ -24,10 +24,10 @@ public interface ActivityDAO {
 	public List<ActivityVO> getMonthlyKm();
 
 	// 횟수 전체 랭킹
-	public int getRank_p(String id);
+	public ActivityVO getRank_p(String id);
 
 	// km 전체 랭킹
-	public int getRank_k(String id);
+	public ActivityVO getRank_k(String id);
 
 	// 유저 통계 가져오기
 	public ActivityVO getUserStatistic(String id, String date_param);

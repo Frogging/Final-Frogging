@@ -169,7 +169,8 @@
 									<li class="k_green">이번 달 방문 횟수</li>
 									<li id = "k_plog_total"><span>12회</span></li>
 								
-									<div>
+									<%-- image --%>
+									<%-- <div>
 										<ul class="k_path_images">
 											<li><i class="fa-solid fa-chevron-left"></i></li>
 											<li><img src="/img/course_detail_sample.jpeg" alt=""></li>
@@ -177,7 +178,7 @@
 											<li><img src="" alt=""></li>
 											<li><i class="fa-solid fa-chevron-right"></i></li>
 										</ul>
-									</div>
+									</div> --%>
 								</ul>
 								
 							</div>

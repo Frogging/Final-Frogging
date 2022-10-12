@@ -13,9 +13,9 @@ public interface ActivityService {
 
 	public List<ActivityVO> getMonthlyKm();
 
-	public int getRank_p(String id);
+	public ActivityVO getRank_p(String id);
 
-	public int getRank_k(String id);
+	public ActivityVO getRank_k(String id);
 
 	public ActivityVO getUserStatistic(String id, String date_param);
 
