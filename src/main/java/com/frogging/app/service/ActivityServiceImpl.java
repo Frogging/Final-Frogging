@@ -120,4 +120,15 @@ public class ActivityServiceImpl implements ActivityService {
 		return dao.getTrashGraph();
 	}
 
+	@Override
+	public int activityInsert(ActivityVO avo) {
+		return dao.activityInsert(avo);
+	}
+
+	@Override
+	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log) {
+		// TODO Auto-generated method stub
+		return dao.courseuserInsert(course_no, id, waypoint, lat, log);
+	}
+
 }

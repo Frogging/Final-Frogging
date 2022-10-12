@@ -1,11 +1,7 @@
 package com.frogging.app.controller;
 
-<<<<<<< HEAD
-
-=======
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
->>>>>>> branch 'main' of https://github.com/Frogging/Final-Frogging.git
 
 
 
