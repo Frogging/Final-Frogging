@@ -26,7 +26,11 @@
 }
 </style>
 <script>
-
+function eventDelete(){
+	if(confirm("글을 삭제하시겠습니까?")){
+		location.href="/event/eventDel?no=${vo.no}";
+	}
+};
 </script>
 <body>
 <div style="height:100%;">
@@ -49,15 +53,15 @@
 					<a href="/admin/adminPage">
 						관리자
 					</a>
-					<a href="customerServiceList">
+					<a href="/admin/eventList">
 						<i class="fa-solid fa-angle-right"></i>
-						고객센터 관리하기
+						이벤트 관리하기
 					</a>
 				</div>
 			</div>
 
 			<div class="k_section_title">
-				<div>고객센터 관리</div>
+				<div>이벤트 관리</div>
 			</div>
 
 		</div>
@@ -80,26 +84,17 @@
                        
                     </thead>
                     <tbody id="tbody">
-   
-                    <c:forEach var="vo" items="${customerServiceList }">
+                    <c:forEach var="vo" items="${list }">
                     	<tr>
                             <td>${vo.no}</td>
                             <td style="text-align:left;">                           
-                            <c:if test="${vo.depth== 0 }">
-                            	<a href="/customerService/customerServiceDetail?no=${vo.no }">문의사항: ${vo.subject }</a>
-                            
-                            </c:if>
-                            <c:if test="${vo.depth > 0 }">
-                            	<a href="/customerService/customerServiceDetail?no=${vo.no }"><span style="padding-left:${vo.depth *40}px;"> 답변:</span>${vo.subject }</a>
-                            </c:if> 
+                            	<a href="/event/eventView?no=${vo.no }">${vo.subject }</a>               
                            </td>
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                             <td>
-                            <c:if test="${vo.depth > 0 }">
-                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'"> / 
-                            </c:if>
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
+                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/event/eventEdit/${vo.no }'"> / 
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/event/eventDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
                      

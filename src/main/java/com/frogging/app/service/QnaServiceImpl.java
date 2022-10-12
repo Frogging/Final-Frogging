@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.frogging.app.dao.QnaDAO;
+import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.QnaVO;
 
 
@@ -17,8 +18,8 @@ public class QnaServiceImpl implements QnaService{
 	QnaDAO dao;
 
 	@Override
-	public List<QnaVO> qnaList(QnaVO VO) {
-		return dao.qnaList(VO);
+	public List<QnaVO> qnaList(PagingVO pVO) {
+		return dao.qnaList(pVO);
 	}
 
 	@Override
@@ -74,6 +75,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public QnaVO qnaReply(int no) {
 		return dao.qnaReply(no);
+	}
+
+	@Override
+	public int totalRecord(PagingVO pVO) {
+		return dao.totalRecord(pVO);
 	}
 
 

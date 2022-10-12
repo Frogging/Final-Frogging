@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.frogging.app.service.AdminService;
 import com.frogging.app.service.CustomerServiceService;
 import com.frogging.app.vo.CustomerServiceVO;
+import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.UserVO;
 
@@ -105,7 +106,7 @@ public class AdminController {
 	public ModelAndView customerServiceDel(int no, String id) {
 		service.customerServiceDel(no, id); 
 		mav = new ModelAndView();
-		mav.setViewName("redirect:/customerServiceList");
+		mav.setViewName("redirect:/admin/customerServiceList");
 		return mav;
 	}
 	
@@ -117,6 +118,27 @@ public class AdminController {
 		mav.addObject("VO", VO);
 		mav.setViewName("admin/customerServiceDetail");
 		mav.addObject("reply_group", VO);
+		return mav;
+	}
+	
+	@GetMapping("eventList")
+	public ModelAndView eventList() {
+		
+		mav = new ModelAndView();
+		mav.addObject("list", service.eventList());
+		mav.setViewName("admin/eventList");
+		return mav;	
+	}
+	
+	@GetMapping("eventDel")
+	public ModelAndView eventDel(int no, String id) {
+		int cnt = service.eventDel(no, id); //logId 
+		mav = new ModelAndView();
+		if(cnt>0) {
+			mav.setViewName("redirect:/admin/eventList");
+		}else {
+			mav.setViewName("redirect:eventView");
+		}
 		return mav;
 	}
 }

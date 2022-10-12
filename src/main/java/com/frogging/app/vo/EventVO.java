@@ -88,7 +88,6 @@ public class EventVO {
 				imgName = content.substring(src1+5,last-2);
 			}
 		}
-		System.out.println(imgName);
 		return imgName;
 	}
 

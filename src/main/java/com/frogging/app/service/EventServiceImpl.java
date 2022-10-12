@@ -57,5 +57,10 @@ public class EventServiceImpl implements EventService{
 	public EventVO getImgName(String imgName) {
 		return dao.getImgName(imgName);
 	}
+
+	@Override
+	public int eventEditOk(EventVO vo) {
+		return dao.eventEditOk(vo);
+	}
 	
 }
