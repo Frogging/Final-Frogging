@@ -1,13 +1,5 @@
 package com.frogging.app.controller;
 
-<<<<<<< HEAD
-
-=======
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
->>>>>>> branch 'main' of https://github.com/Frogging/Final-Frogging.git
-
-
 
 import java.nio.charset.Charset;
 
@@ -24,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
 import com.frogging.app.vo.CustomerServiceVO;
-import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.PagingVO;
 
 
