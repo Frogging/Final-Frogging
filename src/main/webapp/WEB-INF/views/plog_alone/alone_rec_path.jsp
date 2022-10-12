@@ -6,10 +6,46 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
-	<script src="/js/k_script.js" type="text/javascript"></script>
-	<script src="/js/k_path.js" type="text/javascript"></script>
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script type = "text/javascript">
+	function initTmap() {
+	// 1. 지도 띄우기
+	var map_arr = new Array();
+	var detail_arr = new Array();
+	
+	<c:forEach items = "${list}" var = "courseList">
+		map_arr.push({
+			course_no : "${courseList.course_no}",
+			course_name : "${courseList.course_name}",
+			course_info : "${courseList.course_info}",
+			distance : "${courseList.distance}",
+			time : "${courseList.time}",
+			type : "${courseList.type}"
+		});
+	</c:forEach>
+	
+	<c:forEach items = "${courseDetail}" var = "courseDetail">
+		detail_arr.push({
+			course_no : "${courseDetail.course_no}",
+			waypoint : "${courseDetail.waypoint}",
+			lat : "${courseDetail.lat}",
+			log : "${courseDetail.log}",
+			addr : "${courseDetail.addr}"
+		});
+	</c:forEach>
+	
+	console.log(map_arr);
+	console.log(detail_arr);
+	mapLoad(map_arr, detail_arr);
+}
+	
+</script>
+<script src="/js/tmap_list.js"></script>
+<script src="/js/k_script.js" type="text/javascript"></script>
+<script src="/js/k_path.js" type="text/javascript"></script>
 </head>
-<body onload="modal_more()" class="k_body">
+<body onload="modal_more(); initTmap();" class="k_body">
 		<!-- --------- ALONE with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
@@ -77,7 +113,7 @@
 										<li class="k_box_space"></li>
 										<li>예상 소요시간: ${vo.time}</li>
 										<li>당월 방문 수: ${vo.plog_total}회</li>
-										<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
+										<li class="k_more"><div id="map_div_${vo.course_no }"></div></li>
 									</ul>
 								</li>
 							</c:forEach>
@@ -91,7 +127,7 @@
 								<li><i class="fa-solid fa-chevron-left active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage>1}" >
-								<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+								<li><a href="/alone/alone_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
 							</c:if>
 								
 							<c:forEach var="p" begin="${p_PageVO.startPage }" end="${p_PageVO.startPage + p_PageVO.onePageCount - 1 }" >
@@ -100,7 +136,7 @@
 									<c:if test="${p==p_PageVO.nowPage }">
 										style = "color:#2fb86a;"
 									</c:if>
-									><a href="/club/make_club_rec_path?nowPage=${p }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>">${p }</a></li>
+									><a href="/alone/alone_rec_path?nowPage=${p }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>">${p }</a></li>
 								</c:if>
 							</c:forEach>
 								
@@ -109,7 +145,7 @@
 								<li><i class="fa-solid fa-chevron-right active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage<p_PageVO.totalPage}" > 
-									<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+									<li><a href="/alone/alone_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
 							</c:if>
 						</ul>
 					</div>
@@ -121,17 +157,17 @@
 								<div class="k_path_map"></div>
 								<ul class="k_path_infos">
 									<li class="k_green">코스 이름</li>
-									<li>가볍게 응봉산 코스</li>
+									<li id = "k_coursename"><span>가볍게 응봉산 코스</span></li>
 									<li class="k_green">시작 위치</li>
-									<li>응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정</li>
+									<li id = "k_startaddr"><span>응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정 응봉산 팔각정</span></li>
 									<li class="k_green">도착 위치</li>
-									<li>응복역 4번 출구</li>
+									<li id = "k_endaddr"><span>응복역 4번 출구</span></li>
 									<li class="k_green">소요 시간</li>
-									<li>50 min</li>
+									<li id = "k_time"><span>50 min</span></li>
 									<li class="k_green">이동 거리</li>
-									<li>4 km</li>
+									<li id = "k_distance"><span>4 km</span></li>
 									<li class="k_green">이번 달 방문 횟수</li>
-									<li>12회</li>
+									<li id = "k_plog_total"><span>12회</span></li>
 								
 									<div>
 										<ul class="k_path_images">

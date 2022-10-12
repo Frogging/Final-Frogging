@@ -53,7 +53,7 @@
 	
 	function initTmap(){
 		// 1. 지도 띄우기
-		alert("init Start!");
+		//alert("init Start!");
 		map = new Tmapv2.Map("map_div", {
 		center : new Tmapv2.LatLng(startLat, startLon),
 			width : "100%",
@@ -125,8 +125,10 @@
 		drawInfoArr = [];
 	}
 	function onClick(e){
-		// 클릭한 위치에 새로 마커를 찍기 위해 이전에 있던 마커들을 제거
-		//removeMarkers();
+		console.log(e);
+		console.log($(document.body).scrollTop());
+		//var temp = map.screenToReal(new Tmap.Pixel(e.screenPoint.x, e.screenPoint.y + $(document.body).scrollTop()));
+		//console.log(map.screenToReal(new Tmap.Pixel(e.screenPoint.x, e.screenPoint.y + $(document.body).scrollTop())));
 		
 		lonlat = e.latLng;
 		console.log(lonlat.lat(),lonlat.lng());
@@ -186,7 +188,7 @@
 		if(count > 1){
 			searchRoute();
 		}
-		console.log(map.getDiv());
+		//console.log(map.getDiv());
 		//console.log(markers[markers.length-1].getPosition()._lat);
 	}
 	
@@ -436,7 +438,7 @@
 						map:map,
 						zIndex : 99999
 				 	});
-
+					
 					innerHtml += "<li onclick = 'setPointbyli("+ markerPosition +"," + number +")'><img src='https://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png' style='vertical-align:middle;'/><span>"+name+"</span></li>";
 					
 					markerArr.push(marker);
@@ -450,10 +452,10 @@
 						setPoint(markerArr[k].getPosition(), number);
 					});
 				}
+				
 				$("#searchResult").html(innerHtml);	//searchResult 결과값 노출
 				map.panToBounds(positionBounds);	// 확장된 bounds의 중심으로 이동시키기
-				map.zoomOut();
-				
+				map.zoomOut();	
 			},
 			error:function(request,status,error){
 				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -484,6 +486,7 @@
 			if(count > 1){
 				searchRoute();
 			}
+			reverseGeo(position.lng(), position.lat(), 0);
 		}else if(number == 1){
 			if(count < 2){
 				marker_e = new Tmapv2.Marker(
@@ -502,6 +505,7 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
+			reverseGeo(position.lng(), position.lat(), 1);
 		}else if(number == 2){
 			if(count < 2){
 				alert('출발지, 도착지부터 선택해주세요.');
@@ -518,6 +522,7 @@
 				markers.push(marker);
 			}
 			searchRoute();
+			reverseGeo(position.lng(), position.lat(), 2);
 		}
 	}
 	
@@ -546,6 +551,7 @@
 				searchRoute();
 			}
 			console.log(count);
+			reverseGeo(lon, lat, 0);
 		}
 		else if(number == 1){
 			if(count < 2){
@@ -565,6 +571,7 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
+			reverseGeo(lon, lat, 1);
 		}
 		else if(number == 2){
 			if(count < 2){
@@ -582,6 +589,7 @@
 				markers.push(marker);
 			}
 			searchRoute();
+			reverseGeo(lon, lat, 2);
 		}
 	}
 	

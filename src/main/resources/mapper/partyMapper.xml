@@ -58,13 +58,14 @@
 		course.course_name,
 		course.distance, 
 		course.time,
+		course.type,
 		activity.plog_total,
 		detail.addr
 		from 
 
 		(
 			select 
-			course_no, course_name, distance,time
+			course_no, course_name, distance,time, type
 			from course
 		) course
 
@@ -89,7 +90,8 @@
 		<if test="searchLoc!=null">
 			where detail.addr like "%${addr_section_1}%" and detail.addr like "%${addr_section_2}%"
 		</if>
-		
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
 	<select id="totalRecord" resultType="int">
@@ -247,16 +249,17 @@
 		course.course_name,
 		course.distance, 
 		course.time,
+		course.type,
 		activity.plog_total,
 		(select addr from course_detail as detail 
-		where waypoint = 1 and detail.course_no = course.course_no) startaddr ,
+		where waypoint = 0 and detail.course_no = course.course_no) startaddr ,
 		(select addr from course_detail as detail 
-		where waypoint = 99999 and detail.course_no = course.course_no) endaddr 
+		where waypoint = 1 and detail.course_no = course.course_no) endaddr 
 		from 
 
 		(
 			select 
-			course_no, course_name, distance,time
+			course_no, course_name, distance,time,type
 			from course
 			where course_no = ${param1}
 		) course

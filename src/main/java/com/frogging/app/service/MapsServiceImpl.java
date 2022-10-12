@@ -89,9 +89,9 @@ public class MapsServiceImpl implements MapsService{
 	}
 
 	@Override
-	public List<CourseVO> detailAllselect_t(int startCourse, int endCourse) {
+	public List<CourseVO> detailAllselect_t(int course_no1, int course_no2, int course_no3,int course_no4,int course_no5,int course_no6) {
 		// TODO Auto-generated method stub
-		return dao.detailAllselect_t(startCourse, endCourse);
+		return dao.detailAllselect_t(course_no1,course_no2,course_no3,course_no4,course_no5,course_no6);
 	}
 
 	@Override
@@ -110,5 +110,11 @@ public class MapsServiceImpl implements MapsService{
 	public int totalCourse(CoursePagingVO cpvo) {
 	
 		return dao.totalCourse(cpvo);
+	}
+
+	@Override
+	public List<CourseVO> detailAllselect_tt(int startCourse, int endCourse) {
+		// TODO Auto-generated method stub
+		return dao.detailAllselect_tt(startCourse, endCourse);
 	}
 }

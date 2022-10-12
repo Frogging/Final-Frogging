@@ -163,6 +163,7 @@ var distance = 0;
 			distance += point[i].distanceTo(point[i-1]);
 		}
 		console.log(distance);
+		console.log(point);
 	}
 	
 	function onrightClick(){
@@ -178,11 +179,11 @@ var distance = 0;
 		}
 		console.log(address[address.length-1]);
 		
-		Distance = 0;
+		distance = 0;
 		for(var i = 1; i < point.length; i++){
-			Distance += point[i].distanceTo(point[i-1]);
+			distance += point[i].distanceTo(point[i-1]);
 		}
-		console.log(tDistance);
+		console.log(distance);
 	}
 	
 	function reverseGeo(lon, lat) {

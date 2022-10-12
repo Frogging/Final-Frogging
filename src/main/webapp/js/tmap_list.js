@@ -22,13 +22,18 @@
 					console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
-							width : "500px",
-							height : "400px",
+							width : "180px",
+							height : "130px",
 							zoom : 15,
 							zoomControl : false,
 							scrollwheel : false,
 							httpsMode : true
 						});
+					if(map_arr[i].course_no == 99999){
+						$('#map_div_99999').css('width', '500px');
+						$('#map_div_99999').css('height', '400px');
+						map[i].resize();
+					}
 					for(var j = 0; j < detail_arr.length; j++){
 						if(map_arr[i].course_no == detail_arr[j].course_no){
 							if(detail_arr[j].waypoint == 0){

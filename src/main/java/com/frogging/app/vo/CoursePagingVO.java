@@ -3,7 +3,7 @@ package com.frogging.app.vo;
 public class CoursePagingVO {
 	
 	private int nowPage = 1; // 현재 page
-	private int onePageRecord = 3; // 한 page에 출력한 record 수
+	private int onePageRecord = 6; // 한 page에 출력한 record 수
 	private int totalRecord; // 총 record 수
 	private int totalPage; // 총 page 수
 	private int offsetPoint; // page record 선택할 위치
@@ -12,14 +12,21 @@ public class CoursePagingVO {
 	private int onePageCount = 5; // 한 번에 표시할 page 수
 	private int startPage = 1 ; // 표시할 page의 시작 번호
 	
+	// 검색
+	private String searchLoc; // 위치 검색
+	private String addr_section_1;
+	private String addr_section_2;
+	private String searchDate; // 날짜 검색
+	
+	
 	
 	@Override
 	public String toString() {
 		return "CoursePagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
 				+ totalRecord + ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", onePageCount="
-				+ onePageCount + ", startPage=" + startPage + "]";
+				+ onePageCount + ", startPage=" + startPage + ", searchLoc=" + searchLoc + ", addr_section_1="
+				+ addr_section_1 + ", addr_section_2=" + addr_section_2 + ", searchDate=" + searchDate + "]";
 	}
-	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -72,6 +79,36 @@ public class CoursePagingVO {
 	public void setStartPage(int startPage) {
 		this.startPage = startPage;
 	}
-	
-	
+
+	public String getSearchLoc() {
+		return searchLoc;
+	}
+
+	public void setSearchLoc(String searchLoc) {
+		this.searchLoc = searchLoc;
+	}
+
+	public String getAddr_section_1() {
+		return addr_section_1;
+	}
+
+	public void setAddr_section_1(String addr_section_1) {
+		this.addr_section_1 = addr_section_1;
+	}
+
+	public String getAddr_section_2() {
+		return addr_section_2;
+	}
+
+	public void setAddr_section_2(String addr_section_2) {
+		this.addr_section_2 = addr_section_2;
+	}
+
+	public String getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(String searchDate) {
+		this.searchDate = searchDate;
+	}
 }

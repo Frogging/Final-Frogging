@@ -194,7 +194,7 @@ public class MapsController {
 
 		mav.addObject("courseList", courseList);
 		mav.addObject("cpvo", cpvo);
-		mav.addObject("courseDetail", service.detailAllselect_t(startCourse, endCourse));
+		mav.addObject("courseDetail", service.detailAllselect_tt(startCourse, endCourse));
 		
 		mav.setViewName("maps/tmap02");
 		return mav;
