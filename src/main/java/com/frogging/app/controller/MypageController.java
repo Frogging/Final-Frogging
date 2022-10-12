@@ -37,10 +37,12 @@ public class MypageController {
 		mav = new ModelAndView();
 
 		String id = (String) session.getAttribute("logId");
-
+		// System.out.println(id);
 		// 랭킹 정보
-		mav.addObject("plog_count", a_serivce.getRank_p(id));
-		mav.addObject("distance", a_serivce.getRank_k(id));
+		mav.addObject("plog_count", a_serivce.getRank_p(id).getRownum());
+		mav.addObject("distance", a_serivce.getRank_k(id).getRownum());
+		// System.out.println(a_serivce.getRank_p(id).getRownum() + "/" +
+		// a_serivce.getRank_k(id).getRownum());
 
 		// 내가 쓴 글 (커뮤니티 + 큐앤애이)
 		mav.addObject("c_list", u_service.getMyWrite(id));

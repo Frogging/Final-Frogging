@@ -202,7 +202,7 @@ public class PartyController {
 	@GetMapping(value = "/getPathDetail")
 	public JSONObject getPathDetail(int no) {
 		JSONObject voList = new JSONObject();
-		System.out.println(no);
+		// System.out.println(no);
 		try {
 			// 1) path 정보 가져오기 courseVO + 시작/도착 위치 + 방문횟수
 			CourseVO vo = new CourseVO();

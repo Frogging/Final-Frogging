@@ -132,6 +132,7 @@ function modal_data(no) {
 
 // ---------------- member manage button ------------------
 function k_btn_1(no) { //수락
+	
 	$(function(){
 		var userid = arr[no];
 		console.log("in/"+no+"/"+userid);
@@ -144,7 +145,9 @@ function k_btn_1(no) { //수락
 			}, mouseleave: function() {
 				$(this).css('color', 'black');
 			}, click: function(){
-				location.href= "/club/allowClub?partyno="+party_no+"&userid="+userid;
+				if(confirm("수락하시겠습니까?")){
+					location.href= "/club/allowClub?partyno="+party_no+"&userid="+userid;
+				}
 			}
 		});
 	});

@@ -1,6 +1,5 @@
 package com.frogging.app.controller;
 
-
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
@@ -27,96 +26,97 @@ import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.UserVO;
 
-
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
 	@Autowired
 	AdminService service;
 	ModelAndView mav = new ModelAndView();
-	
-	@GetMapping("adminPage")
-	public ModelAndView adiminPage(){
-		mav.setViewName("admin/adminPage");
-		return mav;
-	}
-	
-	@GetMapping("userlist")
-	public ModelAndView userlist() {
-		mav.addObject("userList", service.userList());
-		mav.setViewName("admin/userlist");
-		return mav;
-	}
 
-	@PostMapping("editProfile")
-	public ResponseEntity<String> editProfile(String id, int restriction){
-		// RestController에서는 ResponseBody를 보낼 수 있다.
-		// 클라이언트에게 데이터와 뷰파일을 담을 수 있는 뷰페이지를 별도로 만들 필요가 없다.
-		ResponseEntity<String> entity = null;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
-		headers.add("Content-Type","text/html; charset=utf-8");
-		
-		
-		try {
-			service.editProfile(id,restriction);
-			
-			String msg = "<script>";
-			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/userlist'";
-			msg += "</script>";
-			
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//성공:200
-		}catch(Exception e) {
-			String msg = "<script>";
-			msg += "alert('수정 실패하였습니다.');";
-			msg += "history.back();";
-			msg += "</script>";
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
-			
-			e.printStackTrace();
-		}
-		return entity;
-	}
-		
-	@GetMapping("listDel")
-	public ModelAndView listDel(String id) {
-		service.listDel(id);
-		mav.setViewName("redirect:/userlist");
-		return mav;
-	}
-	
-	@GetMapping("profile")
-	public ModelAndView profile(String id) {
-		 
-		mav.addObject("vo", service.getProfile(id));
-		mav.setViewName("admin/editView");
-		return mav;
-	}
-	//고객센터 리스트 가져오기
-	@GetMapping("customerServiceList")
-	public ModelAndView customerServiceList() {
-		mav.addObject("customerServiceList", service.customerServiceList());
-		mav.setViewName("admin/customerServiceList");
-		return mav;
-	}
-	//고객센터 글삭제
-	@GetMapping("customerServiceDel")
-	public ModelAndView customerServiceDel(int no, String id) {
-		service.customerServiceDel(no, id); 
-		mav = new ModelAndView();
-		mav.setViewName("redirect:/customerServiceList");
-		return mav;
-	}
-	
-	@GetMapping("customerServiceDetail")
-	public ModelAndView customerServiceDetail(int no, CustomerServiceVO VO) {
-		mav = new ModelAndView();
-		
-		mav.addObject("vo", service.getcustomerService(no));
-		mav.addObject("VO", VO);
-		mav.setViewName("admin/customerServiceDetail");
-		mav.addObject("reply_group", VO);
-		return mav;
-	}
+	// @GetMapping("adminPage")
+	// public ModelAndView adiminPage() {
+	// mav.setViewName("admin/adminPage");
+	// return mav;
+	// }
+
+	// @GetMapping("userlist")
+	// public ModelAndView userlist() {
+	// mav.addObject("userList", service.userList());
+	// mav.setViewName("admin/userlist");
+	// return mav;
+	// }
+
+	// @PostMapping("editProfile")
+	// public ResponseEntity<String> editProfile(String id, int restriction) {
+	// // RestController에서는 ResponseBody를 보낼 수 있다.
+	// // 클라이언트에게 데이터와 뷰파일을 담을 수 있는 뷰페이지를 별도로 만들 필요가 없다.
+	// ResponseEntity<String> entity = null;
+	// HttpHeaders headers = new HttpHeaders();
+	// headers.setContentType(new MediaType("text", "html",
+	// Charset.forName("UTF-8")));
+	// headers.add("Content-Type", "text/html; charset=utf-8");
+
+	// try {
+	// service.editProfile(id, restriction);
+
+	// String msg = "<script>";
+	// msg += "alert('회원정보가 수정되었습니다.');";
+	// msg += "location.href='/userlist'";
+	// msg += "</script>";
+
+	// entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);// 성공:200
+	// } catch (Exception e) {
+	// String msg = "<script>";
+	// msg += "alert('수정 실패하였습니다.');";
+	// msg += "history.back();";
+	// msg += "</script>";
+	// entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+
+	// e.printStackTrace();
+	// }
+	// return entity;
+	// }
+
+	// @GetMapping("listDel")
+	// public ModelAndView listDel(String id) {
+	// service.listDel(id);
+	// mav.setViewName("redirect:/userlist");
+	// return mav;
+	// }
+
+	// @GetMapping("profile")
+	// public ModelAndView profile(String id) {
+
+	// mav.addObject("vo", service.getProfile(id));
+	// mav.setViewName("admin/editView");
+	// return mav;
+	// }
+
+	// // 고객센터 리스트 가져오기
+	// @GetMapping("customerServiceList")
+	// public ModelAndView customerServiceList() {
+	// mav.addObject("customerServiceList", service.customerServiceList());
+	// mav.setViewName("admin/customerServiceList");
+	// return mav;
+	// }
+
+	// // 고객센터 글삭제
+	// @GetMapping("customerServiceDel")
+	// public ModelAndView customerServiceDel(int no, String id) {
+	// service.customerServiceDel(no, id);
+	// mav = new ModelAndView();
+	// mav.setViewName("redirect:/customerServiceList");
+	// return mav;
+	// }
+
+	// @GetMapping("customerServiceDetail")
+	// public ModelAndView customerServiceDetail(int no, CustomerServiceVO VO) {
+	// mav = new ModelAndView();
+
+	// mav.addObject("vo", service.getcustomerService(no));
+	// mav.addObject("VO", VO);
+	// mav.setViewName("admin/customerServiceDetail");
+	// mav.addObject("reply_group", VO);
+	// return mav;
+	// }
 }
