@@ -1,7 +1,6 @@
 package com.frogging.app;
 
 import java.util.Arrays;
-
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.frogging.app.interceptor.LoginInterceptor;
+import com.frogging.app.interceptor.MloginInterceptor;
 
 @Configuration
 public class ServerConfigure implements WebMvcConfigurer {
@@ -16,8 +16,11 @@ public class ServerConfigure implements WebMvcConfigurer {
 	private static final List<String> URL_PATTERNS = Arrays.asList(
 			"/alone/*","together/*"
 			);
+	private static final List<String> URL_PATTERNS2 = Arrays.asList(
+			"/admin/*"
+			);
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns(URL_PATTERNS);
-		
+		registry.addInterceptor(new MloginInterceptor()).addPathPatterns(URL_PATTERNS2);
 	}
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class LoginInterceptor implements HandlerInterceptor{
+public class MloginInterceptor implements HandlerInterceptor{
 	//컨트롤러가 호출되기전에 인터셉터하는 메소드
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -16,9 +16,9 @@ public class LoginInterceptor implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		
 		//session에서 로그인 정보를 구해온다
-		String logStatus = (String)session.getAttribute("logStatus");// null, Y
+		String logStatus = (String)session.getAttribute("logStatus");
 		
-		if(logStatus!=null) {
+		if(logStatus.equals("Admin")) {
 			//로그인 상태일때
 			return true;
 		}else {
@@ -26,7 +26,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		    try {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter w = response.getWriter();
-				w.write("<script>alert('로그인이 필요한 서비스입니다. 로그인페이지로 이동합니다');location.href='/login';</script>");
+				w.write("<script>alert('권한이없습니다');location.href='/';</script>");
 				w.flush();
 				w.close();
 		    } catch(Exception e) {

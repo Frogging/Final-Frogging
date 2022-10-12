@@ -160,7 +160,7 @@ $(document).ready(function(){
 				</li>
 				<li>키</li>
 				<li><input type="number" name="height" id="height" maxlength="3" oninput="maxLengthChk(this)" style="width:50px"/>cm</li>
-				<li><input type="submit" value="가입하기"/></li>
+				<li><input type="submit" value="가입하rl"/></li>
 			</ul>
 			
 		</div>
