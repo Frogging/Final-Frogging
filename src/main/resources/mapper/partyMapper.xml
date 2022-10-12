@@ -249,9 +249,9 @@
 		course.time,
 		activity.plog_total,
 		(select addr from course_detail as detail 
-		where waypoint = 1 and detail.course_no = course.course_no) startaddr ,
+		where waypoint = 0 and detail.course_no = course.course_no) startaddr ,
 		(select addr from course_detail as detail 
-		where waypoint = 99999 and detail.course_no = course.course_no) endaddr 
+		where waypoint = 1 and detail.course_no = course.course_no) endaddr 
 		from 
 
 		(

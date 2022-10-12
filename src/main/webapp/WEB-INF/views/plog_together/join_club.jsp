@@ -93,78 +93,12 @@
 
 									</c:forEach>
 								</li> 
-								<li>/${vo.addr}/ 클럽명 : ${vo.partyname}</li>
+								<li>위치: ${vo.addr}</li>
+								<li>클럽명: ${vo.partyname}</li>
 							</ul>
 						</li>
 					</c:forEach>
 
-					<%-- <li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-			
-
-					<li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li>
-
-					<li class="k_one_box open_modal">
-						<ul>
-							<li class="k_box_title">중량천 하류 산책로</li>
-							<li>9/1(목) 19:00 / 총 5명</li>
-							<li class="k_box_frogs">
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog active"></i>
-								<i class="fa-solid fa-frog"></i>
-								<i class="fa-solid fa-frog"></i>
-							</li>
-							<li>파티명 : 성동구 토박이들</li>
-						</ul>
-					</li> --%>
 				</ul>
 				<div class="k_party_list_more"><i class="fa-solid fa-caret-down"></i></div>
 			</div>
