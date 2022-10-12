@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" 
-       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/css/p_style.css" type="text/css"/>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
-<style>
-</style>
+<head>
+	<link rel="stylesheet" href="/css/k_style.css">
+	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
+	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+	<script src="/js/k_admin.js" type="text/javascript"></script>
+	<script src="/js/k_chart.js" type="text/javascript"></script>
+</head>
 <script>
 $(function(){
 	$(".p_searchForm").submit(function(){
@@ -19,7 +20,7 @@ $(function(){
 	
 	//리스트 전체 선택
 	$(".p_allChk").click(function(){
-		$(".p_community input[type=checkbox]").prop("checked",$(".p_allChk").prop("checked"));
+		$("input[type=checkbox]").prop("checked",$(".p_allChk").prop("checked"));
 	});
 	
 	//여러개를 삭제하도록
@@ -42,81 +43,107 @@ $(function(){
 });
 </script>
 <body>
-    <div class="p_container">
-        <span class="p_title"><h1>커뮤니티 게시판</h1></span>
-                   
-        <div class="p_communityList">
-              <input type="button" value="선택삭제" class="p_multiDel"/>   
-        <form method="post" action="/community/multiDel" id="p_communityForm">
-            <ul class="p_community">
-                <li><input type="checkbox" class="p_allChk"/></li>
-                <li>번호</li>
-                <li>제목</li>
-                <li>작성자</li>
-                <li>조회수</li>
-                <li>등록일</li>
-                
-                <c:forEach var="vo" items="${list }">
-				<li><input type="checkbox" name="noList" value="${vo.no}"/></li>
-				<li>${vo.no }</li>
-				<li>
-				<div
-				<c:if test="${vo.subject.length() >= 30}">
-					style='width:90%'
-				</c:if>
-				>	
-				<a href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a></div>
-				<c:if test="${vo.reply_count>0}">
-					<span style="margin: auto 10px;">(${vo.reply_count})</span>			
-				</c:if></li>
-				<li>${vo.id }</li>
-				<li>${vo.hit }</li>
-				<li>${vo.writedate }</li>
-				</c:forEach>	
-            </ul>
-        </form>
-        <div class="p_page">
-		<ul>
-		<!-- 페이지 번호 -->
-			<c:if test="${pVO.nowPage<=1 }"><!-- 이전페이지가 없을때 -->
-				<li>이전</li>
-			</c:if>
-			<c:if test="${pVO.nowPage>1 }"><!-- 이전페이지가 있을때 -->
-				<li><a href="/community/communityList?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">이전</a></li>
-			</c:if>
-			<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage+pVO.onePageCount-1 }">
-				<!--  출력할 페이지번호 총페이지수 보다 작거나 같을 떄 -->
-				<c:if test="${p<=pVO.totalPage }">
-					<li
-					<c:if test="${p==pVO.nowPage }">
-					</c:if>
-					><a href="/community/communityList?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
-				</c:if>
-			</c:forEach>
-			
-			<!-- 다음페이지 -->
-			<c:if test="${pVO.nowPage==pVO.totalPage }">
-				<li>다음</li>
-			</c:if>
-			<c:if test="${pVO.nowPage<pVO.totalPage }">
-				<li><a href="/community/communityList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
-			</c:if>
-		</ul>
+	<ul class="adminMenu">
+		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
+		<li class="tabMenu"><a href="/admin/communityList">게시판관리</a></li>
+		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
+		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
+		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
+	</ul>
+	<section>
+		<div class="k_wrapper">
+
+			<div class="k_section_title_links">
+				<div>
+					<i class="fa-solid fa-square-caret-right k_green"></i> <a
+						href="/admin/adminPage"> 관리자 </a> <a href="userlist"> <i
+						class="fa-solid fa-angle-right"></i> 게시판 관리
+					</a>
+				</div>
+			</div>
+
+			<div class="k_section_title">
+				<div>게시판 관리</div>
+			</div>
+
 		</div>
-        <div>
-            <form method="get" action="/community/communityList" class="p_searchForm">
-                <select name="searchKey" class="p_searchKey">
-                    <option value="subject">제목</option>
-                    <option value="nickname">작성자</option>
-                    <option value="content">글내용</option>
-                </select>
-                <input type="text" name="searchWord" class="p_searchWord" style="height:30px;"/>
-                <input type="submit" value="찾기" class="p_communitysearch-btn"/>
-            </form>	
-            <div class="p_communitywrite">
-                    <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'"/>
-            </div>
-        </div>
-        </div>
-    </div>   
+	</section>
+	<section class="k_mycourse">
+		<div class="k_wrapper">
+			<form action="">
+				<ul class="k_my_communityList_grid">
+					<li class="k_my_list_head"><input type="checkbox" class="p_allChk"/><span></span></li>
+					<li class="k_my_list_head"><span>번호</span></li>
+					<li class="k_my_list_head"><span>제목</span></li>
+					<li class="k_my_list_head"><span>작성자</span></li>
+					<li class="k_my_list_head"><span>조회수</span></li>
+					<li class="k_my_list_head"><span>등록일</span></li>
+
+					<c:forEach var="vo" items="${list }">
+						<li><input type="checkbox" name="noList" value="${vo.no}" /></li>
+						<li>${vo.no }</li>
+						<li>
+							<div
+								<c:if test="${vo.subject.length() >= 30}">
+					style='width:90%'
+				</c:if>>
+								<a
+									href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a>
+							</div> <c:if test="${vo.reply_count>0}">
+								<span style="margin: auto 10px;">(${vo.reply_count})</span>
+							</c:if>
+						</li>
+						<li>${vo.id }</li>
+						<li>${vo.hit }</li>
+						<li>${vo.writedate }</li>
+					</c:forEach>
+				</ul>
+			</form>
+			<div class="p_page">
+				<ul>
+					<!-- 페이지 번호 -->
+					<c:if test="${pVO.nowPage<=1 }">
+						<!-- 이전페이지가 없을때 -->
+						<li>이전</li>
+					</c:if>
+					<c:if test="${pVO.nowPage>1 }">
+						<!-- 이전페이지가 있을때 -->
+						<li><a
+							href="/admin/communityList?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">이전</a></li>
+					</c:if>
+					<c:forEach var="p" begin="${pVO.startPage }"
+						end="${pVO.startPage+pVO.onePageCount-1 }">
+						<!--  출력할 페이지번호 총페이지수 보다 작거나 같을 떄 -->
+						<c:if test="${p<=pVO.totalPage }">
+							<li <c:if test="${p==pVO.nowPage }">
+					</c:if>><a
+								href="/admin/communityList?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
+						</c:if>
+					</c:forEach>
+
+					<!-- 다음페이지 -->
+					<c:if test="${pVO.nowPage==pVO.totalPage }">
+						<li>다음</li>
+					</c:if>
+					<c:if test="${pVO.nowPage<pVO.totalPage }">
+						<li><a
+							href="/admin/communityList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
+			<div>
+				<form method="get" action="/community/communityList"
+					class="p_searchForm">
+					<select name="searchKey" class="p_searchKey">
+						<option value="subject">제목</option>
+						<option value="nickname">작성자</option>
+						<option value="content">글내용</option>
+					</select> <input type="text" name="searchWord" class="p_searchWord"
+						style="height: 30px;" /> <input type="submit" value="찾기"
+						class="p_communitysearch-btn" />
+				</form>
+			</div>
+		</div>
+	</section>
 </body>
