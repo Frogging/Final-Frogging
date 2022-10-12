@@ -1,6 +1,5 @@
 package com.frogging.app.controller;
 
-
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
@@ -28,14 +27,13 @@ import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.PagingVO;
 import com.frogging.app.vo.UserVO;
 
-
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
 	@Autowired
 	AdminService service;
 	ModelAndView mav = new ModelAndView();
-	
+  
 	@GetMapping("adminPage")
 	public ModelAndView adiminPage(){
 		mav.setViewName("admin/adminPage");
