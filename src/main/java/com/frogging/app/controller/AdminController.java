@@ -1,11 +1,15 @@
 package com.frogging.app.controller;
 
+<<<<<<< HEAD
+
+=======
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+>>>>>>> branch 'main' of https://github.com/Frogging/Final-Frogging.git
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+
+import java.nio.charset.Charset;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,18 +18,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
-import com.frogging.app.service.CustomerServiceService;
 import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.PagingVO;
-import com.frogging.app.vo.UserVO;
+
 
 @Controller
 @RequestMapping("/admin/*")
@@ -62,7 +63,7 @@ public class AdminController {
 			
 			String msg = "<script>";
 			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/userlist'";
+			msg += "location.href='/admin/userlist'";
 			msg += "</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//성공:200
@@ -77,11 +78,13 @@ public class AdminController {
 		}
 		return entity;
 	}
+
+
 		
 	@GetMapping("listDel")
 	public ModelAndView listDel(String id) {
 		service.listDel(id);
-		mav.setViewName("redirect:/userlist");
+		mav.setViewName("redirect:/admin/userlist");
 		return mav;
 	}
 	
@@ -90,6 +93,19 @@ public class AdminController {
 		 
 		mav.addObject("vo", service.getProfile(id));
 		mav.setViewName("admin/editView");
+		return mav;
+	}
+	
+	@GetMapping("communityList")
+	public ModelAndView communityList(PagingVO pVO) {
+		mav = new ModelAndView();
+		
+		pVO.setTotalRecord(service.totalRecord(pVO));
+		System.out.println(pVO.toString());
+		
+		mav.addObject("list", service.communityList(pVO));
+		mav.addObject("pVO", pVO);
+		mav.setViewName("admin/communityList");
 		return mav;
 	}
 	//고객센터 리스트 가져오기

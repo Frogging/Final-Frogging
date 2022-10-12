@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.jdbc.core.SqlReturnResultSet;
 import org.springframework.stereotype.Service;
 
 import com.frogging.app.dao.AdminDAO;
+import com.frogging.app.vo.CommunityVO;
 import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.EventVO;
+import com.frogging.app.vo.PagingVO;
+//github.com/Frogging/Final-Frogging.git
 import com.frogging.app.vo.UserVO;
 
 @Service
@@ -46,6 +48,17 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
+	public List<CommunityVO> communityList(PagingVO pVO) {
+		// TODO Auto-generated method stub
+		return dao.communityList(pVO);
+	}
+
+
+	@Override
+	public int totalRecord(PagingVO pVO) {
+		// TODO Auto-generated method stub
+		return dao.totalRecord(pVO);
+	}
 	public List<CustomerServiceVO> customerServiceList() {
 		return dao.customerServiceList();
 	}

@@ -1552,3 +1552,64 @@ i{
 .k_my_course_grid li>*{
 	margin: var(--space-medium);
 }
+/* ---------------------- 반석 임시사용(게시판 리스트) -------------------- */
+.k_my_communityList_grid{ /*리스트 정렬*/
+	display: flex;
+	flex-wrap: wrap;
+	margin: var(--space-large);
+}
+.k_my_communityList_grid>li{ /*리스트 목록*/
+	width: 8%;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: var(--basic-dot) var(--ct-dark-green);
+	/*padding: 0 var(--space-medium); */
+	border-right:var(--basic-dot) var(--ct-dark-green); 
+	text-align:center;
+}
+.k_my_communityList_grid .k_my_list_head{ /*리스트 제목*/
+	background-color: var(--ct-dark-green);
+	color: var(--main-white);
+	font-weight: bold;
+	/* border: none; */
+}
+.k_my_communityList_grid .k_my_list_head:first-child{  /*리스트 속성*/
+	border-radius: var(--radius-mild) 0 0 0; 
+	text-align: center;
+}
+.k_my_communityList_grid .k_my_list_head{  /*리스트 속성*/
+	text-align: center;
+}
+.k_my_communityList_grid .k_my_list_head:nth-child(6){  /*리스트 속성*/
+	border-radius: 0 var(--radius-mild) 0 0;
+}
+.k_my_communityList_grid>li:nth-child(6n+1){
+	width: 5%;
+}
+.k_my_communityList_grid>li:nth-child(6n+2){
+	width: 5%;
+}
+.k_my_communityList_grid>li:nth-child(6n+3){  
+	width: 45%;
+}
+.k_my_communityList_grid>li:nth-child(6n+4){
+	width: 20%;
+}
+.k_my_communityList_grid>li:nth-child(6n+5){
+	width: 5%;
+}
+.k_my_communityList_grid>li:nth-child(6n+6){
+	width: 15%;
+}
+.k_my_communityList_grid>li:nth-child(6n+9){
+	padding: 0 0 0 3px;
+	text-align: left;
+}
+.k_my_communityList_grid>li:nth-child(6n+6){
+	border-right: none;
+}
+.p_page>ul{
+	text-align:center;
+}
+
+/* ---------------------- 반석 임시사용(게시판 리스트) -------------------- */
