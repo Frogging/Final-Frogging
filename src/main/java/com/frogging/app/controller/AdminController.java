@@ -47,7 +47,8 @@ public class AdminController {
 		// 클라이언트에게 데이터와 뷰파일을 담을 수 있는 뷰페이지를 별도로 만들 필요가 없다.
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text", "html",
+				Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
