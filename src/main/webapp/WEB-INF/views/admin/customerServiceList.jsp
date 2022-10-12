@@ -98,7 +98,7 @@
                             <c:if test="${vo.depth > 0 }">
                             <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'"> / 
                             </c:if>
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/customerServiceDel?no=${vo.no}'"></td>
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
                      

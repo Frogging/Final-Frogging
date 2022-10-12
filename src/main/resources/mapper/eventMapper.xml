@@ -34,6 +34,13 @@
 	<update id="hitCount">
 		update board_event set hit = hit+1 where no = ${param1}
 	</update> 
+	
+	<update id="eventEditOk" parameterType="EventVO">
+		update board_event set subject=#{subject}, content=#{content} where no=${no} and id=#{id}
+	</update>
+	<delete id="eventDel">
+		delete from board_event where no=${param1} and id=#{param2}
+	</delete>
 </mapper>
 
 

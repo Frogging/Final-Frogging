@@ -82,7 +82,7 @@
 			<ul id="s_kmweeklist">
 				<li>${vo.rownum}위</li>
 				<li>${vo.nickname}</li>
-				<li>${vo.distance}km</li>
+				<li>${vo.total_distance}km</li>
 			</ul>
 			</c:forEach>
 			<%-- 			<ul id="s_kmweeklist2">
@@ -156,7 +156,7 @@
 					<ul id="s_kmmonthlist2">
 						<li>${vo.rownum}위</li>
 						<li>${vo.nickname}</li>
-						<li>${vo.distance}회</li>
+						<li>${vo.total_distance}km</li>
 					</ul>
 				</c:forEach>
 				<%-- <ul id="s_kmmonthlist2">

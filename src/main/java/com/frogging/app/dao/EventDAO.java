@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.frogging.app.vo.EventVO;
+import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.EventPagingVO;
 
 @Mapper
@@ -19,6 +20,7 @@ public interface EventDAO {
 	public EventVO getEvent(int no);
 	//수정
 	public int eventEdit(EventVO vo);
+	public int eventEditOk(EventVO vo);
 	//삭제
 	public int eventDel(int no, String id);
 	//조회수

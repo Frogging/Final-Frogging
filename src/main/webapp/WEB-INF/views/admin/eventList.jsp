@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,25 +18,28 @@
     font-weight: bold;
 	border-color:#191919;color:#fff;
 	background-color:#333;
-	text-decoration:none;    
+	text-decoration:none; 
+	   
+}
+.k_section_title>div>i{ /*아이콘*/
+	font-size: calc(var(--size-medium-1)*1.2);
 }
 </style>
 <script>
-$(function(){
-	$('#listDel').on("click", function() {
-		if (confirm("삭제하시겠습니까?")) {
-			return true;
-		}
-	});
-});
+function eventDelete(){
+	if(confirm("글을 삭제하시겠습니까?")){
+		location.href="/event/eventDel?no=${vo.no}";
+	}
+};
 </script>
 <body>
 <div style="height:100%;">
 <table width="80%" class="table01">
 	<ul class="adminMenu">
-		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="/admin/communityList">게시판관리</a></li>
-		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="userlist">사용자목록</a></li>
+		<li class="tabMenu"><a href="notice">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
+		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
@@ -51,57 +53,50 @@ $(function(){
 					<a href="/admin/adminPage">
 						관리자
 					</a>
-					<a href="userlist">
+					<a href="/admin/eventList">
 						<i class="fa-solid fa-angle-right"></i>
-						사용자 관리하기
+						이벤트 관리하기
 					</a>
 				</div>
 			</div>
 
 			<div class="k_section_title">
-				<div>사용자 관리</div>
+				<div>이벤트 관리</div>
 			</div>
 
 		</div>
 	</section>
                     <colgroup>
-                        <col width="20%" />
+                        <col width="4%" />
+                        <col width="41%" />
+                        <col width="17%" />
                         <col width="10%" />
-                        <col width="10%" />
-                        <col width="3%" />
-                        <col width="5%" />
-                        <col width="5%" />
-                        <col width="5%" />
+                        <col width="8%" />
                     </colgroup>
                     <thead>        
-                        <tr>
-                            <th>아이디(이메일)</th>
-                            <th>이름</th>
-                            <th>닉네임</th>
-                            <th>성별</th>
-                            <th>키</th>
-              				<th>상태</th>
+                        <tr style="font-family: 'Noto Sans KR', sans-serif;">
+                            <th>글번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성일</th>   
               				<th>수정/삭제</th>
                         </tr>  
                        
                     </thead>
                     <tbody id="tbody">
-   
-                    <c:forEach var="vo" items="${userList }">
+                    <c:forEach var="vo" items="${list }">
                     	<tr>
-                    	
+                            <td>${vo.no}</td>
+                            <td style="text-align:left;">                           
+                            	<a href="/event/eventView?no=${vo.no }">${vo.subject }</a>               
+                           </td>
                             <td>${vo.id}</td>
-                            <td>${vo.name}</td>
-                            <td>${vo.nickname}</td>
-                            <c:if test="${vo.sex==1 }"><td>남</td></c:if>
-                            <c:if test="${vo.sex==2 }"><td>여</td></c:if>
-                            <td>${vo.height}</td>
-                            <c:if test="${vo.restriction==0 }"><td>정상</td></c:if>
-                            <c:if test="${vo.restriction==1 }"><td>불량</td></c:if>
-                            <td><input type="button" class="listEdit-btn" value="수정" onclick="location.href='/profile?id=${vo.id }'"> / <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/listDel?id=${vo.id }'"></td>
-                       
+                            <td>${vo.writedate}</td>
+                            <td>
+                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/event/eventEdit/${vo.no }'"> / 
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/event/eventDel?no=${vo.no}'"></td>
                         </tr>
-                     </c:forEach>
+                     </c:forEach> 
                      
                     </tbody>    
                 </table>
