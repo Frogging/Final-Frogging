@@ -10,7 +10,7 @@
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
 <script src="/js/tmap_insert.js"></script>
 </head>
-<body class="k_body" onload="initTmap();">
+<body class="k_body">
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
@@ -48,7 +48,7 @@
 						<!-- recommendation path select -->
 						<form action="">
 							<div class="k_make_path">
-								<div class="k_make_path_map" id = "map_div"></div>
+								<div class="k_make_path_map" id = "map_div" style= "overflow : hidden;"></div>
 								<ul class="k_make_path_detail">
 									<li class="k_green"><label for="">코스명</label></li>
 									<li class="k_path_detail_in"><input type="text" id="course_name" name="course_name"><input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()"></li>

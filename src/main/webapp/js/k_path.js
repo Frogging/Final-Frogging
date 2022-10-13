@@ -35,8 +35,28 @@ function modal_data(no) {
 			data: params,
 			success: function(result){
 				var path = result.path;
-				console.log(path);
-
+				let map_arr_view = [];
+				let detail_arr_view = [];
+				
+				map_arr_view.push({
+					course_no : 99999,
+					course_name : path.course_name,
+					distance : path.distance,
+					time : path.time,
+					type : path.type
+				});
+				console.log(map_arr_view);
+				for(let i = 0; i < Object.keys(result).length-1; i++){
+					detail_arr_view.push({
+						course_no : 99999,
+						waypoint : result[i].waypoint,
+						lat : result[i].lat,
+						log : result[i].log,
+						addr : result[i].addr
+					});
+				}
+				
+				
 				//세부 데이터 넣기
 				$('#k_coursename>span').html(path.course_name);
 				$('#k_startaddr>span').html(path.startaddr);
@@ -44,7 +64,10 @@ function modal_data(no) {
 				$('#k_time>span').html(path.time+" 분");
 				$('#k_distance>span').html(path.distance+" km");
 				$('#k_plog_total>span').html(path.plog_total+" 회");
-			
+				
+				$('.k_path_map').attr('id', 'map_div_'+99999);
+				mapLoad(map_arr_view, detail_arr_view);
+				
 				select_course_name = path.course_name;
 			}, error:function(e){
 				console.log(e.responseText);

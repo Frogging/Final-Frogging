@@ -38,12 +38,13 @@
 		course.course_name,
 		course.distance, 
 		course.time,
+		course.type,
 		detail.addr
 		from 
 
 		(
 			select 
-			course_no, course_name, distance,time
+			course_no, course_name, distance,time, type
 			from course
 			where id = #{param1}
 		) course
@@ -52,7 +53,7 @@
 
 		(select course_no, addr
 		from course_detail
-		where waypoint = 1 ) detail
+		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
 	</select>
 </mapper>

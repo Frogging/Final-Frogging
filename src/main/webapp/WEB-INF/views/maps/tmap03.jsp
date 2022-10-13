@@ -10,7 +10,7 @@
 <script>
 	var check = "${course.course_no}";
 	if(check == -1){
-		alert("해당 번호의 코스는 없습니다.");
+		alert("해당 코스는 없습니다.");
 		history.go(-1);
 	} else {
 		var courseType = "${course.type}";
