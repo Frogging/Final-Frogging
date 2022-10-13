@@ -19,7 +19,7 @@
 		.mobileMenu > ul >li{
 			display: inline-block;
 			font-family: 'Noto Sans KR', sans-serif;
-			line-height: 100px;
+			line-height: 80px;
 			font-size: 18px;
 			margin: auto 20px;
 			font-weight: bold;
@@ -39,7 +39,7 @@
 			font-family: 'Noto Sans KR', sans-serif;
 			color:white;
 			font-weight: bold;
-			font-size: 24px;
+			font-size: 22px;
 			border : 1px solid white;
    			border-radius:5px;
 			position: absolute;
@@ -48,7 +48,9 @@
 			transform: translate(-50%, -50%);
 		}
 		.mobile-plogging-btn:hover{
-			
+		}
+		.mobileMenu-back{
+			text-align:center;
 		}
 		</style>
 	</head>
@@ -59,8 +61,9 @@
 	       	<img src="../img/logo.png" alt="로고" style="width:180px; height:80px; margin-top:10px;">
 			</div>
 			<div class="mobileMenu">
-			<ul>	
-              	<li><a href="/logout" class="mobileMenu-log">로그아웃</a></li>       
+			<ul>
+			<li><a href="/" class="mobileMenu-back">뒤로가기</a></li>	
+              <!--  	<li><a href="/logout" class="mobileMenu-log">로그아웃</a></li> -->      
 			</ul>
 			</div>
 		</div>

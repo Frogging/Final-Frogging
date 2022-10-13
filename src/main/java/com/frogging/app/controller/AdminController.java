@@ -2,7 +2,7 @@ package com.frogging.app.controller;
 
 
 import java.nio.charset.Charset;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -143,6 +143,26 @@ public class AdminController {
 			mav.setViewName("redirect:/admin/eventList");
 		}else {
 			mav.setViewName("redirect:eventView");
+		}
+		return mav;
+	}
+	
+	@GetMapping("qnaList")
+	public ModelAndView qnaList() {
+		
+		mav = new ModelAndView();
+		mav.addObject("list", service.qnaList());
+		mav.setViewName("admin/qnaList");
+		return mav;	
+	}
+	@GetMapping("qnaDel")
+	public ModelAndView qnaDel(int no, HttpSession session) {
+		int cnt = service.qnaDel(no,(String)session.getAttribute("logId")); //logId 
+		mav = new ModelAndView();
+		if(cnt>0) {
+			mav.setViewName("redirect:admin/qnaList");
+		}else {
+			mav.setViewName("redirect:qnaDetail");
 		}
 		return mav;
 	}

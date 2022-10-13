@@ -38,7 +38,6 @@
 			where ${searchKey} like '%${searchWord}%'
 		</if>
 	</select>
-
 	
 	<select id="customerServiceList" resultType="CustomerServiceVO">
 		select no, subject, id, reply_group, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
@@ -56,4 +55,13 @@
 	<delete id="eventDel">
 		delete from board_event where no=${param1} and id=#{param2}
 	</delete>
+
+	<select id="qnaList" resultType="QnaVO">
+		select no, subject, id, reply_group, reply_seq, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
+		from board_question order by reply_group desc, depth asc
+	</select>
+	<delete id="qnaDel">
+		delete from board_question where no=${param1} and id=#{param2}
+	</delete>
+
 </mapper>

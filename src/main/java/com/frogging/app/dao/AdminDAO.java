@@ -9,6 +9,7 @@ import com.frogging.app.vo.CommunityVO;
 import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.EventVO;
 import com.frogging.app.vo.PagingVO;
+import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.UserVO;
 
 @Mapper
@@ -34,4 +35,8 @@ public interface AdminDAO {
 	public int eventEdit(EventVO vo);
 	public int eventDel(int no, String id);
 
+	public List<QnaVO> qnaList();
+	public QnaVO getQna(int no);
+	public int qnaEditOk(QnaVO vo);
+	public int qnaDel(int no, String id);
 }

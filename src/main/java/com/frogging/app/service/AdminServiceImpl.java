@@ -10,6 +10,7 @@ import com.frogging.app.dao.AdminDAO;
 import com.frogging.app.vo.CommunityVO;
 import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.EventVO;
+import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.PagingVO;
 //github.com/Frogging/Final-Frogging.git
 import com.frogging.app.vo.UserVO;
@@ -99,7 +100,29 @@ public class AdminServiceImpl implements AdminService{
 		return dao.eventDel(no, id);
 	}
 
+	
+	@Override
+	public List<QnaVO> qnaList() {
+		return dao.qnaList();
+	}
 
+
+	@Override
+	public QnaVO getQna(int no) {
+		return dao.getQna(no);
+	}
+
+
+	@Override
+	public int qnaEditOk(QnaVO vo) {
+		return dao.qnaEditOk(vo);
+	}
+
+
+	@Override
+	public int qnaDel(int no, String id) {
+		return dao.qnaDel(no, id);
+	}
 
 
 
