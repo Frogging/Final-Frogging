@@ -16,7 +16,9 @@
 	<br/><h1 class="p_title">관리자페이지</h1><br/>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="/admin/communityList">게시판관리</a></li>
+		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
+		<li class="tabMenu"><a href="/admin/qnaList">QnA관리</a></li>
 		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>

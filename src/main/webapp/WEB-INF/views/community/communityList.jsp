@@ -4,8 +4,36 @@
        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/p_style.css" type="text/css"/>
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="/css/k_style.css">
+<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
 <style>
+.p_community > li > a{
+	text-decoration:none;
+	color:#fff;
+}
+a:visited {
+  color : black;
+  text-decoration: none;
+}
+.p_searchForm{
+	float:right;
+	width:65%;
+	height:70px;
+}
+.p_communitysearch-btn{
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0 10px;
+}
+.p_communityList{
+	margin: 10px auto;
+}
 </style>
 <script>
 $(function(){
@@ -46,9 +74,28 @@ $(function(){
 <body>
     <div class="p_container">
         <span class="p_title"><h1>커뮤니티</h1></span>
-                   
+         	
+         	<div class="k_section_title" style="width:80%; margin:0 auto;">
+	
+				<div class="k_green" >
+					게시글 검색 : 
+				</div>
+				<div>원하시는 글을 찾아드릴께요 
+				<form method="get" action="/community/communityList" class="p_searchForm">
+                <select name="searchKey" class="p_searchKey" style="height:40px; width:105px; font-size: 18px;">
+                    <option value="subject">제목</option>
+                    <option value="nickname">작성자</option>
+                    <option value="content">글내용</option>
+                </select>
+                <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:700px;"/>
+                <input type="submit" value="찾기" class="p_communitysearch-btn"  style="height:40px; width:150px;"/>
+           		</form>
+           		
+           		<i class="fa-solid fa-magnifying-glass k_green"></i></div>
+			</div>  
+			        <br>
         <div class="p_communityList">
-              <input type="button" value="선택삭제" class="p_multiDel"/>   
+              <input type="button" value="선택삭제" class="p_multiDel" style="height:40px; width:100px;"/>   
         <form method="post" action="/community/multiDel" id="p_communityForm">
             <ul class="p_community">
                 <li><input type="checkbox" class="p_allChk"/></li>
@@ -106,6 +153,7 @@ $(function(){
 		</ul>
 		</div>
         <div>
+			<!--         
             <form method="get" action="/community/communityList" class="p_searchForm">
                 <select name="searchKey" class="p_searchKey">
                     <option value="subject">제목</option>
@@ -115,8 +163,9 @@ $(function(){
                 <input type="text" name="searchWord" class="p_searchWord" style="height:30px; width:250px;"/>
                 <input type="submit" value="찾기" class="p_communitysearch-btn"/>
             </form>	
+            --> 
             <div class="p_communitywrite">
-                    <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'"/>
+                    <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'" style="height:40px; width:100px;"/>
             </div>
         </div>
         </div>

@@ -34,11 +34,7 @@ a:visited {
 }
 </style>
 <script>
-function eventDelete(){
-	if(confirm("글을 삭제하시겠습니까?")){
-		location.href="/event/eventDel?no=${vo.no}";
-	}
-};
+
 </script>
 <body>
 <div style="height:100%;">
@@ -48,7 +44,7 @@ function eventDelete(){
 		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
 		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
 		<li class="tabMenu"><a href="/admin/qnaList">QnA관리</a></li>
-		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
+		<li class="tabMenu"><a href="customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
@@ -57,11 +53,11 @@ function eventDelete(){
 		<div class="k_wrapper">
 
 			<div class="k_section_title">
-				<div>이벤트 관리</div>
+				<div>QnA 관리</div>
 			</div>
 
 		</div>
-	</section>
+		</section>
                     <colgroup>
                         <col width="4%" />
                         <col width="41%" />
@@ -80,17 +76,24 @@ function eventDelete(){
                        
                     </thead>
                     <tbody id="tbody">
+   
                     <c:forEach var="vo" items="${list }">
                     	<tr>
                             <td>${vo.no}</td>
                             <td style="text-align:left;">                           
-                            	<a href="/event/eventView?no=${vo.no }">${vo.subject }</a>               
+                            <c:if test="${vo.depth== 0 }">
+                            	<a href="/qna/qnaDetail?no=${vo.no }">Q: ${vo.subject }</a>
+                            
+                            </c:if>
+                            <c:if test="${vo.depth > 0 }">
+                            	<a href="/qna/qnaDetail?no=${vo.no }"><span style="padding-left:${vo.depth *40}px;"> A:</span>${vo.subject }</a>
+                            </c:if> 
                            </td>
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                             <td>
-                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/event/eventEdit/${vo.no }'"> / 
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/event/eventDel?no=${vo.no}'"></td>
+                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'"> /                    
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
                      
