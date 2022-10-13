@@ -97,12 +97,12 @@ public class AdminController {
 	}
 
 	// 고객센터 리스트 가져오기
-	@GetMapping("customerServiceList")
-	public ModelAndView customerServiceList() {
-		mav.addObject("customerServiceList", service.customerServiceList());
-		mav.setViewName("admin/customerServiceList");
-		return mav;
-	}
+	// @GetMapping("customerServiceList")
+	// public ModelAndView customerServiceList() {
+	// mav.addObject("customerServiceList", service.customerServiceList());
+	// mav.setViewName("admin/customerServiceList");
+	// return mav;
+	// }
 
 	// 고객센터 글삭제
 	@GetMapping("customerServiceDel")
@@ -124,14 +124,14 @@ public class AdminController {
 		return mav;
 	}
 
-	@GetMapping("eventList")
-	public ModelAndView eventList() {
+	// @GetMapping("eventList")
+	// public ModelAndView eventList() {
 
-		mav = new ModelAndView();
-		mav.addObject("list", service.eventList());
-		mav.setViewName("admin/eventList");
-		return mav;
-	}
+	// mav = new ModelAndView();
+	// mav.addObject("list", service.eventList());
+	// mav.setViewName("admin/eventList");
+	// return mav;
+	// }
 
 	@GetMapping("eventDel")
 	public ModelAndView eventDel(int no, String id) {

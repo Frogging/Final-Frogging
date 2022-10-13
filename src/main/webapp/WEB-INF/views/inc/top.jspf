@@ -66,7 +66,7 @@
      			    <c:if test="${logStatus=='Admin'}">
                  	<span class="p_login">
         					<a href="/logout" class="p_menu-log">로그아웃</a>
-							<a href="/admin/adminPage" class="p_menu-join">관리자페이지</a>
+							<a href="/admin/statistic" class="p_menu-join">관리자페이지</a>
 					</span>
      			   </c:if>
 
