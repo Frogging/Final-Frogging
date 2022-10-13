@@ -96,7 +96,33 @@ a:visited {
                             <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
-                     
+                     <div class="p_qnaPage">
+                     <ul>
+					<!-- 페이지 번호 -->
+						<c:if test="${pVO.nowPage<=1 }"><!-- 이전페이지가 없을때 -->
+							<li>이전</li>
+						</c:if>
+						<c:if test="${pVO.nowPage>1 }"><!-- 이전페이지가 있을때 -->
+							<li><a href="/admin/qnaList?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">이전</a></li>
+						</c:if>
+						<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage+pVO.onePageCount-1 }">
+							<!--  출력할 페이지번호 총페이지수 보다 작거나 같을 떄 -->
+							<c:if test="${p<=pVO.totalPage }">
+								<li
+								<c:if test="${p==pVO.nowPage }">
+								</c:if>
+								><a href="/admin/qnaList?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
+							</c:if>
+						</c:forEach>
+						
+						<!-- 다음페이지 -->
+						<c:if test="${pVO.nowPage==pVO.totalPage }">
+							<li>다음</li>
+						</c:if>
+						<c:if test="${pVO.nowPage<pVO.totalPage }">
+							<li><a href="/admin/qnaList?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">다음</a></li>
+						</c:if>
+					</ul>
                     </tbody>    
                 </table>
 </div>

@@ -4,15 +4,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.jdbc.core.SqlReturnResultSet;
 import org.springframework.stereotype.Service;
 
 import com.frogging.app.dao.AdminDAO;
 import com.frogging.app.vo.CommunityVO;
 import com.frogging.app.vo.CustomerServiceVO;
+import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.EventVO;
-import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.PagingVO;
-//github.com/Frogging/Final-Frogging.git
+import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.UserVO;
 
 @Service
@@ -46,8 +47,7 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return dao.editProfile(id, restriction);
 	}
-
-
+	
 	@Override
 	public List<CommunityVO> communityList(PagingVO pVO) {
 		// TODO Auto-generated method stub
@@ -60,8 +60,10 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return dao.totalRecord(pVO);
 	}
-	public List<CustomerServiceVO> customerServiceList() {
-		return dao.customerServiceList();
+
+	@Override
+	public List<CustomerServiceVO> customerServiceList(PagingVO pVO) {
+		return dao.customerServiceList(pVO);
 	}
 
 
@@ -84,12 +86,6 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public List<EventVO> eventList() {
-		return dao.eventList();
-	}
-
-
-	@Override
 	public int eventEdit(EventVO vo) {
 		return dao.eventEdit(vo);
 	}
@@ -98,12 +94,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int eventDel(int no, String id) {
 		return dao.eventDel(no, id);
-	}
-
-	
-	@Override
-	public List<QnaVO> qnaList() {
-		return dao.qnaList();
 	}
 
 
@@ -123,6 +113,39 @@ public class AdminServiceImpl implements AdminService{
 	public int qnaDel(int no, String id) {
 		return dao.qnaDel(no, id);
 	}
+
+
+	@Override
+	public int totalRecord2(PagingVO pVO) {
+
+		return dao.totalRecord2(pVO);
+	}
+
+
+	@Override
+	public List<QnaVO> qnaList(PagingVO pVO) {
+		return dao.qnaList(pVO);
+	}
+
+
+	@Override
+	public int totalRecord3(PagingVO pVO) {
+		return dao.totalRecord3(pVO);
+	}
+
+
+	@Override
+	public List<EventVO> eventList(EventPagingVO pVO) {
+		return dao.eventList(pVO);
+	}
+
+
+	@Override
+	public int totalRecord4(EventPagingVO pVO) {
+		return dao.totalRecord4(pVO);
+	}
+
+
 
 
 
