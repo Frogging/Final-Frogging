@@ -17,6 +17,28 @@
 	<update id="editProfile">
 		update user set restriction=${param2 } where id=#{param1}
 	</update>
+
+	<select id="communityList" resultType="CommunityVO">
+		select b1.no, b1.subject, b1.id, b1.hit, b1.writedate, b2.reply_count
+		from
+		(select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
+		from board_community
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>	
+		order by no desc
+		limit ${onePageRecord} offset ${offsetPoint}) b1
+		left outer join
+		(select no, count(no) reply_count from reply_community group by no) b2
+		on b1.no=b2.no
+	</select>
+	<select id="totalRecord" resultType="int">
+		select count(no) cnt from board_community
+		<if test='searchWord!=null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+
 	
 	<select id="customerServiceList" resultType="CustomerServiceVO">
 		select no, subject, id, reply_group, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
