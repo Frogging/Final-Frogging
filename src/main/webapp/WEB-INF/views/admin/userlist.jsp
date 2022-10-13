@@ -88,7 +88,7 @@ $(function(){
                             <td>${vo.height}</td>
                             <c:if test="${vo.restriction==0 }"><td>정상</td></c:if>
                             <c:if test="${vo.restriction==1 }"><td>불량</td></c:if>
-                            <td><input type="button" class="listEdit-btn" value="수정" onclick="location.href='/profile?id=${vo.id }'"> / <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/listDel?id=${vo.id }'"></td>
+                            <td><input type="button" class="listEdit-btn" value="수정" onclick="location.href='/admin/profile?id=${vo.id }'"> / <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/listDel?id=${vo.id }'"></td>
                        
                         </tr>
                      </c:forEach>

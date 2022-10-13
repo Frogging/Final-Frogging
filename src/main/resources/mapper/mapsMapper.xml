@@ -57,6 +57,11 @@
 	<select id = "detailAllselect_t" resultType = "CourseVO">
 		select course_no, waypoint, lat, log, addr
 		from course_detail
+		where course_no in (${param1},${param2},${param3},${param4},${param5},${param6})
+	</select>
+	<select id = "detailAllselect_tt" resultType = "CourseVO">
+		select course_no, waypoint, lat, log, addr
+		from course_detail
 		where course_no between ${param1} and ${param2}
 	</select>
 	<select id = "nameCheck" resultType = "int">

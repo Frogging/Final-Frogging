@@ -6,9 +6,9 @@ public class ActivityVO {
 	private String id;
 	private int course_no;
 	private String course_name;
-	private int distance;
+	private double distance;
 	private int step;
-	private int time;
+	private double time;
 	private int amount_trash;
 	private String before_image;
 	private String after_image;
@@ -54,11 +54,11 @@ public class ActivityVO {
 		this.course_name = course_name;
 	}
 
-	public int getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 
-	public void setDistance(int distance) {
+	public void setDistance(double distance) {
 		this.distance = distance;
 	}
 
@@ -70,11 +70,11 @@ public class ActivityVO {
 		this.step = step;
 	}
 
-	public int getTime() {
+	public double getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(double time) {
 		this.time = time;
 	}
 
