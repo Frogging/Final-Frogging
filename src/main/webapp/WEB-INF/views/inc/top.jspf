@@ -19,11 +19,14 @@
 
 	</head>
 <style>
+@media screen and (min-width:152px) and (max-width:1024px){
+   .topWrap{display:none;}
+   }
 </style>
 <body>
 	<!--  <div id="wrapper">-->
 	<!-- 상단 탭 메뉴 부분 -->
-    <div class="p_headerWrap">
+    <div class="topWrap">
                 <span class="p_logo" style="height:100px;">
                 	<a href="/" style="height:100px;">
                     	<img src="../img/logo3.png" alt="로고" style="width:180px; height:80px; margin-top:10px;">

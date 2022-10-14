@@ -227,7 +227,7 @@
 	</div>   
 </body>
 <div class="mobileHome">
-	<div class="container" style="height:100vh; width:100vh; margin:0 auto 0 -15px;">
+	<div class="container" style="height:100%; width:100%; margin:0 auto 0 -15px;">
 		<div class="mobileTop">
 		    <div class="moble_logo" style="height:100px;">
 	       	<img src="../img/logo.png" alt="로고" style="width:150px; height:80px; margin-top:10px;">
