@@ -17,7 +17,7 @@ $(function(){
 		
 		let course_no = detail_arr[0].course_no;
 		let amount_trash = $("#amount_trash").val();
-		let tDistance = parseFloat(total_distance.toFixed(4));
+		let tDistance = parseFloat(total_distance.toFixed(4)) / 1000;
 		let tTime = parseFloat(total_time.toFixed(4));
 		let dnt = [tDistance, tTime];
 		let sort = $("#sort").val();
