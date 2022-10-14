@@ -19,7 +19,7 @@
    	.mobileHome{display:none;}
    	@media screen and (min-width:152px) and (max-width:1024px){
 	.p_container1{display:none;}
-	.mobileHome{display:block; z-index:1;}
+	.mobileHome{display:block; z-index:1; min-height: 100%; }
    	.p_container1 {
     min-height: 100%;
     position: relative;
@@ -42,12 +42,11 @@
 		color:white;
 	}
 	.mobileMenu-log{
-		width:350px;
-		float:left;
+		width:200px;
+		text-align:center;
 	}
 	.mobileBody{
-	height:100%;
-	 background-image:url(../img/plogging4.jfif);
+	background-image:url(./img/plogging4.jfif);
 	}
 	.mobile-plogging-btn{
 		height:100px;
@@ -64,8 +63,6 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
-	.mobile-plogging-btn:hover{
-		
 	}
     </style>
 	<script>
@@ -227,21 +224,21 @@
 	</div>   
 </body>
 <div class="mobileHome">
-	<div class="container" style="height:100%; width:100%; margin:0 auto 0 -15px;">
-		<div class="mobileTop">
+	<div class="container" style="height:100px; width:100%; margin:0 auto 0 -15px;">
+		<div class="mobileTop" style="position: fixed;">
 		    <div class="moble_logo" style="height:100px;">
-	       	<img src="../img/logo.png" alt="로고" style="width:150px; height:80px; margin-top:10px;">
+	       	<img src="../img/logo3.png" alt="로고" style="width:150px; height:80px; margin-top:10px;">
 			</div>
 			<div class="mobileMenu">
 			<ul>
               	<li><a href="/login" class="mobileMenu-log">로그인</a></li>         
 			</ul>
 			</div>
-		</div>
-		<div class="mobileBody">
-			<!--  <input type="button" value="모바일페이지" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>-->			
-				  <input type="button" value="시작하기" name="시작버튼" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>		
 		</div>	
 	</div>
+	<div class="mobileBody" style="height:1000px; background-image:url(./img/plogging4.jfif);">
+			<!--  <input type="button" value="모바일페이지" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>-->			
+				  <input type="button" value="시작하기" name="시작버튼" class="mobile-plogging-btn" onclick="location.href='/mobile/mobileHome'"/>		
+		</div>
 </div>	
 </html>

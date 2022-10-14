@@ -39,6 +39,40 @@ height:100%;
     margin: 130px 20px 10px 20px;
     font-family: 'Noto Sans KR', sans-serif;
 }
+   	.mobileLogin{display:none;}
+    @media screen and (min-width:152px) and (max-width:1024px){
+    .loginForm{
+    	height:300px;
+    }
+	/*.s_container{display:none;}*/
+	.mobileLogin{display:block; z-index:1;}
+   	.s_container{
+    min-height: 1000px;
+    position: fixed;
+ 	background-image:url(./img/plogging4.jfif);
+	}
+	.mobileTop{
+		display:flex;
+		justify-content: space-between;
+		background-color:#2fb86a;
+	}
+	.mobileMenu > ul >li{
+		display: inline-block;
+		font-family: 'Noto Sans KR', sans-serif;
+		line-height: 80px;
+		font-size: 18px;
+		margin: auto 20px;
+		font-weight: bold;
+		text-decoration:none;
+	}
+	.mobileMenu > ul >li>a{
+		color:white;
+	}
+	.mobileMenu-log{
+		width:200px;
+		text-align:center;
+	}
+	}
 </style>
 <script>
 
@@ -53,6 +87,7 @@ height:100%;
         google.accounts.id.renderButton(
           document.getElementById("buttonDiv"),
           { theme: "outline", size: "large" }  // customization attributes
+        	 
         );
         //google.accounts.id.prompt(); // also display the One Tap dialog
       }
@@ -79,16 +114,30 @@ height:100%;
       
 </script>
 <body>
+<div class="mobileLogin">
+	<div class="container" style="height:100px; width:100%;">
+		<div class="mobileTop">
+		    <div class="moble_logo" style="height:100px;">
+	       	<img src="../img/logo3.png" alt="로고" style="width:150px; height:80px; margin-top:10px;">
+			</div>
+			<div class="mobileMenu">
+			<ul>	  
+				<li><a href="/" class="mobileMenu-log">뒤로가기</a></li>  
+			</ul>
+			</div>
+		</div>
+	</div>	
+</div>
 	<div class="s_container">
 	</br><h1 style="color:white;">로그인 페이지</h1></br>
 		<div class="loginForm">
 			<h2>구글 로그인</h2>
 			<hr/>
 			<ul>
-				<div id="buttonDiv"></div> 
+				<div id="buttonDiv" stlye="300px;"></div> 
 				<input type="button" value="google 가입하러가기" class="google-btn" onclick="location.href='https://accounts.google.com/'"/>
 			</ul>
 		</div>
-	</div>
+	</div>	
 </body>
 </html>

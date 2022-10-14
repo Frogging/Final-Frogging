@@ -45,7 +45,9 @@ $(function(){
 <body>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
-		<li class="tabMenu"><a href="/admin/communityList">게시판관리</a></li>
+		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
+		<li class="tabMenu"><a href="/admin/eventList">이벤트관리</a></li>
+		<li class="tabMenu"><a href="/admin/qnaList">QnA관리</a></li>
 		<li class="tabMenu"><a href="/admin/customerServiceList">고객센터관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageCourse">코스관리</a></li>
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
@@ -53,15 +55,6 @@ $(function(){
 	</ul>
 	<section>
 		<div class="k_wrapper">
-
-			<div class="k_section_title_links">
-				<div>
-					<i class="fa-solid fa-square-caret-right k_green"></i> <a
-						href="/admin/adminPage"> 관리자 </a> <a href="userlist"> <i
-						class="fa-solid fa-angle-right"></i> 게시판 관리
-					</a>
-				</div>
-			</div>
 
 			<div class="k_section_title">
 				<div>게시판 관리</div>

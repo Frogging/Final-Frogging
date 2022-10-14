@@ -19,14 +19,14 @@
 
 	</head>
 <style>
-@media screen and (min-width:152px) and (max-width:1024px){
-   .topWrap{display:none;}
-   }
+	@media screen and (min-width:152px) and (max-width:1024px){
+	.topWrap{display:none;}
+	}
 </style>
 <body>
-	<!--  <div id="wrapper">-->
-	<!-- 상단 탭 메뉴 부분 -->
-    <div class="topWrap">
+
+<div class="topWrap">	
+    <div class="p_headerWrap">
                 <span class="p_logo" style="height:100px;">
                 	<a href="/" style="height:100px;">
                     	<img src="../img/logo3.png" alt="로고" style="width:180px; height:80px; margin-top:10px;">
@@ -69,12 +69,13 @@
      			    <c:if test="${logStatus=='Admin'}">
                  	<span class="p_login">
         					<a href="/logout" class="p_menu-log">로그아웃</a>
-							<a href="/admin/adminPage" class="p_menu-join">관리자페이지</a>
+							<a href="/admin/statistic" class="p_menu-join">관리자페이지</a>
 					</span>
      			   </c:if>
 
                 
 	</div>
+</div>	
 	<script>
 		// 마우스오버 메뉴
 		  $('#p_menu > li').mouseover(function(){
