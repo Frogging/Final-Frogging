@@ -302,7 +302,7 @@ ul{
     color: black;
 	font-weight: bold;
 }
-.p_multiDel,.p_search-btn, .p_communitywrite-btn{
+.p_multiDel,.p_search-btn, .p_communitywrite-btn, .p_communitysearch-btn{
     height: 30px;
     width: 80px;
     background-color: #2fb86a;
@@ -551,6 +551,14 @@ table.table02 tbody td{padding:10px;vertical-align:middle;padding-left:15px;back
 	margin:5px auto;
 }
 .p_customerServicePage > ul >li{
+	display: inline-block;	
+}
+.p_eventServicePage{width:80%; margin:0 auto; float:center;}
+.p_eventServicePage > ul{
+	padding:0;
+	margin:5px auto;
+}
+.p_eventServicePage > ul >li{
 	display: inline-block;	
 }
 .p_customerServicesearch-btn{
