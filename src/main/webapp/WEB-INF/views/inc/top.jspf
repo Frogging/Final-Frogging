@@ -19,10 +19,13 @@
 
 	</head>
 <style>
+	@media screen and (min-width:152px) and (max-width:1024px){
+	.topWrap{display:none;}
+	}
 </style>
 <body>
-	<!--  <div id="wrapper">-->
-	<!-- 상단 탭 메뉴 부분 -->
+
+<div class="topWrap">	
     <div class="p_headerWrap">
                 <span class="p_logo" style="height:100px;">
                 	<a href="/" style="height:100px;">
@@ -72,6 +75,7 @@
 
                 
 	</div>
+</div>	
 	<script>
 		// 마우스오버 메뉴
 		  $('#p_menu > li').mouseover(function(){
