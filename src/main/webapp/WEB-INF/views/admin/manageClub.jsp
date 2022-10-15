@@ -44,15 +44,15 @@
 					<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
 					<li><a href="/mypage/myCourseView?no=${vo.no}"><span>${vo.course_name}</span></a></li>
 					<li><span>${vo.meeting_time}</span></li>
-					<li class="open_modal" onclick="modal_data(${vo.no});">
-						<span>${vo.current_number}/${vo.number}</span>
+					<li>
+						<span>현: ${vo.current_number}명 /총: ${vo.number}명</span>
 					</li>
 					<li><span><input type="checkbox" name="noList" value="${vo.no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
 				<input type="checkbox" class="allChk">
-				<input type="submit" class="delBtn" value="삭제하기">
+				<input type="button" class="delBtn_1" value="삭제하기">
 			</div>
 
 			</form>

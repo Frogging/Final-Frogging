@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
@@ -51,6 +52,8 @@ public interface PartyDAO {
 	// 경로 리스트 가져오기
 	public List<CourseVO> getPathList(PlogPagingVO p_pageVO);
 
+	public List<CourseVO> getPathList_m(ManagePagingVO p_pageVO);
+
 	// 나의 모임 리스트
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO);
 
@@ -93,6 +96,10 @@ public interface PartyDAO {
 
 	// 파티 여러개 삭제
 	public int clubMultiDel(PartyVO vo);
+
+	public int clubMultiDel_detail(PartyVO vo);
+
+	public int clubMultiDel_request(PartyVO vo);
 
 	// 파티 리퀘스트 삭제
 	public int deleteClubRequest(int no);

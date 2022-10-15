@@ -98,9 +98,9 @@
 					<li><span>코스 위치</span></li>
 					<li id="k_addr"><span>${pvo.addr}</span></li>
 					<li><span>소요시간/거리</span></li>
-					<li id="k_d_and_t"><span>${pvo.distance} / ${pvo.time}</span></li>
+					<li id="k_d_and_t"><span>${pvo.distance}km / ${pvo.time}분</span></li>
 					<li><span>모집 인원</span></li>
-					<li id="k_number"><span>${pvo.number}</span></li>
+					<li id="k_number"><span>${pvo.number}명</span></li>
 					<li><span>모집 일시</span></li>
 					<li id="k_meeting_time"><span>${pvo.meeting_time}</span></li>
 					<li><span>만남 장소</span></li>

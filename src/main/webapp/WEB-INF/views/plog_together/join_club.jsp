@@ -46,7 +46,7 @@
 			<div class="k_wrapper">
 				<!-- 날짜 조건 검색 -->
 				<div class="k_party_list_date">
-					<form method="get" id="clubSearchForm" onclick="searchClub();" action="/club/join_club">
+					<form method="get" id="clubSearchForm"  action="/club/join_club">
 						<%-- <i class="fa-solid fa-chevron-left"></i> --%>
 						<div class="k_select_wrap">
 							<span><i class="fa-solid fa-caret-right"></i>모임 장소: </span>
@@ -65,7 +65,7 @@
 						<div>
 							<span><i class="fa-solid fa-caret-right"></i>모임 날짜: </span>
 							<input type='date' name="searchDate" id="searchDate"/>
-							<input type='submit' value='검색'>
+							<input type='button' class="k_club_search" value='검색'>
 						</div>
 					</form>
 				</div>

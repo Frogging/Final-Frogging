@@ -95,16 +95,16 @@
 						<li><span>파티명</span></li>
 						<li id="k_partyname">
 							<span><input name="partyname" type="text" value="${pvo.partyname}" id="k_party_set_party_name"></span>
-							<input type="button" value="중복검사" onclick="checkPartyname()">
+							<input type="button" class="k_name_check" value="중복검사" onclick="checkPartyname()">
 						</li>
 						<li><span>코스 위치</span></li>
 						<li id="k_addr"><span>${pvo.addr}</span></li>
 						<li><span>소요시간/거리</span></li>
-						<li id="k_d_and_t"><span>${pvo.distance} / ${pvo.time}</span></li>
+						<li id="k_d_and_t"><span>${pvo.distance}km / ${pvo.time}분</span></li>
 						<li><span>모집 인원</span></li>
-						<li id="k_number"><span><input name="number" type="number" min=3 max=12 value="${pvo.number}" id="k_party_set_party_number"></span></li>
+						<li id="k_number"><span><input name="number" type="number" min=3 max=12 value="${pvo.number}" id="k_party_set_party_number">명</span></li>
 						<li><span>모집 일시</span></li>
-						<li id="k_meeting_time"><span><input name="meeting_time" type="date" id="k_party_set_party_meeting_time">${pvo.meeting_time}</span></li>
+						<li id="k_meeting_time"><span><input name="meeting_time" type="datetime-local" id="k_party_set_party_meeting_time" value="2022-${pvo.meeting_time}"></span></li>
 						<li><span>만남 장소</span></li>
 						<li id="k_meeting_place"><span><input name="meeting_place" type="text" value="${pvo.meeting_place}" id="k_party_set_party_meeting_place"></span></li>
 						<li><span>기타 안내</span></li>

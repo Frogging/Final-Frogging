@@ -52,7 +52,7 @@ public class PartyController {
 
 	@Inject
 	MapsService m_service;
-	
+
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
 	public ModelAndView start_party(PlogPagingVO p_PageVO) {
@@ -76,7 +76,7 @@ public class PartyController {
 		mav = new ModelAndView();
 
 		mav.addObject("addr_1", d_service.getAddr_1());
-		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
+		mav.addObject("addr_2", d_service.getAddr_2(p_PageVO.getAddr_section_1()));
 		mav.addObject("list", p_service.getPartyList(p_PageVO));
 		mav.setViewName("plog_together/join_club");
 		return mav;
@@ -225,14 +225,14 @@ public class PartyController {
 			// 1-2) jsonString -> JSONObject로 변환
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
-			
+
 			voList.put("path", jObj_party);
-			
+
 			List<CourseVO> course_detail = m_service.detailSelect(no);
 			JSONObject jObj_detail;
 			String name;
-			
-			for(int i = 0; i < course_detail.size(); i++) {
+
+			for (int i = 0; i < course_detail.size(); i++) {
 				jsonString = mapper.writeValueAsString(course_detail.get(i));
 				jObj_detail = (JSONObject) jsonParser.parse(jsonString);
 				voList.put(course_detail.get(i).getWaypoint(), jObj_detail);

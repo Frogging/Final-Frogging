@@ -1,5 +1,7 @@
 package com.frogging.app.vo;
 
+import java.util.List;
+
 public class CourseVO {
 
 	private int course_no;
@@ -18,6 +20,8 @@ public class CourseVO {
 
 	// 방문횟수
 	private int plog_total;
+
+	private List<Integer> noList;
 
 	public int getCourse_no() {
 		return course_no;
@@ -115,7 +119,6 @@ public class CourseVO {
 		this.plog_total = plog_total;
 	}
 
-	
 	public String getType() {
 		return type;
 	}
@@ -132,6 +135,12 @@ public class CourseVO {
 				+ ", plog_total=" + plog_total + "]";
 	}
 
+	public List<Integer> getNoList() {
+		return noList;
+	}
 
+	public void setNoList(List<Integer> noList) {
+		this.noList = noList;
+	}
 
 }

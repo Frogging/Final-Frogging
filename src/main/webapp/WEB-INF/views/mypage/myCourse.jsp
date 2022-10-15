@@ -4,8 +4,44 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script type = "text/javascript">
+	function initTmap() {
+	// 1. 지도 띄우기
+	var map_arr = new Array();
+	var detail_arr = new Array();
+
+	<c:forEach items = "${courseList}" var = "courseList">
+		map_arr.push({
+			course_no : "${courseList.course_no}",
+			course_name : "${courseList.course_name}",
+			course_info : "${courseList.course_info}",
+			distance : "${courseList.distance}",
+			time : "${courseList.time}",
+			type : "${courseList.type}"
+		});
+	</c:forEach>
+	
+	<c:forEach items = "${courseDetail}" var = "courseDetail">
+		detail_arr.push({
+			course_no : "${courseDetail.course_no}",
+			waypoint : "${courseDetail.waypoint}",
+			lat : "${courseDetail.lat}",
+			log : "${courseDetail.log}",
+			addr : "${courseDetail.addr}"
+		});
+	</c:forEach>
+	
+	console.log(map_arr);
+	console.log(detail_arr);
+	mapLoad_2(map_arr, detail_arr);
+}
+	
+	</script>
+	<script src="/js/tmap_list.js"></script>
 </head>
-<body class="k_body">
+<body class="k_body" onload="initTmap();">
 	<section>
 		<div class="k_wrapper">
 
@@ -28,7 +64,7 @@
 				</div>
 				<div>작성한 코스</div>
 			</div>
-
+	
 		</div>
 	</section>
 
@@ -38,9 +74,9 @@
 				<c:forEach var="vo" items="${c_list}">
 					<a href="/mypage/myCourseView?no=${vo.course_no}">
 					<li class="k_mycourse_list_one">
-						
 						<ul class="k_a_each_box">
-							<li><img src="/img/course_sample.png" alt=""></li>
+							<li><div id="map_div_${vo.course_no }"></div></li>
+							<%-- <li><img src="/img/course_sample.png" alt=""></li> --%>
 							<li class="k_a_main_info">${vo.course_name}</li>
 							<%-- <li class="k_a_main_info">위</li> --%>
 							<li class="k_a_div"></li>

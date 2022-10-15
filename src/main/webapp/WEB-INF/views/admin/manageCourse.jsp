@@ -31,8 +31,7 @@
 
 	<section class="k_mycourse">
 		<div class="k_wrapper">
-		<%-- courseMultiDel로 변경해야 --%>
-			<form method="post" action="/admin/clubMultiDel" id="listFrm"">
+			<form method="post" action="/admin/courseMultiDel" id="listFrm_2"">
 			<ul class="k_my_course_grid">
 				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>코스명</span></li>
@@ -45,14 +44,14 @@
 					<li><span>${vo.course_no}</span></li>
 					<li><a href="/mypage/myCourseView?no=${vo.course_no}"><span>${vo.course_name}</span></a></li>
 					<li><span>${vo.addr}</span></li>
-					<li><span>${vo.time}</span></li>
-					<li><span>${vo.distance}</span></li>
-					<li><span><input type="checkbox" name="noList" value="${vo.course_no}"></span></li>
+					<li><span>${vo.time}분</span></li>
+					<li><span>${vo.distance}km</span></li>
+					<li><span><input class="list" type="checkbox" name="noList" value="${vo.course_no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
 				<input type="checkbox" class="allChk">
-				<input type="submit" class="delBtn" value="삭제하기">
+				<input type="button" class="delBtn_2" value="삭제하기">
 			</div>
 
 			</form>

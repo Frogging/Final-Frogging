@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
@@ -30,6 +31,8 @@ public interface PartyService {
 	public int checkOverlap(PartyDetailVO p_detail_vo);
 
 	public List<CourseVO> getPathList(PlogPagingVO p_pageVO);
+
+	public List<CourseVO> getPathList_m(ManagePagingVO p_pageVO);
 
 	public List<PartyVO> getMyJoinedClub(PartyDetailVO p_dVO);
 
@@ -65,5 +68,10 @@ public interface PartyService {
 
 	public int clubMultiDel(PartyVO vo);
 
+	public int clubMultiDel_detail(PartyVO vo);
+
+	public int clubMultiDel_request(PartyVO vo);
+
 	public int deleteClubRequest(int no);
+
 }

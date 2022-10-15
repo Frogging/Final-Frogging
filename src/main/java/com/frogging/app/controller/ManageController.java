@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.ActivityService;
+import com.frogging.app.service.CourseService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
 import com.frogging.app.vo.PlogPagingVO;
@@ -34,6 +37,9 @@ public class ManageController {
 
 	@Inject
 	PartyService p_service;
+
+	@Inject
+	CourseService c_service;
 
 	// 통계 페이지
 	@GetMapping("/statistic")
@@ -72,20 +78,50 @@ public class ManageController {
 		return graph;
 	}
 
-	// ----------------------------------------------------
+	// ------------------------- 코스 ---------------------------
 	// 코스 관리 페이지
 	@GetMapping("/manageCourse")
 	public ModelAndView manageCourse() {
 
 		mav = new ModelAndView();
 
-		PlogPagingVO p_pageVO = new PlogPagingVO();
-		mav.addObject("c_list", p_service.getPathList(p_pageVO));
+		ManagePagingVO m_pageVO = new ManagePagingVO();
+		mav.addObject("c_list", p_service.getPathList_m(m_pageVO));
 		mav.setViewName("/admin/manageCourse");
 		// System.out.println(p_service.getPathList(p_pageVO));
 		return mav;
 	}
 
+	// 코스 여러개 삭제
+	@PostMapping("/courseMultiDel")
+	public ResponseEntity<String> courseMultiDel(CourseVO c_vo) {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		// 코스삭제 : 코스 참조하는 파티 삭제 (액티비티는?) -> 코스 디테일 테이블 삭제 -> 코스 테이블 삭제 순서로
+
+		try {
+			int result_2 = c_service.courseMultiDel_detail(c_vo);
+			int result_3 = c_service.courseMultiDel(c_vo);
+
+			if (result_2 != 0 && result_3 != 0) {
+				msg += "alert('삭제완료');";
+				msg += "location.href='/admin/manageCourse';";
+			} else {
+				msg += "alert('삭제실패');";
+				msg += "history.go(-1)";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
+	// ------------------------- 클럽 ---------------------------
 	// 파티 관리 페이지
 	@GetMapping("/manageClub")
 	public ModelAndView manageParty() {
@@ -108,15 +144,17 @@ public class ManageController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		String msg = "<script>";
 
-		int result = 1;
-		System.out.println(p_vo.getNolist());
+		// int result = 1;
+		// System.out.println(p_vo.getNoList());
 
-		// 파티삭제 : 파티 디테일 테이블 삭제 -> 파티 테이블 삭제
+		// 파티삭제 : 파티 리퀘스트 삭제 -> 파티 디테일 테이블 삭제 -> 파티 테이블 삭제 순서로
 
 		try {
-			// p_service.clubMultiDel(p_vo);
+			int result_1 = p_service.clubMultiDel_request(p_vo);
+			int result_2 = p_service.clubMultiDel_detail(p_vo);
+			int result_3 = p_service.clubMultiDel(p_vo);
 
-			if (result != 0) {
+			if (result_3 != 0) {
 				msg += "alert('삭제완료');";
 				msg += "location.href='/admin/manageClub';";
 			} else {

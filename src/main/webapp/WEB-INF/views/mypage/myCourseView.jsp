@@ -4,8 +4,45 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script type = "text/javascript">
+	function initTmap() {
+	// 1. 지도 띄우기
+	var map_arr = new Array();
+	var detail_arr = new Array();
+	
+	map_arr.push({
+			// course_no : "${vo.course_no}",
+			course_no : 99999,
+			course_name : "${vo.course_name}",
+			course_info : "${vo.course_info}",
+			distance : "${vo.distance}",
+			time : "${vo.time}",
+			type : "${vo.type}"
+	});
+
+	<c:forEach items = "${courseDetail}" var = "courseDetail">
+		detail_arr.push({
+			// course_no : "${courseDetail.course_no}",
+			course_no : 99999,
+			waypoint : "${courseDetail.waypoint}",
+			lat : "${courseDetail.lat}",
+			log : "${courseDetail.log}",
+			addr : "${courseDetail.addr}"
+		});
+	</c:forEach>
+
+	console.log(map_arr);
+	console.log(detail_arr);
+	mapLoad_2(map_arr, detail_arr);
+}
+
+</script>
+<script src="/js/tmap_list.js"></script>
+<script src="/js/k_admin.js"></script>
 </head>
-<body class="k_body">
+<body class="k_body" onload="initTmap()">
 	<section>
 		<div class="k_wrapper">
 			<div class="k_section_title_links">
@@ -19,7 +56,7 @@
 							<i class="fa-solid fa-angle-right"></i>
 								코스 관리하기
 						</a>
-						<a href="#">
+						<a href="/mypage/myCourseView?no=${vo.course_no}">
 							<i class="fa-solid fa-angle-right"></i>
 							코스 보기
 						</a>
@@ -27,12 +64,12 @@
 
 					<c:if test="${logStatus !='Admin'}">
 						<i class="fa-solid fa-square-caret-right k_green"></i>
-						<a href="/">
+						<a href="/mypage/myCourse">
 							코스
 						</a>
-						<a href="/">
+						<a href="/mypage/myCourseView?no=${vo.course_no}">
 							<i class="fa-solid fa-angle-right"></i>
-							코스 상세보기
+							코스 보기
 						</a>
 					</c:if>
 				</div>
@@ -55,19 +92,7 @@
 		<div class="k_wrapper">
 			<form action="">
 				<div class="k_make_path">
-					<div class="k_make_path_map" id = "map_div"></div>
-					<%-- <ul class="k_make_path_detail">
-						<li class="k_green"><label for="">코스명</label></li>
-						<li class="k_path_detail_in"><input type="text" id="course_name" name="course_name"><input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()"></li>
-						<li class="k_green"><label for="">시작 위치</label></li>
-						<li class="k_path_detail_in"><input type="text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></li>
-						<li class="k_green"><label for="">경유 위치</label></li>
-						<li class="k_path_detail_in"><div id = "waypoint"></div></li>
-						<li class="k_green"><label for="">도착 위치</label></li>
-						<li class="k_path_detail_in"><input type="text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></li>
-						<li class="k_make_path_total" ><span id = "result">예상 소요 시간: / 예상 거리: </span></li>
-						<li class="k_make_path_total"><input type="submit" value="코스 저장"></li>
-					</ul> --%>
+					<div class="k_make_path_map" id = "map_div_99999"></div>
 					<ul class="k_path_infos">
 						<li class="k_green">코스 이름</li>
 						<li id="k_coursename"><span>${vo.course_name}</span></li>
@@ -76,11 +101,13 @@
 						<li class="k_green">도착 위치</li>
 						<li id="k_endaddr"><span>${vo.endaddr}</span></li>
 						<li class="k_green">소요 시간</li>
-						<li id="k_time"><span>${vo.time}</span></li>
+						<li id="k_time"><span>${vo.time}분</span></li>
 						<li class="k_green">이동 거리</li>
-						<li id="k_distance"><span>${vo.distance}</span></li>
+						<li id="k_distance"><span>${vo.distance}km</span></li>
 						<li class="k_green">이번 달 방문 횟수</li>
-						<li id="k_plog_total"><span>${vo.plog_total}</span></li>
+						<li id="k_plog_total"><span>${vo.plog_total}회</span></li>
+						<li class="k_green"><span>코스 정보</span></li>
+						<li id="k_course_info"><span>${vo.course_info}</span></li>
 					</ul>
 				</div>
 			</form>
@@ -90,15 +117,15 @@
 			<c:if test="${logStatus !='Admin'}">
 				<div><a href="/mypage/myCourse">돌아가기</a></div>
 				<c:if test="${logId!=null}">
-					<div><a href="/mypage/myCourseEdit">수정하기</a></div>
-					<div><a href="/mypage/myCourseDelete">삭제하기</a></div>
+					<div><a href="/mypage/myCourseEdit?no=${vo.course_no}">수정하기</a></div>
+					<div><a href="javascript:deleteCourse(${vo.course_no});">삭제하기</a></div>
 				</c:if>
 			</c:if>
 			<c:if test="${logStatus =='Admin'}">
 				<div><a href="/admin/manageCourse">돌아가기</a></div>
 				<c:if test="${logId!=null}">
-					<div><a href="/mypage/myCourseEdit">수정하기</a></div>
-					<div><a href="/mypage/myCourseDelete">삭제하기</a></div>
+					<div><a href="/mypage/myCourseEdit?no=${vo.course_no}">수정하기</a></div>
+					<div><a href="javascript:deleteCourse(${vo.course_no});">삭제하기</a></div>
 				</c:if>
 			</c:if>
 		</div>
