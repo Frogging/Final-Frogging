@@ -31,24 +31,27 @@
 <script src="/js/watch_position.js" ></script>
 <link rel = "stylesheet" href = "/js_css/style.css" type = "text/css">
 <style>
+@media screen and (min-width:152px) and (max-width:1024px){
+	.p_container1{
+		    min-height: 100%;
+   			position: relative;
+	}
+	.map_wrap3{
+		height:70%;
+	}
+	#map_div{
+		height:700px;
+	}
+}
+
 </style>
 </head>
 <body onload="initTmap();">
+<div class="p_container" >
 	<div id="map_wrap" class="map_wrap3">
 			<div id="map_div"></div>
 	</div>
 	<div class = "container">
-		 <ul>
-	        <li>위도:<span id="latitude"></span></li>
-	        <li>경도:<span id="longitude"></span></li>
-	        <li>accuracy:<span id = "accuracy"></span></li>
-	        <li>watchPosition count:<span id="count"></span></li>
-	        <li>update count:<span id="update_count"></span></li>
-	        <li>distance:<span id = "distance"></span></li>
-	        <li>time:<span id = "time"></span></li>
-	        <li>location list count:<span id = "locationList_count"></span></li>
-	        <li>example vertical length:<span id = "vertical_length"></span></li>
-	    </ul>
 	    <form method = "post" id = "checkCourseForm">
 	    	쓰레기 처리량 : <input type = "text" id = "amount_trash" name = "amount_trash">
 	    	파티번호 : <input type = "text" id = "sort" name = "sort">
@@ -58,5 +61,6 @@
     <input type = "button" value = "위치 확인 시작" onclick = "startChecking();">
     <input type = "button" value="확인를 끝낸다" onclick = "endChecking();" />
 	</div>
+</div>	
 </body>
 </html>
