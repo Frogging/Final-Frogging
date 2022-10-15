@@ -1,3 +1,25 @@
+
+// 전역 변수 
+const urlParams = new URL(location.href).searchParams;
+const addr_section_1 = urlParams.get('addr_section_1');
+const addr_section_2 = urlParams.get('addr_section_2');
+
+console.log(addr_section_1);
+console.log(addr_section_2);
+
+
+var course_no;
+var select_course_no;
+var select_course_name;
+var partyname_checked=false;
+
+
+
+$(function(){
+	$('#addr_section_1').val(addr_section_1).prop("selected",true);
+	$('#addr_section_2').val(addr_section_2).prop("selected",true);
+});
+
 //------------------------- 코스 검색  -----------------------------
 function searchPath() {
 	$(function(){
@@ -9,14 +31,9 @@ function searchPath() {
 				}
 				return true;
 			})
+
 		});
 }
-
-// 전역 변수 
-var course_no;
-var select_course_no;
-var select_course_name;
-var partyname_checked=false;
 
 //-------------------경로 세부 모달 내용 가져오기-------------------
 function modal_data(no) {
@@ -56,6 +73,7 @@ function modal_data(no) {
 					});
 				}
 				
+				select_course_name = path.course_name;
 				
 				//세부 데이터 넣기
 				$('#k_coursename>span').html(path.course_name);
@@ -68,7 +86,9 @@ function modal_data(no) {
 				$('.k_path_map').attr('id', 'map_div_'+99999);
 				mapLoad(map_arr_view, detail_arr_view);
 				
-				select_course_name = path.course_name;
+				
+				//alert(path.course_name);
+
 			}, error:function(e){
 				console.log(e.responseText);
 			}
@@ -81,7 +101,7 @@ function select_path() {
 	if(confirm("이 경로를 선택하시겠습니까?")){
 		//console.log("선택한 경로 번호: " + course_no);
 		select_course_no = course_no;
-		alert(course_no + "번 코스 선택완료");
+		alert(select_course_name + " 선택완료");
 
 		//선택한 파티 -> 폼
 		$(function(){

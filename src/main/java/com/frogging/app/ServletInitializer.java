@@ -36,6 +36,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		return new TomcatServletWebServerFactory() {
 			@Override
 			protected void postProcessContext(Context context) {
+				System.out.println("context" + context);
 				super.postProcessContext(context);
 				JspPropertyGroup jspPropertyGroup = new JspPropertyGroup();
 				jspPropertyGroup.addUrlPattern("*.jsp");

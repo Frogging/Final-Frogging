@@ -223,7 +223,8 @@
 		sum(distance) total_distance, 
 		count(id) plog_count, 
 		sum(step) total_step,
-		sum(time) total_time
+		sum(time) total_time,
+		sum(amount_trash) trash_sum
 		FROM activity 
 		group by month
 		order by month desc

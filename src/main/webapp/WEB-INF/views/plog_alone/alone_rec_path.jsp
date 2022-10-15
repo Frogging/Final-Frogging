@@ -185,7 +185,7 @@
 
 							<div class="k_party_detail_join">
 								<div class="k_close_popup click-btn">돌아가기</div>
-								<div class="click-btn">파티 참여 신청하기</div>
+								<%-- <div class="click-btn">파티 참여 신청하기</div> --%>
 							</div>
 						</div>
 					</section>

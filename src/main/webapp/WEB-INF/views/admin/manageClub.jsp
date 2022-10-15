@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_admin.js"></script>
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
@@ -30,7 +31,7 @@
 
 	<section class="k_mycourse">
 		<div class="k_wrapper">
-			<form action="">
+			<form method="post" action="/admin/clubMultiDel" id="listFrm">
 			<ul class="k_my_club_grid">
 				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>파티명</span></li>
@@ -43,15 +44,15 @@
 					<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
 					<li><a href="/mypage/myCourseView?no=${vo.no}"><span>${vo.course_name}</span></a></li>
 					<li><span>${vo.meeting_time}</span></li>
-					<li class="open_modal" onclick="modal_data(${vo.no});">
-						<span>${vo.current_number}/${vo.number}</span>
+					<li>
+						<span>현: ${vo.current_number}명 /총: ${vo.number}명</span>
 					</li>
-					<li><span><input type="checkbox"></span></li>
+					<li><span><input type="checkbox" name="noList" value="${vo.no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
-				<input type="checkbox">
-				<input type="button" value="삭제하기">
+				<input type="checkbox" class="allChk">
+				<input type="button" class="delBtn_1" value="삭제하기">
 			</div>
 
 			</form>
