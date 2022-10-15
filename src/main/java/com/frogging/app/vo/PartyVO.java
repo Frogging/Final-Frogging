@@ -1,5 +1,7 @@
 package com.frogging.app.vo;
 
+import java.util.List;
+
 public class PartyVO {
 	private int no;
 	private String partyname;
@@ -24,6 +26,8 @@ public class PartyVO {
 
 	// p_request data
 	private int reason;
+
+	private List<Integer> noList;
 
 	@Override
 	public String toString() {
@@ -151,6 +155,14 @@ public class PartyVO {
 
 	public void setReason(int reason) {
 		this.reason = reason;
+	}
+
+	public List<Integer> getNoList() {
+		return noList;
+	}
+
+	public void setNoList(List<Integer> noList) {
+		this.noList = noList;
 	}
 
 }

@@ -80,12 +80,13 @@
 	                        <input type="button" value="혼자하기" class="p_plogging-btn" onclick="location.href='/alone/alone_rec_path'"/>					
 	                    </div>
 	                    <div class="p_section">
-	                        <h3>이번주 기록</h3> <h4>금주의 기록을 확인하세요!</h4><br/>
-	                        <div class="p_section-ment">
-	                        총 1050KG 의 쓰레기가 수거되었어요!<br/>
-	                        총 30000 의 km을 걸으셨어요!<br/>
-	                        총 130개 의 파티가 만들어졌어요!<br/>
-	                        총 600번 의 프로깅이 기록되었어요!<br/>		
+	                        <h3>${data[0].month}월의 기록</h3> <h4>이번 달 기록을 확인하세요!</h4><br/>
+	                        <div class="p_section-ment">	
+	                        총 ${data[0].trash_sum}L의 쓰레기가 수거되었어요!<br/>
+	                        총 ${data[0].total_distance}km를 걸으셨어요!<br/>
+													총 ${data[0].total_step}보를 걸으셨어요!<br/>
+													총 ${data[0].total_time}분을 걸으셨어요!<br/>
+	                        총 ${data[0].plog_count}번의 프로깅이 기록되었어요!<br/>		
 	                        </div>
 	                    </div>
 	                </div>
@@ -114,48 +115,31 @@
 	                    <h5>여러곳에서 진행하는 다양한 플로깅 이벤트를 확인해보세요.</h5>
 	                    <br/>	
 	                     <div class="container">
-	                          <div class="row">
-	                            <div class="col-4">
+											 <div class="row">
+											 	<c:forEach var="vo" items="${list }">
+													  <div class="col-4">
 	                              <div class="card">
 	                                <div class="card-header">
-	                                  2022년 9월 15일~ 10월 17일
+	                                	${vo.writedate}
 	                                </div>
-	                                <div class="card-body">
-	                                  <h5 class="card-title"></h5>
-	                                  <img src="./img/event1.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
+	                                <div class="card-body" style="height:340px">
+	                                  <h5 class="card-title" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${vo.subject}</h5>
+	                                  <%-- <img src="./img/event1.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
+																		--%>
+																		<c:if test="${vo.imgName!=null}">
+																			<img alt="이벤트 사진" src="${vo.imgName}" class="card-img" style="height:70%"/>
+																		</c:if>
+																		<c:if test="${vo.imgName==null}">
+																			<img alt="이벤트 사진" src="/img/event1.png" class="card-img" style="height:70%"/>
+																		</c:if>
 	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
+	                                  <a href="/event/eventView?no=${vo.no}" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
 	                                </div>
 	                              </div>
 	                            </div>
-	                            <div class="col-4">						       
-	                              <div class="card">
-	                                  <div class="card-header">
-	                                  2022년 9월 2일~ 10월 1일
-	                                  </div>
-	                                <img src="images/card-image.png" alt="" class="card-img-top" />
-	                                <div class="card-body">
-	                                  <h5 class="card-title"></h5>
-	                                  <img src="./img/event2.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
-	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
-	                                </div>
-	                              </div>
-	                            </div>
-	                            <div class="col-4">
-	                              <div class="card">
-	                                  <div class="card-header">
-	                                    2022년 9월 7일~ 9월 28일
-	                                  </div>
-	                                <div class="card-body">
-	                                  <h5 class="card-title"></h5>
-	                                    <img src="./img/event3.png" alt="이벤트" class="card-img" style="height: 70%; width:100%;" />
-	                                  <p class="card-text"></p>
-	                                  <a href="#" class="btn btn-primary" style="background-color:#2fb86a; border:1px solid #2fb86a; font-family: 'Noto Sans KR', sans-serif; font-weight: bold;">이벤트 바로가기</a>
-	                                </div>
-	                              </div>
-	                            </div>
-	                          </div>
+
+												</c:forEach>
+											</div>
 	                          <div class="p_event-btn-area">
 	                            <input type="button" value="더보기" onclick="location.href='/event/eventList';" class="p_event-btn">
 	                          </div>

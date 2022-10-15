@@ -26,6 +26,14 @@
 		<!-- limit ${onePageRecord} offset ${offsetPoint} -->
 	</select>
 
+	<select id="getMyWrite_service" resultType="QnaVO">
+		select no, subject, id, hit, date_format(writedate, '%m-%d %h:%i') writedate
+		from board_customerservice
+		where id = #{param1}
+		order by no desc
+		<!-- limit ${onePageRecord} offset ${offsetPoint} -->
+	</select>
+
 	<select id="getRecord" resultType="ActivityVO">
 		select sum(distance) total_distance, sum(amount_trash) trash_sum
 		from activity t1 

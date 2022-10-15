@@ -1,6 +1,5 @@
 package com.frogging.app.service;
 
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,9 +10,8 @@ import com.frogging.app.dao.EventDAO;
 import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.EventVO;
 
-
 @Service
-public class EventServiceImpl implements EventService{
+public class EventServiceImpl implements EventService {
 	@Inject
 	EventDAO dao;
 
@@ -45,7 +43,7 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public void hitCount(int no) {
 		dao.hitCount(no);
-		
+
 	}
 
 	@Override
@@ -62,5 +60,10 @@ public class EventServiceImpl implements EventService{
 	public int eventEditOk(EventVO vo) {
 		return dao.eventEditOk(vo);
 	}
-	
+
+	@Override
+	public List<EventVO> eventList_home(EventPagingVO pVO) {
+		return dao.eventList_home(pVO);
+	}
+
 }

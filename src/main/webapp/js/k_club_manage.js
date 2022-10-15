@@ -199,3 +199,27 @@ function k_btn_3(no) { //퇴출
 		});
 	});
 }
+
+
+$(function(){
+	//--------------- date picker에서 오늘 이후 선택 처리 ----------
+
+			//날짜입력창 최소 선택: 현재날짜 
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day+" 00:00";
+		$('#k_party_set_party_meeting_time').attr('min', dateString);
+		//console.log("최소"+dateString);
+
+			//날짜 최대 입력값 제한 : 2개월 이후 
+		var today = new Date();
+		today.setMonth(today.getMonth() + 2);
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		var dateString = year + '-' + month + '-' + day+" 00:00";
+		$('#k_party_set_party_meeting_time').attr('max', dateString);
+		//console.log("최대"+dateString);
+	})

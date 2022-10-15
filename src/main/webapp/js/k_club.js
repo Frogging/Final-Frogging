@@ -3,7 +3,6 @@
 var party_no;
 
 $(function(){
-	// alert("ee");
 	//--------------- date picker에서 오늘 이후 선택 처리 ----------
 			//날짜입력창 최소 선택: 현재날짜 
 		var today = new Date();
@@ -81,27 +80,55 @@ function modal_data(no) {
 	})		
 }
 
-function searchClub() {
-	$(function(){
-	//------------------------- 파티 검색 (날짜/주소) -----------------------------
-		$("#clubSearchForm").submit(function(){
-			// if($("#addr_section_1").val() == ''){
-			// 	alert("주소 대분류 선택하세요.");
-			// 	return false;
-			// }
 
-			if($("#addr_section_2").val()==""){
-				alert("주소 소분류 선택하세요.");
-				return false;
-			}
-			if($("#searchDate").val() == ""){
-				alert("검색 날짜를 선택하세요.");
-				return false;
-			}
-			return true;
-		})
-	});
-}
+// ---- 전역변수 
+const urlParams = new URL(location.href).searchParams;
+const addr_section_1 = urlParams.get('addr_section_1');
+const addr_section_2 = urlParams.get('addr_section_2');
+const searchDate = urlParams.get('searchDate');
+
+console.log(addr_section_1);
+console.log(addr_section_2);
+console.log(searchDate);
+
+
+//-----------------   파티 검색하기  --------------------
+$(function(){
+	$(".k_club_search").click(function(){
+		// if($("#addr_section_1").val() == ''){
+		// 	alert("주소 대분류 선택하세요.");
+		// 	return false;
+		// }
+		// console.log("searchChecking");
+		// console.log("//"+$("#addr_section_2").val()+"//");
+		// console.log("searchChecking");
+		
+		if($("#addr_section_2").val()=="" || $("#addr_section_2").val() == null){
+			alert("주소 소분류 선택하세요.");
+			return false;
+		}  else if($("#searchDate").val() == "" || $("#searchDate").val() == null){
+			alert("검색 날짜를 선택하세요.");
+			return false;
+		}
+
+		$("#clubSearchForm").submit();
+	})
+
+	// 전역변수 -> input select 값 선택해놓기
+	$("#searchDate").attr('value', searchDate);
+	//console.log(searchDate);
+
+	$('#addr_section_1').val(addr_section_1).prop("selected",true);
+	//?
+	$('#addr_section_2').val(addr_section_2).prop("selected",true);
+
+})
+
+
+
+
+
+
 //----------------- 신청 버튼 클릭 --------------------
 function ask_join_in() {
 	if(confirm("클럽에 참여하시겠습니까?")){
@@ -123,7 +150,7 @@ function changeAddr() {
 				tag += "<option value=''>세부 선택</option>";
 				for (let index = 0; index < result.idx; index++) {
 					tag += "<option value='"+result[index].addr_section_2+"'>"+result[index].addr_section_2+"</option>";
-					console.log(result[index].addr_section_2);
+					console.log("/"+result[index].addr_section_2+"/");
 				}
 
 				$("#addr_section_2").empty("");
