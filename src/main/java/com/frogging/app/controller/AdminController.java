@@ -2,6 +2,8 @@ package com.frogging.app.controller;
 
 import java.nio.charset.Charset;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,13 +11,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.AdminService;
+import com.frogging.app.service.CustomerServiceService;
 import com.frogging.app.vo.CustomerServiceVO;
+import com.frogging.app.vo.EventPagingVO;
 import com.frogging.app.vo.PagingVO;
+import com.frogging.app.vo.UserVO;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -43,8 +50,7 @@ public class AdminController {
 		// 클라이언트에게 데이터와 뷰파일을 담을 수 있는 뷰페이지를 별도로 만들 필요가 없다.
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text", "html",
-				Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
@@ -52,7 +58,7 @@ public class AdminController {
 
 			String msg = "<script>";
 			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/admin/userlist'";
+			msg += "location.href='/userlist'";
 			msg += "</script>";
 
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);// 성공:200
@@ -71,7 +77,7 @@ public class AdminController {
 	@GetMapping("listDel")
 	public ModelAndView listDel(String id) {
 		service.listDel(id);
-		mav.setViewName("redirect:/admin/userlist");
+		mav.setViewName("redirect:/userlist");
 		return mav;
 	}
 
@@ -97,12 +103,16 @@ public class AdminController {
 	}
 
 	// 고객센터 리스트 가져오기
-	// @GetMapping("customerServiceList")
-	// public ModelAndView customerServiceList() {
-	// mav.addObject("customerServiceList", service.customerServiceList());
-	// mav.setViewName("admin/customerServiceList");
-	// return mav;
-	// }
+	@GetMapping("customerServiceList")
+	public ModelAndView customerServiceList(PagingVO pVO) {
+		mav = new ModelAndView();
+		System.out.println(pVO.toString());
+		mav.addObject("customerServiceList", service.customerServiceList(pVO));
+		pVO.setTotalRecord(service.totalRecord2(pVO));
+		mav.addObject("pVO", pVO);
+		mav.setViewName("admin/customerServiceList");
+		return mav;
+	}
 
 	// 고객센터 글삭제
 	@GetMapping("customerServiceDel")
@@ -124,14 +134,16 @@ public class AdminController {
 		return mav;
 	}
 
-	// @GetMapping("eventList")
-	// public ModelAndView eventList() {
+	@GetMapping("eventList")
+	public ModelAndView eventList(EventPagingVO pVO) {
 
-	// mav = new ModelAndView();
-	// mav.addObject("list", service.eventList());
-	// mav.setViewName("admin/eventList");
-	// return mav;
-	// }
+		mav = new ModelAndView();
+		pVO.setTotalRecord(service.totalRecord4(pVO));
+		mav.addObject("list", service.eventList(pVO));
+		mav.addObject("pVO", pVO);
+		mav.setViewName("admin/eventList");
+		return mav;
+	}
 
 	@GetMapping("eventDel")
 	public ModelAndView eventDel(int no, String id) {
@@ -141,6 +153,30 @@ public class AdminController {
 			mav.setViewName("redirect:/admin/eventList");
 		} else {
 			mav.setViewName("redirect:eventView");
+		}
+		return mav;
+	}
+
+	@GetMapping("qnaList")
+	public ModelAndView qnaList(PagingVO pVO) {
+
+		mav = new ModelAndView();
+		System.out.println(pVO.toString());
+		pVO.setTotalRecord(service.totalRecord3(pVO));
+		mav.addObject("list", service.qnaList(pVO));
+		mav.addObject("pVO", pVO);
+		mav.setViewName("admin/qnaList");
+		return mav;
+	}
+
+	@GetMapping("qnaDel")
+	public ModelAndView qnaDel(int no, HttpSession session) {
+		int cnt = service.qnaDel(no, (String) session.getAttribute("logId")); // logId
+		mav = new ModelAndView();
+		if (cnt > 0) {
+			mav.setViewName("redirect:admin/qnaList");
+		} else {
+			mav.setViewName("redirect:qnaDetail");
 		}
 		return mav;
 	}
