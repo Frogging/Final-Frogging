@@ -302,7 +302,7 @@ ul{
     color: black;
 	font-weight: bold;
 }
-.p_multiDel,.p_search-btn, .p_communitywrite-btn, .p_communitysearch-btn{
+.p_multiDel,.p_search-btn, .p_communitywrite-btn{
     height: 30px;
     width: 80px;
     background-color: #2fb86a;
@@ -311,6 +311,17 @@ ul{
     color: white;
     font-weight: bold;
     font-size: 1.2em;
+    margin: 0 10px;
+}
+.p_communitysearch-btn{
+    height: 30px;
+    width: 80px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
     margin: 0 10px;
 }
 .p_qnasearch-btn{
