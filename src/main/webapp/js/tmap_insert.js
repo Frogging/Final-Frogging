@@ -264,7 +264,7 @@
 					url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
 					async : false,
 					data : {
-						"appKey" : "l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2",
+						"appKey" : "l7xxc6985a9bef1d438f939779b9bf5e79d8",
 						"startX" : markers[0].getPosition()._lng,
 						"startY" : markers[0].getPosition()._lat,
 						"endX" : markers[1].getPosition()._lng,
@@ -397,7 +397,7 @@
 			url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
 			async:false,
 			data:{
-				"appKey" : "l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2",
+				"appKey" : "l7xxc6985a9bef1d438f939779b9bf5e79d8",
 				"searchKeyword" : searchKeyword,
 				"resCoordType" : "EPSG3857",
 				"reqCoordType" : "WGS84GEO",
@@ -603,7 +603,7 @@
 					url : "https://apis.openapi.sk.com/tmap/geo/reversegeocoding?version=1&format=json&callback=result",
 					async : false,
 					data : {
-						"appKey" : "l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2",
+						"appKey" : "l7xxc6985a9bef1d438f939779b9bf5e79d8",
 						"coordType" : "WGS84GEO",
 						"addressType" : "A10",
 						"lon" : lon,
