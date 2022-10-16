@@ -88,7 +88,7 @@ $(function(){
                     <option value="content">글내용</option>
                 </select>
                 <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:700px;"/>
-                <input type="submit" value="찾기" class="p_communitysearch-btn"  style="height:40px; width:150px;"/>
+                <input type="submit" value="찾기" class="p_communitysearch-btn"  style="height:40px; width:120px;"/>
            		</form>
            		
            		<i class="fa-solid fa-magnifying-glass k_green"></i></div>

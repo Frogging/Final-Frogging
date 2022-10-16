@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">  
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
 <script>
@@ -31,32 +33,91 @@
 <script src="/js/watch_position.js" ></script>
 <link rel = "stylesheet" href = "/js_css/style.css" type = "text/css">
 <style>
+
+.container{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 24px;
+}
+#checkCourseForm{
+	height: 40px;
+}
+#amount_trash{
+	height: 40px;
+    width: 180px;
+}
+#sort{
+	height: 40px;
+    width: 180px;
+}
+.ploggingSave-btn{
+	height: 40px;
+    width: 180px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.ploggingStart-btn, .ploggingEnd-btn{
+    height: 100px;
+    width: 150px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@media screen and (min-width:152px) and (max-width:1024px){
+	.p_container1{
+		    min-height: 100%;
+   			position: relative;
+	}
+	.map_wrap3{
+		height:70%;
+	}
+	#map_div{
+		height:700px;
+	}
+
+	.ploggingStart-btn, .ploggingEnd-btn{
+	    height: 150px;
+	    width: 150px;
+	    background-color: #2fb86a;
+	    border : 1px solid white;
+	    border-radius:5px;
+	    color: white;
+	    font-weight: bold;
+	    font-size: 24px;
+	    margin: 0 10px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	}
+}
+
 </style>
 </head>
 <body onload="initTmap();">
+<div class="p_container" >
 	<div id="map_wrap" class="map_wrap3">
 			<div id="map_div"></div>
 	</div>
+	<br>
 	<div class = "container">
-		 <ul>
-	        <li>위도:<span id="latitude"></span></li>
-	        <li>경도:<span id="longitude"></span></li>
-	        <li>accuracy:<span id = "accuracy"></span></li>
-	        <li>watchPosition count:<span id="count"></span></li>
-	        <li>update count:<span id="update_count"></span></li>
-	        <li>distance:<span id = "distance"></span></li>
-	        <li>time:<span id = "time"></span></li>
-	        <li>location list count:<span id = "locationList_count"></span></li>
-	        <li>example vertical length:<span id = "vertical_length"></span></li>
-	    </ul>
 	    <form method = "post" id = "checkCourseForm">
 	    	쓰레기 처리량 : <input type = "text" id = "amount_trash" name = "amount_trash">
 	    	파티번호 : <input type = "text" id = "sort" name = "sort">
-	    	<input type = "submit" value = "이동한 코스 저장">
+	    	<input type = "submit" value = "이동한 코스 저장" class="ploggingSave-btn">
 	    </form>
-	    <p id="demo">show error please</p>
-    <input type = "button" value = "위치 확인 시작" onclick = "startChecking();">
-    <input type = "button" value="확인를 끝낸다" onclick = "endChecking();" />
+	    <br>
+    <input type = "button" value = "플로깅 시작" class="ploggingStart-btn" onclick = "startChecking();">
+    <input type = "button" value="플로깅 종료" class="ploggingEnd-btn" onclick = "endChecking();" />
 	</div>
+</div>	
 </body>
 </html>

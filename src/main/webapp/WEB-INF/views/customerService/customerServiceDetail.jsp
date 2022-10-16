@@ -93,7 +93,7 @@
             </form>
             <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center; padding:5px;">
                 <c:if test="${logStatus=='Admin'}">
-                	<button type="button" class="btn black mr5" onclick="location.href='/customerServiceList'" style="width:150px;">관리자페이지로</button>
+                	<button type="button" class="btn black mr5" onclick="location.href='/admin/customerServiceList'" style="width:150px;">관리자페이지로</button>
                 </c:if>
                 <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceList'">목록으로</button>
                 <c:if test="${vo.id==logId}">

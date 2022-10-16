@@ -84,7 +84,7 @@ $(function(){
 								<a
 									href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a>
 							</div> <c:if test="${vo.reply_count>0}">
-								<span style="margin: auto 10px;">(${vo.reply_count})</span>
+								<span style="margin: auto 1px;">(${vo.reply_count})</span>
 							</c:if>
 						</li>
 						<li>${vo.id }</li>

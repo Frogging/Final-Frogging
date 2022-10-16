@@ -48,6 +48,11 @@
 		order by reply_group desc, depth asc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
+	<select id="getcustomerService" resultType="CustomerServiceVO" parameterType="int">
+		select no,reply_group, subject, content, hit, id, writedate
+		from board_customerservice
+		where no=${param1}
+	</select>
 	
 	<select id="totalRecord2" resultType="int">
 		select count(no) cnt from board_customerservice
