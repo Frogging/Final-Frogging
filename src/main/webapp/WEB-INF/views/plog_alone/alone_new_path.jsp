@@ -15,6 +15,17 @@
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
+				
+<%-- 				
+				<div class="k_section_title">
+					<div>오늘은 혼자 걷고 싶어!</div>
+					<div class="k_green">프로깅 혼자하기  <i class="fa-solid fa-circle-plus"></i></div>
+				</div>
+			</div> --%>
+
+			<!-- ----------- make path ------------->
+			<div class="k_path_list">
+				<div class="k_wrapper">
 				<div class="k_section_title_links">
 					<div>
 						<i class="fa-solid fa-square-caret-right k_green"></i>
@@ -29,16 +40,6 @@
 						나만의 경로 만들기
 					</div>
 				</div>
-<%-- 				
-				<div class="k_section_title">
-					<div>오늘은 혼자 걷고 싶어!</div>
-					<div class="k_green">프로깅 혼자하기  <i class="fa-solid fa-circle-plus"></i></div>
-				</div>
-			</div> --%>
-
-			<!-- ----------- make path ------------->
-			<div class="k_path_list">
-				<div class="k_wrapper">
 					<ul class="k_rec_path_button">
 						<li><a href="/alone/alone_rec_path">추천 코스 선택하기</a></li>
 						<li class="active"><a href="/alone/alone_new_path">나만의 코스 만들기</a></li>
