@@ -99,4 +99,19 @@
 		delete from board_question where no=${param1} and id=#{param2}
 	</delete>
 
+
+	<select id="totalRecord5" resultType="int">
+		select count(course_no) cnt from course
+		<if test='searchWord!=null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+
+	<select id="totalRecord6" resultType="int">
+		select count(no) cnt from party
+		<if test='searchWord!=null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	
 </mapper>

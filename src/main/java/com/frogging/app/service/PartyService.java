@@ -3,6 +3,7 @@ package com.frogging.app.service;
 import java.util.List;
 
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
@@ -12,9 +13,9 @@ import com.frogging.app.vo.PlogPagingVO;
 public interface PartyService {
 	public int newPartyRequest(PartyDetailVO p_detail_vo);
 
-	public List<PartyVO> getPartyList(PlogPagingVO p_pageVO);
+	public List<PartyVO> getPartyList(ClubPagingVO p_pageVO);
 
-	public int totalRecord(PlogPagingVO p_pageVO);
+	public int totalRecord(ClubPagingVO p_pageVO);
 
 	public int totalRecord_path(PlogPagingVO p_pageVO);
 
@@ -64,7 +65,7 @@ public interface PartyService {
 
 	public int addReason(int partyno, int party_detail_no, int reason);
 
-	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
+	public List<PartyVO> getTotalClub(ManagePagingVO pVO);
 
 	public int clubMultiDel(PartyVO vo);
 

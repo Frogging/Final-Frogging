@@ -40,3 +40,25 @@ $(function(){
 		$(".k_write_tab_s").css("border-color", "#017935")
 	})
 })
+
+
+function detailEditOk() {
+	var check = true;
+	$(function(){
+		if($("#nickname").val()==""){
+			alert("닉네임을 입력하세요");
+			check = false;
+		} if($("#sex").val()==""){
+			alert("성별을 선택하세요");
+			check = false;
+		}
+		if($("#height").val()==""){
+			alert("키를 입력하세요");
+			check = false;
+		}
+		if(check){
+			$("#myDetailFrm").submit();
+		}
+
+	})
+}

@@ -49,6 +49,7 @@
 		<if test="searchLoc!=null">
 			where detail.addr like "%${addr_section_1}%" and detail.addr like "%${addr_section_2}%"
 		</if>
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
 
@@ -410,6 +411,9 @@
 			from course
 		) t3
 		on t2.course_no = t3.course_no
+
+		order by t2.no desc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
 	<delete id="deleteClubRequest">

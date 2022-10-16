@@ -123,7 +123,7 @@
 						<ul class="k_rec_path_page">
 						
 							<%-- 이전페이지 --%>
-							<c:if test="${p_pageVO.nowPage<=1}" > 
+							<c:if test="${p_PageVO.nowPage<=1 }">
 								<li><i class="fa-solid fa-chevron-left active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage>1}" >

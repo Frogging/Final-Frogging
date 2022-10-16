@@ -64,5 +64,11 @@
 		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
 	</select>
+
+	<update id="detailEditOk">
+		update user
+		set height=#{height}, sex=${sex}, nickname=#{nickname}
+		where id=#{id}
+	</update>
 </mapper>
 

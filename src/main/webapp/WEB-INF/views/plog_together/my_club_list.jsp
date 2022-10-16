@@ -97,7 +97,7 @@
 							<li>수락 대기</li> --%>
 						</ul>
 
-						<ul class="k_rec_path_page">
+						<%-- <ul class="k_rec_path_page">
 							<li><i class="fa-solid fa-chevron-left active"></i></li>
 							<li class="active">1</li>
 							<li>2</li>
@@ -105,7 +105,7 @@
 							<li>4</li>
 							<li>5</li>
 							<li><i class="fa-solid fa-chevron-right active"></i></li>
-						</ul>
+						</ul> --%>
 					</div>
 				</div>
 			</div>
@@ -134,27 +134,9 @@
 								</li>
 							</c:forEach>
 
-							<%-- <li>12</li>
-							<li><a href="">서울숲 한바퀴</a></li>
-							<li><a href="">응봉산~서울숲 코스</a></li>
-							<li>10/11 18:00</li>
-							<li class="open_modal">
-								<span>2/6</span>
-								<i class="fa-solid fa-n k_green click-btn-c"></i>
-								<i class="fa-solid fa-gear k_green click-btn-c"></i>
-							</li>
-
-							<li>13</li>
-							<li><a href="">왕십리역 한바퀴</a></li>
-							<li><a href="">왕십리역~한강공원 코스</a></li>
-							<li>10/12 18:00</li>
-							<li class="open_modal">
-								<span>2/6</span>
-								<i class="fa-solid fa-gear k_green click-btn-c"></i>
-							</li> --%>
 					</ul>
 
-					<ul class="k_rec_path_page">
+					<%-- <ul class="k_rec_path_page">
 							<li><i class="fa-solid fa-chevron-left active"></i></li>
 							<li class="active">1</li>
 							<li>2</li>
@@ -162,7 +144,7 @@
 							<li>4</li>
 							<li>5</li>
 							<li><i class="fa-solid fa-chevron-right active"></i></li>
-					</ul>
+					</ul> --%>
 				</div>
 			</div>
 		</section>

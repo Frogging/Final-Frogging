@@ -1,6 +1,6 @@
 package com.frogging.app.vo;
 
-public class ManagePagingVO {
+public class ClubPagingVO {
 	private int nowPage = 1; // 현재 페이지
 	private int onePageRecord = 12; // 한페이지에 출력할 레코드수
 	private int totalRecord; // 총레코드수
@@ -11,14 +11,18 @@ public class ManagePagingVO {
 	private int startPage = 1;
 	private int onePageCount = 5;
 
-	private String searchKey;
-	private String searchWord;
+	// 검색
+	private String searchLoc; // 위치 검색
+	private String addr_section_1;
+	private String addr_section_2;
+	private String searchDate; // 날짜 검색
 
 	@Override
 	public String toString() {
-		return "ManagePagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", startPage=" + startPage + ", onePageCount="
-				+ onePageCount + "]";
+		return "PlogPagingVO [addr_section_1=" + addr_section_1 + ", addr_section_2=" + addr_section_2 + ", nowPage="
+				+ nowPage + ", offsetPoint=" + offsetPoint + ", onePageCount=" + onePageCount + ", onePageRecord="
+				+ onePageRecord + ", searchDate=" + searchDate + ", searchLoc=" + searchLoc + ", startPage=" + startPage
+				+ ", totalPage=" + totalPage + ", totalRecord=" + totalRecord + "]";
 	}
 
 	public int getNowPage() {
@@ -87,20 +91,36 @@ public class ManagePagingVO {
 		this.onePageCount = onePageCount;
 	}
 
-	public String getSearchKey() {
-		return searchKey;
+	public String getSearchLoc() {
+		return searchLoc;
 	}
 
-	public void setSearchKey(String searchKey) {
-		this.searchKey = searchKey;
+	public void setSearchLoc(String searchLoc) {
+		this.searchLoc = searchLoc;
 	}
 
-	public String getSearchWord() {
-		return searchWord;
+	public String getSearchDate() {
+		return searchDate;
 	}
 
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
+	public void setSearchDate(String searchDate) {
+		this.searchDate = searchDate;
+	}
+
+	public String getAddr_section_1() {
+		return addr_section_1;
+	}
+
+	public void setAddr_section_1(String addr_section_1) {
+		this.addr_section_1 = addr_section_1;
+	}
+
+	public String getAddr_section_2() {
+		return addr_section_2;
+	}
+
+	public void setAddr_section_2(String addr_section_2) {
+		this.addr_section_2 = addr_section_2;
 	}
 
 }

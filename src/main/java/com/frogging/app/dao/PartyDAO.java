@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
@@ -20,10 +21,10 @@ public interface PartyDAO {
 	public int newPartyRequest(PartyDetailVO p_detail_vo);
 
 	// 파티 리스트 가져오기
-	public List<PartyVO> getPartyList(PlogPagingVO p_pageVO);
+	public List<PartyVO> getPartyList(ClubPagingVO p_pageVO);
 
 	// 리스트 세팅 - 파티
-	public int totalRecord(PlogPagingVO p_pageVO);
+	public int totalRecord(ClubPagingVO p_pageVO);
 
 	// 리스트 세팅 - 경로
 	public int totalRecord_path(PlogPagingVO p_pageVO);
@@ -92,7 +93,7 @@ public interface PartyDAO {
 	public int addReason(int partyno, int party_detail_no, int reason);
 
 	// 파티 관리자 리스트
-	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO);
+	public List<PartyVO> getTotalClub(ManagePagingVO pvo);
 
 	// 파티 여러개 삭제
 	public int clubMultiDel(PartyVO vo);
