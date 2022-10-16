@@ -18,7 +18,13 @@
 		order by no desc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
-	
+
+	<select id="eventList_home" resultType="EventVO">
+		select no, subject, content, id, hit, date_format(writedate, '%y년%m월%d일') writedate
+		from board_event
+		order by no desc
+		limit 3 offset 0
+	</select>
 		
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from board_event

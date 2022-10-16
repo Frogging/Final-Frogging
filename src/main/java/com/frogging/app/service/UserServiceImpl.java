@@ -10,6 +10,7 @@ import com.frogging.app.dao.UserDAO;
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CommunityVO;
 import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.CustomerServiceVO;
 import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.UserVO;
 
@@ -42,6 +43,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<CourseVO> getUserCourse(String id) {
 		return dao.getUserCourse(id);
+	}
+
+	@Override
+	public List<CustomerServiceVO> getMyWrite_service(String id) {
+		return dao.getMyWrite_service(id);
+	}
+
+	@Override
+	public int detailEditOk(UserVO vo) {
+		return dao.detailEditOk(vo);
 	}
 
 }

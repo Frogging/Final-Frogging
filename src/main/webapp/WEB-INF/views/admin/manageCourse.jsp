@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_admin.js"></script>
 </head>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
@@ -16,12 +17,12 @@
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
 	</ul>
 <body class="k_body">
-	<div style="height:100%;">
+	<div style="height:110%;">
 	<section>
 		<div class="k_wrapper">
 
 
-			<div class="k_section_title">
+			<div class="k_section_title_s">
 				<div>코스 관리</div>
 			</div>
 
@@ -30,7 +31,7 @@
 
 	<section class="k_mycourse">
 		<div class="k_wrapper">
-			<form action="">
+			<form method="post" action="/admin/courseMultiDel" id="listFrm_2"">
 			<ul class="k_my_course_grid">
 				<li class="k_my_list_head"><span>번호</span></li>
 				<li class="k_my_list_head"><span>코스명</span></li>
@@ -43,18 +44,46 @@
 					<li><span>${vo.course_no}</span></li>
 					<li><a href="/mypage/myCourseView?no=${vo.course_no}"><span>${vo.course_name}</span></a></li>
 					<li><span>${vo.addr}</span></li>
-					<li><span>${vo.time}</span></li>
-					<li><span>${vo.distance}</span></li>
-					<li><span><input type="checkbox"></span></li>
+					<li><span>${vo.time}분</span></li>
+					<li><span>${vo.distance}km</span></li>
+					<li><span><input class="list" type="checkbox" name="noList" value="${vo.course_no}"></span></li>
 				</c:forEach>
 			</ul>
 			<div class="k_manage_btn_section">
-				<input type="checkbox">
-				<input type="button" value="삭제하기">
+				<input type="checkbox" class="allChk">
+				<input type="button" class="delBtn_2" value="삭제하기">
 			</div>
 
 			</form>
 
+				<ul class="k_rec_path_page">
+						
+							<%-- 이전페이지 --%>
+							<c:if test="${pVO.nowPage<=1 }">
+								<li><i class="fa-solid fa-chevron-left active"></i></li>
+							</c:if>
+							<c:if test="${pVO.nowPage>1}" >
+								<li><a href="/admin/manageCourse?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+							</c:if>
+								
+							<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage + pVO.onePageCount - 1 }" >
+								<c:if test="${p<=pVO.totalPage }" >
+									<li
+									<c:if test="${p==pVO.nowPage }">
+										style = "font-weight:bold;"
+									</c:if>
+									><a href="/admin/manageCourse?nowPage=${p }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p }</a></li>
+								</c:if>
+							</c:forEach>
+								
+							<!-- 다음페이지 -->
+							<c:if test="${pVO.nowPage>=pVO.totalPage }" > 
+								<li><i class="fa-solid fa-chevron-right active"></i></li>
+							</c:if>
+							<c:if test="${pVO.nowPage<pVO.totalPage}" > 
+									<li><a href="/admin/manageCourse?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+							</c:if>
+						</ul>
 			
 		
 		</div>

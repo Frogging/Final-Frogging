@@ -50,7 +50,10 @@
 
 					<div class="k_path_list_bg">
 						<!-- recommendation path select -->
-						<form action="/club/make_club_rec_path" method="get" id="pathSearchFrm" onclick="searchPath();">
+						<form action="">
+						
+						</form>
+						<form method="get" id="pathSearchFrm" onclick="searchPath();">
 							<div class="k_rec_path_select">
 								<span>내 근처의 플로깅 코스: </span>
 								<div>
@@ -95,7 +98,7 @@
 						<ul class="k_rec_path_page">
 						
 							<%-- 이전페이지 --%>
-							<c:if test="${p_pageVO.nowPage<=1}" > 
+							<c:if test="${p_PageVO.nowPage<=1 }">
 								<li><i class="fa-solid fa-chevron-left active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage>1}" >

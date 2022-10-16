@@ -123,7 +123,7 @@
 						<ul class="k_rec_path_page">
 						
 							<%-- 이전페이지 --%>
-							<c:if test="${p_pageVO.nowPage<=1}" > 
+							<c:if test="${p_PageVO.nowPage<=1 }">
 								<li><i class="fa-solid fa-chevron-left active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage>1}" >
@@ -185,7 +185,7 @@
 
 							<div class="k_party_detail_join">
 								<div class="k_close_popup click-btn">돌아가기</div>
-								<div class="click-btn">파티 참여 신청하기</div>
+								<%-- <div class="click-btn">파티 참여 신청하기</div> --%>
 							</div>
 						</div>
 					</section>

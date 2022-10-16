@@ -29,6 +29,7 @@ import com.frogging.app.service.AddrService;
 import com.frogging.app.service.DataService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.PartyService;
+import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
@@ -52,32 +53,34 @@ public class PartyController {
 
 	@Inject
 	MapsService m_service;
-	
+
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
-	public ModelAndView start_party(PlogPagingVO p_PageVO) {
+	public ModelAndView start_party(ClubPagingVO pageVO) {
 
 		// DB - 파티 가져오기 + 날짜 조건 + 위치 조건
 		// 위치 조건 가져오기 addr_1 + addr_2
-		if (p_PageVO.getAddr_section_1() != null) {
+		if (pageVO.getAddr_section_1() != null) {
 
 			// 시군구 뒤에 \n 있는거 처리
-			String pull = p_PageVO.getAddr_section_2();
+			String pull = pageVO.getAddr_section_2();
 			String[] words = pull.split("\\s");
-			p_PageVO.setAddr_section_2(words[0]);
+			pageVO.setAddr_section_2(words[0]);
 
-			p_PageVO.setSearchLoc(p_PageVO.getAddr_section_1() + " " + p_PageVO.getAddr_section_2());
+			pageVO.setSearchLoc(pageVO.getAddr_section_1() + " " + pageVO.getAddr_section_2());
 		}
 
 		// 페이지 + 조건 검색 세팅
-		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
-		// System.out.println(p_PageVO.toString());
+		// p_PageVO.setOnePageRecord(4);
+		pageVO.setTotalRecord(p_service.totalRecord(pageVO));
+		// System.out.println(pageVO.toString());
 
 		mav = new ModelAndView();
 
 		mav.addObject("addr_1", d_service.getAddr_1());
-		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
-		mav.addObject("list", p_service.getPartyList(p_PageVO));
+		mav.addObject("addr_2", d_service.getAddr_2(pageVO.getAddr_section_1()));
+		mav.addObject("list", p_service.getPartyList(pageVO));
+		mav.addObject("pVO", pageVO);
 		mav.setViewName("plog_together/join_club");
 		return mav;
 	}
@@ -225,14 +228,14 @@ public class PartyController {
 			// 1-2) jsonString -> JSONObject로 변환
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jObj_party = (JSONObject) jsonParser.parse(jsonString);
-			
+
 			voList.put("path", jObj_party);
-			
+
 			List<CourseVO> course_detail = m_service.detailSelect(no);
 			JSONObject jObj_detail;
 			String name;
-			
-			for(int i = 0; i < course_detail.size(); i++) {
+
+			for (int i = 0; i < course_detail.size(); i++) {
 				jsonString = mapper.writeValueAsString(course_detail.get(i));
 				jObj_detail = (JSONObject) jsonParser.parse(jsonString);
 				voList.put(course_detail.get(i).getWaypoint(), jObj_detail);
@@ -418,8 +421,9 @@ public class PartyController {
 		String msg = "<script>";
 
 		try {
-			// party를 참조하는 party_detail 먼저 삭제
+			// party_request-> party_detail ->party 순서로 삭제
 
+			p_service.deleteClubRequest(no);
 			p_service.deleteClubDetail(no);
 			// System.out.println(no);
 			int result = p_service.deleteClub(no);

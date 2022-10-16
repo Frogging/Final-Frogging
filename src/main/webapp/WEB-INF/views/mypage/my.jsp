@@ -68,6 +68,7 @@
 			<div class="my_write_tab">
 				<div><button class="active click-btn k_write_tab_c">커뮤니티</button></div>
 				<div><button class="click-btn k_write_tab_q">QnA</button></div>
+				<div><button class="click-btn k_write_tab_s">고객센터</button></div>
 			</div>
 
 			<ul class="k_my_write_grid">
@@ -76,21 +77,30 @@
 				<li class="k_my_list_head"><span>작성일</span></li>
 				<li class="k_my_list_head"><span>조회수</span></li>
 
+				<%-- 커뮤니티 --%>
 				<c:forEach var="vo" items="${c_list}">
 					<li class="k_my_write_c"><span>${vo.no}</span></li>
-					<li class="k_my_write_c"><span>${vo.subject}</span></li>
+					<li class="k_my_write_c"><span><a href="/community/communityView?no=${vo.no}">${vo.subject}</a></span></li>
 					<li class="k_my_write_c"><span>${vo.writedate}</span></li>
 					<li class="k_my_write_c"><span>${vo.hit}</span></li>
 				</c:forEach>
 
+
+				<%-- 큐앤애이 --%>
 				<c:forEach var="vo" items="${q_list}">
 					<li class="k_my_write_q"><span>${vo.no}</span></li>
-					<li class="k_my_write_q"><span>${vo.subject}</span></li>
+					<li class="k_my_write_q"><span><a href="/qna/qnaDetail?no=${vo.no}">${vo.subject}</a></span></li>
 					<li class="k_my_write_q"><span>${vo.writedate}</span></li>
 					<li class="k_my_write_q"><span>${vo.hit}</span></li>
 				</c:forEach>
 
-	
+				<%-- 고객센터 --%>
+				<c:forEach var="vo" items="${s_list}">
+					<li class="k_my_write_s"><span>${vo.no}</span></li>
+					<li class="k_my_write_s"><span><a href="/customerService/customerServiceDetail?no=${vo.no}">${vo.subject}</a></span></li>
+					<li class="k_my_write_s"><span>${vo.writedate}</span></li>
+					<li class="k_my_write_s"><span>${vo.hit}</span></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</section>

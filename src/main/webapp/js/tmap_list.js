@@ -124,6 +124,120 @@
 			}, i * 500)
 		}
 	}
+
+	// ------------------------------------------ 김소현: 맵 크기 변경한 mapload ----------------
+	function mapLoad_2(map_arr, detail_arr){
+		for(let i = 0; i < map_arr.length; i++){
+			setTimeout(() => {
+				if(map_arr[i].type == 1){
+					var lat = new Array();
+					var log = new Array();
+					console.log(i);
+					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
+						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
+							width : "100%",
+							height : "100%",
+							zoom : 15,
+							zoomControl : false,
+							scrollwheel : false,
+							httpsMode : true
+						});
+					if(map_arr[i].course_no == 99999){
+						$('#map_div_99999').css('width', '500px');
+						$('#map_div_99999').css('height', '400px');
+						map[i].resize();
+					}
+					for(var j = 0; j < detail_arr.length; j++){
+						if(map_arr[i].course_no == detail_arr[j].course_no){
+							if(detail_arr[j].waypoint == 0){
+								map[i].setCenter(new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log));
+							}
+							lat.push(detail_arr[j].lat);
+							log.push(detail_arr[j].log);
+							
+							if(detail_arr[j].waypoint == 0){
+								//console.log("start marker");
+								marker_s = new Tmapv2.Marker({
+										position : new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log),
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map : map[i],
+										zIndex : 99999
+									});
+								//markers.push(marker_s);
+							} else if (detail_arr[j].waypoint == 1){
+								//console.log("end marker");
+								marker_e = new Tmapv2.Marker({
+										position : new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log),
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map : map[i],
+										zIndex : 99999
+									});
+								//markers.push(marker_e);
+							} else {
+								//console.log("waypoint marker");
+								marker = new Tmapv2.Marker({
+										position: new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log), //Marker의 중심좌표 설정.
+										icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(detail_arr[j].waypoint-1)+".png",
+										iconSize : new Tmapv2.Size(24, 38),
+										map: map[i], //Marker가 표시될 Map 설정.
+										zIndex : 99999
+									});
+								//markers.push(marker);
+							}
+						}	
+					}
+					console.log(markers);
+					searchRoute(lat, log, map[i]);
+					setBoundary(lat, log, map[i]);
+					//setTimeout(searchRoute, 1500, lat, log, map[i]);
+				} else if(map_arr[i].type == 2){
+					console.log("type : 2");
+					var lat = new Array();
+					var log = new Array();
+					var point = [];
+					var end_point;
+					
+					console.log(i);
+					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
+						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
+							width : "500px",
+							height : "400px",
+							zoom : 15,
+							zoomControl : false,
+							scrollwheel : false
+						});
+						for(var j = 0; j < detail_arr.length; j++){
+							if(map_arr[i].course_no == detail_arr[j].course_no){
+								if(detail_arr[j].waypoint == 0){
+									map[i].setCenter(new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log));
+								}
+								if(detail_arr[j].waypoint != 1){
+									point.push(new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log));
+								}else{
+									end_point = new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log);
+								}
+							}
+						}
+						point.push(end_point);
+						
+						for(var k = 0; k < point.length; k++){
+							marker = new Tmapv2.Marker({
+									position: new Tmapv2.LatLng(point[k]._lat, point[k]._lng), //Marker의 중심좌표 설정.
+									icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+(k+1)+".png",
+									iconSize : new Tmapv2.Size(24, 38),
+									map: map[i], //Marker가 표시될 Map 설정.
+									zIndex : 99999
+								});
+							markers.push(marker);
+						}
+						drawLine(point, map[i]);
+				}
+			}, i * 500)
+		}
+	}
+	//----------------------------------------------------------------------
 	function addComma(num) {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');

@@ -49,6 +49,7 @@
 		<if test="searchLoc!=null">
 			where detail.addr like "%${addr_section_1}%" and detail.addr like "%${addr_section_2}%"
 		</if>
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
 
@@ -94,6 +95,43 @@
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
+<select id="getPathList_m" resultType="CourseVO">
+		select 
+		course.course_no,
+		course.course_name,
+		course.distance, 
+		course.time,
+		course.type,
+		activity.plog_total,
+		detail.addr
+		from 
+
+		(
+			select 
+			course_no, course_name, distance,time, type
+			from course
+		) course
+
+		left outer join
+
+		(
+			select 
+			course_no, count(course_no) plog_total
+			from activity
+			group by course_no
+		) activity
+
+		on activity.course_no = course.course_no
+
+		left outer join
+
+		(select course_no, addr
+		from course_detail
+		where waypoint = 1 ) detail
+		on course.course_no = detail.course_no
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
+	</select>
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from party
 		<!-- <if test="searchLoc!=null">
@@ -248,6 +286,7 @@
 		course.course_no,
 		course.course_name,
 		course.distance, 
+		course.course_info,
 		course.time,
 		course.type,
 		activity.plog_total,
@@ -259,7 +298,7 @@
 
 		(
 			select 
-			course_no, course_name, distance,time,type
+			course_no, course_name, distance,time,type,course_info
 			from course
 			where course_no = ${param1}
 		) course
@@ -372,5 +411,40 @@
 			from course
 		) t3
 		on t2.course_no = t3.course_no
+
+		order by t2.no desc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
+
+	<delete id="deleteClubRequest">
+		delete from party_request
+		where party_no = ${param1}
+	</delete>
+
+	<delete id="clubMultiDel">
+		delete from party
+		<where>
+			<foreach item="item" index="index" collection="noList" open="no in (" separator="," close=")">
+              ${item}
+			</foreach>
+		</where>
+	</delete>
+
+	<delete id="clubMultiDel_detail">
+		delete from party_detail
+		<where>
+			<foreach item="item" index="index" collection="noList" open="party_no in (" separator="," close=")">
+              ${item}
+			</foreach>
+		</where>
+	</delete>
+
+	<delete id="clubMultiDel_request">
+		delete from party_request
+		<where>
+			<foreach item="item" index="index" collection="noList" open="party_no in (" separator="," close=")">
+              ${item}
+			</foreach>
+		</where>
+	</delete>
 </mapper>
