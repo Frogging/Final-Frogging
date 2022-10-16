@@ -112,8 +112,10 @@
 	    	<input type = "submit" value = "이동한 코스 저장" class="ploggingSave-btn">
 	    </form>
 	    <br>
-    <input type = "button" value = "플로깅 시작" class="ploggingStart-btn" onclick = "startChecking();">
-    <input type = "button" value="플로깅 종료" class="ploggingEnd-btn" onclick = "endChecking();" />
+	<div style="margin: 0 auto;  text-align:center;  justify-content: space-between; float:center; width:80%;">
+	    <input type = "button" value = "플로깅 시작" class="ploggingStart-btn" onclick = "startChecking();">
+	    <input type = "button" value="플로깅 종료" class="ploggingEnd-btn" onclick = "endChecking();" />
+	</div>
 	</div>
 </div>	
 </body>
