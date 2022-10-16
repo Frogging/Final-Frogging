@@ -80,7 +80,7 @@ i{
 .k_section_title_s{ /*간격*/
 	margin: var(--space-large) var(--space-medium);
 	padding: var(--space-medium);
-	background-color: var(--ct-dark-green);
+	background-color: var(--ct-dark-grey);
 	color: var(--main-white);
 	border-radius: var(--radius-mild);
 	box-shadow: var(--shadow-basic);
