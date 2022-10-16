@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="/js_css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="/css/k_style.css" type="text/css"/>
 		<style>
 		.nickchk1{
 			display:none;
@@ -132,15 +132,22 @@ $(document).ready(function(){
 </script>
 
 
-<body>
+<body class="k_body_b">
+<div class="k_bg">
+<div class="k_wrapper">
+		<span>&nbsp</span>
+		<div class="k_section_title_s" style="">
+					<div>[회원가입] - 사용자 정보 입력</div>
+		</div>
+<div class="k_agree_wrapper">
 <div id="#">
-	<h1>회원가입</h1>
+	<%-- <h1>회원가입</h1> --%>
 	<div id="#">
-		<h2>작성자정보<span>
+		<%-- <h2>작성자정보<span> --%>
 	</div>
 	<form method="post" action="/signUpOk" id="sign">
 		<div id="#">
-			<ul>
+			<ul class="k_user_info">
 				<li>아이디</li>
 					<li><input type="text" name="id" id="id" value="${vo.id }" readonly/></li>
 				<li>이름</li>
@@ -158,13 +165,15 @@ $(document).ready(function(){
 						<option id="sex" value=2>여</option>
 					</select>
 				</li>
-				<li>키</li>
-				<li><input type="number" name="height" id="height" maxlength="3" oninput="maxLengthChk(this)" style="width:50px"/>cm</li>
-				<li><input type="submit" value="가입하기"/></li>
+				<li>키(cm)</li>
+				<li><input type="number" name="height" id="height" maxlength="3" oninput="maxLengthChk(this)" /></li>
 			</ul>
-			
+			<input type="submit" value="가입하기" class="k_user_btn"/>
 		</div>
 	</form>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
