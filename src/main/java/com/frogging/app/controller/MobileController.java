@@ -92,7 +92,7 @@ public class MobileController {
 		avo.setCourse_no(course_no);
 		
 		int height = u_service.getUserDetail(id).getHeight();
-		int step = (int)(avo.getDistance() * 100 / (height * 0.37));
+		int step = (int)(avo.getDistance() * 1000 / (height * 0.37));
 		
 		avo.setStep(step);
 		

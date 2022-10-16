@@ -14,6 +14,7 @@ public class ActivityVO {
 	private String after_image;
 	private String date;
 	private int sort;
+	private int no;
 
 	// user+total info
 	private String nickname;
@@ -198,4 +199,12 @@ public class ActivityVO {
 		this.total_time = total_time;
 	}
 
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+	
 }

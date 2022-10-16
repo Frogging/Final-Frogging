@@ -73,7 +73,6 @@
     margin: 0 10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
-
 @media screen and (min-width:152px) and (max-width:1024px){
 	.p_container1{
 		    min-height: 100%;
@@ -116,6 +115,7 @@
 	    </form>
 	    <br>
 	<div style="margin: 0 auto;  text-align:center;  justify-content: space-between; float:center; width:80%;">
+		<input type = "button" value = "출발지 동기화" class="ploggingStart-btn" onclick = "synchronizeStart();">
 	    <input type = "button" value = "플로깅 시작" class="ploggingStart-btn" onclick = "startChecking();">
 	    <input type = "button" value="플로깅 종료" class="ploggingEnd-btn" onclick = "endChecking();" />
 	</div>

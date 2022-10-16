@@ -2,7 +2,9 @@ package com.frogging.app.service;
 
 import java.util.List;
 
+import com.frogging.app.vo.ActivityPagingVO;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CourseVO;
 
 public interface ActivityService {
 	public List<ActivityVO> getWeeklyCount();
@@ -52,4 +54,10 @@ public interface ActivityService {
 	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log, int activity_no);
 	
 	public int getActivityNo(String id);
+	
+	public int totalUserCourse(ActivityPagingVO apvo);
+	
+	public List<ActivityVO> activityAllSelect(ActivityPagingVO apvo);
+	
+	public List<CourseVO> courseUserAllSelect(int activity_no1, int activity_no2, int activity_no3);
 }

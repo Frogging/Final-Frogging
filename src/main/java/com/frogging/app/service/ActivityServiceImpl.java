@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.frogging.app.dao.ActivityDAO;
+import com.frogging.app.vo.ActivityPagingVO;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CourseVO;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -135,6 +137,24 @@ public class ActivityServiceImpl implements ActivityService {
 	public int getActivityNo(String id) {
 		// TODO Auto-generated method stub
 		return dao.getActivityNo(id);
+	}
+
+	@Override
+	public int totalUserCourse(ActivityPagingVO apvo) {
+		// TODO Auto-generated method stub
+		return dao.totalUserCourse(apvo);
+	}
+
+	@Override
+	public List<ActivityVO> activityAllSelect(ActivityPagingVO apvo) {
+		// TODO Auto-generated method stub
+		return dao.activityAllSelect(apvo);
+	}
+
+	@Override
+	public List<CourseVO> courseUserAllSelect(int activity_no1, int activity_no2, int activity_no3) {
+		// TODO Auto-generated method stub
+		return dao.courseUserAllSelect(activity_no1, activity_no2, activity_no3);
 	}
 
 }

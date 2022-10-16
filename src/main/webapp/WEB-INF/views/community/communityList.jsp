@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
 <style>
+.p_conatiner{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .p_community > li > a{
 	text-decoration:none;
 	color:#fff;
@@ -95,7 +98,7 @@ $(function(){
 			</div>  
 			        <br>
         <div class="p_communityList">
-              <input type="button" value="선택삭제" class="p_multiDel" style="height:40px; width:100px;"/>   
+              <input type="button" value="선택삭제" class="p_multiDel" style="height:40px; width:100px; font-family: 'Noto Sans KR', sans-serif;"/>   
         <form method="post" action="/community/multiDel" id="p_communityForm">
             <ul class="p_community">
                 <li><input type="checkbox" class="p_allChk"/></li>
@@ -165,7 +168,7 @@ $(function(){
             </form>	
             --> 
             <div class="p_communitywrite">
-                    <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'" style="height:40px; width:100px;"/>
+                    <input type="button" class="p_communitywrite-btn" value="글쓰기" onclick="location.href='/community/communityForm'" style="height:40px; width:100px; font-family: 'Noto Sans KR', sans-serif;"/>
             </div>
         </div>
         </div>

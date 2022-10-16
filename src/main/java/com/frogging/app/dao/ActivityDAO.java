@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.frogging.app.vo.ActivityPagingVO;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CourseVO;
 
 @Mapper
 @Repository
@@ -70,4 +72,10 @@ public interface ActivityDAO {
 	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log, int activity_no);
 	
 	public int getActivityNo(String id);
+	
+	public int totalUserCourse(ActivityPagingVO apvo);
+	
+	public List<ActivityVO> activityAllSelect(ActivityPagingVO apvo);
+	
+	public List<CourseVO> courseUserAllSelect(int activity_no1, int activity_no2, int activity_no3);
 }
