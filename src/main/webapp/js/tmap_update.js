@@ -539,6 +539,7 @@
 			if(count > 1){
 				searchRoute();
 			}
+			reverseGeo(lon, lat, 0);
 		}else if(number == 1){
 			if(count < 2){
 				marker_e = new Tmapv2.Marker(
@@ -557,6 +558,7 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
+			reverseGeo(position.lng(), position.lat(), 1);
 		}else if(number == 2){
 			if(count < 2){
 				alert('출발지, 도착지부터 선택해주세요.');
@@ -573,7 +575,9 @@
 				markers.push(marker);
 			}
 			searchRoute();
+			reverseGeo(position.lng(), position.lat(), 2);
 		}
+		
 	}
 	
 	// 검색 결과를 클릭해서 경로 설정
@@ -601,6 +605,7 @@
 				searchRoute();
 			}
 			console.log(count);
+			reverseGeo(lon, lat, 0);
 		}
 		else if(number == 1){
 			if(count < 2){
@@ -620,6 +625,7 @@
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
+			reverseGeo(lon, lat, 1);
 		}
 		else if(number == 2){
 			if(count < 2){
@@ -637,7 +643,9 @@
 				markers.push(marker);
 			}
 			searchRoute();
+			reverseGeo(lon, lat, 2);
 		}
+		
 	}
 	
 	// 좌표를 주소로(도로명, 지번 가능)
