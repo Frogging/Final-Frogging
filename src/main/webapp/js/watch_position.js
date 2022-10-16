@@ -19,7 +19,7 @@ $(function(){
 		let amount_trash = $("#amount_trash").val();
 		let tDistance = parseFloat(total_distance.toFixed(4)) / 1000;
 		let tTime = parseFloat(total_time.toFixed(4));
-		let dnt = [tDistance, tTime];
+		//let dnt = [tDistance, tTime];
 		let sort = $("#sort").val();
 		if(sort == ""){
 			alert(sort);
@@ -74,7 +74,7 @@ function initTmap() {
 		map = new Tmapv2.Map("map_div", {
 			center : new Tmapv2.LatLng(37.56520450, 126.98702028),
 			width : "100%",
-			height : "400px",
+			height : "1200px",
 			zoom : 17,
 			zoomControl : true,
 			scrollwheel : true,
@@ -296,7 +296,7 @@ function loadCourse(loaded_course, type){
 					url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
 					async : false,
 					data : {
-						"appKey" : "l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2",
+						"appKey" : "l7xxc6985a9bef1d438f939779b9bf5e79d8",
 						"startX" : loaded_course[0].log,
 						"startY" : loaded_course[0].lat,
 						"endX" : loaded_course[1].log,

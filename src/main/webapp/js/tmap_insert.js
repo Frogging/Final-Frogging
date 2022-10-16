@@ -524,7 +524,6 @@
 			searchRoute();
 			reverseGeo(position.lng(), position.lat(), 2);
 		}
-		reverseGeo(lon, lat, 2);
 	}
 	
 	// 검색 결과를 클릭해서 경로 설정
@@ -593,7 +592,7 @@
 			searchRoute();
 			reverseGeo(lon, lat, 2);
 		}
-		reverseGeo(lon, lat, 2);
+		
 	}
 	
 	// 좌표를 주소로(도로명, 지번 가능)

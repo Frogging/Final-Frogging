@@ -46,7 +46,7 @@
 
 					<div class="k_path_list_bg">
 						<!-- recommendation path select -->
-						<form action="">
+
 							<div class="k_make_path">
 								<div class="k_make_path_map" id = "map_div" style= "overflow : hidden;"></div>
 								<ul class="k_make_path_detail">
@@ -59,10 +59,10 @@
 									<li class="k_green"><label for="">도착 위치</label></li>
 									<li class="k_path_detail_in"><input type="text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></li>
 									<li class="k_make_path_total" ><span id = "result">예상 소요 시간: / 예상 거리: </span></li>
-									<li class="k_make_path_total"><input type="submit" value="코스 저장"></li>
+									<li class="k_make_path_total"><form><input type="submit" value="코스 저장"></form></li>
 								</ul>
 							</div>
-						</form>
+
 
 					</div>
 					<div class="k_alone_start_button">

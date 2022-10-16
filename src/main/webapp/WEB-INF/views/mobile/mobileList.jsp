@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/k_style.css">
 <script
-	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxc6985a9bef1d438f939779b9bf5e79d8"></script>
 <script type = "text/javascript">
 $(function(){
 	$("#courseSearchForm").submit(function(){
@@ -20,6 +20,11 @@ $(function(){
 	});
 });
 
+function confirmCourse(course_name){
+	if(confirm(course_name + "를 선택하시겠습니까?")){
+		
+	}
+}
 function initTmap() {
 	// 1. 지도 띄우기
 	var map_arr = new Array();

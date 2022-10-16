@@ -9,7 +9,7 @@ public class ActivityVO {
 	private double distance;
 	private int step;
 	private double time;
-	private int amount_trash;
+	private double amount_trash;
 	private String before_image;
 	private String after_image;
 	private String date;
@@ -78,11 +78,11 @@ public class ActivityVO {
 		this.time = time;
 	}
 
-	public int getAmount_trash() {
+	public double getAmount_trash() {
 		return amount_trash;
 	}
 
-	public void setAmount_trash(int amount_trash) {
+	public void setAmount_trash(double amount_trash) {
 		this.amount_trash = amount_trash;
 	}
 
