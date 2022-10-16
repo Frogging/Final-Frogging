@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.ActivityService;
@@ -68,16 +70,19 @@ public class MobileController {
 	}
 	
 	@PostMapping("activityOk/{course_no}")
+	@ResponseBody
 	public void activityOk(@PathVariable("course_no") int course_no,
 						@RequestParam("lat[]") List<String> lat, 
 						@RequestParam("log[]") List<String> log, 
 						ActivityVO avo,
-						HttpServletRequest request) {
+						HttpServletRequest request,
+						HttpSession session) {
 		int result1 = 0;
 		int result2 = 0;
 		int waypoint = 0;
 		CourseVO cvo = m_service.courseSelect(course_no);
 		
+		session.setAttribute("logId","jjiho2001@gmail.com");
 		String id = (String)request.getSession().getAttribute("logId");
 		
 		avo.setId(id);
