@@ -11,7 +11,10 @@ import com.frogging.app.service.UserService;
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.MyPagingVO;
+import com.frogging.app.vo.UserVO;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,6 +22,10 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -100,6 +107,37 @@ public class MypageController {
 		return mav;
 	}
 
+	// 상세졍보 저장
+	@PostMapping(value = "/detailEditOk")
+	public ResponseEntity<String> detailEditOk(HttpSession session, UserVO vo) {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		String msg = "<script>";
+
+		// System.out.println(vo.toString());
+		String id = (String) session.getAttribute("logId");
+		vo.setId(id);
+
+		try {
+			int result = u_service.detailEditOk(vo);
+			if (result > 0) {
+				msg += "alert('수정완료');";
+				msg += "location.href='/mypage/myDetail';";
+			} else {
+				msg += "alert('수정실패');";
+				msg += "history.go(-1)";
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		msg += "</script>";
+		return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+	}
+
 	// 나의 엑티비티 페이지
 	@GetMapping(value = "activity")
 	public ModelAndView getMyAct(HttpSession session) {
@@ -153,29 +191,29 @@ public class MypageController {
 
 	// ------------------------내가 만든 코스 ------------------------------
 	@GetMapping("myCourse")
-	public ModelAndView getMyCourse(HttpSession session, CoursePagingVO cpvo) {
+	public ModelAndView getMyCourse(HttpSession session, CoursePagingVO cpvo, MyPagingVO mvo) {
 
+		int[] coursenoList = { 0, 0, 0, 0, 0, 0 };
 		mav = new ModelAndView();
-
 		String id = (String) session.getAttribute("logId");
 
-		// CoursePagingVO cpvo = new CoursePagingVO();
-		// cpvo.setOnePageRecord(6);
-		cpvo.setTotalRecord(m_service.totalCourse(cpvo));
+		// 페이징
+		mvo.setId(id);
+		cpvo.setTotalRecord(u_service.setTotalRecord_my(mvo));
+		// cpvo.setTotalRecord(m_service.totalCourse(cpvo));
+		mvo.setTotalRecord(u_service.setTotalRecord_my(mvo));
 
-		List<CourseVO> courseList = m_service.courseAllselect_t(cpvo);
-
-		// System.out.println(courseList.get(0).toString());
+		List<CourseVO> courseList = u_service.courseAllselect_t(mvo);
 
 		int startCourse = courseList.get(courseList.size() - 1).getCourse_no();
 		int endCourse = courseList.get(0).getCourse_no();
 
 		mav.addObject("courseList", courseList);
 		mav.addObject("cpvo", cpvo);
+		mav.addObject("mvo", mvo);
 		mav.addObject("courseDetail", m_service.detailAllselect_tt(startCourse, endCourse));
 
-		mav.addObject("c_list", u_service.getUserCourse(id));
-
+		mav.addObject("c_list", u_service.getUserCourse(mvo));
 		mav.setViewName("/mypage/myCourse");
 		return mav;
 	}

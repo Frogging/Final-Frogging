@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="/js_css/style.css" type="text/css" />
+<link rel="stylesheet" href="/css/k_style.css" type="text/css" />
 <style>
 </style>
 <script>
@@ -25,9 +25,15 @@
 	}		
 </script>
 </head>
-<body>
-	<div>
-		<textarea>
+<body class="k_body_b">
+	<div class="k_bg">
+	<div class="k_wrapper">
+		<span>&nbsp</span>
+		<div class="k_section_title_s" style="">
+					<div>[회원가입] - 약관동의</div>
+		</div>
+	<div class="k_agree_wrapper">
+		<textarea id="k_agree">
 			< Frogging >('http://localhost:8010'이하 'Frogging')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
 
 ○ 이 개인정보처리방침은 2022년 9월 20부터 적용됩니다.
@@ -281,10 +287,12 @@
 
 예시 ) - 20XX. X. X ~ 20XX. X. X 적용 (클릭)
 		</textarea>
-		<ul>
+		<ul class="k_agree_more">
 			<li><input type="checkbox" id="checkbox">위 내용을 확인하였으며 동의합니다.</li>
-			<li><input type="button" id="ok" onclick="is_checked()" value="확인"><input type="button" onclick="location.href='/'" value="취소"></li>
+			<li><input class="k_agree_btn" type="button" id="ok" onclick="is_checked()" value="확인"><input  class="k_agree_btn" type="button" onclick="location.href='/'" value="취소"></li>
 		</ul>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frogging.app.service.ActivityService;
+import com.frogging.app.service.AdminService;
 import com.frogging.app.service.CourseService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.ActivityVO;
@@ -40,6 +41,9 @@ public class ManageController {
 
 	@Inject
 	CourseService c_service;
+
+	@Inject
+	AdminService m_service;
 
 	// 통계 페이지
 	@GetMapping("/statistic")
@@ -81,13 +85,15 @@ public class ManageController {
 	// ------------------------- 코스 ---------------------------
 	// 코스 관리 페이지
 	@GetMapping("/manageCourse")
-	public ModelAndView manageCourse() {
+	public ModelAndView manageCourse(ManagePagingVO pVO) {
 
 		mav = new ModelAndView();
+		pVO.setTotalRecord(m_service.totalRecord5(pVO));
 
-		ManagePagingVO m_pageVO = new ManagePagingVO();
-		mav.addObject("c_list", p_service.getPathList_m(m_pageVO));
+		mav.addObject("c_list", p_service.getPathList_m(pVO));
 		mav.setViewName("/admin/manageCourse");
+		mav.addObject("pVO", pVO);
+
 		// System.out.println(p_service.getPathList(p_pageVO));
 		return mav;
 	}
@@ -124,13 +130,16 @@ public class ManageController {
 	// ------------------------- 클럽 ---------------------------
 	// 파티 관리 페이지
 	@GetMapping("/manageClub")
-	public ModelAndView manageParty() {
+	public ModelAndView manageParty(ManagePagingVO pVO) {
 
 		mav = new ModelAndView();
 
-		PartyDetailVO p_dVO = new PartyDetailVO();
-		p_dVO.setJoin_status(4);
-		mav.addObject("c_list", p_service.getTotalClub(p_dVO));
+		pVO.setTotalRecord(m_service.totalRecord6(pVO));
+		System.out.println(m_service.totalRecord6(pVO));
+		// PartyDetailVO p_dVO = new PartyDetailVO();
+		// p_dVO.setJoin_status(4);
+		mav.addObject("c_list", p_service.getTotalClub(pVO));
+		mav.addObject("pVO", pVO);
 		mav.setViewName("/admin/manageClub");
 		return mav;
 	}

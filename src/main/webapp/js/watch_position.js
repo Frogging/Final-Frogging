@@ -59,6 +59,7 @@ $(function(){
 					alert("지정하신 코스를 이용하지는 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
 				}
 			}, error : function(e) {
+				alert(e.responseText);
 				console.log(e.responseText);
 				alert("실제 이동 경로 및 확인에 실패하였습니다.");
 			}

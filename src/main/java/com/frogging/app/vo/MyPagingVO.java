@@ -1,25 +1,19 @@
 package com.frogging.app.vo;
 
-public class ManagePagingVO {
-	private int nowPage = 1; // 현재 페이지
-	private int onePageRecord = 12; // 한페이지에 출력할 레코드수
-	private int totalRecord; // 총레코드수
-	private int totalPage;// 총페이지수
-	private int offsetPoint; // 페이지 레코드 offset
+public class MyPagingVO {
+	// 페이징
+	private int nowPage = 1; // 현재페이지
+	private int onePageRecord = 6;// 한페이지에 출력할 레코드수
+	private int totalRecord; // 총레코드 수
+	private int totalPage; // 총페이지 수
+	private int offsetPoint; // 페이지레코드 선택할 위치
 
-	// 페이지 번호
-	private int startPage = 1;
-	private int onePageCount = 5;
+	// 페이지번호
+	private int onePageCount = 5;// 한번에 표시할 페이지 수
+	private int startPage = 1;// 표시할 페이지의 시작번호
 
-	private String searchKey;
-	private String searchWord;
-
-	@Override
-	public String toString() {
-		return "ManagePagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", startPage=" + startPage + ", onePageCount="
-				+ onePageCount + "]";
-	}
+	// 검색
+	private String id;
 
 	public int getNowPage() {
 		return nowPage;
@@ -27,7 +21,7 @@ public class ManagePagingVO {
 
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
-		// 선택 레코드 시작 위치
+		// 선택레코드 시작위치
 		offsetPoint = (nowPage - 1) * onePageRecord;
 		// 표시할 페이지의 시작번호
 		startPage = (nowPage - 1) / onePageCount * onePageCount + 1;
@@ -60,7 +54,6 @@ public class ManagePagingVO {
 
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
-
 	}
 
 	public int getOffsetPoint() {
@@ -71,14 +64,6 @@ public class ManagePagingVO {
 		this.offsetPoint = offsetPoint;
 	}
 
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-
 	public int getOnePageCount() {
 		return onePageCount;
 	}
@@ -87,20 +72,20 @@ public class ManagePagingVO {
 		this.onePageCount = onePageCount;
 	}
 
-	public String getSearchKey() {
-		return searchKey;
+	public int getStartPage() {
+		return startPage;
 	}
 
-	public void setSearchKey(String searchKey) {
-		this.searchKey = searchKey;
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
 	}
 
-	public String getSearchWord() {
-		return searchWord;
+	public String getId() {
+		return id;
 	}
 
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

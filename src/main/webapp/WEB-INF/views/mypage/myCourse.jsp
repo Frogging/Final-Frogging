@@ -90,6 +90,36 @@
 
 			</ul>
 			
+
+			<!-- recommand path paging -->
+						<ul class="k_rec_path_page">
+						
+							<%-- 이전페이지 --%>
+							<c:if test="${mvo.nowPage<=1 }">
+								<li><i class="fa-solid fa-chevron-left active"></i></li>
+							</c:if>
+							<c:if test="${mvo.nowPage>1}" >
+								<li><a href="/mypage/myCourse?nowPage=${mvo.nowPage-1 }"><i class="fa-solid fa-chevron-left active"></i></a></li>
+							</c:if>
+								
+							<c:forEach var="p" begin="${mvo.startPage }" end="${mvo.startPage + mvo.onePageCount - 1 }" >
+								<c:if test="${p<=mvo.totalPage }" >
+									<li
+									<c:if test="${p==mvo.nowPage }">
+										style = "color:#2fb86a;"
+									</c:if>
+									><a href="/mypage/myCourse?nowPage=${p }">${p }</a></li>
+								</c:if>
+							</c:forEach>
+								
+							<!-- 다음페이지 -->
+							<c:if test="${mvo.nowPage>=mvo.totalPage }" > 
+								<li><i class="fa-solid fa-chevron-right active"></i></li>
+							</c:if>
+							<c:if test="${mvo.nowPage<mvo.totalPage}" > 
+									<li><a href="/mypage/myCourse?nowPage=${mvo.nowPage-1 }"><i class="fa-solid fa-chevron-right active"></i></a></li>
+							</c:if>
+						</ul>
 		</div>
 	</section>
 </body>

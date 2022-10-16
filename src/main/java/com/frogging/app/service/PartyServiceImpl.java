@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.frogging.app.dao.PartyDAO;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.ManagePagingVO;
 import com.frogging.app.vo.PartyDetailVO;
@@ -26,12 +27,12 @@ public class PartyServiceImpl implements PartyService {
 	}
 
 	@Override
-	public List<PartyVO> getPartyList(PlogPagingVO p_pageVO) {
+	public List<PartyVO> getPartyList(ClubPagingVO p_pageVO) {
 		return dao.getPartyList(p_pageVO);
 	}
 
 	@Override
-	public int totalRecord(PlogPagingVO p_pageVO) {
+	public int totalRecord(ClubPagingVO p_pageVO) {
 		return dao.totalRecord(p_pageVO);
 	}
 
@@ -151,8 +152,8 @@ public class PartyServiceImpl implements PartyService {
 	}
 
 	@Override
-	public List<PartyVO> getTotalClub(PartyDetailVO p_dVO) {
-		return dao.getTotalClub(p_dVO);
+	public List<PartyVO> getTotalClub(ManagePagingVO pVO) {
+		return dao.getTotalClub(pVO);
 	}
 
 	@Override
