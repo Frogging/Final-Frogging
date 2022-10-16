@@ -32,13 +32,13 @@
 					</div>
 				</div>
 
-				<div class="k_section_title">
+				<%-- <div class="k_section_title">
 					<div>원하는 모임이 없다면,</div>
 					<div class="k_green">나의 모임 만들기 <i class="fa-solid fa-circle-plus"></i></div>
 					<button class="k_my_party click-btn-l">
 						<a href="/club/my_club_list">나의 모임 관리</a>
 					</button>
-				</div>
+				</div> --%>
 			</div>
 			<!-- ----------- recommendation path ------------->
 			<div class="k_path_list">

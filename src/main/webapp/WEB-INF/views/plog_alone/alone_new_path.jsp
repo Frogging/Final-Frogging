@@ -29,12 +29,12 @@
 						나만의 경로 만들기
 					</div>
 				</div>
-				
+<%-- 				
 				<div class="k_section_title">
 					<div>오늘은 혼자 걷고 싶어!</div>
 					<div class="k_green">프로깅 혼자하기  <i class="fa-solid fa-circle-plus"></i></div>
 				</div>
-			</div>
+			</div> --%>
 
 			<!-- ----------- make path ------------->
 			<div class="k_path_list">
