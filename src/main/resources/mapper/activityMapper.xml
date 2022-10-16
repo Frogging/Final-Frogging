@@ -17,8 +17,7 @@
 		from
 		(select (select nickname from user t2 where t2.id = t1.id) nickname, TRUNCATE(sum(distance), 2)  total_distance, id
 		from activity as t1 
-		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
-		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		where date between subdate(curdate(),date_format(curdate(),'%w')+7) and subdate(curdate(),date_format(curdate(),'%w'))
 		group by id order by sum(distance) desc) t3
 		where (@rownum:=0)=0 
 		limit 3  offset 0
@@ -37,8 +36,7 @@
 		from
 		(select (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count, id
 		from activity as t1 
-		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
-		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		where date between subdate(curdate(),date_format(curdate(),'%w')+7) and subdate(curdate(),date_format(curdate(),'%w'))
 		group by id order by count(id) desc) t3
 		where (@rownum:=0)=0
 		limit 3  offset 0

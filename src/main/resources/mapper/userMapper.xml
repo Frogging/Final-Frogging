@@ -54,7 +54,7 @@
 			select 
 			course_no, course_name, distance,time, type
 			from course
-			where id = #{param1}
+			where id = #{id}
 		) course
 
 		left outer join
@@ -63,6 +63,8 @@
 		from course_detail
 		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 
 	<update id="detailEditOk">
@@ -70,5 +72,18 @@
 		set height=#{height}, sex=${sex}, nickname=#{nickname}
 		where id=#{id}
 	</update>
+
+	<select id="setTotalRecord_my" resultType="int">
+	select count(course_no) from course
+	where id = #{id}
+	</select>
+
+	<select id = "courseAllselect_t" resultType = "CourseVO">
+		select course_no, course_name, course_info, distance, time, type
+		from course
+		where id = #{id}
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
+	</select>
 </mapper>
 

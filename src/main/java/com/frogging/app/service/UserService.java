@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CommunityVO;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.CustomerServiceVO;
+import com.frogging.app.vo.MyPagingVO;
 import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.UserVO;
 
@@ -22,5 +24,9 @@ public interface UserService {
 
 	public ActivityVO getRecord(String id);
 
-	public List<CourseVO> getUserCourse(String id);
+	public List<CourseVO> getUserCourse(MyPagingVO mvo);
+
+	public List<CourseVO> courseAllselect_t(MyPagingVO mvo);
+
+	public int setTotalRecord_my(MyPagingVO mvo);
 }
