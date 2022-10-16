@@ -67,5 +67,7 @@ public interface ActivityDAO {
 	
 	public int activityInsert(ActivityVO avo);
 	
-	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log);
+	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log, int activity_no);
+	
+	public int getActivityNo(String id);
 }

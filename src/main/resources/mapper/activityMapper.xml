@@ -15,10 +15,9 @@
 
 		select @rownum:=@rownum+1 as rownum, t3.total_distance, (select nickname from user t2 where t2.id = t3.id) nickname
 		from
-		(select (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance) total_distance, id
+		(select (select nickname from user t2 where t2.id = t1.id) nickname, TRUNCATE(sum(distance), 2)  total_distance, id
 		from activity as t1 
-		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
-		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		where date between subdate(curdate(),date_format(curdate(),'%w')+7) and subdate(curdate(),date_format(curdate(),'%w'))
 		group by id order by sum(distance) desc) t3
 		where (@rownum:=0)=0 
 		limit 3  offset 0
@@ -37,8 +36,7 @@
 		from
 		(select (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count, id
 		from activity as t1 
-		WHERE date(date) BETWEEN subdate(curdate(),date_format(curdate(),'%w')-1) 
-		AND subdate(curdate(),date_format(curdate(),'%w')-7)
+		where date between subdate(curdate(),date_format(curdate(),'%w')+7) and subdate(curdate(),date_format(curdate(),'%w'))
 		group by id order by count(id) desc) t3
 		where (@rownum:=0)=0
 		limit 3  offset 0
@@ -54,7 +52,7 @@
 
 		select @rownum:=@rownum+1 as rownum, t3.total_distance , (select nickname from user t2 where t2.id = t3.id) nickname
 		from
-		(select (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance) total_distance, id
+		(select (select nickname from user t2 where t2.id = t1.id) nickname, TRUNCATE(sum(distance), 2)  total_distance , id
 		from activity as t1 
 		where date between date_format(now(), '%Y-%m-01') and now()
 		group by id order by sum(distance) desc) t3
@@ -135,7 +133,7 @@
 		(
 		select @rownum:=@rownum+1 as rownum, t3.total_distance , (select nickname from user t2 where t2.id = t3.id) nickname, t3.id
 		from
-		(select (select nickname from user t2 where t2.id = t1.id) nickname, sum(distance) total_distance, id
+		(select (select nickname from user t2 where t2.id = t1.id) nickname, TRUNCATE(sum(distance), 2)  total_distance, , id
 		from activity as t1 
 		group by id order by sum(distance) desc) t3
 		where (@rownum:=0)=0 
@@ -159,7 +157,7 @@
 	</select>
 
 	<select id="getUserStatistic_m" resultType="ActivityVO">
-		select sum(distance) total_distance, sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
+		select TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
 		from activity t1 
 		where id = #{param1} and date between date_format(now(), '%Y-%m-01') and now()
 	</select>
@@ -169,7 +167,7 @@
 		from activity t1 
 		where id = #{param1} and date between date_format(now(), '%Y-01') and now() -->
 
-		select sum(distance) total_distance, sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
+		select TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
 		from activity t1 
 		where id = #{param1}
 	</select>
@@ -220,10 +218,10 @@
 
 	<select id="getPlogGraph" resultType="ActivityVO">
 		SELECT MONTH(any_value(date)) AS month,  
-		sum(distance) total_distance, 
+		TRUNCATE(sum(distance), 2)  total_distance, 
 		count(id) plog_count, 
 		sum(step) total_step,
-		sum(time) total_time,
+		TRUNCATE(sum(time),2) total_time,
 		sum(amount_trash) trash_sum
 		FROM activity 
 		group by month
@@ -267,7 +265,13 @@
 	</insert>
 	
 	<insert id = "courseuserInsert">
-		insert into course_user(course_no, id, waypoint, lat, log)
-		values(${param1}, #{param2}, ${param3}, #{param4}, #{param5})
+		insert into course_user(course_no, id, waypoint, lat, log, activity_no)
+		values(${param1}, #{param2}, ${param3}, #{param4}, #{param5}, ${param6})
 	</insert>
+	
+	<select id = "getActivityNo" resultType = "int">
+		select no from activity 
+		where id = #{param1}
+		order by no desc limit 1;
+	</select>
 </mapper>

@@ -65,9 +65,9 @@
 	}
 	}
     </style>
-	<script>
+<script>
 
-	</script>
+</script>
 <body>
 	<div class="p_container1">
 	<div class="swiper-container">
@@ -79,9 +79,9 @@
 	                        <input type="button" value="함께하기" class="p_plogging-btn" onclick="location.href='/club/join_club'"/>
 	                        <input type="button" value="혼자하기" class="p_plogging-btn" onclick="location.href='/alone/alone_rec_path'"/>					
 	                    </div>
-	                    <div class="p_section">
+	                    <div class="p_section" >
 	                        <h3>${data[0].month}월의 기록</h3> <h4>이번 달 기록을 확인하세요!</h4><br/>
-	                        <div class="p_section-ment">	
+	                        <div class="p_section-ment" style="font-weight:normal">	
 	                        총 ${data[0].trash_sum}L의 쓰레기가 수거되었어요!<br/>
 	                        총 ${data[0].total_distance}km를 걸으셨어요!<br/>
 													총 ${data[0].total_step}보를 걸으셨어요!<br/>

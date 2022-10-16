@@ -101,7 +101,7 @@
 				<c:forEach var="vo" items="${a_list}">
 					<li>
 						<ul class="k_a_each_box">
-							<li><img src="/img/course_sample.png" alt=""></li>
+							<li><div>지도</div></li>
 							<li class="k_a_main_info">${vo.date}</li>
 							<li class="k_a_main_info">${vo.course_name}</li>
 							<li class="k_a_div"></li>

@@ -77,9 +77,19 @@ i{
 	padding-bottom: 10px;
 	border-bottom: var(--border-bold) var(--ct-dark-green);
 }
-.k_section_title, .k_section_title *{ /*폰트*/
+.k_section_title_s{ /*간격*/
+	margin: var(--space-large) var(--space-medium);
+	padding: var(--space-medium);
+	background-color: var(--ct-dark-grey);
+	color: var(--main-white);
+	border-radius: var(--radius-mild);
+	box-shadow: var(--shadow-basic);
+	text-align: center;
+	/* border-bottom: var(--border-bold) var(--ct-dark-grey); */
+}
+.k_section_title, .k_section_title *, .k_section_title_s *{ /*폰트*/
 	font-size: var(--size-large-1);
-	font-weight: bold;
+	font-weight:bold;
 }
 .k_section_title .k_green, .k_section_title .k_green>select, .k_green{ /*색상*/
 	color: var(--main-green);
@@ -211,11 +221,17 @@ i{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.k_party_list_more{/*더보기 아이콘 정렬+마진*/
+.k_club_paging{/*더보기 아이콘 정렬+마진*/
 	text-align: center;
-	margin: calc(var(--space-large)*2) 0;
+	margin: calc(var(--space-large)*2) auto;
+	color: var(--main-white);
+	display: flex;
+	justify-content: center;
 }
-.k_party_list_more>i{/*더보기 아이콘 폰트*/
+.k_club_paging li{
+	margin: 0 var(--space-medium);
+}
+.k_club_paging>i{/*더보기 아이콘 폰트*/
 	color: var(--main-white);
 	font-size: calc(var(--size-large-1)*1.5);
 }
@@ -393,6 +409,7 @@ i{
 }
 .k_rec_path_page>li{ /*추천경로 페이지-사이즈*/
 	width: 16.5%;
+	text-align: center;
 }
 .k_rec_path_page .active{/*추천경로 페이지-아이콘*/
 	color: var(--main-green);
@@ -1722,4 +1739,78 @@ i{
 }
 .k_make_path_edit img{
 	width: 20px;
+}
+/* -------------------------- 회원가입 ------------------------- */
+.k_body_b{
+	background: url("/img/greenary.jpg") center center;
+	width: 100%;
+	height: 100%;
+}
+.k_body_b>.k_bg{
+	width: 100%;
+	height: 110%;
+	-webkit-backdrop-filter: blur(0.3px);
+  backdrop-filter: blur(0.3px);
+	-webkit-backdrop-filter: brightness(.6);
+  backdrop-filter: brightness(.6);
+}
+.k_agree_wrapper{
+	width: inherit;
+	text-align: center;
+	margin: 0 auto;
+}
+#k_agree{
+	/* text-align: center; */
+	width: 100%;
+	height: 500px;
+	margin: 0 auto;
+	padding: var(--space-large);
+	border-radius: var(--radius-mild);
+}
+.k_agree_more li{
+	margin-top: 20px;
+	color: var(--main-white);
+}
+.k_agree_more .k_agree_btn{
+	width: 80px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-weight: bold;
+	background-color: var(--ct-dark-grey);
+	border-style: none;
+	color: var(--main-white);
+	margin: var(--space-medium);
+}
+.k_user_info{
+	background-color: rgba(56, 56, 56, 0.87);
+	/* border: 4px solid white; */
+	border-radius: var(--radius-mild);
+	box-shadow: var(--shadow-basic);
+	width: 100%;
+	padding: var(--space-large);
+	display: flex;
+	flex-wrap: wrap;
+}
+.k_user_info li{
+	text-align: left;
+	color: var(--main-white);
+	margin: var(--space-medium);
+}
+.k_user_info li:nth-child(2n+1){
+	width: 25%;
+}
+.k_user_info li:nth-child(2n+2){
+	width: 70%;
+}
+.k_user_info li input,.k_user_info select{
+	width: 100%;
+}
+.k_user_btn{
+	width: 250px;
+	height: 50px;
+	line-height: 50px;
+	font-weight: bold;
+	border-radius: var(--radius-mild);
+	margin: var(--space-large) auto;
 }

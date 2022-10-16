@@ -51,6 +51,9 @@
 	<select id = "courseAllselect_t" resultType = "CourseVO">
 		select course_no, course_name, course_info, distance, time, type
 		from course
+		<if test = "searchWord != null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
 		order by course_no desc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
@@ -71,6 +74,9 @@
 		select count(course_no) from course where course_no = ${param1}
 	</select>
 	<select id = "totalCourse" resultType = "int">
-		select count(course_no) from course;
+		select count(course_no) from course
+		<if test = 'searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
 	</select>
 </mapper>

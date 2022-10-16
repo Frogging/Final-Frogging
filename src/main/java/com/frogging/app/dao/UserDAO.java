@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CommunityVO;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.CustomerServiceVO;
+import com.frogging.app.vo.MyPagingVO;
 import com.frogging.app.vo.QnaVO;
 import com.frogging.app.vo.UserVO;
 
@@ -17,6 +19,9 @@ import com.frogging.app.vo.UserVO;
 public interface UserDAO {
 	// 유저 상세정보
 	public UserVO getUserDetail(String id);
+
+	// 유저 상세정보 저장
+	public int detailEditOk(UserVO vo);
 
 	// 유저가 쓴 글 - 커뮤니티 리스트
 	public List<CommunityVO> getMyWrite(String id);
@@ -31,5 +36,10 @@ public interface UserDAO {
 	public ActivityVO getRecord(String id);
 
 	// 유저가 만든 코스
-	public List<CourseVO> getUserCourse(String id);
+	public List<CourseVO> getUserCourse(MyPagingVO mvo);
+
+	public List<CourseVO> courseAllselect_t(MyPagingVO mvo);
+
+	// 유저 코스 페이징
+	public int setTotalRecord_my(MyPagingVO mvo);
 }

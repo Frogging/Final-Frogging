@@ -68,7 +68,7 @@
 			</div>
 		</div>
 		<div class="mobileBody">	
-            <input type="button" value="측정하기" class="mobile-plogging-btn" onclick="location.href='maps/geolocation01/20'"/>
+            <input type="button" value="측정하기" class="mobile-plogging-btn" onclick="location.href='mobileList'"/>
 		</div>	
 	</div>
 </body>

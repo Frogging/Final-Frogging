@@ -4,6 +4,16 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script src="/js/k_mypage.js"></script>
+	<script>
+		var selected = "${u_vo.sex}";
+		
+		$(function(){
+			$('#sex').val(selected).prop("selected",true);
+			//alert(selected);	
+			console.log(selected);
+		});
+	</script>
 </head>
 <body class="k_body">
 	<section>
@@ -34,13 +44,11 @@
 
 	<section class="k_mydetail">
 		<div class="k_wrapper">
-			<form action="">
+			<form action="/mypage/detailEditOk" method="post" id="myDetailFrm">
 			<div class="k_mydetail_info">
 				<div class="k_mydetail_pic">
-					<form action="">
 						<div class="k_mydetail_imgbox"><img src="/img/profile.png" alt=""></div>	
-						프로필 이미지 업로드 <input type="file" /> 
-					</form>
+						<%-- 프로필 이미지 업로드 <input type="file" />  --%>
 				</div>
 				
 			
@@ -48,18 +56,18 @@
 					<li class="k_mydetail_label">이름</li>
 					<li>${u_vo.name}</li>
 					<li class="k_mydetail_label">닉네임</li>
-					<li><input type="text" value="${u_vo.nickname }"></li>
+					<li><input type="text" name="nickname" id="nickname" value="${u_vo.nickname }"></li>
 					<li class="k_mydetail_label">아이디</li>
 					<li>${u_vo.id }</li>
 					<li class="k_mydetail_label">성별</li>
 					<li>
-						<select name="" id="">
+						<select name="sex" id="sex">
 							<option value="1">남성</option>
 							<option value="2">여성</option>
 						</select>
 					</li>
 					<li class="k_mydetail_label">키</li>
-					<li><input type="number" value="${u_vo.height}">cm</li>
+					<li><input type="number" name="height" id ="height" value="${u_vo.height}">cm</li>
 				</ul>
 			</div>
 
@@ -69,7 +77,7 @@
 		<div class="k_mydetail_set">
 			<div><a href="/mypage/myDetail">돌아가기</a></div>
 			<c:if test="${u_vo.id == logId}">
-				<div><a href="/mypage/myDetailEditOk">저장하기</a></div>
+				<div><a href="javascript:detailEditOk()">저장하기</a></div>
 			</c:if>
 			</div>
 	</section>

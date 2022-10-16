@@ -22,8 +22,8 @@
 					console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
-							width : "180px",
-							height : "130px",
+							width : "300px",
+							height : "300px",
 							zoom : 15,
 							zoomControl : false,
 							scrollwheel : false,

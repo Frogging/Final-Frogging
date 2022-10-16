@@ -29,6 +29,7 @@ import com.frogging.app.service.AddrService;
 import com.frogging.app.service.DataService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.PartyService;
+import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
@@ -55,29 +56,31 @@ public class PartyController {
 
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
-	public ModelAndView start_party(PlogPagingVO p_PageVO) {
+	public ModelAndView start_party(ClubPagingVO pageVO) {
 
 		// DB - 파티 가져오기 + 날짜 조건 + 위치 조건
 		// 위치 조건 가져오기 addr_1 + addr_2
-		if (p_PageVO.getAddr_section_1() != null) {
+		if (pageVO.getAddr_section_1() != null) {
 
 			// 시군구 뒤에 \n 있는거 처리
-			String pull = p_PageVO.getAddr_section_2();
+			String pull = pageVO.getAddr_section_2();
 			String[] words = pull.split("\\s");
-			p_PageVO.setAddr_section_2(words[0]);
+			pageVO.setAddr_section_2(words[0]);
 
-			p_PageVO.setSearchLoc(p_PageVO.getAddr_section_1() + " " + p_PageVO.getAddr_section_2());
+			pageVO.setSearchLoc(pageVO.getAddr_section_1() + " " + pageVO.getAddr_section_2());
 		}
 
 		// 페이지 + 조건 검색 세팅
-		p_PageVO.setTotalRecord(p_service.totalRecord(p_PageVO));
-		// System.out.println(p_PageVO.toString());
+		// p_PageVO.setOnePageRecord(4);
+		pageVO.setTotalRecord(p_service.totalRecord(pageVO));
+		// System.out.println(pageVO.toString());
 
 		mav = new ModelAndView();
 
 		mav.addObject("addr_1", d_service.getAddr_1());
-		mav.addObject("addr_2", d_service.getAddr_2(p_PageVO.getAddr_section_1()));
-		mav.addObject("list", p_service.getPartyList(p_PageVO));
+		mav.addObject("addr_2", d_service.getAddr_2(pageVO.getAddr_section_1()));
+		mav.addObject("list", p_service.getPartyList(pageVO));
+		mav.addObject("pVO", pageVO);
 		mav.setViewName("plog_together/join_club");
 		return mav;
 	}
