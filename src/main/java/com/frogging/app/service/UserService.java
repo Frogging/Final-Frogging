@@ -12,6 +12,8 @@ import com.frogging.app.vo.UserVO;
 public interface UserService {
 	public UserVO getUserDetail(String id);
 
+	public int detailEditOk(UserVO vo);
+
 	public List<CommunityVO> getMyWrite(String id);
 
 	public List<QnaVO> getMyWrite_qna(String id);

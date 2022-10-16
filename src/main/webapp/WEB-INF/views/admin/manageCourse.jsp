@@ -17,12 +17,12 @@
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
 	</ul>
 <body class="k_body">
-	<div style="height:100%;">
+	<div style="height:110%;">
 	<section>
 		<div class="k_wrapper">
 
 
-			<div class="k_section_title">
+			<div class="k_section_title_s">
 				<div>코스 관리</div>
 			</div>
 
@@ -56,6 +56,34 @@
 
 			</form>
 
+				<ul class="k_rec_path_page">
+						
+							<%-- 이전페이지 --%>
+							<c:if test="${pVO.nowPage<=1 }">
+								<li><i class="fa-solid fa-chevron-left active"></i></li>
+							</c:if>
+							<c:if test="${pVO.nowPage>1}" >
+								<li><a href="/admin/manageCourse?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+							</c:if>
+								
+							<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage + pVO.onePageCount - 1 }" >
+								<c:if test="${p<=pVO.totalPage }" >
+									<li
+									<c:if test="${p==pVO.nowPage }">
+										style = "font-weight:bold;"
+									</c:if>
+									><a href="/admin/manageCourse?nowPage=${p }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p }</a></li>
+								</c:if>
+							</c:forEach>
+								
+							<!-- 다음페이지 -->
+							<c:if test="${pVO.nowPage>=pVO.totalPage }" > 
+								<li><i class="fa-solid fa-chevron-right active"></i></li>
+							</c:if>
+							<c:if test="${pVO.nowPage<pVO.totalPage}" > 
+									<li><a href="/admin/manageCourse?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+							</c:if>
+						</ul>
 			
 		
 		</div>

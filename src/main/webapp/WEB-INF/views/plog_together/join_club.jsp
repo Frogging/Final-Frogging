@@ -100,7 +100,36 @@
 					</c:forEach>
 
 				</ul>
-				<div class="k_party_list_more"><i class="fa-solid fa-caret-down"></i></div>
+				<%-- <div class="k_party_list_more"><i class="fa-solid fa-caret-down"></i></div> --%>
+
+				<%-- 페이징 --%>
+				<ul class="k_club_paging">
+				<!-- 페이지 번호 -->
+					<c:if test="${pVO.nowPage<=1 }"><!-- 이전페이지가 없을때 -->
+						<li><i class="fa-solid fa-caret-left"></i></li>
+					</c:if>
+					<c:if test="${pVO.nowPage>1 }"><!-- 이전페이지가 있을때 -->
+						<li><a href="/club/join_club?nowPage=${pVO.nowPage-1 }<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.addr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>"><i class="fa-solid fa-caret-left"></i></a></li>
+					</c:if>
+					<c:forEach var="p" begin="${pVO.startPage }" end="${pVO.startPage+pVO.onePageCount-1 }">
+						<!--  출력할 페이지번호 총페이지수 보다 작거나 같을 떄 -->
+						<c:if test="${p<=pVO.totalPage }">
+							<li
+							<c:if test="${p==pVO.nowPage }">
+							style="font-weight:bold"
+							</c:if>
+							><a href="/club/join_club?nowPage=${p}<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.saddr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>">${p}</a></li>
+						</c:if>
+					</c:forEach>
+					
+					<!-- 다음페이지 -->
+					<c:if test="${pVO.nowPage==pVO.totalPage }">
+						<li><i class="fa-solid fa-caret-right"></i></li>
+					</c:if>
+					<c:if test="${pVO.nowPage<pVO.totalPage }">
+						<li><a href="/club/join_club?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.saddr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>"><i class="fa-solid fa-caret-right"></i></a></li>
+					</c:if>
+				</ul>
 			</div>
 		</div>
 	</section>

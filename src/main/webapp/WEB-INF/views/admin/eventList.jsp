@@ -56,7 +56,7 @@ function eventDelete(){
 		<section>
 		<div class="k_wrapper">
 
-			<div class="k_section_title">
+			<div class="k_section_title_s">
 				<div>이벤트 관리</div>
 			</div>
 

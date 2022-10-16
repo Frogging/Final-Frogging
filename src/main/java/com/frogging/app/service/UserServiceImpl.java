@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
 		return dao.getMyWrite_service(id);
 	}
 
+	@Override
+	public int detailEditOk(UserVO vo) {
+		return dao.detailEditOk(vo);
+	}
+
 }

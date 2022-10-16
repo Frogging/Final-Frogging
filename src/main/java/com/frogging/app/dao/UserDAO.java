@@ -18,6 +18,9 @@ public interface UserDAO {
 	// 유저 상세정보
 	public UserVO getUserDetail(String id);
 
+	// 유저 상세정보 저장
+	public int detailEditOk(UserVO vo);
+
 	// 유저가 쓴 글 - 커뮤니티 리스트
 	public List<CommunityVO> getMyWrite(String id);
 
