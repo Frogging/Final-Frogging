@@ -73,7 +73,6 @@
     margin: 0 10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
-
 @media screen and (min-width:152px) and (max-width:1024px){
 	.p_container1{
 		    min-height: 100%;
