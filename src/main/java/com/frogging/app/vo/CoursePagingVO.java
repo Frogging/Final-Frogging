@@ -18,6 +18,8 @@ public class CoursePagingVO {
 	private String addr_section_2;
 	private String searchDate; // 날짜 검색
 	
+	private String searchKey;
+	private String searchWord;
 	
 	
 	@Override
@@ -25,7 +27,8 @@ public class CoursePagingVO {
 		return "CoursePagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
 				+ totalRecord + ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", onePageCount="
 				+ onePageCount + ", startPage=" + startPage + ", searchLoc=" + searchLoc + ", addr_section_1="
-				+ addr_section_1 + ", addr_section_2=" + addr_section_2 + ", searchDate=" + searchDate + "]";
+				+ addr_section_1 + ", addr_section_2=" + addr_section_2 + ", searchDate=" + searchDate + ", searchKey="
+				+ searchKey + ", searchWord=" + searchWord + "]";
 	}
 	public int getNowPage() {
 		return nowPage;
@@ -111,4 +114,19 @@ public class CoursePagingVO {
 	public void setSearchDate(String searchDate) {
 		this.searchDate = searchDate;
 	}
+	
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
+	
 }

@@ -19,6 +19,7 @@ import com.frogging.app.service.ActivityService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.UserService;
 import com.frogging.app.vo.ActivityVO;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 
 @Controller
@@ -80,6 +81,7 @@ public class MobileController {
 		int result1 = 0;
 		int result2 = 0;
 		int waypoint = 0;
+		int activity_no = 0;
 		CourseVO cvo = m_service.courseSelect(course_no);
 		
 		session.setAttribute("logId","jjiho2001@gmail.com");
@@ -95,14 +97,47 @@ public class MobileController {
 		avo.setStep(step);
 		
 		result1 = a_service.activityInsert(avo);
+		activity_no = a_service.getActivityNo(id);
 		
 		for(int i = 0; i < lat.size(); i++) {
-			result2 = a_service.courseuserInsert(course_no, id, i, lat.get(i), log.get(i));
+			result2 = a_service.courseuserInsert(course_no, id, i, lat.get(i), log.get(i), activity_no);
 			if(result2 > 0) {
 				System.out.println("유저 이동 경유지 등록 성공");
 				result2 = 0;
 			}
 			waypoint++;
 		}
+	}
+	
+	@GetMapping("mobileList")
+	@ResponseBody
+	public ModelAndView mobileList(CoursePagingVO cpvo) {
+		
+		int[] coursenoList = {0,0,0,0,0,0};
+		
+		ModelAndView mav = new ModelAndView();
+		
+		cpvo.setTotalRecord(m_service.totalCourse(cpvo));
+
+		List<CourseVO> courseList = m_service.courseAllselect_t(cpvo);
+
+		for(int i = 0; i < courseList.size(); i++) {
+			coursenoList[i] = courseList.get(i).getCourse_no();
+		}
+		
+		mav.addObject("courseList", courseList);
+		mav.addObject("cpvo", cpvo);
+		mav.addObject("courseDetail",
+				m_service.detailAllselect_t(
+				coursenoList[0], 
+				coursenoList[1],
+				coursenoList[2],
+				coursenoList[3],
+				coursenoList[4],
+				coursenoList[5])
+				);
+		
+		mav.setViewName("/mobile/mobileList");
+		return mav;
 	}
 }
