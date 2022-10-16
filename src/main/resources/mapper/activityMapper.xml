@@ -265,7 +265,13 @@
 	</insert>
 	
 	<insert id = "courseuserInsert">
-		insert into course_user(course_no, id, waypoint, lat, log)
-		values(${param1}, #{param2}, ${param3}, #{param4}, #{param5})
+		insert into course_user(course_no, id, waypoint, lat, log, activity_no)
+		values(${param1}, #{param2}, ${param3}, #{param4}, #{param5}, ${param6})
 	</insert>
+	
+	<select id = "getActivityNo" resultType = "int">
+		select no from activity 
+		where id = #{param1}
+		order by no desc limit 1;
+	</select>
 </mapper>

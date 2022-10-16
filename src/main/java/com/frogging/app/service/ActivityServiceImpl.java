@@ -126,9 +126,15 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
-	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log) {
+	public int courseuserInsert(int course_no, String id, int waypoint, String lat, String log, int activity_no) {
 		// TODO Auto-generated method stub
-		return dao.courseuserInsert(course_no, id, waypoint, lat, log);
+		return dao.courseuserInsert(course_no, id, waypoint, lat, log, activity_no);
+	}
+
+	@Override
+	public int getActivityNo(String id) {
+		// TODO Auto-generated method stub
+		return dao.getActivityNo(id);
 	}
 
 }
