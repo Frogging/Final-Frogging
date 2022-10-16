@@ -33,6 +33,7 @@
 <script src="/js/watch_position.js" ></script>
 <link rel = "stylesheet" href = "/js_css/style.css" type = "text/css">
 <style>
+
 .container{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 24px;
@@ -72,6 +73,7 @@
     margin: 0 10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
+
 @media screen and (min-width:152px) and (max-width:1024px){
 	.p_container1{
 		    min-height: 100%;
@@ -83,6 +85,7 @@
 	#map_div{
 		height:700px;
 	}
+
 	.ploggingStart-btn, .ploggingEnd-btn{
 	    height: 150px;
 	    width: 150px;
