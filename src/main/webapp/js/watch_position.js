@@ -10,6 +10,7 @@ var saved_course = [];
 
 var drawInfoArr = [];
 var resultdrawArr = [];
+var sync = true;
 
 $(function(){
 	$("#checkCourseForm").submit(function(){
@@ -26,10 +27,11 @@ $(function(){
 			sort = 0;
 		}
 		
-		loadCourse(detail_arr, courseType);
-		console.log(locationList);
-		console.log(saved_course);
-		var check = checkCourse(locationList, saved_course);
+		if(sync == true){
+			var check = checkCourse(locationList, saved_course, tDistance * 1000);
+		} else {
+			check == false;
+		}
 		
 		alert(check);
 		var lat = new Array();
@@ -47,18 +49,22 @@ $(function(){
 				lon[i] = locationList[i-1].lng();
 			}
 		}
-			
+		
 		$.ajax({
 			type : 'POST',
 			url : '/mobile/activityOk/'+ course_no,
 			data : {"lat" : lat, "log" : lon, "distance" : tDistance, "time" : tTime, "amount_trash" : amount_trash, "sort" : sort},
 			success : function(result){
-				if(check == true){
-					alert("지정하신 코스로 이동하셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
-					window.location.href = '/maps/tmap02';
+				if(sync == true){
+					if(check == true){
+						alert("지정하신 코스로 이동하셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+					} else {
+						alert("지정하신 코스를 이용하지는 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+					}
 				} else {
-					alert("지정하신 코스를 이용하지는 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+					alert("출발지 동기화를 하지 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
 				}
+				window.location.href = '/mypage/activity';
 			}, error : function(e) {
 				alert(e.responseText);
 				console.log(e.responseText);
@@ -240,13 +246,21 @@ function verticalLength(point1, point2, point3){
 	return length12 * Math.sqrt(1 - Math.pow(cosValue, 2));
 }
 
-function checkCourse(user_course, saved_course){
+function checkCourse(user_course, saved_course, distance){
 	let courseIn = false;
 	let flag = 0;
 	let vertical_length1 = 0;
 	let vertical_length2 = 0;
 	let checker = 0;
 	let index = 0;
+	let areaIn = false;
+	let limit = 0;
+	
+	if(distance < 600){
+		limit = 3;
+	} else {
+		limit = parseInt(distance / 200);
+	}
 	
 	for(let i = 0; i < user_course.length; i++){
 		if(index < saved_course.length - 1){
@@ -272,13 +286,22 @@ function checkCourse(user_course, saved_course){
 		alert(checker);
 	}
 	
-	if(flag >= 1){
+	if(flag >= limit){
 		courseIn = true;
 	}
 	
 	return courseIn;
 }
 
+function checkArea(point_user, point_saved){
+	var distance = point_user.distanceTo(point_saved);
+	var areaIn = false;
+	
+	if(distance < 10){
+		areaIn = true;	
+	}
+	return areaIn;
+}
 function loadCourse(loaded_course, type){
 	if(type == 1){
 		alert("loadcourse!");
@@ -443,4 +466,27 @@ function drawLine(arrPoint) {
 		map : map
 	});
 	resultdrawArr.push(polyline_);
+}
+
+function synchronizeStart(){
+	if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				function(position) {
+					//alert("getCurrentPosition");
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+					var start = new Tmapv2.LatLng(lat, lon);
+					
+					let distance = saved_course[0].distanceTo(start);
+					alert(distance);
+					if(distance < 100){
+						sync = true;
+					}
+				}, showError);
+			}
+	if(sync == true){
+		alert("출발지 동기화가 완료되었습니다. 경로를 확인하여 종료시 알려드립니다.");
+	} else {
+		alert("출발지 동기화에 실패하였습니다. 실제 이동 경로는 마이페이지에서 확인하실 수 있습니다만, 기존 경로에 대한 확인은 이루어지지 않습니다.");
+	}
 }

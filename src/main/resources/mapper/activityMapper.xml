@@ -289,7 +289,7 @@
 		<if test = 'searchWord != null'>
 			and ${searchKey} like '%${searchWord}%'
 		</if>
-		order by course_no desc
+		order by no desc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
 	<select id = "courseUserAllSelect" resultType = "CourseVO">
