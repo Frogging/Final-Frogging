@@ -556,7 +556,7 @@ table.table02 tbody td{padding:10px;vertical-align:middle;padding-left:15px;back
 .p_qnaPage > ul >li{
 	display: inline-block;	
 }
-.p_customerServicePage{width:80%; margin:0 auto; float:center;}
+.p_customerServicePage{width:80%; margin:0 auto; float:center; }
 .p_customerServicePage > ul{
 	padding:0;
 	margin:5px auto;
@@ -582,6 +582,7 @@ table.table02 tbody td{padding:10px;vertical-align:middle;padding-left:15px;back
     font-weight: bold;
     font-size: 1.2em;
     margin: 0 10px;	
+    
 }
 
 /* button_align */
