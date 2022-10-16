@@ -84,7 +84,7 @@ a:visited {
                     </tbody>    
                 </table>               
              <div class="btn_right mt15" style="width:70%; margin:5px auto; float:right;">
-                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceWrite'">작성하기</button>
+                <button type="button" class="btn black mr5" onclick="location.href='/customerService/customerServiceWrite'" style="font-family: 'Noto Sans KR', sans-serif;">작성하기</button>
             </div>    
             </form>
      	<div class="p_customerServicePage">
@@ -122,7 +122,7 @@ a:visited {
                     <option value="content">글내용</option>
                 </select>
                 <input type="text" name="searchWord" class="p_searchWord" style="height:30px; width:500px;"/>
-                <input type="submit" value="찾기" class="p_customerServicesearch-btn"/>
+                <input type="submit" value="찾기" class="p_customerServicesearch-btn" style="font-family: 'Noto Sans KR', sans-serif;"/>
             </form>
             </div>	
 		</div>            
