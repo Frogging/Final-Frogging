@@ -5,10 +5,46 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script>
+	function initTmap() {
+		// 1. 지도 띄우기
+		var map_arr = new Array();
+		var detail_arr = new Array();
+		
+		<c:forEach items = "${list}" var = "courseList">
+		map_arr.push({
+			course_no : "${courseList.course_no}",
+			course_name : "${courseList.course_name}",
+			course_info : "${courseList.course_info}",
+			distance : "${courseList.distance}",
+			time : "${courseList.time}",
+			type : "${courseList.type}"
+		});
+		</c:forEach>
+		
+		<c:forEach items = "${courseDetail}" var = "courseDetail">
+			detail_arr.push({
+				course_no : "${courseDetail.course_no}",
+				waypoint : "${courseDetail.waypoint}",
+				lat : "${courseDetail.lat}",
+				log : "${courseDetail.log}",
+				addr : "${courseDetail.addr}"
+			});
+		</c:forEach>
+		
+		console.log(map_arr);
+		console.log(detail_arr);
+		mapLoad(map_arr, detail_arr);
+	}
+	
+</script>
+<script src="/js/tmap_list.js"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
 	<script src="/js/k_path.js" type="text/javascript"></script>
 </head>
-<body onload="modal_more()" class="k_body">
+<body onload="modal_more(); initTmap();" class="k_body">
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
@@ -87,7 +123,7 @@
 										<li class="k_box_space"></li>
 										<li>예상 소요시간: ${vo.time}</li>
 										<li>당월 방문 수: ${vo.plog_total}회</li>
-										<li class="k_more"><img src="/img/course_sample.png" alt="">더보기</li>
+										<li class="k_more"><div id="map_div_${vo.course_no }"></div></li>
 									</ul>
 								</li>
 							</c:forEach>

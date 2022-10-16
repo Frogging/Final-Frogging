@@ -55,6 +55,7 @@ $(function(){
 			success : function(result){
 				if(check == true){
 					alert("지정하신 코스로 이동하셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
+					window.location.href = '/maps/tmap02';
 				} else {
 					alert("지정하신 코스를 이용하지는 않으셨습니다. 이동하신 경로는 마이페이지에서 확인하실 수 있습니다.");
 				}
@@ -151,7 +152,7 @@ function startChecking(){
 							
 							locationList.push(new_location);
 							if(update_count != 1){
-								total_distance += before_location.distanceTo(new_location) / 1000;
+								total_distance += before_location.distanceTo(new_location);
 							}
 							
 							before_location = new_location;

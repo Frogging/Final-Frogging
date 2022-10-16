@@ -274,4 +274,27 @@
 		where id = #{param1}
 		order by no desc limit 1;
 	</select>
+	<select id = "totalUserCourse" resultType = "int">
+		select count(no)
+		from activity
+		where id = #{id}
+		<if test = 'searchWord != null'>
+			and ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	<select id = "activityAllSelect" resultType = "ActivityVO">
+		select course_no, course_name, distance, step, time, amount_trash, date_format(date,'%m-%d %h:%i') date, sort, no
+		from activity
+		where id = #{id}
+		<if test = 'searchWord != null'>
+			and ${searchKey} like '%${searchWord}%'
+		</if>
+		order by course_no desc
+		limit ${onePageRecord} offset ${offsetPoint}
+	</select>
+	<select id = "courseUserAllSelect" resultType = "CourseVO">
+		select course_no, waypoint, lat, log, activity_no
+		from course_user
+		where activity_no in (${param1}, ${param2}, ${param3})
+	</select>
 </mapper>

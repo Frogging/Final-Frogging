@@ -14,6 +14,7 @@ public class CourseVO {
 	private String log;
 	private String addr; // 출발지 주소
 	private String type;
+	private int activity_no;
 
 	private String startaddr;
 	private String endaddr;
@@ -127,12 +128,14 @@ public class CourseVO {
 		this.type = type;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "CourseVO [course_no=" + course_no + ", course_name=" + course_name + ", course_info=" + course_info
 				+ ", distance=" + distance + ", time=" + time + ", waypoint=" + waypoint + ", lat=" + lat + ", log="
-				+ log + ", addr=" + addr + ", type=" + type + ", startaddr=" + startaddr + ", endaddr=" + endaddr
-				+ ", plog_total=" + plog_total + "]";
+				+ log + ", addr=" + addr + ", type=" + type + ", activity_no=" + activity_no + ", startaddr="
+				+ startaddr + ", endaddr=" + endaddr + ", plog_total=" + plog_total + ", noList=" + noList + "]";
 	}
 
 	public List<Integer> getNoList() {
@@ -142,5 +145,14 @@ public class CourseVO {
 	public void setNoList(List<Integer> noList) {
 		this.noList = noList;
 	}
+
+	public int getActivity_no() {
+		return activity_no;
+	}
+
+	public void setActivity_no(int activity_no) {
+		this.activity_no = activity_no;
+	}
+	
 
 }

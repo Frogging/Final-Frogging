@@ -30,6 +30,7 @@ import com.frogging.app.service.DataService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.vo.ClubPagingVO;
+import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
 import com.frogging.app.vo.PartyDetailVO;
 import com.frogging.app.vo.PartyVO;
@@ -87,8 +88,9 @@ public class PartyController {
 
 	// 새 클럽 - 추천 경로
 	@GetMapping(value = "/make_club_rec_path")
-	public ModelAndView make_club_rec_path(PlogPagingVO p_PageVO) {
+	public ModelAndView make_club_rec_path(PlogPagingVO p_PageVO, CoursePagingVO cpvo) {
 
+		int[] coursenoList = {0,0,0,0,0,0};
 		// DB - 경로 가져오기 + 위치 조건
 		// !!!!!!!!!!!!!!!! 위치 조건 검색 !!!!!!!!!!!!!!!!
 		if (p_PageVO.getAddr_section_1() != null) {
@@ -109,6 +111,21 @@ public class PartyController {
 
 		mav.addObject("list", p_service.getPathList(p_PageVO));
 		mav.addObject("p_PageVO", p_PageVO);
+		
+		List<CourseVO> courseList = p_service.getPathList(p_PageVO);
+		
+		for(int i = 0; i < courseList.size(); i++) {
+			coursenoList[i] = courseList.get(i).getCourse_no();
+		}
+		mav.addObject("courseDetail",
+				m_service.detailAllselect_t(
+				coursenoList[0], 
+				coursenoList[1],
+				coursenoList[2],
+				coursenoList[3],
+				coursenoList[4],
+				coursenoList[5])
+				);
 		mav.setViewName("plog_together/make_club_rec_path");
 		return mav;
 	}
