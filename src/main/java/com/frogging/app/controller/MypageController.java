@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frogging.app.service.ActivityService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.PartyService;
 import com.frogging.app.service.UserService;
+import com.frogging.app.vo.ActivityPagingVO;
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @RequestMapping("/mypage/*")
@@ -140,23 +143,43 @@ public class MypageController {
 
 	// 나의 엑티비티 페이지
 	@GetMapping(value = "activity")
-	public ModelAndView getMyAct(HttpSession session) {
+	public ModelAndView getMyAct(HttpSession session, ActivityPagingVO apvo) {
 
 		mav = new ModelAndView();
 
 		// 나의 통계 데이터
 		String id = (String) session.getAttribute("logId");
-
+		//System.out.println(apvo.getOnePageRecord());
 		mav.addObject("a_vo_w", a_serivce.getUserStatistic_w(id, "yeek"));
 		mav.addObject("a_vo_m", a_serivce.getUserStatistic_m(id, "month"));
 		mav.addObject("a_vo_y", a_serivce.getUserStatistic_y(id, "year"));
 		mav.addObject("a_vo_t", a_serivce.getUserStatistic(id, "total"));
 
 		mav.addObject("a_list", a_serivce.getActivityList(id));
+		
+		int[] activitynoList = {0,0,0};
+		
+		apvo.setId(id);
+		apvo.setTotalRecord(a_serivce.totalUserCourse(apvo));
+		
+		List<ActivityVO> activityList = a_serivce.activityAllSelect(apvo);
+		
+		for(int i = 0; i < activityList.size(); i++) {
+			activitynoList[i] = activityList.get(i).getNo();
+			//System.out.println(activitynoList[i]);
+		}
+		
+		mav.addObject("activityList", activityList);
+		mav.addObject("apvo", apvo);
+		mav.addObject("courseUser",
+				a_serivce.courseUserAllSelect(
+						activitynoList[0], 
+						activitynoList[1],
+						activitynoList[2])
+						);
 		mav.setViewName("/mypage/activity");
 		return mav;
 	}
-
 	// 나의 엑티비티 페이지 - 그래프 데이터1
 	@GetMapping(value = "getUserRecord_w")
 	public List<ActivityVO> AgetUserRecord_w(HttpSession session) {

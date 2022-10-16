@@ -63,9 +63,9 @@ $(function(){
 	});
 });
 
-function confirmCourse(course_name){
+function confirmCourse(course_name, course_no){
 	if(confirm(course_name + "를 선택하시겠습니까?")){
-		
+		window.location.href='/mobile/maps/geolocation01/'+course_no;
 	}
 }
 function initTmap() {
@@ -114,7 +114,7 @@ function initTmap() {
 		</form>
 		<div id="map_wrap" class="map_wrap3">
 			<c:forEach var = "courseList" items = "${courseList }">
-				<div class ="listArea" onclick = "window.location.href='/mobile/maps/geolocation01/${courseList.course_no}'" style=" border : 5px solid #2fb86a; border-radius:25px; margin: 15px 80px;">
+				<div class ="listArea" onclick = "confirmCourse('${courseList.course_name }','${courseList.course_no}')" style=" border : 5px solid #2fb86a; border-radius:25px; margin: 15px 80px;">
 					<ul class = "k_rec_path_box" style="width:80%; margin:0 auto; float:center">
 						<span style="width:35%; float:left;">
 						<br>
