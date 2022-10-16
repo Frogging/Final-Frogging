@@ -102,7 +102,7 @@
 								<li><i class="fa-solid fa-chevron-left active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage>1}" >
-								<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
+								<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.addr_section_2!=null }">&addr_section_1=${p_PageVO.addr_section_1 }&addr_section_2=${p_PageVO.addr_section_2 }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
 							</c:if>
 								
 							<c:forEach var="p" begin="${p_PageVO.startPage }" end="${p_PageVO.startPage + p_PageVO.onePageCount - 1 }" >
@@ -111,7 +111,7 @@
 									<c:if test="${p==p_PageVO.nowPage }">
 										style = "color:#2fb86a;"
 									</c:if>
-									><a href="/club/make_club_rec_path?nowPage=${p }<c:if test="${p_PageVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>">${p }</a></li>
+									><a href="/club/make_club_rec_path?nowPage=${p }<c:if test="${p_PageVO.addr_section_2!=null }">&addr_section_1=${p_PageVO.addr_section_1 }&addr_section_2=${p_PageVO.addr_section_2 }</c:if>">${p }</a></li>
 								</c:if>
 							</c:forEach>
 								
@@ -120,7 +120,7 @@
 								<li><i class="fa-solid fa-chevron-right active"></i></li>
 							</c:if>
 							<c:if test="${p_PageVO.nowPage<p_PageVO.totalPage}" > 
-									<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.searchLoc!=null }">&searchLoc=${p_PageVO.searchLoc }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
+									<li><a href="/club/make_club_rec_path?nowPage=${p_PageVO.nowPage-1 }<c:if test="${pVO.addr_section_2!=null }">&addr_section_1=${p_PageVO.addr_section_1 }&addr_section_2=${p_PageVO.addr_section_2 }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
 							</c:if>
 						</ul>
 					</div>

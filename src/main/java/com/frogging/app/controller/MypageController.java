@@ -11,6 +11,7 @@ import com.frogging.app.service.UserService;
 import com.frogging.app.vo.ActivityVO;
 import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
+import com.frogging.app.vo.MyPagingVO;
 import com.frogging.app.vo.UserVO;
 
 import java.nio.charset.Charset;
@@ -190,29 +191,29 @@ public class MypageController {
 
 	// ------------------------내가 만든 코스 ------------------------------
 	@GetMapping("myCourse")
-	public ModelAndView getMyCourse(HttpSession session, CoursePagingVO cpvo) {
+	public ModelAndView getMyCourse(HttpSession session, CoursePagingVO cpvo, MyPagingVO mvo) {
 
+		int[] coursenoList = { 0, 0, 0, 0, 0, 0 };
 		mav = new ModelAndView();
-
 		String id = (String) session.getAttribute("logId");
 
-		// CoursePagingVO cpvo = new CoursePagingVO();
-		// cpvo.setOnePageRecord(6);
-		cpvo.setTotalRecord(m_service.totalCourse(cpvo));
+		// 페이징
+		mvo.setId(id);
+		cpvo.setTotalRecord(u_service.setTotalRecord_my(mvo));
+		// cpvo.setTotalRecord(m_service.totalCourse(cpvo));
+		mvo.setTotalRecord(u_service.setTotalRecord_my(mvo));
 
-		List<CourseVO> courseList = m_service.courseAllselect_t(cpvo);
-
-		// System.out.println(courseList.get(0).toString());
+		List<CourseVO> courseList = u_service.courseAllselect_t(mvo);
 
 		int startCourse = courseList.get(courseList.size() - 1).getCourse_no();
 		int endCourse = courseList.get(0).getCourse_no();
 
 		mav.addObject("courseList", courseList);
 		mav.addObject("cpvo", cpvo);
+		mav.addObject("mvo", mvo);
 		mav.addObject("courseDetail", m_service.detailAllselect_tt(startCourse, endCourse));
 
-		mav.addObject("c_list", u_service.getUserCourse(id));
-
+		mav.addObject("c_list", u_service.getUserCourse(mvo));
 		mav.setViewName("/mypage/myCourse");
 		return mav;
 	}

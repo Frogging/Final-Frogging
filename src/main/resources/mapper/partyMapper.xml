@@ -127,11 +127,13 @@
 
 		(select course_no, addr
 		from course_detail
-		where waypoint = 1 ) detail
+		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
 		order by course_no desc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
+
+
 	<select id="totalRecord" resultType="int">
 		select count(no) cnt from party
 		<!-- <if test="searchLoc!=null">
@@ -144,10 +146,12 @@
 	</select>
 
 	<select id="totalRecord_path" resultType="int">
-		select count(course_no) cnt from course
-		<!-- <if test="searchLoc!=null">
-			where - like '%${searchLoc}%'
-		</if> -->
+		select count(course_no)
+		from course_detail
+		where waypoint = 0 
+		and addr like "%${addr_section_1}%" 
+		and addr like "%${addr_section_2}%"
+		
 	</select>
 
 	<insert id="addNewParty">
