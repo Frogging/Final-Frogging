@@ -45,6 +45,15 @@
 	}
 	</script>
 	<script src="/js/tmap_activity.js"></script>
+	<style>
+		@media screen and (min-width:152px) and (max-width:1024px){
+	.k_activity_sum{display:none;}
+	.k_activity_list>.k_wrapper>ul>li{
+	width: 96%;
+	margin: var(--space-medium) 2%;
+}
+		}
+	</style>
 </head>
 <body class="k_body" onload="draw_myplog(); initTmap(); modal_more();">
 	<section>
@@ -133,7 +142,7 @@
 	<section class="k_activity_list">
 		<div class="k_wrapper">
 			<div class="k_a_title">최근 활동</div>
-			<ul>
+			<ul >
 				<c:forEach var="vo" items="${activityList}">
 					<li class = "open_modal" onclick="modal_data(${vo.no})">
 						<ul class="k_a_each_box">
@@ -155,6 +164,9 @@
 					</li>
 				</c:forEach>
 			</ul>
+			
+
+			<div>
 			<ul class="k_rec_path_page">
 			
 				<c:if test="${apvo.nowPage<=1 }">
@@ -187,7 +199,8 @@
 					<li><a href = "/mypage/activity?nowPage=${apvo.nowPage + 1 }<c:if test='${apvo.searchWord!=null }'>&searchKey=${apvo.searchKey }&searchWord=${apvo.searchWord }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
 				</c:if>
 			</ul>
-			<div class="k_list_more"><i class="fa-solid fa-caret-down"></i></div>
+			</div>
+			<%-- <div class="k_list_more"><i class="fa-solid fa-caret-down"></i></div> --%>
 		</div>
 	</section>
 

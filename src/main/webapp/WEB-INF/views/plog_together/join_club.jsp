@@ -8,9 +8,11 @@
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
 	<script src="/js/k_club.js" type="text/javascript"></script>
-
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script src="/js/tmap_list.js"></script>
 </head>
-<body onload='modal_club()' class="k_body">
+<body onload='modal_club();' class="k_body">
 	<!-- --------- FIND PARTY --------- -->
 	<section class="find_party">
 		<div class="k_wrapper">

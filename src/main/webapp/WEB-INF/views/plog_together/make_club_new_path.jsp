@@ -13,6 +13,20 @@
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
+				
+
+				<%-- <div class="k_section_title">
+					<div>원하는 모임이 없다면,</div>
+					<div class="k_green">나의 모임 만들기 <i class="fa-solid fa-circle-plus"></i></div>
+					<button class="k_my_party click-btn-l">
+						<a href="/club/my_club_list">나의 모임 관리</a>
+					</button>
+				</div> --%>
+			</div>
+
+			<!-- ----------- make path ------------->
+			<div class="k_path_list">
+				<div class="k_wrapper">
 				<div class="k_section_title_links">
 					<div>
 						<i class="fa-solid fa-square-caret-right k_green"></i>
@@ -31,19 +45,6 @@
 						나의 경로 만들기
 					</div>
 				</div>
-
-				<div class="k_section_title">
-					<div>원하는 모임이 없다면,</div>
-					<div class="k_green">나의 모임 만들기 <i class="fa-solid fa-circle-plus"></i></div>
-					<button class="k_my_party click-btn-l">
-						<a href="/club/my_club_list">나의 모임 관리</a>
-					</button>
-				</div>
-			</div>
-
-			<!-- ----------- make path ------------->
-			<div class="k_path_list">
-				<div class="k_wrapper">
 					<ul class="k_rec_path_button">
 						<li class="click-btn-w"><a href="/club/make_club_rec_path">추천 코스 선택하기</a></li>
 						<li class="active click-btn"><a href="/club/make_club_new_path">나만의 코스 만들기</a></li>

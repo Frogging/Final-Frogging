@@ -74,7 +74,7 @@
 					<button class="k_my_party click-btn-l">
 						<a href="/club/my_club_list">나의 모임 관리</a>
 					</button>
-				</div>
+				</div> 
 			</div>
 			<!-- ----------- recommendation path ------------->
 			<div class="k_path_list">

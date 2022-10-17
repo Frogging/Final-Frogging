@@ -47,7 +47,7 @@
 			<form action="/mypage/detailEditOk" method="post" id="myDetailFrm">
 			<div class="k_mydetail_info">
 				<div class="k_mydetail_pic">
-						<div class="k_mydetail_imgbox"><img src="/img/profile.png" alt=""></div>	
+						<div class="k_mydetail_imgbox"><img src="/img/plogging_logo.jpeg" alt=""></div>	
 						<%-- 프로필 이미지 업로드 <input type="file" />  --%>
 				</div>
 				

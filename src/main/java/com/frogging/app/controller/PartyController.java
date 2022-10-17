@@ -90,7 +90,7 @@ public class PartyController {
 	@GetMapping(value = "/make_club_rec_path")
 	public ModelAndView make_club_rec_path(PlogPagingVO p_PageVO, CoursePagingVO cpvo) {
 
-		int[] coursenoList = {0,0,0,0,0,0};
+		int[] coursenoList = { 0, 0, 0, 0, 0, 0 };
 		// DB - 경로 가져오기 + 위치 조건
 		// !!!!!!!!!!!!!!!! 위치 조건 검색 !!!!!!!!!!!!!!!!
 		if (p_PageVO.getAddr_section_1() != null) {
@@ -111,21 +111,20 @@ public class PartyController {
 
 		mav.addObject("list", p_service.getPathList(p_PageVO));
 		mav.addObject("p_PageVO", p_PageVO);
-		
+
 		List<CourseVO> courseList = p_service.getPathList(p_PageVO);
-		
-		for(int i = 0; i < courseList.size(); i++) {
+
+		for (int i = 0; i < courseList.size(); i++) {
 			coursenoList[i] = courseList.get(i).getCourse_no();
 		}
 		mav.addObject("courseDetail",
 				m_service.detailAllselect_t(
-				coursenoList[0], 
-				coursenoList[1],
-				coursenoList[2],
-				coursenoList[3],
-				coursenoList[4],
-				coursenoList[5])
-				);
+						coursenoList[0],
+						coursenoList[1],
+						coursenoList[2],
+						coursenoList[3],
+						coursenoList[4],
+						coursenoList[5]));
 		mav.setViewName("plog_together/make_club_rec_path");
 		return mav;
 	}
@@ -169,6 +168,9 @@ public class PartyController {
 			PartyVO vo = new PartyVO();
 			vo = p_service.getPartyDetail(no);
 
+			// course_no
+			int course_no = vo.getCourse_no();
+
 			// 1-1) vo 객체 jsonString으로 변환
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(vo);
@@ -189,6 +191,24 @@ public class PartyController {
 			// 2-3) jsonString -> JSONObject
 			JSONObject jObj_activity = (JSONObject) jsonParser.parse(jsonString);
 			voList.put("activity", jObj_activity);
+
+			// 3) 코스 넘기기
+
+			CourseVO cvo = new CourseVO();
+			cvo = p_service.getPathDetail(course_no);
+			jsonString = mapper.writeValueAsString(cvo);
+			JSONObject jObj_course = (JSONObject) jsonParser.parse(jsonString);
+			voList.put("path", jObj_course);
+
+			List<CourseVO> course_detail = m_service.detailSelect(course_no);
+			JSONObject jObj_detail;
+			String name;
+
+			for (int i = 0; i < course_detail.size(); i++) {
+				jsonString = mapper.writeValueAsString(course_detail.get(i));
+				jObj_detail = (JSONObject) jsonParser.parse(jsonString);
+				voList.put(course_detail.get(i).getWaypoint(), jObj_detail);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -383,7 +403,14 @@ public class PartyController {
 	@GetMapping(value = "/club_view")
 	public ModelAndView clubView(int no, String l_id) {
 		mav = new ModelAndView();
+
+		PartyVO pvo = p_service.getPartyDetail(no);
 		mav.addObject("pvo", p_service.getPartyDetail(no));
+
+		int course_no = pvo.getCourse_no();
+		mav.addObject("cvo", p_service.getPathDetail(course_no));
+		mav.addObject("courseDetail", m_service.detailSelect(course_no));
+
 		mav.addObject("avo", p_service.getLeaderInfo(l_id));
 		mav.setViewName("/plog_together/club_view");
 		return mav;
@@ -393,7 +420,13 @@ public class PartyController {
 	@GetMapping(value = "/club_edit")
 	public ModelAndView clubEdit(int no, String l_id) {
 		mav = new ModelAndView();
+		PartyVO pvo = p_service.getPartyDetail(no);
 		mav.addObject("pvo", p_service.getPartyDetail(no));
+
+		int course_no = pvo.getCourse_no();
+		mav.addObject("cvo", p_service.getPathDetail(course_no));
+		mav.addObject("courseDetail", m_service.detailSelect(course_no));
+
 		mav.addObject("avo", p_service.getLeaderInfo(l_id));
 		mav.setViewName("/plog_together/club_edit");
 		return mav;

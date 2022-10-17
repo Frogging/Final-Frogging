@@ -73,7 +73,9 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
-				<div class="p_mainContent">
+				<div class="p_mainContent_wrapper">
+					<div>
+					 <div class="p_mainContent">  
 	                    <div class="p_nav">
 	                        <h3>함께하는 플로깅 <br/> Frog-ging</h3> <br/> 환경보호 활동과 운동을 한번에! <br/><br/>					
 	                        <input type="button" value="함께하기" class="p_plogging-btn" onclick="location.href='/club/join_club'"/>
@@ -90,6 +92,8 @@
 	                        </div>
 	                    </div>
 	                </div>
+						</div>
+					</div>
 			</div>
 			<div class="swiper-slide">
 				<div class="p_main-plogging">
@@ -181,7 +185,7 @@
 				  //자동 스크를링
 				  autoplay: {
 				    //시간 1000 이 1초
-				    delay: 4000,
+				    delay: 8000,
 				    disableOnInteraction: false,
 				   },
 				  

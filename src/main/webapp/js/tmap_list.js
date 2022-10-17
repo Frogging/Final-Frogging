@@ -143,8 +143,8 @@
 							httpsMode : true
 						});
 					if(map_arr[i].course_no == 99999){
-						$('#map_div_99999').css('width', '500px');
-						$('#map_div_99999').css('height', '400px');
+						$('#map_div_99999').css('width', '100%');
+						$('#map_div_99999').css('height', '28vh');
 						map[i].resize();
 					}
 					for(var j = 0; j < detail_arr.length; j++){
