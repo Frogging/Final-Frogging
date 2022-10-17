@@ -14,7 +14,7 @@
 
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
-			<div class="k_wrapper">
+			<%-- <div class="k_wrapper"> --%>
 				
 <%-- 				
 				<div class="k_section_title">

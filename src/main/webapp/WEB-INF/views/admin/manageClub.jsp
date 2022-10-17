@@ -42,7 +42,7 @@
 				<c:forEach var="vo" items="${c_list}">
 					<li><span>${vo.no}</span></li>
 					<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
-					<li><a href="/mypage/myCourseView?no=${vo.no}"><span>${vo.course_name}</span></a></li>
+					<li><a href="/mypage/myCourseView?no=${vo.course_no}"><span>${vo.course_name}</span></a></li>
 					<li><span>${vo.meeting_time}</span></li>
 					<li>
 						<span>현: ${vo.current_number}명 /총: ${vo.number}명</span>

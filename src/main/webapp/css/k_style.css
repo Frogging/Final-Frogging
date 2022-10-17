@@ -630,7 +630,7 @@ i{
 	padding: var(--space-large);
 }
 .k_party_detail_box_left{ /*파티세부-박스-left*/
-	width: 28%;
+	width: 35%;
 	margin: 0 var(--space-medium);
 }
 .k_party_detail_box_left #k_course_name { /*파티세부-박스-left-코스명*/
@@ -643,9 +643,10 @@ i{
 .k_party_detail_img{ /*파티세부-박스-left-이미지*/
 	height: 28vh;
 	width: 100%;
-	background-color: var(--ct-light-green);
-	border-radius: var(--radius-mild);
-	margin: var(--space-medium) 0;
+	/* background-color: var(--ct-light-green);
+	border-radius: var(--radius-mild); */
+	margin: var(--space-medium) 0; 
+	border: 1px solid var(--ct-dark-grey);
 }
 .k_party_detail_who{ /*파티세부-박스-left-파티원정보*/
 	width: 100%;
@@ -677,7 +678,7 @@ i{
 }
 
 .k_party_detail_box_right{ /*파티세부-박스-right*/
-	width: 67%;
+	width: 60%;
 	margin: 0 var(--space-medium);
 	display: flex;
 	flex-wrap: wrap;
@@ -1132,8 +1133,8 @@ i{
 .k_activity_list>.k_wrapper>ul{
 	width: 100%;
 	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
+	flex-wrap: wrap;
+	/* justify-content: center; */
 }
 .k_activity_list>.k_wrapper>ul>li{
 	width: 30%;
@@ -1633,12 +1634,12 @@ i{
 	/*padding: 0 var(--space-medium); */
 	border-right:var(--basic-dot) var(--ct-dark-green); 
 	text-align:center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-.k_my_communityList_grid .k_my_list_head{ /*리스트 제목*/
-	background-color: var(--ct-dark-green);
-	color: var(--main-white);
-	font-weight: bold;
-	/* border: none; */
+.k_my_communityList_grid>li span{
+	margin: auto var(--space-medium);
 }
 .k_my_communityList_grid .k_my_list_head:first-child{  /*리스트 속성*/
 	border-radius: var(--radius-mild) 0 0 0; 
@@ -1654,19 +1655,19 @@ i{
 	width: 5%;
 }
 .k_my_communityList_grid>li:nth-child(6n+2){
-	width: 5%;
+	width: 8%;
 }
 .k_my_communityList_grid>li:nth-child(6n+3){  
-	width: 45%;
+	width: 46%;
 }
 .k_my_communityList_grid>li:nth-child(6n+4){
-	width: 20%;
+	width: 17%;
 }
 .k_my_communityList_grid>li:nth-child(6n+5){
-	width: 5%;
+	width: 8%;
 }
 .k_my_communityList_grid>li:nth-child(6n+6){
-	width: 15%;
+	width: 13%;
 }
 .k_my_communityList_grid>li:nth-child(6n+9){
 	padding: 0 0 0 3px;
@@ -1674,6 +1675,12 @@ i{
 }
 .k_my_communityList_grid>li:nth-child(6n+6){
 	border-right: none;
+}
+.k_my_communityList_grid .k_my_list_head{ /*리스트 제목*/
+	background-color: var(--ct-dark-green);
+	color: var(--main-white);
+	font-weight: bold;
+	text-align: center;
 }
 .p_page>ul{
 	text-align:center;
@@ -1742,7 +1749,8 @@ i{
 }
 /* -------------------------- 회원가입 ------------------------- */
 .k_body_b{
-	background: url("/img/greenary.jpg") center center;
+	background: url("/img/background_1.jpeg");
+	background-size: 100%;
 	width: 100%;
 	height: 100%;
 }

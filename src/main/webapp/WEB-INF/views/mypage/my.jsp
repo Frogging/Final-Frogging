@@ -30,7 +30,7 @@
 			<div class="k_profile_main">
 
 				<div class="k_pro_left">
-					<div class="k_pro_img"><img src="/img/profile.png" alt=""></div>
+					<div class="k_pro_img"><img src="/img/plogging_logo.jpeg" alt=""></div>
 					
 					<ul>
 						<li class="k_nick">${logNickName}</li>

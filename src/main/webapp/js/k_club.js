@@ -38,15 +38,44 @@ function modal_data(no) {
 			url: url,
 			data: params,
 			success: function(result){
-				//console.log(result.party);
-				//console.log(result.activity);
+				// console.log(result);
+				var path = result.path;
 				var party_info = result.party;
 				var activity_info = result.activity;
 
+				//맵데이터
+				let map_arr_view = [];
+				let detail_arr_view = [];
+			
+				map_arr_view.push({
+					course_no : 99999,
+					course_name : path.course_name,
+					distance : path.distance,
+					time : path.time,
+					type : path.type
+				});
+				console.log(map_arr_view);
+				
+				for(let i = 0; i < Object.keys(result).length-3; i++){
+					// console.log(i+"th waypoint");
+					// console.log(result[i]);
+
+					detail_arr_view.push({
+						course_no : 99999,
+						waypoint : result[i].waypoint,
+						lat : result[i].lat,
+						log : result[i].log,
+						addr : result[i].addr
+					});
+				}
+				console.log(detail_arr_view);
+				$('.k_party_detail_img').attr('id', 'map_div_'+99999);
+				mapLoad(map_arr_view, detail_arr_view);
+
 				//액티비티 세부 데이터 넣기
 				$('#k_nickname>span').html(activity_info.nickname);
-				$('#k_total_km>span').html(activity_info.total_distance);
-				$('#k_plog_count>span').html(activity_info.plog_count);
+				$('#k_total_km>span').html(activity_info.total_distance+"km");
+				$('#k_plog_count>span').html(activity_info.plog_count+"분");
 
 				//파티 세부 데이터 넣기 
 				$('#k_course_name').html(party_info.course_name);

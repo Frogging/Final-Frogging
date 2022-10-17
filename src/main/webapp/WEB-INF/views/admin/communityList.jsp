@@ -75,21 +75,23 @@ $(function(){
 
 					<c:forEach var="vo" items="${list }">
 						<li><input type="checkbox" name="noList" value="${vo.no}" /></li>
-						<li>${vo.no }</li>
+						<li><span>${vo.no }</span></li>
 						<li>
 							<div
 								<c:if test="${vo.subject.length() >= 30}">
 					style='width:90%'
 				</c:if>>
 								<a
-									href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a>
-							</div> <c:if test="${vo.reply_count>0}">
-								<span style="margin: auto 10px;">(${vo.reply_count})</span>
-							</c:if>
+									href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><span>${vo.subject }</span>
+									<c:if test="${vo.reply_count>0}">
+										<span>(${vo.reply_count})</span>
+									</c:if>
+									</a>
+							</div>
 						</li>
-						<li>${vo.id }</li>
-						<li>${vo.hit }</li>
-						<li>${vo.writedate }</li>
+						<li><span>${vo.id }</span></li>
+						<li><span>${vo.hit }</span></li>
+						<li><span>${vo.writedate }</span></li>
 					</c:forEach>
 				</ul>
 			</form>

@@ -223,15 +223,37 @@ ul{
  	border-radius:10px; 
  	border : 1px solid white; 
  	color:#2fb86a;
+	width: 150px;
+	line-height: 50px;
+	height: 50px;
+}
+/* ksh 이미지 블러+어둡게 처리 */
+.p_mainContent_wrapper{
+	width: 100%;
+	height: 100vh;
+	background: url("/img/background_3.jpeg");
+	background-size: 100%;
+} 
+.p_mainContent_wrapper>div{
+	width:100%;
+	height:100vh;
+	-webkit-backdrop-filter: blur(0.3px);
+  backdrop-filter: blur(0.3px);
+	-webkit-backdrop-filter: brightness(.6);
+  backdrop-filter: brightness(.6);
+	text-align: center;
 }
 .p_mainContent{
 	display:flex;
 	color:white;
 	font-family: 'Jua', sans-serif;
-	background-color:#2fb86a;
+	/* background-color:#2fb86a; */
 	width:80%;
 	height:100vh;
+	margin: 0 auto;
+	/* align-items: center; */
 }
+
 .p_nav, .p_section {
 	float:left;
 	overflow:auto;
@@ -245,6 +267,7 @@ ul{
 	text-align:center;
 	font-size:1.6em;
 	overflow:auto;	
+	margin:20% 5%;
 }
 .p_section{
 	width:50%;
@@ -256,6 +279,7 @@ ul{
 .p_section-ment{
 	border : 10px solid white;
 	border-radius:10px;
+	padding: 20px;
 }
 .p_main-plogging{
 	text-align:center;
