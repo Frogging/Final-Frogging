@@ -89,39 +89,36 @@
 
 			<form action="">
 				<ul class="k_a_select">
-					<li class="k_a_select_w">주</li>
-					<li class="k_a_select_m active">월</li>
+					<li class="k_a_select_w active">주</li>
+					<li class="k_a_select_m">월</li>
 					<li class="k_a_select_y ">년</li>
 					<li class="k_a_select_t">전체</li>
 				</ul>
-
-				<%-- <select name="" id="k_a_select_detail">
-					<option value="">2019년</option>
-					<option value="">2020년</option>
-					<option value="">2021년</option>
-					<option value="" selected >2022년</option>
-				</select> --%>
 			</form>
 
 			<div class="k_a_chart">
 				<ul>
 					<li>TOTAL</li>
 
+					<li class="k_weekly"><span>${a_vo_w.week}</span>번째 주</li>
 					<li class="k_weekly"><span>${a_vo_w.total_distance}</span> km</li>
 					<li class="k_weekly"><span>${a_vo_w.total_step}</span> steps</li>
 					<li class="k_weekly"><span>${a_vo_w.plog_count}</span> th plogging</li>
 					<li class="k_weekly"><span>${a_vo_w.trash_sum}</span> L of trash</li>
 
-					<li class="k_monthly active"><span>${a_vo_m.total_distance}</span> km</li>
-					<li class="k_monthly active"><span>${a_vo_m.total_step}</span> steps</li>
-					<li class="k_monthly active"><span>${a_vo_m.plog_count}</span> th plogging</li>
-					<li class="k_monthly active"><span>${a_vo_m.trash_sum}</span> L of trash</li>
+					<li class="k_monthly"><span>${a_vo_m.month}</span>월</li>
+					<li class="k_monthly"><span>${a_vo_m.total_distance}</span> km</li>
+					<li class="k_monthly"><span>${a_vo_m.total_step}</span> steps</li>
+					<li class="k_monthly"><span>${a_vo_m.plog_count}</span> th plogging</li>
+					<li class="k_monthly"><span>${a_vo_m.trash_sum}</span> L of trash</li>
 
+					<li class="k_yearly"><span>${a_vo_y.year}</span>년</li>
 					<li class="k_yearly"><span>${a_vo_y.total_distance}</span> km</li>
 					<li class="k_yearly"><span>${a_vo_y.total_step}</span> steps</li>
 					<li class="k_yearly"><span>${a_vo_y.plog_count}</span> th plogging</li>
 					<li class="k_yearly"><span>${a_vo_y.trash_sum}</span> L of trash</li>
 
+					<li class="k_totally"><span>전체</span></li>
 					<li class="k_totally"><span>${a_vo_t.total_distance}</span> km</li>
 					<li class="k_totally"><span>${a_vo_t.total_step}</span> steps</li>
 					<li class="k_totally"><span>${a_vo_t.plog_count}</span> th plogging</li>
