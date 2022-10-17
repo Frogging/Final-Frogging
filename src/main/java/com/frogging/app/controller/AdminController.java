@@ -58,7 +58,7 @@ public class AdminController {
 
 			String msg = "<script>";
 			msg += "alert('회원정보가 수정되었습니다.');";
-			msg += "location.href='/userlist'";
+			msg += "location.href='/admin/userlist'";
 			msg += "</script>";
 
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);// 성공:200
@@ -77,7 +77,7 @@ public class AdminController {
 	@GetMapping("listDel")
 	public ModelAndView listDel(String id) {
 		service.listDel(id);
-		mav.setViewName("redirect:/userlist");
+		mav.setViewName("redirect:/admin/userlist");
 		return mav;
 	}
 
