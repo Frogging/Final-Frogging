@@ -769,7 +769,7 @@
 	}
 	
 	function nameCheck(){
-		var course_name = document.getElementById('courseName').value;
+		var course_name = document.getElementById('course_name').value;
 		//alert(course_name);
 		if(course_name == ""){
 			alert("코스명을 입력하세요");

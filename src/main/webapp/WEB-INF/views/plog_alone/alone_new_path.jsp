@@ -47,7 +47,7 @@
 									<li class="k_green"><span>코스 이름</span></li>
 									<li id="k_coursename">
 									<span id="coursename">
-									<input type="text" name="course_name" id = "courseName">
+									<input type="text" name="course_name" id = "course_name">
 									<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
 									</span>
 									</li>
