@@ -24,7 +24,7 @@
 </style>
 <script>
 $(function(){
-	$('#listDel').on("click", function() {
+	$('.listDel-btn').on("click", function() {
 		if (confirm("삭제하시겠습니까?")) {
 			return true;
 		}
