@@ -1709,6 +1709,7 @@ i{
 .k_make_path_edit>.k_path_infos input{
 	width: 80%;
 }
+.k_make_path_edit>.k_path_infos li:nth-child(2),
 .k_make_path_edit>.k_path_infos li:nth-child(3),
 .k_make_path_edit>.k_path_infos li:nth-child(4),
 .k_make_path_edit>.k_path_infos li:nth-child(5),
@@ -1721,7 +1722,12 @@ i{
 	overflow: scroll;
 	text-overflow:unset;
 }
-
+.k_make_path_edit #k_coursename input:first-child{
+	width: 50%;
+}
+.k_make_path_edit #courseNameCheck{
+	width: 100px;
+}
 .k_make_path_edit>.k_path_infos #addr_btn{
 	width: 40px;
 	margin-left: var(--space-medium);
@@ -1739,6 +1745,7 @@ i{
 	margin-top: var(--space-large);
 	border: 1px solid var(--main-green);
 }
+
 .k_make_path_edit #searchResult div{
 	width: 100%;
 	text-align: center;
@@ -1746,6 +1753,20 @@ i{
 }
 .k_make_path_edit img{
 	width: 20px;
+}
+.k_btn_area{
+	width: 100%;
+}
+#courseSave{
+	float: right;
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	background-color: var(--ct-dark-green);
+	color: white;
+	border-style: none;
+	border-radius: var(--radius-mild);
+	margin: 10px 50px 10px auto;
 }
 /* -------------------------- 회원가입 ------------------------- */
 .k_body_b{
