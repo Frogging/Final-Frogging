@@ -34,11 +34,11 @@
 
 		select @rownum:=@rownum+1 as rownum, t3.plog_count, (select nickname from user t2 where t2.id = t3.id) nickname
 		from
-		(select (select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count, id
+		(select @rownum := 0,(select nickname from user t2 where t2.id = t1.id) nickname, count(id) plog_count, id
 		from activity as t1 
 		where date between subdate(curdate(),date_format(curdate(),'%w')+7) and now()
 		group by id order by count(id) desc) t3
-		where (@rownum:=0)=0
+		<!-- where (@rownum:=0)=0 -->
 		limit 3  offset 0
 	</select>
 
@@ -83,12 +83,12 @@
 		<!-- ver.8 up -->
 			select *
 			from
-			(select @rownum:=@rownum+1 as rownum, plog_count, id
+			(select @rownum:=@rownum+1 as rownum, plog_count, id, @rownum:=0
 			from (
 			select count(id) plog_count, id
 			from activity as t1 
 			group by id order by count(id) desc)t2
-			where (@rownum:=0)=0)t3
+			)t3
 			where id = #{param1}
 	</select>
 
