@@ -19,6 +19,7 @@
 		<p id="result"></p>
 		<form method = "post" id = "courseForm">
 			코스명 : <input type = "text" id = "course_name" name = "course_name">
+			<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
 			코스에 대한 메모 : <textarea id = "course_info" name = "course_info"></textarea>
 			<input type = "submit" id = "course" name = "course" value = "코스 생성">
 		</form>

@@ -22,16 +22,16 @@
 					console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
-							width : "400px",
-							height : "220px",
+							width : "100%",
+							height : "130px",
 							zoom : 15,
 							zoomControl : false,
 							scrollwheel : false,
 							httpsMode : true
 						});
 					if(map_arr[i].course_no == 99999){
-						$('#map_div_99999').css('width', '500px');
-						$('#map_div_99999').css('height', '400px');
+						$('#map_div_99999').css('width', '100%');
+						$('#map_div_99999').css('height', '500px');
 						map[i].resize();
 					}
 					if(window.location.pathname == '/mobile/mobileList'){
