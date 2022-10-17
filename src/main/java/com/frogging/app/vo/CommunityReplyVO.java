@@ -8,6 +8,7 @@ public class CommunityReplyVO {
 	private String writedate;
 	private int depth;
 	private int reply_group;
+	private String nickname;
 	
 
 	@Override
@@ -70,6 +71,14 @@ public class CommunityReplyVO {
 
 	public void setReply_group(int reply_group) {
 		this.reply_group = reply_group;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 }

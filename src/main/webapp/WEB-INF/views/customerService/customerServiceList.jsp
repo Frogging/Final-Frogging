@@ -77,7 +77,14 @@ a:visited {
                             	<a href="/customerService/customerServiceDetail?no=${vo.no }"><span style="padding-left:${vo.depth *40}px;"> 답변:</span>${vo.subject }</a>
                             </c:if> 
                            </td>
-                            <td>${vo.id}</td>
+                            <td>
+	                            <c:if test = "${vo.depth == 0 }">
+	                            	${vo.name}
+	                            </c:if>
+	                            <c:if test = "${vo.depth > 0 }">
+	                            	관리자
+	                            </c:if>
+                            </td>
                             <td>${vo.writedate}</td>
                         </tr>
                         	</c:forEach> 

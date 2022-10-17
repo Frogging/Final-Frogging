@@ -15,10 +15,11 @@
 	</insert>
 		
 	<select id="customerServiceList" resultType="CustomerServiceVO">
-		select no, subject, id, reply_group, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
-		from board_customerservice 
+		select cs.no, cs.subject, cs.id, cs.reply_group, cs.depth, cs.hit, date_format(cs.writedate, '%y.%m.%d %h:%i') writedate, user.name name
+		from board_customerservice cs, user user
+		where cs.id = user.id
 		<if test="searchWord!=null">
-			where ${searchKey} like '%${searchWord}%'
+			and ${searchKey} like '%${searchWord}%'
 		</if>
 		order by reply_group desc, depth asc
 		limit ${onePageRecord} offset ${offsetPoint}
@@ -70,9 +71,9 @@
 		</if>
 	</select>
 	<select id="getcustomerService" resultType="CustomerServiceVO" parameterType="int">
-		select no,reply_group, subject, content, hit, id, writedate, depth
-		from board_customerservice
-		where no=${param1}
+		select cs.no, cs.reply_group, cs.subject, cs.content, cs.hit, cs.id, cs.writedate, cs.depth, user.name name
+		from board_customerservice cs, user user
+		where no=${param1} and cs.id = user.id
 	</select>
 	
 	<update id="hitCount">

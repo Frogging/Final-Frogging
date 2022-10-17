@@ -10,6 +10,7 @@ public class CommunityVO {
 	private int hit;
 	private String writedate;
 	private int depth;
+	private String nickname;
 	//여러개의 레코드 번호를 저장
 	private List<Integer> noList;
 	
@@ -72,6 +73,12 @@ public class CommunityVO {
 	}
 	public void setReply_count(int reply_count) {
 		this.reply_count = reply_count;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 	

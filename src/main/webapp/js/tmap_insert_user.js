@@ -55,7 +55,11 @@ var time = 0;
 				url : '/maps/mapsOk',
 				data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 2},
 				success: function(result){
-					window.location.href = '/maps/tmap02';
+					if(window.location.pathname == '/alone/alone_new_path_user'){
+						window.location.href = '/alone/alone_rec_path';
+					}else if(window.location.pathname == '/club/make_club_new_path_user'){
+						window.location.href = '/club/make_club_rec_path';
+					}
 				}, error: function(e){
 					console.log(e.responseText);
 					alert("코스 등록에 실패하였습니다.");
