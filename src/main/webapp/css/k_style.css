@@ -1088,22 +1088,22 @@ i{
 	flex-direction: column;
 	justify-content:space-around;
 }
-.k_a_chart>ul>li{
+/* .k_a_chart>ul>li{
 	display: none;
 }
 .k_a_chart>ul>.active{
 	display: block;
-}
+} */
 .k_a_chart>ul>li>span{
 	font-size: var(--size-large-2);
 	font-weight: bold;
 }
-.k_a_chart_wrap .k_a_chart_graph{
+/* .k_a_chart_wrap .k_a_chart_graph{
 	display: none;
 }
 .k_a_chart_wrap>.active{
 	display:block;
-}
+} */
 .k_a_chart_graph{
 	/* width: 95%; */
 	width: 600px;
@@ -1118,6 +1118,10 @@ i{
 	border-radius: var(--radius-mild);
 }
 
+.k_monthly, .k_yearly, .k_totally, 
+#k_monthly_chart, #k_yearly_chart, #k_totally_chart{
+	display: none;
+}
 /*  ------------------ 액티비티 리스트 --------------------- */
 .k_activity_list{
 	background-color: var(--ct-light-grey);

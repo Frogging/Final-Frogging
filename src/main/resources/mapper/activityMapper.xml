@@ -115,13 +115,13 @@
 	</select>
 
 	<select id="getUserStatistic_w" resultType="ActivityVO">
-		select sum(distance) total_distance, sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
+		select SUBSTR(YEARWEEK(now()),5) as week, sum(distance) total_distance, sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
 		from activity t1 
 		where id = #{param1} and YEARWEEK(date) = YEARWEEK(now())
 	</select>
 
 	<select id="getUserStatistic_m" resultType="ActivityVO">
-		select TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
+		select month(now()) as month, TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
 		from activity t1 
 		where id = #{param1} and date between date_format(now(), '%Y-%m-01') and now()
 	</select>
@@ -131,7 +131,7 @@
 		from activity t1 
 		where id = #{param1} and date between date_format(now(), '%Y-01') and now() -->
 
-		select TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
+		select year(now()) as year, TRUNCATE(sum(distance), 2)  total_distance,  sum(step) total_step, count(no) plog_count, sum(amount_trash) trash_sum
 		from activity t1 
 		where id = #{param1}
 	</select>

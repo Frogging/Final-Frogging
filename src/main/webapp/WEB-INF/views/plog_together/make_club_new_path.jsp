@@ -83,7 +83,7 @@
 									<ul id="searchResult" name="searchResult">
 								<div class="k_green">검색결과</div>
 							</ul>
-							<form method = "post" id = "courseForm"">
+							<form  style="width:100%" method = "post" id = "courseForm"">
 							<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
 							</form>
 							</div>

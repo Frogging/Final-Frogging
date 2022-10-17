@@ -38,12 +38,6 @@
 
 			<div class="k_static_plog_box">
 				<div class="k_a_title">플로깅 통계</div>
-				<%-- <ul class="k_a_select">
-						<li>주</li>
-						<li class="active">월</li>
-						<li>년</li>
-						<li>전체</li>
-				</ul> --%>
 				<div class="k_m_chart">
 					<div class="k_m_chart_graph"><canvas id="myChart_p"></canvas></div>
 				</div>
