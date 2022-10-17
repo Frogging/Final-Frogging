@@ -124,7 +124,7 @@ function initTmap() {
 						<li>예상 거리 : ${courseList.distance }km</li>
 						<li>예상 시간 : ${courseList.time }분</li>
 						</span>
-						<span>
+						<span style = "float:right;">
 						<li><div id="map_div_${courseList.course_no }"></div></li>
 						</span>	
 					</ul>

@@ -34,6 +34,11 @@
 						$('#map_div_99999').css('height', '400px');
 						map[i].resize();
 					}
+					if(window.location.pathname == '/mobile/mobileList'){
+						$('#map_div_'+map_arr[i].course_no).css('width', '400px');
+						$('#map_div_'+map_arr[i].course_no).css('height', '220px');
+						map[i].resize();
+					}
 					for(var j = 0; j < detail_arr.length; j++){
 						if(map_arr[i].course_no == detail_arr[j].course_no){
 							if(detail_arr[j].waypoint == 0){

@@ -40,45 +40,39 @@
 						나만의 경로 만들기
 					</div>
 				</div>
-					<ul class="k_rec_path_button">
-						<li><a href="/alone/alone_rec_path">추천 코스 선택하기</a></li>
-						<li class="active"><a href="/alone/alone_new_path">나만의 코스 만들기</a></li>
-					</ul>
-
 					<div class="k_path_list_bg">
-
-					<!-- 지도 입력 폼 -->
-									<form method = "post" id = "courseForm"">
-											<div class="k_make_path_edit">
-												<div class="k_make_path_map" id = "map_div"></div>
-													<ul class="k_path_infos">
-														<li class="k_green"><span>코스 이름</span></li>
-														<li id="k_coursename">
-														<span id="coursename">
-														<input type="text" name="course_name">
-														<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
-														</span>
-														</li>
-														<li class="k_green"><span>코스 정보</span></li>
-														<li id="k_course_info"><span id="course_info"><input type="text" name="course_info"></span></li>
-														<li class="k_green"><span>소요 시간</span></li>
-														<li id="k_time"><span id="result_time">분</span></li>
-														<li class="k_green"><span>이동거리</span></li>
-														<li id="k_distance"><span id="result_distance">km</span></li>
-														<li class="k_green"><span>시작 위치</span></li>
-														<li id="k_startaddr"><span><input type = "text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></span></li>
-														<li class="k_green"><span>도착 위치</span></li>
-														<li id="k_endaddr"><span><input type = "text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></span></li>
-														<li class="k_green"><span>경유지</span><input type = "button" id="addr_btn" value = "추가" onclick = "add_textbox()"></li>
-														<li id="waypoint">
-														</li>
-													</ul>
-													<ul id="searchResult" name="searchResult">
-														<div class="k_green">검색결과</div>
-													</ul>
-													<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
-											</div>
-										</form>
+						<div class="k_make_path_edit">
+							<div class="k_make_path_map" id = "map_div"></div>
+								<ul class="k_path_infos">
+									<li class="k_green"><span>코스 이름</span></li>
+									<li id="k_coursename">
+									<span id="coursename">
+									<input type="text" name="course_name" id = "courseName">
+									<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
+									</span>
+									</li>
+									<li class="k_green"><span>코스 정보</span></li>
+									<li id="k_course_info"><span id="course_info"><input type="text" name="course_info"></span></li>
+									<li class="k_green"><span>소요 시간</span></li>
+									<li id="k_time"><span id="result_time">분</span></li>
+									<li class="k_green"><span>이동거리</span></li>
+									<li id="k_distance"><span id="result_distance">km</span></li>
+									<li class="k_green"><span>시작 위치</span></li>
+									<li id="k_startaddr"><span><input type = "text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></span></li>
+									<li class="k_green"><span>도착 위치</span></li>
+									<li id="k_endaddr"><span><input type = "text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></span></li>
+									<li class="k_green"><span>경유지</span><input type = "button" id="addr_btn" value = "추가" onclick = "add_textbox()"></li>
+									<li id="waypoint">
+									</li>
+								</ul>
+								<ul id="searchResult" name="searchResult">
+									<div class="k_green">검색결과</div>
+								</ul>
+								<form method = "post" id = "courseForm">
+									<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
+								</form>
+						</div>
+										
 
 							<%-- <div class="k_make_path">
 								<div class="k_make_path_map" id = "map_div" style= "overflow : hidden;"></div>
@@ -98,9 +92,14 @@
 
 
 					</div>
-					<div class="k_alone_start_button">
-						<div><a href="/mobile/mobileList">혼자 프로깅 시작</a></div>
-					</div>
+					
+					<ul class="k_rec_path_button">
+						<li><a href="/alone/alone_rec_path">추천 코스 선택하기</a></li>
+						<li class="active">
+							<div><a href="/mobile/mobileList">혼자 프로깅 시작</a></div>
+						</li>
+					</ul>
+					
 				</div>
 			</div>
 		</section>

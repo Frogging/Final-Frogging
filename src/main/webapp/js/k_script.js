@@ -32,6 +32,7 @@ function modal_club() {
 			modal.classList.toggle('show');
 			if (!modal.classList.contains('show')) {
 				body.style.overflow = 'auto';
+				map[0].destroy();
 			}
 		}
 	});
@@ -41,6 +42,7 @@ function modal_club() {
 		modal.classList.toggle('show');
 			if (!modal.classList.contains('show')) {
 				body.style.overflow = 'auto';
+				map[0].destroy();
 			}
 	});
 };
