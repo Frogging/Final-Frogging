@@ -88,13 +88,13 @@ $(function(){
 					게시글 검색 : 
 				</div>
 				<div>원하시는 글을 찾아드릴께요 
-				<form method="get" action="/community/communityList" class="p_searchForm">
+				<form method="get" action="/community/communityList" class="p_searchForm" style="margin: 0 auto; float:right; width:30%;">
                 <select name="searchKey" class="p_searchKey" style="height:40px; width:105px; font-size: 18px;">
                     <option value="subject">제목</option>
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
-                <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:700px;"/>
+                <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:300px;"/>
                 <input type="submit" value="찾기" class="p_communitysearch-btn"  style="height:40px; width:120px;"/>
            		</form>
            		
