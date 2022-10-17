@@ -29,7 +29,8 @@ var map;
 					console.log(i+": address : " + address[i]);
 				}
 				
-				var course_name = $("#coursename").html();
+			
+				var course_name = $("#coursename").val();
 				var course_info = $("#course_info").html();
 				var course_no = detail_arr[0].course_no;
 

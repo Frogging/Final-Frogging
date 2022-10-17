@@ -191,7 +191,7 @@
 					</section>
 
 					<div class="k_alone_start_button">
-						<div>혼자 프로깅 시작</div>
+						<div><a href="/mobile/mobileList">혼자 프로깅 시작</a></div>
 					</div>
 				</div>
 			</div>
