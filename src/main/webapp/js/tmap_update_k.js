@@ -837,6 +837,7 @@ var map;
 	}
 	const remove_textbox = (obj) => {
 		document.getElementById('waypoint').removeChild(obj.parentNode);
+		waypoint_number--;
 		if(count > 0){
 			markers[markers.length - 1].setMap(null);
 			markers.pop();

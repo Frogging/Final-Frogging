@@ -6,7 +6,9 @@
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script src="/js/k_script.js" type="text/javascript"></script>
-
+	<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
+	<script src="/js/tmap_insert.js"></script>
 </head>
 
 <body class="k_body">
@@ -53,14 +55,14 @@
 					<div class="k_path_list_bg">
 					<!-- 지도 입력 폼 -->
 				
-					<form method = "post" id = "courseForm"">
+					
 							<div class="k_make_path_edit">
 								<div class="k_make_path_map" id = "map_div"></div>
 									<ul class="k_path_infos">
 										<li class="k_green"><span>코스 이름</span></li>
 										<li id="k_coursename">
 											<span id="coursename">
-												<input type="text" name="course_name">
+												<input type="text" name="course_name" id = "courseName">
 												<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
 											</span>
 										</li>
@@ -81,10 +83,12 @@
 									<ul id="searchResult" name="searchResult">
 								<div class="k_green">검색결과</div>
 							</ul>
+							<form method = "post" id = "courseForm"">
 							<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
+							</form>
 							</div>
-						</form>
-
+						
+							
 						<%-- <form action="">
 							<div class="k_make_path">
 								<div class="k_make_path_map"></div>

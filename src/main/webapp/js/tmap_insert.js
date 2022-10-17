@@ -14,6 +14,7 @@
 	var tTime;
 	var startLat;
 	var startLon;
+	var nameChecker = false;
 
 	$(function(){
 		var lat = new Array();
@@ -33,6 +34,23 @@
 			
 			var course_name = $("#course_name").val();
 			var course_info = $("#course_info").val();
+			
+			if(course_name == ""){
+				alert("코스명을 입력해주세요.");
+				return false;
+			}
+			if(nameChecker == false){
+				alert("코스명 중복 검사를 해주세요.");
+				return false;
+			}
+			if(lat.length == 0){
+				alert("출발지를 선택해주세요.");
+				return false;
+			}
+			if(lat.length == 1){
+				alert("도착지를 선택해주세요.");
+				return false;
+			}
 			
 			$.ajax({
 				type : 'POST',
@@ -716,13 +734,14 @@
 		}
 		const box = document.getElementById("waypoint");
 		const newSpan = document.createElement('span');
-		newSpan.innerHTML = "<input type = 'text' class = 'searchWaypoint' id = 'searchWaypoint"+waypoint_number+"' onKeypress = 'javascript:if(event.keyCode==13){searchPlace(this.value, 2)}'><input type = 'button' class = 'waypoint_button' value = '삭제' onclick = 'remove_textbox(this)'>";
+		newSpan.innerHTML = "<input type = 'text' class = 'searchWaypoint' id = 'searchWaypoint"+waypoint_number+"' onKeypress = 'javascript:if(event.keyCode==13){searchPlace(this.value, 2)}'><input type = 'button' class = 'waypoint_button' id='addr_btn' value = '삭제' onclick = 'remove_textbox(this)'>";
 		box.appendChild(newSpan);
 		waypoint_number++;
 		
 	}
 	const remove_textbox = (obj) => {
 		document.getElementById('waypoint').removeChild(obj.parentNode);
+		waypoint_number--;
 		if(count > 0){
 			markers[markers.length - 1].setMap(null);
 			markers.pop();
@@ -750,7 +769,8 @@
 	}
 	
 	function nameCheck(){
-		var course_name = $('#course_name').val();
+		var course_name = document.getElementById('courseName').value;
+		//alert(course_name);
 		if(course_name == ""){
 			alert("코스명을 입력하세요");
 			return false;
@@ -762,6 +782,7 @@
 			success : function(result){
 				if(result < 1){
 					alert("사용가능한 코스명입니다.");
+					nameChecker = true;
 				}else{
 					alert("중복된 코스명입니다.");
 				}
