@@ -61,9 +61,7 @@ public class MypageController {
 		String id = (String) session.getAttribute("logId");
 		// System.out.println(id);
 		// 랭킹 정보
-		int plog_count = a_serivce.getRank_p(id).getRownum();
-		int distance = a_serivce.getRank_k(id).getRownum();
-		System.out.println("//" + plog_count + "위 //" + distance + "위");
+
 		try {
 			// 액티비티 내역이 있으면?
 			mav.addObject("plog_count", a_serivce.getRank_p(id).getRownum());

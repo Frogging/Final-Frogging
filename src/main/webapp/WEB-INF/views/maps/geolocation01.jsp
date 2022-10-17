@@ -50,20 +50,20 @@
     width: 180px;
 }
 .ploggingSave-btn{
-	height: 40px;
-    width: 180px;
+	height: 50px;
+    width: 200px;
     background-color: #2fb86a;
     border : 1px solid white;
     border-radius:5px;
     color: white;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
     margin: 0 10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
 .ploggingStart-btn, .ploggingEnd-btn{
     height: 100px;
-    width: 150px;
+    width: 180px;
     background-color: #2fb86a;
     border : 1px solid white;
     border-radius:5px;
@@ -93,7 +93,8 @@
 	    border-radius:5px;
 	    color: white;
 	    font-weight: bold;
-	    font-size: 24px;
+	    font-size: 22px;
+	    text-align:center;
 	    margin: 0 10px;
 	    font-family: 'Noto Sans KR', sans-serif;
 	}
