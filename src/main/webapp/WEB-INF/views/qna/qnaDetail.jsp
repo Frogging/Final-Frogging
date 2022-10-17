@@ -93,8 +93,10 @@
             </form>
             <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center; padding:5px;">
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
+                <c:if test="${vo.id==logId}">
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaEdit/${vo.no }'">수정하기</button>
                 <input type="button" class="btn black" value="삭제하기" onclick="location.href='javascript:qnaDel();'"/>
+                </c:if>
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaReply?no=${vo.no }'">답글쓰기</button>
                <!--   <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaReply'">답글쓰기</button>-->
                
