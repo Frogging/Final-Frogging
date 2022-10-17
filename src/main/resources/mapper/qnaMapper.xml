@@ -49,7 +49,7 @@
 	 
 	<update id="qnaUpdate">
 		update board_question set reply_seq = reply_seq + 1 
-		where reply_group = #{reply_group} and reply_seq >= #{reply_seq}
+		where reply_group = #{reply_group} and reply_seq > #{reply_seq}
 	</update>	
 	
 	<!-- 

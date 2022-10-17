@@ -146,14 +146,11 @@ public class AdminController {
 	}
 
 	@GetMapping("eventDel")
-	public ModelAndView eventDel(int no, String id) {
-		int cnt = service.eventDel(no, id); // logId
+	public ModelAndView eventDel(int no, String id) {		
+		service.eventDel(no, id);	
 		mav = new ModelAndView();
-		if (cnt > 0) {
-			mav.setViewName("redirect:/admin/eventList");
-		} else {
-			mav.setViewName("redirect:eventView");
-		}
+		mav.setViewName("redirect:/admin/eventList");
+	
 		return mav;
 	}
 
@@ -162,22 +159,18 @@ public class AdminController {
 
 		mav = new ModelAndView();
 		System.out.println(pVO.toString());
+		mav.addObject("qnalist", service.qnaList(pVO));
 		pVO.setTotalRecord(service.totalRecord3(pVO));
-		mav.addObject("list", service.qnaList(pVO));
 		mav.addObject("pVO", pVO);
 		mav.setViewName("admin/qnaList");
 		return mav;
 	}
 
 	@GetMapping("qnaDel")
-	public ModelAndView qnaDel(int no, HttpSession session) {
-		int cnt = service.qnaDel(no, (String) session.getAttribute("logId")); // logId
+	public ModelAndView qnaDel(int no, String id) {
+		service.qnaDel(no, id); // logId
 		mav = new ModelAndView();
-		if (cnt > 0) {
-			mav.setViewName("redirect:admin/qnaList");
-		} else {
-			mav.setViewName("redirect:qnaDetail");
-		}
+		mav.setViewName("redirect:/admin/qnaList");
 		return mav;
 	}
 }
