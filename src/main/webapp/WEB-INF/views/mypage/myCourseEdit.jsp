@@ -82,7 +82,11 @@
 					<div class="k_make_path_map" id = "map_div"></div>
 					<ul class="k_path_infos">
 						<li class="k_green"><span>코스 이름</span></li>
-						<li id="k_coursename"><span id="coursename">${vo.course_name}</span></li>
+						<li id="k_coursename">
+						<span id="coursename">
+						<input type="text" name="course_name" value="${vo.course_name}">
+						<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
+						</span></li>
 						<li class="k_green"><span>코스 정보</span></li>
 						<li id="k_course_info"><span id="course_info">${vo.course_info}</span></li>
 						<li class="k_green"><span>소요 시간</span></li>
