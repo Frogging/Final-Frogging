@@ -769,13 +769,14 @@
 		}
 		const box = document.getElementById("waypoint");
 		const newSpan = document.createElement('span');
-		newSpan.innerHTML = "<input type = 'text' class = 'searchWaypoint' id = 'searchWaypoint"+waypoint_number+"' onKeypress = 'javascript:if(event.keyCode==13){searchPlace(this.value, 2)}'><input type = 'button' class = 'waypoint_button' value = '삭제' onclick = 'remove_textbox(this)'>";
+		newSpan.innerHTML = "<input type = 'text' class = 'searchWaypoint' id = 'searchWaypoint"+waypoint_number+"' onKeypress = 'javascript:if(event.keyCode==13){searchPlace(this.value, 2)}'><input type = 'button' class = 'waypoint_button' id='addr_btn' value = '삭제' onclick = 'remove_textbox(this)'>";
 		box.appendChild(newSpan);
 		waypoint_number++;
 		
 	}
 	const remove_textbox = (obj) => {
 		document.getElementById('waypoint').removeChild(obj.parentNode);
+		waypoint_number--;
 		if(count > 0){
 			markers[markers.length - 1].setMap(null);
 			markers.pop();

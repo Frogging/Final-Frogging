@@ -8,7 +8,7 @@
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 	<script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
-	<script type = "text/javascript">
+<script type = "text/javascript">
 	function initTmap() {
 	// 1. 지도 띄우기
 	var map_arr = new Array();
