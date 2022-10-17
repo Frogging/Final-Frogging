@@ -20,8 +20,17 @@
     color: white;
     font-weight: bold;
     font-size: 1.2em;
-    margin: 0 2px;}
-.btn.black {border-color:#191919;color:#fff;background-color:#333;text-decoration:none;}
+    margin: 0 2px;
+    }
+.btn.black {
+	border-color:#191919;
+	color:#fff;
+	background-color:#333;
+	text-decoration:none; 
+	font-family: 'Noto Sans KR', sans-serif;	
+	height: 40px;
+	 width: 80px;
+    }
 </style>
 <script type="text/javascript">
 
@@ -70,7 +79,7 @@
                     
                 </table>
 				 <div class="btn_right mt15" style="width:80%; margin:0 auto; float:right;">
-		                <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
+		                <button type="button" class="btn black" onclick="location.href='/qna/qnaList'">목록으로</button>
 		                <input type="submit" class="btn black" value="등록하기"/>
 				 </div> 
             </form>

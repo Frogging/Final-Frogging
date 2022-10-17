@@ -23,8 +23,8 @@ public class CustomerServiceServiceImpl implements CustomerServiceService{
 	}
 
 	@Override
-	public int customerServiceDel(int no, String id) {
-		return dao.customerServiceDel(no, id);
+	public int customerServiceDel(int reply_group, String id) {
+		return dao.customerServiceDel(reply_group, id);
 	}
 
 	@Override
@@ -72,6 +72,11 @@ public class CustomerServiceServiceImpl implements CustomerServiceService{
 	@Override
 	public int totalRecord(PagingVO pVO) {
 		return dao.totalRecord(pVO);
+	}
+
+	@Override
+	public int customerServiceDel2(int no, String id) {
+		return dao.customerServiceDel2(no, id);
 	}
 	
 	

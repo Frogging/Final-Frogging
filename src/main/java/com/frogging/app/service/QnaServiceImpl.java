@@ -23,8 +23,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int qnaDel(int no, String id) {
-		return dao.qnaDel(no, id);
+	public int qnaDel(int reply_group, String id) {
+		return dao.qnaDel(reply_group, id);
 	}
 
 	@Override
@@ -80,6 +80,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int totalRecord(PagingVO pVO) {
 		return dao.totalRecord(pVO);
+	}
+
+	@Override
+	public int qnaDel2(int no, String id) {
+		return dao.qnaDel2(no, id);
 	}
 
 

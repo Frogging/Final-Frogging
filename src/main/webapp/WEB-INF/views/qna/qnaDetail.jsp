@@ -25,12 +25,23 @@
 
 
 <script type="text/javascript">
-	
+/*	
 	function qnaDel(){
 	if(confirm("글을 삭제하시겠습니까?")){
-		location.href="/qna/qnaDel?no=${vo.no}";
+		location.href="/qna/qnaDel2?no=${vo.no}";//작동 확인
+	}
+}*/ function qnaDel(){
+	if(confirm("글을 삭제하시겠습니까?")){
+		if(${vo.depth} == 0){
+			location.href="/qna/qnaDel?reply_group=${vo.reply_group}";
+			
+		}else if(${vo.depth} == 1){
+			location.href="/qna/qnaDel2?no=${vo.no}";
+		}
+		
 	}
 }
+	
      
     $(document).ready(function(){        
         getQnaDetail();        
@@ -89,10 +100,14 @@
                     </tbody>
                 </table>        
                 <input type="hidden" id="qna_seq"      name="qna_seq"    	value="${vo.no}"/> <!-- 게시글 번호 -->
-                 <input type="hidden" id="qna_reply_group"      name="qna_seq"    	value="${vo.reply_group}"/>
+                 <input type="hidden" id="qna_reply_group"      name="reply_group"    	value="${vo.reply_group}"/>
+                 <input type="hidden" id="qna_depth"      name="depth"    	value="${vo.depth}"/>
                 <input type="hidden" id="search_type"    name="search_type"		value="S"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
             </form>
             <div class="btn_right mt15" style="width:80%; margin:0 auto; float:center; padding:5px;">
+            	<c:if test="${logStatus=='Admin'}">
+                	<button type="button" class="btn black mr5" onclick="location.href='/admin/qnaList'" style="width:150px;">관리자페이지로</button>
+                </c:if>
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
                 <c:if test="${vo.id==logId}">
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaEdit/${vo.no }'">수정하기</button>

@@ -65,6 +65,9 @@
        text-shadow: 1px 1px 2px gray;
        color: white;
    }
+   #p_viewbutton, .p_rereply-btn, .p_communityreply-btn{
+   	font-family: 'Noto Sans KR', sans-serif;
+   }
 </style>
 <script>
 function communityDel(){

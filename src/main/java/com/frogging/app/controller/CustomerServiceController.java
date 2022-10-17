@@ -90,11 +90,23 @@ public class CustomerServiceController {
 	
 	//고객센터 글삭제
 	@GetMapping("customerServiceDel")
-	public ModelAndView customerServiceDel(int no, HttpSession session) {
-		int cnt = service.customerServiceDel(no,(String)session.getAttribute("logId")); 
+	public ModelAndView customerServiceDel(int reply_group, HttpSession session) {
+		int cnt = service.customerServiceDel(reply_group,(String)session.getAttribute("logId")); 
 		mav = new ModelAndView();
 		if(cnt>0) {
-			mav.setViewName("redirect:customerServiceList");
+			mav.setViewName("redirect:/admin/customerServiceList");
+		}else {
+			mav.setViewName("redirect:customerServiceDetail");
+		}
+		return mav;
+	}
+	
+	@GetMapping("customerServiceDel2")
+	public ModelAndView customerServiceDel2(int no, HttpSession session) {
+		int cnt = service.customerServiceDel2(no,(String)session.getAttribute("logId")); 
+		mav = new ModelAndView();
+		if(cnt>0) {
+			mav.setViewName("redirect:/admin/customerServiceList");
 		}else {
 			mav.setViewName("redirect:customerServiceDetail");
 		}
