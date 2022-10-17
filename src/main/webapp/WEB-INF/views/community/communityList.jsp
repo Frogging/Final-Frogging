@@ -19,6 +19,10 @@ a:visited {
   color : black;
   text-decoration: none;
 }
+ a:link { 
+  color: black; 
+  text-decoration: none;
+ }
 .p_searchForm{
 	float:right;
 	width:65%;
@@ -84,13 +88,13 @@ $(function(){
 					게시글 검색 : 
 				</div>
 				<div>원하시는 글을 찾아드릴께요 
-				<form method="get" action="/community/communityList" class="p_searchForm">
+				<form method="get" action="/community/communityList" class="p_searchForm" style="margin: 0 auto; float:right; width:30%;">
                 <select name="searchKey" class="p_searchKey" style="height:40px; width:105px; font-size: 18px;">
                     <option value="subject">제목</option>
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
-                <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:700px;"/>
+                <input type="text" name="searchWord" class="p_searchWord" style="height:38px; width:300px;"/>
                 <input type="submit" value="찾기" class="p_communitysearch-btn"  style="height:40px; width:120px;"/>
            		</form>
            		
@@ -98,10 +102,17 @@ $(function(){
 			</div>  
 			        <br>
         <div class="p_communityList">
+        	<c:if test="${logStatus=='Admin'}">
               <input type="button" value="선택삭제" class="p_multiDel" style="height:40px; width:100px; font-family: 'Noto Sans KR', sans-serif;"/>   
+      		</c:if>
         <form method="post" action="/community/multiDel" id="p_communityForm">
             <ul class="p_community">
-                <li><input type="checkbox" class="p_allChk"/></li>
+            <c:if test="${logStatus=='Admin'}">
+                <li><input type="checkbox" class="p_allChk"/></li> 
+            </c:if>       
+            	<c:if test="${logStatus=='Y'||logStatus==null}">
+            	<li>게시글</li>
+            	</c:if>
                 <li>번호</li>
                 <li>제목</li>
                 <li>작성자</li>

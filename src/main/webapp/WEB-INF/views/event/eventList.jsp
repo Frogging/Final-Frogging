@@ -124,7 +124,9 @@ $(function(){
                 <input type="submit" value="찾기" class="p_eventsearch-btn"/>
             </form>	
             <div class="p_eventwrite">
+            <c:if test="${logStatus=='Admin'}">
             	<input type="button" class="p_eventwrite-btn" value="글쓰기" onclick="location.href='/event/eventForm'" style="font-family: 'Noto Sans KR', sans-serif;"/>
+            </c:if>
             </div>
         </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
