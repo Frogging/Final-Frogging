@@ -5,8 +5,8 @@
   
 <mapper namespace="com.frogging.app.dao.MapsDAO">
 	<insert id = "courseInsert">
-		insert into course(course_name, course_info, distance, time, type)
-		values(#{course_name}, #{course_info}, #{distance}, #{time}, #{type})
+		insert into course(course_name, course_info, distance, time, type, id)
+		values(#{course_name}, #{course_info}, #{distance}, #{time}, #{type}, #{id})
 	</insert>
 	<select id = "coursenoSearch" resultType = "int">
 		select course_no from course where course_name = #{param1}

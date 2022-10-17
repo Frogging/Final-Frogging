@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
@@ -42,11 +43,15 @@ public class MapsController {
 	public void mapsOk(@RequestParam("lat[]") List<String> lat,
 			@RequestParam("log[]") List<String> log,
 			@RequestParam("address[]") List<String> addr,
-			CourseVO vo) {
+			CourseVO vo,
+			HttpSession session) {
 		int result1 = 0;
 		int result2 = 0;
 		int course_no;
 		int waypoint = 0;
+		String id = (String)session.getAttribute("logId");
+		vo.setId(id);
+		
 		result1 = service.courseInsert(vo);
 
 		if (result1 > 0) {
@@ -77,7 +82,7 @@ public class MapsController {
 	public ModelAndView maps03(CourseVO vo) {
 
 		mav = new ModelAndView();
-
+		
 		mav.addObject("courseList", service.courseAllselect());
 		mav.setViewName("maps/naver_maps03");
 		return mav;

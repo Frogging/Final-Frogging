@@ -137,7 +137,14 @@ public class PartyController {
 		mav.setViewName("plog_together/make_club_new_path");
 		return mav;
 	}
+	
+	@GetMapping(value = "/make_club_new_path_user")
+	public ModelAndView make_club_new_path_user() {
 
+		mav = new ModelAndView();
+		mav.setViewName("plog_together/make_club_new_path_user");
+		return mav;
+	}
 	// 클럽관리 - 리스트
 	@GetMapping(value = "/my_club_list")
 	public ModelAndView my_club_list(HttpSession session, HttpServletRequest request) {

@@ -577,6 +577,11 @@
 			searchRoute();
 			reverseGeo(position.lng(), position.lat(), 2);
 		}
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 		
 	}
 	
@@ -644,6 +649,11 @@
 			}
 			searchRoute();
 			reverseGeo(lon, lat, 2);
+		}
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
 		}
 		
 	}

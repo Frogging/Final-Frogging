@@ -86,5 +86,12 @@ public class AloneController {
 		mav.setViewName("plog_alone/alone_new_path");
 		return mav;
 	}
+	
+	@GetMapping(value = "alone_new_path_user")
+	public ModelAndView alone_new_path_user() {
 
+		mav = new ModelAndView();
+		mav.setViewName("plog_alone/alone_new_path_user");
+		return mav;
+	}
 }

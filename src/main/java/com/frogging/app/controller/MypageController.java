@@ -279,5 +279,25 @@ public class MypageController {
 		mav.setViewName("/mypage/myCourseEdit");
 		return mav;
 	}
+	
+	@GetMapping("myCourseEdit_user")
+	public ModelAndView getMyCourseEdit_user(HttpSession session, int no) {
 
+		mav = new ModelAndView();
+
+		// String id = (String) session.getAttribute("logId");
+		int result = m_service.courseCheck(no);
+		if (result == 0) {
+			CourseVO cvo = new CourseVO();
+			cvo.setCourse_no(-1);
+			mav.addObject("course", cvo);
+		} else {
+			mav.addObject("course", m_service.courseSelect(no));
+			mav.addObject("courseDetail", m_service.detailSelect(no));
+		}
+
+		mav.addObject("vo", p_service.getPathDetail(no));
+		mav.setViewName("/mypage/myCourseEdit_user");
+		return mav;
+	}
 }

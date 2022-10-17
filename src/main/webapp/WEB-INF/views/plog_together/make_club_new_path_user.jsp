@@ -8,10 +8,10 @@
 	<script src="/js/k_script.js" type="text/javascript"></script>
 	<script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx0e16f9f2f8cc49c8af5c5ad4cc51a5c2"></script>
-	<script src="/js/tmap_insert.js"></script>
+	<script src="/js/tmap_insert_user.js"></script>
 </head>
 
-<body class="k_body">
+<body class="k_body" onload = "initTmap()">
 		<!-- --------- NEW PARTY with rec paths --------- -->
 		<section class="k_new_party_rec_path">
 			<div class="k_wrapper">
@@ -70,19 +70,15 @@
 										<li class="k_green"><span>이동거리</span></li>
 										<li id="k_distance"><span id="result_distance">km</span></li>
 										<li class="k_green"><span>시작 위치</span></li>
-								  	<li id="k_startaddr"><span><input type = "text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></span></li>
-										<li class="k_green"><span>도착 위치</span></li>
-										<li id="k_endaddr"><span><input type = "text" id = "searchEnd" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 1)}"></span></li>
-										<li class="k_green"><span>경유지</span><input type = "button" id="addr_btn" value = "추가" onclick = "add_textbox()"></li>
-										<li id="waypoint">
-										</li>
+								  		<li id="k_startaddr"><span><input type = "text" id = "searchStart" onKeypress="javascript:if(event.keyCode==13){searchPlace(this.value, 0)}"></span></li>
+										
 									</ul>
 									<ul id="searchResult" name="searchResult">
 								<div class="k_green">검색결과</div>
 							</ul>
 							<form  style="width:100%" method = "post" id = "courseForm"">
 								<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
-								<div class="k_btn_area"><a href = "/club/make_club_new_path_user"><input type="button" id="courseSave" value="수동 코스 생성"></a></div>
+								<div class="k_btn_area"><a href = "/club/make_club_new_path"><input type="button" id="courseSave" value="자동 코스 생성"></a></div>
 							</form>
 							</div>
 						
