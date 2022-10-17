@@ -33,7 +33,7 @@ $(function(){
 			check == false;
 		}
 		
-		alert(check);
+		//alert(check);
 		var lat = new Array();
 		var lon = new Array();
 		
@@ -74,7 +74,7 @@ $(function(){
 	});
 });
 function initTmap() {
-		alert("initTmap");
+		//alert("initTmap");
 		
 		// 1. 지도 띄우기
 		// 현재 위치 HTML Geolocaiton 을 통해 확인 GPS 아님
@@ -304,7 +304,7 @@ function checkArea(point_user, point_saved){
 }
 function loadCourse(loaded_course, type){
 	if(type == 1){
-		alert("loadcourse!");
+		//alert("loadcourse!");
 		var waypoint = "";
 		for (let i = 2; i < loaded_course.length; i++){
 			waypoint += loaded_course[i].log + ",";

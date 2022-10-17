@@ -186,7 +186,7 @@
 		count(id) plog_count, 
 		sum(step) total_step,
 		TRUNCATE(sum(time),2) total_time,
-		sum(amount_trash) trash_sum
+		TRUNCATE(sum(amount_trash),2) trash_sum
 		FROM activity 
 		group by month
 		order by month desc
