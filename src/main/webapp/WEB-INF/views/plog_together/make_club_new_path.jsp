@@ -62,7 +62,7 @@
 										<li class="k_green"><span>코스 이름</span></li>
 										<li id="k_coursename">
 											<span id="coursename">
-												<input type="text" name="course_name" id = "courseName">
+												<input type="text" name="course_name" id = "course_name">
 												<input type="button" id = "courseNameCheck" value = "중복 검사" onclick = "nameCheck()">
 											</span>
 										</li>
@@ -83,7 +83,7 @@
 									<ul id="searchResult" name="searchResult">
 								<div class="k_green">검색결과</div>
 							</ul>
-							<form method = "post" id = "courseForm"">
+							<form method = "post" id = "courseForm">
 							<div class="k_btn_area"><input type="submit" id="courseSave" value="코스 저장"></div>
 							</form>
 							</div>
