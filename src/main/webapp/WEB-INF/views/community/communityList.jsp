@@ -19,6 +19,10 @@ a:visited {
   color : black;
   text-decoration: none;
 }
+ a:link { 
+  color: black; 
+  text-decoration: none;
+ }
 .p_searchForm{
 	float:right;
 	width:65%;
@@ -98,10 +102,17 @@ $(function(){
 			</div>  
 			        <br>
         <div class="p_communityList">
+        	<c:if test="${logStatus=='Admin'}">
               <input type="button" value="선택삭제" class="p_multiDel" style="height:40px; width:100px; font-family: 'Noto Sans KR', sans-serif;"/>   
+      		</c:if>
         <form method="post" action="/community/multiDel" id="p_communityForm">
             <ul class="p_community">
-                <li><input type="checkbox" class="p_allChk"/></li>
+            <c:if test="${logStatus=='Admin'}">
+                <li><input type="checkbox" class="p_allChk"/></li> 
+            </c:if>       
+            	<c:if test="${logStatus=='Y'||logStatus==null}">
+            	<li>게시글</li>
+            	</c:if>
                 <li>번호</li>
                 <li>제목</li>
                 <li>작성자</li>
