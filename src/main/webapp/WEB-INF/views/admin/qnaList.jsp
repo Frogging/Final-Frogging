@@ -81,7 +81,7 @@ a:link {
                     </thead>
                     <tbody id="tbody">
    
-                    <c:forEach var="vo" items="${list }">
+                    <c:forEach var="vo" items="${qnalist }">
                     	<tr>
                             <td>${vo.no}</td>
                             <td style="text-align:left;">                           
@@ -96,9 +96,9 @@ a:link {
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                             <td>
-                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/customerService/customerServiceEdit/${vo.no }'"> /                    
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/customerServiceDel?no=${vo.no}'"></td>
-                        </tr>
+                            <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/qna/qnaEdit/${vo.no }'"> /                    
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/qnaDel?no=${vo.no}'"></td>
+                        </tr>													
                      </c:forEach> 
                      <div class="p_qnaPage">
                      <ul>
