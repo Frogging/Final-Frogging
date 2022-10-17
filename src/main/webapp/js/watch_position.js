@@ -10,7 +10,7 @@ var saved_course = [];
 
 var drawInfoArr = [];
 var resultdrawArr = [];
-var sync = true;
+var sync = false;
 
 $(function(){
 	$("#checkCourseForm").submit(function(){

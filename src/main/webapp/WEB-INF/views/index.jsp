@@ -69,7 +69,7 @@
 
 </script>
 <body>
-	<div class="p_container1">
+	<div class="p_container1" style="overflow-y: hidden;">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
