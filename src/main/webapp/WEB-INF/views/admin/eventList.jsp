@@ -93,8 +93,9 @@ function eventDelete(){
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                             <td>
+                            <input type="hidden" name="no" value="${vo.no }"/>
                             <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/event/eventEdit/${vo.no }'"> / 
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/event/eventDel?no=${vo.no}'"></td>
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/eventDel?no=${vo.no}'"></td>
                         </tr>
                      </c:forEach> 
                       <div class="p_eventServicePage">

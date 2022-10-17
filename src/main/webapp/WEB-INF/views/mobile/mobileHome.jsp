@@ -39,7 +39,7 @@
 			font-family: 'Noto Sans KR', sans-serif;
 			color:white;
 			font-weight: bold;
-			font-size: 22px;
+			font-size: 18px;
 			border : 1px solid white;
    			border-radius:5px;
 			position: absolute;
