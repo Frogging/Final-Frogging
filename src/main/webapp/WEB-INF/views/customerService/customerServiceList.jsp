@@ -10,14 +10,14 @@
 <style>
 /* button */
 .btn {    
-	height: 30px;
+	height: 35px;
     width: 90px;
     background-color: #2fb86a;
     border : 1px solid white;
     border-radius:5px;
     color: white;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 18px;
     margin: 0 10px;
     }
 .btn.black {border-color:#191919;color:#fff;background-color:#333;text-decoration:none;}
@@ -121,8 +121,8 @@ a:visited {
                     <option value="nickname">작성자</option>
                     <option value="content">글내용</option>
                 </select>
-                <input type="text" name="searchWord" class="p_searchWord" style="height:30px; width:500px;"/>
-                <input type="submit" value="찾기" class="p_customerServicesearch-btn" style="font-family: 'Noto Sans KR', sans-serif;"/>
+                <input type="text" name="searchWord" class="p_searchWord" style="height:35px; width:500px;"/>
+                <input type="submit" value="찾기" class="p_customerServicesearch-btn" style="font-family: 'Noto Sans KR', sans-serif; height:35px;"/>
             </form>
             </div>	
 		</div>            

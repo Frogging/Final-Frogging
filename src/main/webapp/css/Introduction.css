@@ -3,6 +3,7 @@
 body, ul, li{
 	margin: 0;
 	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
 	
 }
 h1{ margin: 0;}
@@ -31,7 +32,7 @@ h1{ margin: 0;}
 #s_headerBox p{
 	line-height: 70px;
 	font-size: 18px;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 #s_headerBox p:nth-child(2){
 	margin: 40px;
@@ -66,14 +67,14 @@ h1{ margin: 0;}
 	margin: 0 auto;
 	margin-top:20px;
 	font-size: 18px;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 	
 }
 
 #s_info pre b:last-child{
 	margin-top:20px;
 	font-size: 25px;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 #s_info img{
@@ -104,7 +105,7 @@ h1{ margin: 0;}
 	width: 1080px;
 	margin: 0 auto;
 	list-style-type: none;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 	
 }
 #s_intinfo img{
@@ -126,11 +127,11 @@ h1{ margin: 0;}
 	text-align: left;
 	font-size: 18px;
 	line-height: 35px;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 #s_intinfo p b{
 	font-size: 20px;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 
@@ -138,7 +139,7 @@ h1{ margin: 0;}
 	width: 1400px;
 	margin: 0 auto;
 	list-style-type: none;
-	font-family: 나눔바른고딕 OTF;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 #s_mottoinfo{

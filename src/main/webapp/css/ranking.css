@@ -5,6 +5,7 @@ body, ul, li{
 		padding: 0;
 		text-decoration: none;
 		list-style-type: none;
+		font-family: 'Noto Sans KR', sans-serif;
 	}
 	
 #s_header {

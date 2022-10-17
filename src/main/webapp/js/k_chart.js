@@ -4,85 +4,85 @@ $(function(){
 	// ------------- 주 ----------------
 	$('.k_a_select_w').click(function(){
 		//탭 변환
-		$('.k_a_select_w').addClass('active');
-		$('.k_a_select_m').removeClass('active');
-		$('.k_a_select_y').removeClass('active');
-		$('.k_a_select_t').removeClass('active');
+		$('.k_a_select_w').addClass("active");
+		$('.k_a_select_m').removeClass("active");
+		$('.k_a_select_y').removeClass("active");
+		$('.k_a_select_t').removeClass("active");
 
 		// 내용변환
-		$('.k_weekly').addClass('active');
-		$('.k_monthly').removeClass('active');
-		$('.k_yearly').removeClass('active');
-		$('.k_totally').removeClass('active');
+		$('.k_weekly').css("display", "block");
+		$('.k_monthly').css("display", "none");
+		$('.k_yearly').css("display", "none");
+		$('.k_totally').css("display", "none");
 
 		//차트 변환
-		$('#k_weekly_chart').addClass('active');
-		$('#k_monthly_chart').removeClass('active');
-		$('#k_yearly_chart').removeClass('active');
-		$('#k_totally_chart').removeClass('active');
+		$('#k_weekly_chart').css("display", "block");
+		$('#k_monthly_chart').css("display", "none");
+		$('#k_yearly_chart').css("display", "none");
+		$('#k_totally_chart').css("display", "none");
 	})
 
 	// ------------- 월 ----------------
 	$('.k_a_select_m').click(function(){
 		//탭 변환
-		$('.k_a_select_w').removeClass('active');
-		$('.k_a_select_m').addClass('active');
-		$('.k_a_select_y').removeClass('active');
-		$('.k_a_select_t').removeClass('active');
+		$('.k_a_select_w').removeClass("active");
+		$('.k_a_select_m').addClass("active");
+		$('.k_a_select_y').removeClass("active");
+		$('.k_a_select_t').removeClass("active");
 
 		// 내용변환
-		$('.k_weekly').removeClass('active');
-		$('.k_monthly').addClass('active');
-		$('.k_yearly').removeClass('active');
-		$('.k_totally').removeClass('active');
+		$('.k_weekly').css("display", "none");
+		$('.k_monthly').css("display", "block");
+		$('.k_yearly').css("display", "none");
+		$('.k_totally').css("display", "none");
 
 		//차트 변환
-		$('#k_weekly_chart').removeClass('active');
-		$('#k_monthly_chart').addClass('active');
-		$('#k_yearly_chart').removeClass('active');
-		$('#k_totally_chart').removeClass('active');
+		$('#k_weekly_chart').css("display", "none");
+		$('#k_monthly_chart').css("display", "block");
+		$('#k_yearly_chart').css("display", "none");
+		$('#k_totally_chart').css("display", "none");
 	})
 
 	// ------------- 년 ----------------
 	$('.k_a_select_y').click(function(){
 		//탭 변환
-		$('.k_a_select_w').removeClass('active');
-		$('.k_a_select_m').removeClass('active');
-		$('.k_a_select_y').addClass('active');
-		$('.k_a_select_t').removeClass('active');
+		$('.k_a_select_w').removeClass("active");
+		$('.k_a_select_m').removeClass("active");
+		$('.k_a_select_y').addClass("active");
+		$('.k_a_select_t').removeClass("active");
 
 		// 내용변환
-		$('.k_weekly').removeClass('active');
-		$('.k_monthly').removeClass('active');
-		$('.k_yearly').addClass('active');
-		$('.k_totally').removeClass('active');
+		$('.k_weekly').css("display", "none");
+		$('.k_monthly').css("display", "none");
+		$('.k_yearly').css("display", "block");
+		$('.k_totally').css("display", "none");
 
 		//차트 변환
-		$('#k_weekly_chart').removeClass('active');
-		$('#k_monthly_chart').removeClass('active');
-		$('#k_yearly_chart').addClass('active');
-		$('#k_totally_chart').removeClass('active');
+		$('#k_weekly_chart').css("display", "none");
+		$('#k_monthly_chart').css("display", "none");
+		$('#k_yearly_chart').css("display", "block");
+		$('#k_totally_chart').css("display", "none");
 	})
 
 	// ------------- 총 ----------------
 	$('.k_a_select_t').click(function(){
 		//탭 변환
-		$('.k_a_select_w').removeClass('active');
-		$('.k_a_select_m').removeClass('active');
-		$('.k_a_select_y').removeClass('active');
-		$('.k_a_select_t').addClass('active');
+		$('.k_a_select_w').removeClass("active");
+		$('.k_a_select_m').removeClass("active");
+		$('.k_a_select_y').removeClass("active");
+		$('.k_a_select_t').addClass("active");
 
 		// 내용변환
-		$('.k_weekly').removeClass('active');
-		$('.k_monthly').removeClass('active');
-		$('.k_yearly').removeClass('active');
-		$('.k_totally').addClass('active');
+		$('.k_weekly').css("display", "none");
+		$('.k_monthly').css("display", "none");
+		$('.k_yearly').css("display", "none");
+		$('.k_totally').css("display", "block");
 
 		//차트 변환
-		$('#k_weekly_chart').removeClass('active');
-		$('#k_monthly_chart').removeClass('active');
-		$('#k_yearly_chart').removeClass('active');
-		$('#k_totally_chart').addClass('active');
+		$('#k_weekly_chart').css("display", "none");
+		$('#k_monthly_chart').css("display", "none");
+		$('#k_yearly_chart').css("display", "none");
+		$('#k_totally_chart').css("display", "block");
 	})
 
 	
@@ -90,6 +90,7 @@ $(function(){
 
 // ---------------------- 마이페이지 > 페이지 그리기---------
 function draw_myplog() {
+	alert("표그리기");
 	const ctx_w = document.getElementById('myChart_w').getContext('2d');
 	const ctx_m = document.getElementById('myChart_m').getContext('2d');
 	const ctx_y = document.getElementById('myChart_y').getContext('2d');
@@ -119,6 +120,28 @@ function draw_myplog() {
 					w_data.push(result[index].total_distance);
 					w_label.push(result[index].week.slice(-2, result[index].week.length)+"번째 주");
 				}
+				// ---------------------------------------- 주 그래프 ---------------------------
+				const myChart_w = new Chart(ctx_w, {
+					type: 'bar',
+					data: {
+							labels: w_label,
+							datasets: [{
+									label: 'km of Total',
+									data: w_data,
+									backgroundColor: 'rgba(0, 46, 20, 0.7)',
+									borderColor: 'rgba(1, 121, 53, 1)',
+									borderWidth: 1
+							}]
+					},
+					options: {
+							scales: {
+									y: {
+											beginAtZero: true
+									}
+							}
+					}
+				});
+
 			}, error:function(e){
 				console.log(e.responseText);
 			}
@@ -170,28 +193,7 @@ function draw_myplog() {
 	})
 
 	
-	// ---------------------------------------- 주 그래프 ---------------------------
-	const myChart_w = new Chart(ctx_w, {
-    type: 'bar',
-    data: {
-        labels: w_label,
-        datasets: [{
-            label: 'km of Total',
-            data: w_data,
-            backgroundColor: 'rgba(0, 46, 20, 0.7)',
-            borderColor: 'rgba(1, 121, 53, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-	});
-
+	
 
 
 	// ---------------------------------------- 월 그래프 ---------------------------

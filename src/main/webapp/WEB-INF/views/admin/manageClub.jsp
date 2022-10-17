@@ -4,6 +4,8 @@
 	<link rel="stylesheet" href="/css/k_style.css">
 	<link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 	<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">	
 	<script src="/js/k_admin.js"></script>
 </head>
 	<ul class="adminMenu">
@@ -29,7 +31,7 @@
 		</div>
 	</section>
 
-	<section class="k_mycourse">
+	<section class="k_mycourse" style="font-family: 'Noto Sans KR', sans-serif;">
 		<div class="k_wrapper">
 			<form method="post" action="/admin/clubMultiDel" id="listFrm">
 			<ul class="k_my_club_grid">
@@ -39,6 +41,7 @@
 				<li class="k_my_list_head"><span>일시</span></li>
 				<li class="k_my_list_head"><span>인원</span></li>
 				<li class="k_my_list_head"><span>관리</span></li>
+
 				<c:forEach var="vo" items="${c_list}">
 					<li><span>${vo.no}</span></li>
 					<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
@@ -49,6 +52,7 @@
 					</li>
 					<li><span><input type="checkbox" name="noList" value="${vo.no}"></span></li>
 				</c:forEach>
+
 			</ul>
 			<div class="k_manage_btn_section">
 				<input type="checkbox" class="allChk">
