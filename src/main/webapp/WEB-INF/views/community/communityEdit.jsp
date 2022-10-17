@@ -30,7 +30,7 @@
 						<li><input type="text" name="subject" id="p_subject" value="${vo.subject}" size="200"/></li>
 						<li>글내용</li>
 						<li><textarea name="content" id="p_content">${vo.content}</textarea></li></h5>
-						<li><input type="submit" value="글수정" id="p_edit"/></li>
+						<li><input type="submit" value="글수정" id="p_edit" style="font-family: 'Noto Sans KR', sans-serif;"/></li>
 					</ul>
 			</form>	
 		</div>	

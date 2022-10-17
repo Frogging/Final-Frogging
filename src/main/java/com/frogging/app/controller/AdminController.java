@@ -167,9 +167,18 @@ public class AdminController {
 	}
 
 	@GetMapping("qnaDel")
-	public ModelAndView qnaDel(int no, String id) {
-		service.qnaDel(no, id); // logId
+	public ModelAndView qnaDel(int reply_group) {
+		service.qnaDel(reply_group); // logId
 		mav = new ModelAndView();
+		mav.setViewName("redirect:/admin/qnaList");
+		return mav;
+	}
+	
+	@GetMapping("qnaDel2")
+	public ModelAndView qnaDel2(int no, HttpSession session) {
+		service.qnaDel2(no,(String)session.getAttribute("logId")); //logId 
+		mav = new ModelAndView();
+
 		mav.setViewName("redirect:/admin/qnaList");
 		return mav;
 	}

@@ -8,9 +8,14 @@
 <link rel="stylesheet" href="/css/k_style.css">
 <link rel="stylesheet" href="https://use.typekit.net/mss6mty.css">
 <script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	
+
+</script>
 <style>
 .listEdit-btn, .listDel-btn {    
-	height: 25px;
+	height: 28px;
     width: 40px;
     border : 1px solid white;
     border-radius:5px;
@@ -18,7 +23,8 @@
     font-weight: bold;
 	border-color:#191919;color:#fff;
 	background-color:#333;
-	text-decoration:none; 
+	text-decoration:none;
+	font-family: 'Noto Sans KR', sans-serif; 
 	   
 }
 .k_section_title>div>i{ /*아이콘*/
@@ -37,10 +43,7 @@ a:link {
  text-decoration: none;
 }
 </style>
-<script>
-
-</script>
-<body>
+<body style="font-family: 'Noto Sans KR', sans-serif; ">
 <div style="height:100%;">
 <table width="80%" class="table01">
 	<ul class="adminMenu">
@@ -80,7 +83,6 @@ a:link {
                        
                     </thead>
                     <tbody id="tbody">
-   
                     <c:forEach var="vo" items="${qnalist }">
                     	<tr>
                             <td>${vo.no}</td>
@@ -96,8 +98,12 @@ a:link {
                             <td>${vo.id}</td>
                             <td>${vo.writedate}</td>
                             <td>
+                            <input type="hidden" id="qna_seq"      name="no"    	value="${vo.no}"/> <!-- 게시글 번호 -->
+			                <input type="hidden" id="qna_reply_group"      name="reply_group"    	value="${vo.reply_group}"/>
+			                <input type="hidden" id="qna_depth"      name="depth"    	value="${vo.depth}"/>
                             <input type="button" class="listEdit-btn" value="수정" onclick="location.href='/qna/qnaEdit/${vo.no }'"> /                    
-                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/admin/qnaDel?no=${vo.no}'"></td>
+                            <input type="button" class="listDel-btn" value="삭제" onclick="location.href='/qna/qnaDetail?no=${vo.no }'"></td>
+                          
                         </tr>													
                      </c:forEach> 
                      <div class="p_qnaPage">

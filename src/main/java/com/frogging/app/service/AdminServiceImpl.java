@@ -99,8 +99,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int qnaDel(int no, String id) {
-		return dao.qnaDel(no, id);
+	public int qnaDel(int reply_group) {
+		return dao.qnaDel(reply_group);
 	}
 
 	@Override
@@ -137,5 +137,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int totalRecord6(ManagePagingVO pVO) {
 		return dao.totalRecord6(pVO);
+	}
+
+	@Override
+	public int qnaDel2(int no, String id) {
+		return dao.qnaDel2(no, id);
 	}
 }

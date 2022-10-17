@@ -12,15 +12,18 @@
 }
 /* button */
 /*.btn {font-family:'malgunbd';display:inline-block;padding:3px 20px 6px 20px;margin:0;border:1px solid #aaa;cursor:pointer;color:#333;border-radius:2px;vertical-align:middle;font-size:13px;letter-spacing:-1px;line-height:normal;background-color:#feffff;text-decoration:none;}*/
-.btn {    height: 30px;
+.btn {    
+	height: 35px;
     width: 90px;
     background-color: #2fb86a;
     border : 1px solid white;
     border-radius:5px;
     color: white;
     font-weight: bold;
-    font-size: 1.2em;
-    margin: 0 2px;}
+    font-size: 18px;
+    margin: 0 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+    }
 .btn.black {border-color:#191919;color:#fff;background-color:#333;text-decoration:none;}
 </style>
 <script type="text/javascript">

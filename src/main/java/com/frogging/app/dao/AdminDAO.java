@@ -60,7 +60,10 @@ public interface AdminDAO {
 
 	public int qnaEditOk(QnaVO vo);
 
-	public int qnaDel(int no, String id);
+	public int qnaDel(int reply_group);
+	
+	public int qnaDel2(int no, String id);
+	
 
 	// 코스+클럽 페이징
 	public int totalRecord5(ManagePagingVO pVO);

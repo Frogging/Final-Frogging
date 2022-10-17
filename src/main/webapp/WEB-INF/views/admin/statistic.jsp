@@ -14,7 +14,7 @@
 .k_a_title{
 	font-family: 'Noto Sans KR', sans-serif;
 }
-</style>
+</style style="font-family: 'Noto Sans KR', sans-serif; ">
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
 		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
@@ -38,9 +38,9 @@
 	<section class="k_activity_sum">
 		<div class="k_wrapper">
 			<div class="my_write_tab">
-				<div><button class="active click-btn k_static_tab_p" style="font-family: 'Noto Sans KR', sans-serif;">플로깅 통계</button></div>
-				<div><button class="click-btn k_static_tab_u" style="font-family: 'Noto Sans KR', sans-serif;">유저 통계</button></div>
-				<div><button class="click-btn k_static_tab_t" style="font-family: 'Noto Sans KR', sans-serif;">쓰레기 통계</button></div>
+				<div><button class="active click-btn k_static_tab_p">플로깅 통계</button></div>
+				<div><button class="click-btn k_static_tab_u">유저 통계</button></div>
+				<div><button class="click-btn k_static_tab_t">쓰레기 통계</button></div>
 			</div>
 
 			<div class="k_static_plog_box">

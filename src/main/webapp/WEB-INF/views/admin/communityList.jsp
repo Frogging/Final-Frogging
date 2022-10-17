@@ -44,7 +44,7 @@ $(function(){
 	});
 });
 </script>
-<body>
+<body style="font-family: 'Noto Sans KR', sans-serif; ">
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
 		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
@@ -132,13 +132,12 @@ $(function(){
 			<div>
 				<form method="get" action="/community/communityList"
 					class="p_searchForm">
-					<select name="searchKey" class="p_searchKey">
+					<select name="searchKey" class="p_searchKey" style="height: 38px; width:90px;">
 						<option value="subject">제목</option>
 						<option value="nickname">작성자</option>
 						<option value="content">글내용</option>
-					</select> <input type="text" name="searchWord" class="p_searchWord"
-						style="height: 30px;" /> <input type="submit" value="찾기"
-						class="p_communitysearch-btn" />
+					</select> <input type="text" name="searchWord" class="p_searchWord" style="height: 38px;" /> 
+						<input type="submit" value="찾기" class="p_communitysearch-btn" style="height: 40px;" />
 				</form>
 			</div>
 		</div>

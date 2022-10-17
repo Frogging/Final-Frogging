@@ -14,6 +14,9 @@ img{
 	float:center;
 	margin:0 auto;
 }
+#p_viewbutton{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 </style>
 <script>
 	function eventDel(){
