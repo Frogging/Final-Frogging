@@ -41,6 +41,7 @@
 				<li class="k_my_list_head"><span>일시</span></li>
 				<li class="k_my_list_head"><span>인원</span></li>
 				<li class="k_my_list_head"><span>관리</span></li>
+
 				<c:forEach var="vo" items="${c_list}">
 					<li><span>${vo.no}</span></li>
 					<li><a href="/club/club_view?no=${vo.no}&l_id=${vo.id}"><span>${vo.partyname}</span></a></li>
@@ -51,6 +52,7 @@
 					</li>
 					<li><span><input type="checkbox" name="noList" value="${vo.no}"></span></li>
 				</c:forEach>
+
 			</ul>
 			<div class="k_manage_btn_section">
 				<input type="checkbox" class="allChk">
