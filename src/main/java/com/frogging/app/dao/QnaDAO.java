@@ -22,7 +22,9 @@ public interface QnaDAO {
 	//수정
 	public int qnaEditOk(QnaVO vo);
 	//삭제
-	public int qnaDel(int no, String id);
+	public int qnaDel(int reply_group, String id);
+	
+	public int qnaDel2(int no, String id);
 	//조회수
 	public void hitCount(int no);
 	//답글

@@ -25,10 +25,10 @@
 	</select>
 	
 	<delete id="customerServiceDel">
-		delete from board_customerservice where no=${param1} and id=#{param2}
+		delete from board_customerservice where reply_group=${param1} and id=#{param2}
 	</delete>
 	
-	<delete id="customerServiceParentDel">
+	<delete id="customerServiceDel2">
 		delete from board_customerservice where no=${param1} and id=#{param2}
 	</delete>
 	
@@ -70,7 +70,7 @@
 		</if>
 	</select>
 	<select id="getcustomerService" resultType="CustomerServiceVO" parameterType="int">
-		select no,reply_group, subject, content, hit, id, writedate
+		select no,reply_group, subject, content, hit, id, writedate, depth
 		from board_customerservice
 		where no=${param1}
 	</select>

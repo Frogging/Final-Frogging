@@ -90,16 +90,31 @@ public class QnaController {
 	
 	//글삭제
 	@GetMapping("qnaDel")
-	public ModelAndView qnaDel(int no, HttpSession session) {
-		int cnt = service.qnaDel(no,(String)session.getAttribute("logId")); //logId 
+	public ModelAndView qnaDel(int reply_group, HttpSession session) {
+		int cnt = service.qnaDel(reply_group,(String)session.getAttribute("logId")); //logId 
 		mav = new ModelAndView();
+
 		if(cnt>0) {
-			mav.setViewName("redirect:qnaList");
+			mav.setViewName("redirect:/admin/qnaList");
 		}else {
 			mav.setViewName("redirect:qnaDetail");
 		}
 		return mav;
 	}
+	
+	@GetMapping("qnaDel2")
+	public ModelAndView qnaDel2(int no, HttpSession session) {
+		int cnt = service.qnaDel2(no,(String)session.getAttribute("logId")); //logId 
+		mav = new ModelAndView();
+
+		if(cnt>0) {
+			mav.setViewName("redirect:/admin/qnaList");
+		}else {
+			mav.setViewName("redirect:qnaDetail");
+		}
+		return mav;
+	}
+	
 	//글수정
 	@GetMapping("qnaEdit/{no}")
 	public ModelAndView qnaEdit(@PathVariable("no") int no) {

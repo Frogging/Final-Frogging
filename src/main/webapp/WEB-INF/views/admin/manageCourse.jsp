@@ -8,6 +8,20 @@
 	<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">	
 	<script src="/js/k_admin.js"></script>
 </head>
+<style>
+.delBtn_2{
+	height: 40px;
+    width: 100px;
+    background-color: #2fb86a;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 0 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
 		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
@@ -18,7 +32,7 @@
 		<li class="tabMenu"><a href="/admin/manageClub">클럽관리</a></li>
 		<li class="tabMenu"><a href="/admin/statistic">데이터관리</a></li>
 	</ul>
-<body class="k_body">
+<body class="k_body" style="font-family: 'Noto Sans KR', sans-serif; ">
 	<div style="height:110%;">
 	<section>
 		<div class="k_wrapper">

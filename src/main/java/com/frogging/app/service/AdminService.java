@@ -54,7 +54,8 @@ public interface AdminService {
 
 	public int qnaEditOk(QnaVO vo);
 
-	public int qnaDel(int no, String id);
+	public int qnaDel(int reply_group);
+	public int qnaDel2(int no, String id);
 
 	public int totalRecord5(ManagePagingVO pVO);
 

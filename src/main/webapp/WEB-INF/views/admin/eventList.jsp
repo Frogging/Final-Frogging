@@ -10,7 +10,7 @@
 <script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 <style>
 .listEdit-btn, .listDel-btn {    
-	height: 25px;
+	height: 28px;
     width: 40px;
     border : 1px solid white;
     border-radius:5px;
@@ -18,7 +18,8 @@
     font-weight: bold;
 	border-color:#191919;color:#fff;
 	background-color:#333;
-	text-decoration:none; 
+	text-decoration:none;
+	font-family: 'Noto Sans KR', sans-serif; 
 	   
 }
 .k_section_title>div>i{ /*아이콘*/
@@ -44,7 +45,7 @@ function eventDelete(){
 	}
 };
 </script>
-<body>
+<body style="font-family: 'Noto Sans KR', sans-serif; ">
 <div style="height:100%;">
 <table width="80%" class="table01">
 	<ul class="adminMenu">

@@ -102,10 +102,17 @@
 	</select>
 	
 	<delete id="qnaDel">
+		delete from board_question where reply_group=${param1}
+	</delete>
+	
+	<delete id="qnaDel2">
 		delete from board_question where no=${param1}
 	</delete>
-
-
+	<select id="getQna" resultType="QnaVO" parameterType="int">
+		select no,reply_group, subject, content, hit, id, writedate, depth
+		from board_question
+		where no=${param1}
+	</select>
 	<select id="totalRecord5" resultType="int">
 		select count(course_no) cnt from course
 		<if test='searchWord!=null'>

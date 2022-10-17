@@ -22,7 +22,9 @@ public interface CustomerServiceDAO {
 	//수정
 	public int customerServiceEditOk(CustomerServiceVO vo);
 	//삭제
-	public int customerServiceDel(int no, String id);
+	public int customerServiceDel(int reply_group, String id);
+	
+	public int customerServiceDel2(int no, String id);
 	//조회수
 	public void hitCount(int no);
 	//답글

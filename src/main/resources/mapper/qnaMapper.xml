@@ -25,6 +25,10 @@
 	</select>
 	
 	<delete id="qnaDel">
+		delete from board_question where reply_group=${param1} and id=#{param2}
+	</delete>
+	
+	<delete id="qnaDel2">
 		delete from board_question where no=${param1} and id=#{param2}
 	</delete>
 	
@@ -45,8 +49,7 @@
 		from board_question
 		where no=${param1}
 	</select>
-	
-	 
+		 
 	<update id="qnaUpdate">
 		update board_question set reply_seq = reply_seq + 1 
 		where reply_group = #{reply_group} and reply_seq > #{reply_seq}
@@ -77,7 +80,7 @@
 		</if>
 	</select>
 	<select id="getQna" resultType="QnaVO" parameterType="int">
-		select no,reply_group, subject, content, hit, id, writedate
+		select no,reply_group, subject, content, hit, id, writedate, depth
 		from board_question
 		where no=${param1}
 	</select>
