@@ -90,7 +90,7 @@ $(function(){
 
 // ---------------------- 마이페이지 > 페이지 그리기---------
 function draw_myplog() {
-	alert("표그리기");
+//	alert("표그리기");
 	const ctx_w = document.getElementById('myChart_w').getContext('2d');
 	const ctx_m = document.getElementById('myChart_m').getContext('2d');
 	const ctx_y = document.getElementById('myChart_y').getContext('2d');
