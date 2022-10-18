@@ -27,7 +27,7 @@
     			color: white;
    			    font-weight: bold;
 				border-color:#191919;color:#fff;
-				background-color:navy;
+				background-color:#017935;
 			}
 			.edit-btn > .edit-btn2{
 				width:100px;
@@ -45,47 +45,47 @@
 		</script>
 	</head>
 <body>
-<h1>회원정보수정</h1>
+<h1 style="margin-top:40px">회원정보수정</h1>
 <form method="post" action="/admin/editProfile">
-			<table width="50%" class="table01">
+			<table width="50%" class="table01" style="width:70%;margin:20px auto;">
                     <colgroup>
                         <col width="40%" />
                         <col width="60%" />
                     </colgroup>
                         <tr>
                             <th>아이디(이메일)</th>
-                            <th><input type="text" name="id" value="${vo.id}" readonly }></th>
+                            <th style="text-align:left;"><input style="width:100%" type="text" name="id" value="${vo.id}" readonly }></th>
                         </tr>  
                          <tr>
                             <th>이름</th>
-                            <th>${vo.name }</th>
+                            <th style="text-align:left;">${vo.name }</th>
                         </tr>
                         <tr>
                             <th>닉네임</th>
-                            <th>${vo.nickname }</th>
+                            <th style="text-align:left;">${vo.nickname }</th>
                         </tr>
                         <tr>
                             <th>성별</th>
-                            <c:if test="${vo.sex==1 }"><th>남</th></c:if>
-                            <c:if test="${vo.sex==2 }"><th>여</th></c:if>
+                            <c:if test="${vo.sex==1 }"><th style="text-align:left;">남</th></c:if>
+                            <c:if test="${vo.sex==2 }"><th style="text-align:left;">여</th></c:if>
                         </tr>
                         <tr>
                             <th>키</th>
-                            <th>${vo.height }</th>
+                            <th style="text-align:left;">${vo.height } cm</th>
                         </tr>
                         <tr>
                             <th>상태</th>
                           	<c:if test="${vo.restriction==0 }">
-                          		<th>
-                          			<select name="restriction">
+                          		<th style="text-align:left;">
+                          			<select name="restriction" style="width:100%">
                           				<option selected value=0>정상</option>
                           				<option value=1>불량</option>
                           			</select>
                           		</th>
                           	</c:if>
                             <c:if test="${vo.restriction==1 }">
-                          		<th>
-                          			<select name="restriction">
+                          		<th style="text-align:left;">
+                          			<select name="restriction" style="width:100%">
                           				<option selected value=1>불량</option>
                           				<option value=0>정상</option>
                           			</select>

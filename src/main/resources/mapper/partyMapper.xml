@@ -85,7 +85,7 @@
 
 		(select course_no, addr
 		from course_detail
-		where waypoint = 1 ) detail
+		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
 
 		<if test="searchLoc!=null">
@@ -226,7 +226,7 @@
 		) user
 		left outer join 
 		( 
-			select id, sum(distance) total_distance, count(no) plog_count 
+			select id, TRUNCATE(sum(distance),2) total_distance, count(no) plog_count 
 			from activity 
 			where id = #{param1}
 			group by id

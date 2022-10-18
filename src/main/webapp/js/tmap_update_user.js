@@ -474,3 +474,28 @@ var distance = 0;
 		}
 		map.fitBounds(boundary);
 	}
+	
+	function nameCheck(){
+		var course_name = document.getElementById('coursename').value;
+		//alert(course_name);
+		if(course_name == ""){
+			alert("코스명을 입력하세요");
+			return false;
+		}
+		$.ajax({
+			type : 'post',
+			url : "/maps/nameCheck",
+			data : {"course_name" : course_name},
+			success : function(result){
+				if(result < 1){
+					alert("사용가능한 코스명입니다.");
+					nameChecker = true;
+				}else{
+					alert("중복된 코스명입니다.");
+				}
+			}, error: function(e){
+					console.log(e.responseText);
+					alert("중복 검사 실패");
+				}
+		})
+	}

@@ -75,7 +75,7 @@ $(function(){
               </div>
               <div class="col-8">
                 <div class="card-body">
-                    <p class="card-subject">no${vo.no }  조회수:${vo.hit }  게시날짜:${vo.writedate }  </p><hr/>
+                    <p class="card-subject">${vo.no }.  조회수:${vo.hit }  게시날짜:${vo.writedate }  </p><hr/>
                   <p class="card-text"><a href="/event/eventView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${vo.subject }</a></p>
                 </div>
               </div>

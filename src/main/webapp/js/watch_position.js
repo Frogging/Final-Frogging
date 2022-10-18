@@ -124,7 +124,7 @@ function initTmap() {
 		}
 
 function startChecking(){
-	alert("startChecking!!");
+	alert("경로 확인을 시작합니다.");
 	//alert("test2");
 	 if (navigator.geolocation) {
 			let count = 0;
@@ -179,7 +179,7 @@ function startChecking(){
 
 function endChecking(){
 	
-	alert("endChecking!!");
+	alert("경로 확인을 마칩니다.");
 	
 	end_time = new Date();
 	total_time = (end_time.getTime() - start_time.getTime()) / (1000 * 60);
@@ -209,7 +209,7 @@ function endChecking(){
 		let distance_check = locationList[0].distanceTo(locationList[locationList.length - 1]);
 		if(distance_check < 0.2 || locationList.length < 3){
 			alert(distance_check);
-			alert("200m이내를 이동하셨습니다.");
+			//alert("200m이내를 이동하셨습니다.");
 		}
 	} else {
 		alert('위치 확인을 시작해주십시오.');
