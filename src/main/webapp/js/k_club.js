@@ -24,7 +24,7 @@ $(function(){
 
 //-------------------파티 세부 모달 내용 가져오기-------------------
 function modal_data(no) {
-	alert(no);
+	//alert(no);
 	$(function(){
 		
 		//모달 비우기 

@@ -120,7 +120,7 @@
 							<c:if test="${p==pVO.nowPage }">
 							style="font-weight:bold"
 							</c:if>
-							><a href="/club/join_club?nowPage=${p}<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.saddr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>">${p}</a></li>
+							><a href="/club/join_club?nowPage=${p}<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.addr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>">${p}</a></li>
 						</c:if>
 					</c:forEach>
 					
@@ -129,7 +129,7 @@
 						<li><i class="fa-solid fa-caret-right"></i></li>
 					</c:if>
 					<c:if test="${pVO.nowPage<pVO.totalPage }">
-						<li><a href="/club/join_club?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.saddr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>"><i class="fa-solid fa-caret-right"></i></a></li>
+						<li><a href="/club/join_club?nowPage=${pVO.nowPage+1 }<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.addr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>"><i class="fa-solid fa-caret-right"></i></a></li>
 					</c:if>
 				</ul>
 			</div>

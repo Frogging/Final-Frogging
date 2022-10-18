@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/css/k_style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/ab847241fd.js" crossorigin="anonymous"></script>
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxc6985a9bef1d438f939779b9bf5e79d8"></script>
 <style>
@@ -25,13 +26,13 @@
 }
 #mobileListPage > ul >li{
 	display: inline-block;
-	text-decoration:none;
-	color:black;	
+	text-decoration:none;	
 }
 #mobileListPage > ul >li>a{
 	text-decoration:none;
-	color:black;	
+	color : gray;
 }
+
 .listArea{
 	display:flex;
 }
@@ -136,10 +137,13 @@ function initTmap() {
 		<br />
 			<div>
 		<div id = "mobileListPage">
-			<ul>
+			<ul class="k_rec_path_page">
 			<!-- page 번호 -->
+				<c:if test="${cpvo.nowPage<=1 }">
+					<li><i class="fa-solid fa-chevron-left active"></i></li>
+				</c:if>
 				<c:if test = "${cpvo.nowPage > 1 }"><!-- 이전 page가 있을 때 -->
-					<li><a href = "/mobile/mobileList?nowPage=${cpvo.nowPage-1 }<c:if test='${cpvo.searchWord!=null }'>&searchKey=${cpvo.searchKey }&searchWord=${cpvo.searchWord }</c:if>">prev</a></li>
+					<li><a href = "/mobile/mobileList?nowPage=${cpvo.nowPage-1 }<c:if test='${cpvo.searchWord!=null }'>&searchKey=${cpvo.searchKey }&searchWord=${cpvo.searchWord }</c:if>"><i class="fa-solid fa-chevron-left active"></i></a></li>
 				</c:if>
 				
 				<c:forEach var = "p" begin = "${cpvo.startPage }" end = "${cpvo.startPage + cpvo.onePageCount - 1 }">
@@ -149,7 +153,7 @@ function initTmap() {
 						<li 
 						
 						<c:if test = "${p == cpvo.nowPage }">
-							style = "color : #fff;"
+							style = "color:#2fb86a;"
 						</c:if>
 						
 						><a href = "/mobile/mobileList?nowPage=${p }<c:if test='${cpvo.searchWord!=null }'>&searchKey=${cpvo.searchKey }&searchWord=${cpvo.searchWord }</c:if>">${p }</a></li>
@@ -157,9 +161,12 @@ function initTmap() {
 					</c:if>
 				</c:forEach>
 				
+				<c:if test="${cpvo.nowPage>=p_PageVO.totalPage }" > 
+					<li><i class="fa-solid fa-chevron-right active"></i></li>
+				</c:if>
 				<!-- 다음 page -->
 				<c:if test = "${cpvo.nowPage < cpvo.totalPage }">
-					<li><a href = "/mobile/mobileList?nowPage=${cpvo.nowPage + 1 }<c:if test='${cpvo.searchWord!=null }'>&searchKey=${cpvo.searchKey }&searchWord=${cpvo.searchWord }</c:if>">next</a></li>
+					<li><a href = "/mobile/mobileList?nowPage=${cpvo.nowPage + 1 }<c:if test='${cpvo.searchWord!=null }'>&searchKey=${cpvo.searchKey }&searchWord=${cpvo.searchWord }</c:if>"><i class="fa-solid fa-chevron-right active"></i></a></li>
 				</c:if>
 			</ul>
 		</div>
