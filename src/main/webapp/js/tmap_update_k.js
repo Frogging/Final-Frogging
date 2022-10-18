@@ -541,6 +541,7 @@ var map;
 			if(count > 1){
 				searchRoute();
 			}
+			reverseGeo(lon, lat, 0);
 		}else if(number == 1){
 			if(count < 2){
 				marker_e = new Tmapv2.Marker(
@@ -559,6 +560,7 @@ var map;
 			if(count > 1 && markers[0] != null){
 				searchRoute();
 			}
+			reverseGeo(position.lng(), position.lat(), 1);
 		}else if(number == 2){
 			if(count < 2){
 				alert('출발지, 도착지부터 선택해주세요.');
@@ -575,6 +577,12 @@ var map;
 				markers.push(marker);
 			}
 			searchRoute();
+			reverseGeo(position.lng(), position.lat(), 2);
+		}
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
 		}
 	}
 	
@@ -644,7 +652,11 @@ var map;
 			searchRoute();
 			reverseGeo(lon, lat, 2);
 		}
-		reverseGeo(lon, lat, 2);
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 	}
 	// function setPointbyli(lat, lon, number){
 	// 	var markerPosition = new Tmapv2.LatLng(lat, lon);
