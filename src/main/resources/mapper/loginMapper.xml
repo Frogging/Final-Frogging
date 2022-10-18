@@ -10,8 +10,8 @@
 		select * from user where id=#{id}
 </select>
 <insert id="signUpOk">
-		insert into user(id, name, nickname, sex, height )
-		values(#{id}, #{name}, #{nickname}, #{sex}, #{height})
+		insert into user(id, name, nickname, sex, height, restriction)
+		values(#{id}, #{name}, #{nickname}, #{sex}, #{height}, #{restriction})
 </insert>
 <select id="nicknameCheck" resultType="int">
 		select count(*) from user where nickname = #{nickname}

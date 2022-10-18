@@ -42,4 +42,7 @@ public interface UserDAO {
 
 	// 유저 코스 페이징
 	public int setTotalRecord_my(MyPagingVO mvo);
+
+	// 유저 상태 확인
+	public int checkUserStatus(String id);
 }

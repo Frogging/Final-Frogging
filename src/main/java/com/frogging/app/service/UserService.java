@@ -29,4 +29,6 @@ public interface UserService {
 	public List<CourseVO> courseAllselect_t(MyPagingVO mvo);
 
 	public int setTotalRecord_my(MyPagingVO mvo);
+
+	public int checkUserStatus(String id);
 }
