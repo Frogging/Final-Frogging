@@ -10,7 +10,35 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="/js_css/style.css" type="text/css"/>
 		<style>
-
+			h1{
+				text-align:center;
+			}
+			.edit-btn{
+				text-align: center;
+				margin-top:20px;
+				margin-bottom:20px;
+			}
+			
+			.edit-btn > .edit-btn1{
+				width:100px;
+				height:40px;
+				border : 0px;
+   			    border-radius:5px;
+    			color: white;
+   			    font-weight: bold;
+				border-color:#191919;color:#fff;
+				background-color:navy;
+			}
+			.edit-btn > .edit-btn2{
+				width:100px;
+				height:40px;
+				border : 0px;
+  			    border-radius:5px;
+                color: white;
+                font-weight: bold;
+	            border-color:#191919;color:#fff;
+	            background-color:#333;
+			}
 		</style>
 		<script>
 		
@@ -19,7 +47,7 @@
 <body>
 <h1>회원정보수정</h1>
 <form method="post" action="/admin/editProfile">
-<table width="50%" class="table01">
+			<table width="50%" class="table01">
                     <colgroup>
                         <col width="40%" />
                         <col width="60%" />
@@ -64,9 +92,11 @@
                           		</th>
                           	</c:if>
                         </tr>
+                        
                 </table>
-                
-                <input type="submit" value="수정하기"><input type="button" value="뒤로가기" onclick="history.back()">
+                <div class="edit-btn">
+               	 <input type="submit" value="수정하기" class="edit-btn1">&nbsp<input type="button" value="뒤로가기" onclick="history.back()" class="edit-btn2">
+                </div>
                 </form>
 </body>
 </html>

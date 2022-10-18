@@ -15,10 +15,11 @@
 	</insert>
 		
 	<select id="qnaList" resultType="QnaVO">
-		select no, subject, id, reply_group, reply_seq, depth, hit, date_format(writedate, '%y.%m.%d %h:%i') writedate
-		from board_question 
+		select qna.no, qna.subject, qna.id, qna.reply_group, qna.reply_seq, qna.depth, qna.hit, date_format(qna.writedate, '%y.%m.%d %h:%i') writedate, user.name name
+		from board_question qna, user user
+		where qna.id = user.id
 		<if test="searchWord!=null">
-			where ${searchKey} like '%${searchWord}%'
+			and ${searchKey} like '%${searchWord}%'
 		</if>
 		order by reply_group desc, depth asc
 		limit ${onePageRecord} offset ${offsetPoint}
@@ -80,9 +81,9 @@
 		</if>
 	</select>
 	<select id="getQna" resultType="QnaVO" parameterType="int">
-		select no,reply_group, subject, content, hit, id, writedate, depth
-		from board_question
-		where no=${param1}
+		select qna.no, qna.reply_group, qna.subject, qna.content, qna.hit, qna.id, qna.writedate, qna.depth, user.name name
+		from board_question qna, user user
+		where no=${param1} and qna.id = user.id
 	</select>
 	
 	<update id="hitCount">

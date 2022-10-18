@@ -11,6 +11,7 @@ public class CustomerServiceVO {
 	private String id;
 	private int hit;
 	private String writedate;
+	private String name;
 	
 	private List<Integer> customerServiceList;
 
@@ -114,6 +115,16 @@ public class CustomerServiceVO {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 
 
 

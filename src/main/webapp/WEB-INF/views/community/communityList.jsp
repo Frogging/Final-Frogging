@@ -132,7 +132,7 @@ $(function(){
 				<c:if test="${vo.reply_count>0}">
 					<span style="margin: auto 10px;">(${vo.reply_count})</span>			
 				</c:if></li>
-				<li>${vo.id }</li>
+				<li>${vo.nickname }</li>
 				<li>${vo.hit }</li>
 				<li>${vo.writedate }</li>
 				</c:forEach>	

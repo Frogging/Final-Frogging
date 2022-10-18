@@ -6,6 +6,7 @@ var polyline;
 var address = [];
 var markerArr = [];
 var distance = 0;
+var time = 0;
 
 	$(function(){
 		var lat = new Array();
@@ -54,7 +55,11 @@ var distance = 0;
 				url : '/maps/mapsOk',
 				data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 2},
 				success: function(result){
-					window.location.href = '/maps/tmap02';
+					if(window.location.pathname == '/alone/alone_new_path_user'){
+						window.location.href = '/alone/alone_rec_path';
+					}else if(window.location.pathname == '/club/make_club_new_path_user'){
+						window.location.href = '/club/make_club_rec_path';
+					}
 				}, error: function(e){
 					console.log(e.responseText);
 					alert("코스 등록에 실패하였습니다.");
@@ -164,6 +169,9 @@ var distance = 0;
 		}
 		console.log(distance);
 		console.log(point);
+		time = parseInt(distance / 4.02  * 60 / 1000);
+		$('#result_distance').html((distance / 1000).toFixed(3) + "km");
+		$('#result_time').html(time+"분");
 	}
 	
 	function onrightClick(){
@@ -184,6 +192,9 @@ var distance = 0;
 			distance += point[i].distanceTo(point[i-1]);
 		}
 		console.log(distance);
+		time = parseInt(distance / 4.02  * 60 / 1000);
+		$('#result_distance').html((distance / 1000).toFixed(3) + "km");
+		$('#result_time').html(time+"분");
 	}
 	
 	function reverseGeo(lon, lat) {
@@ -378,7 +389,11 @@ var distance = 0;
 					map : map,
 					zIndex : 99999
 				});
-				
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 		reverseGeo(position._lng, position._lat);
 	}
 	
@@ -409,6 +424,35 @@ var distance = 0;
 					map : map,
 					zIndex : 99999
 				});
-
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 		reverseGeo(lon, lat);
+	}
+	
+	function nameCheck(){
+		var course_name = document.getElementById('course_name').value;
+		//alert(course_name);
+		if(course_name == ""){
+			alert("코스명을 입력하세요");
+			return false;
+		}
+		$.ajax({
+			type : 'post',
+			url : "/maps/nameCheck",
+			data : {"course_name" : course_name},
+			success : function(result){
+				if(result < 1){
+					alert("사용가능한 코스명입니다.");
+					nameChecker = true;
+				}else{
+					alert("중복된 코스명입니다.");
+				}
+			}, error: function(e){
+					console.log(e.responseText);
+					alert("중복 검사 실패");
+				}
+		})
 	}

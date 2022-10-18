@@ -15,7 +15,8 @@ public class CourseVO {
 	private String addr; // 출발지 주소
 	private String type;
 	private int activity_no;
-
+	private String id;
+	
 	private String startaddr;
 	private String endaddr;
 
@@ -130,12 +131,20 @@ public class CourseVO {
 
 	
 
+
 	@Override
 	public String toString() {
 		return "CourseVO [course_no=" + course_no + ", course_name=" + course_name + ", course_info=" + course_info
 				+ ", distance=" + distance + ", time=" + time + ", waypoint=" + waypoint + ", lat=" + lat + ", log="
-				+ log + ", addr=" + addr + ", type=" + type + ", activity_no=" + activity_no + ", startaddr="
-				+ startaddr + ", endaddr=" + endaddr + ", plog_total=" + plog_total + ", noList=" + noList + "]";
+				+ log + ", addr=" + addr + ", type=" + type + ", activity_no=" + activity_no + ", id=" + id
+				+ ", startaddr=" + startaddr + ", endaddr=" + endaddr + ", plog_total=" + plog_total + ", noList="
+				+ noList + ", getCourse_no()=" + getCourse_no() + ", getCourse_name()=" + getCourse_name()
+				+ ", getCourse_info()=" + getCourse_info() + ", getDistance()=" + getDistance() + ", getTime()="
+				+ getTime() + ", getWaypoint()=" + getWaypoint() + ", getLat()=" + getLat() + ", getLog()=" + getLog()
+				+ ", getAddr()=" + getAddr() + ", getStartaddr()=" + getStartaddr() + ", getEndaddr()=" + getEndaddr()
+				+ ", getPlog_total()=" + getPlog_total() + ", getType()=" + getType() + ", getNoList()=" + getNoList()
+				+ ", getActivity_no()=" + getActivity_no() + ", getId()=" + getId() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 	public List<Integer> getNoList() {
@@ -153,6 +162,14 @@ public class CourseVO {
 	public void setActivity_no(int activity_no) {
 		this.activity_no = activity_no;
 	}
-	
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
 }

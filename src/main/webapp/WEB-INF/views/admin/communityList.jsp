@@ -10,41 +10,41 @@
 	<script src="/js/k_admin.js" type="text/javascript"></script>
 	<script src="/js/k_chart.js" type="text/javascript"></script>
 </head>
+<style>
+.listEdit-btn, .listDel-btn {    
+	height: 28px;
+    width: 40px;
+    border : 1px solid white;
+    border-radius:5px;
+    color: white;
+    font-weight: bold;
+	border-color:#191919;color:#fff;
+	background-color:#333;
+	text-decoration:none;
+	font-family: 'Noto Sans KR', sans-serif; 
+	   
+}
+.k_section_title>div>i{ /*아이콘*/
+	font-size: calc(var(--size-medium-1)*1.2);
+}
+#tbody > tr > td > a{
+	text-decoration:none;
+	color:black;
+}
+a:visited {
+  color : black;
+  text-decoration: none;
+}
+a:link { 
+  color: black; 
+  text-decoration: none;
+}
+</style>
 <script>
-$(function(){
-	$(".p_searchForm").submit(function(){
-		if($(".p_searchWord").val()==""){
-			alert("검색어를 입력하세요.");
-			return false;
-		}
-		return true;
-	});
-	
-	//리스트 전체 선택
-	$(".p_allChk").click(function(){
-		$("input[type=checkbox]").prop("checked",$(".p_allChk").prop("checked"));
-	});
-	
-	//여러개를 삭제하도록
-	$(".p_multiDel").click(function(){
-		//체크 갯수 확인
-		var countChk = 0;		//						
-		$(".p_community input[name=noList]").each(function(idx, obj){
-			if(obj.checked){
-				countChk++;
-			}			
-		});
-		console.log(countChk);
-		if(countChk<=0){
-			alert("삭제할 레코드를 선택후 삭제하세요..");
-			return false;
-		}
-		
-		$(".p_communityForm").submit();
-	});
-});
 </script>
 <body style="font-family: 'Noto Sans KR', sans-serif; ">
+<div style="height:100%;">
+<table width="80%" class="table01">
 	<ul class="adminMenu">
 		<li class="tabMenu"><a href="/admin/userlist">사용자목록</a></li>
 		<li class="tabMenu"><a href="/admin/communityList">커뮤니티관리</a></li>
@@ -57,47 +57,50 @@ $(function(){
 	</ul>
 	<section>
 		<div class="k_wrapper">
-
 			<div class="k_section_title_s">
-				<div>게시판 관리</div>
+				<div>커뮤니티 관리</div>
 			</div>
 
 		</div>
 	</section>
-	<section class="k_mycourse" style="font-family: 'Noto Sans KR', sans-serif;">
-		<div class="k_wrapper">
-			<form action="">
-				<ul class="k_my_communityList_grid">
-					<li class="k_my_list_head"><input type="checkbox" class="p_allChk"/><span></span></li>
-					<li class="k_my_list_head"><span>번호</span></li>
-					<li class="k_my_list_head"><span>제목</span></li>
-					<li class="k_my_list_head"><span>작성자</span></li>
-					<li class="k_my_list_head"><span>조회수</span></li>
-					<li class="k_my_list_head"><span>등록일</span></li>
-
-					<c:forEach var="vo" items="${list }">
-						<li><input type="checkbox" name="noList" value="${vo.no}" /></li>
-						<li><span>${vo.no }</span></li>
-						<li>
-							<div
-								<c:if test="${vo.subject.length() >= 30}">
-					style='width:90%'
-				</c:if>>
-								<a
-									href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><span>${vo.subject }</span>
+				<colgroup>
+					<col width="4%"/>
+					<col width="41%"/>
+					<col width="18%"/>
+					<col width="8%"/>
+					<col width="9%"/>
+				</colgroup>
+				<thead>
+					<tr style="font-family: 'Noto Sans KR', sans-serif;">
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+				<c:forEach var="vo" items="${list }">
+					<tr>
+						<td>${vo.no }</td>
+						<td style="text-align:left;">
+							<div<c:if test="${vo.subject.length() >= 30}"> style='width:90%' </c:if>>
+								<a href="/community/communityView?no=${vo.no }&nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>"><span>${vo.subject }</span>
 									<c:if test="${vo.reply_count>0}">
 										<span>(${vo.reply_count})</span>
 									</c:if>
 									</a>
 							</div>
-						</li>
-						<li><span>${vo.id }</span></li>
-						<li><span>${vo.hit }</span></li>
-						<li><span>${vo.writedate }</span></li>
-					</c:forEach>
-				</ul>
-			</form>
-			<div class="p_page">
+						</td>
+						<td>${vo.id }</td>
+						<td>${vo.hit }</td>
+						<td>${vo.writedate }</td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+		<div class="p_page">
 				<ul>
 					<!-- 페이지 번호 -->
 					<c:if test="${pVO.nowPage<=1 }">
@@ -129,17 +132,5 @@ $(function(){
 					</c:if>
 				</ul>
 			</div>
-			<div>
-				<form method="get" action="/community/communityList"
-					class="p_searchForm">
-					<select name="searchKey" class="p_searchKey" style="height: 38px; width:90px;">
-						<option value="subject">제목</option>
-						<option value="nickname">작성자</option>
-						<option value="content">글내용</option>
-					</select> <input type="text" name="searchWord" class="p_searchWord" style="height: 38px;" /> 
-						<input type="submit" value="찾기" class="p_communitysearch-btn" style="height: 40px;" />
-				</form>
-			</div>
 		</div>
-	</section>
 </body>

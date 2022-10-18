@@ -93,7 +93,7 @@
 	    border-radius:5px;
 	    color: white;
 	    font-weight: bold;
-	    font-size: 22px;
+	    font-size: 18px;
 	    text-align:center;
 	    margin: 0 10px;
 	    font-family: 'Noto Sans KR', sans-serif;

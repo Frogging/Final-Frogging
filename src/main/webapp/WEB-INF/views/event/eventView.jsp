@@ -33,7 +33,7 @@ img{
 		<div id="p_eventview">
 			<ul style="padding: 10 50; margin: 10px 20px;">
 				<h5><li>no: ${vo.no }</li>
-					<li>관리자: ${vo.id }<hr/></li>
+					<hr/>
 				
 					<span style="word-spacing:15px;"><li>조회수:${vo.hit } 등록일:${vo.writedate }</li></span>
 					<span style="padding:1px;"><li>제목: ${vo.subject }</li></span></h5>

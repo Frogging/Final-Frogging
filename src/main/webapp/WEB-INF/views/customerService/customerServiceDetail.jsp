@@ -85,7 +85,14 @@
             			</tr>       
             			<tr>
            					<th>작성자</th>
-            				<td>${vo.id}</td>
+            				<td>
+            					 <c:if test = "${vo.depth == 0 }">
+	                            	${vo.name}
+	                            </c:if>
+	                            <c:if test = "${vo.depth > 0 }">
+	                            	관리자
+	                            </c:if>
+            				</td>
             				<th>작성일시</th>
            					<td>${vo.writedate}</td>
            				</tr>       
