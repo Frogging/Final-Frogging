@@ -283,7 +283,7 @@ function checkCourse(user_course, saved_course, distance){
 		if(checker < 10){
 			flag++;
 		}
-		alert(checker);
+		//alert(checker);
 	}
 	
 	if(flag >= limit){
@@ -487,7 +487,7 @@ function synchronizeStart(){
 					var start = new Tmapv2.LatLng(lat, lon);
 					
 					let distance = saved_course[0].distanceTo(start);
-					alert(distance);
+					//alert(distance);
 					if(distance < 100){
 						sync = true;
 					}

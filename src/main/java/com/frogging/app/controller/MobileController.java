@@ -119,6 +119,7 @@ public class MobileController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		cpvo.setOnePageRecord(3);
 		cpvo.setTotalRecord(m_service.totalCourse(cpvo));
 
 		List<CourseVO> courseList = m_service.courseAllselect_t(cpvo);
