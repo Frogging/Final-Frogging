@@ -1,16 +1,16 @@
 
 // 전역 변수 
 const urlParams = new URL(location.href).searchParams;
-const addr_section_1 = urlParams.get('addr_section_1');
-const addr_section_2 = urlParams.get('addr_section_2');
+var addr_section_1 = urlParams.get('addr_section_1');
+var addr_section_2 = urlParams.get('addr_section_2');
 
-console.log(addr_section_1);
-console.log(addr_section_2);
+// console.log(addr_section_1);
+// console.log(addr_section_2);
+
 
 if(addr_section_1 == null || addr_section_1 == ""){
-	addr_section_1="서울특별시";
+	addr_section_1 = "서울특별시";
 }
-
 var course_no;
 var select_course_no;
 var select_course_name;

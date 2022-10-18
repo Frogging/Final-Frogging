@@ -89,7 +89,7 @@
 								<c:if test="${p<=pVO.totalPage }" >
 									<li
 									<c:if test="${p==pVO.nowPage }">
-										style = "font-weight:bold;"
+										style = "font-weight:bold; color:#2fb86a;"
 									</c:if>
 									><a href="/admin/manageClub?nowPage=${p }<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p }</a></li>
 								</c:if>
