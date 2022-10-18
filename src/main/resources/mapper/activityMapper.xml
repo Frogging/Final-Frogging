@@ -199,7 +199,7 @@
 	</select>
 
 	<select id="numberOfGood" resultType="int">
-		select count(id) from user where restriction is null
+		select count(id) from user where restriction = 0
 	</select>
 
 	<select id="numberOfUnactive" resultType="int">

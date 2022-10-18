@@ -24,7 +24,7 @@ $(function(){
 
 //-------------------파티 세부 모달 내용 가져오기-------------------
 function modal_data(no) {
-	alert(no);
+	//alert(no);
 	$(function(){
 		
 		//모달 비우기 
@@ -75,7 +75,7 @@ function modal_data(no) {
 				//액티비티 세부 데이터 넣기
 				$('#k_nickname>span').html(activity_info.nickname);
 				$('#k_total_km>span').html(activity_info.total_distance+"km");
-				$('#k_plog_count>span').html(activity_info.plog_count+"분");
+				$('#k_plog_count>span').html(activity_info.plog_count+"회");
 
 				//파티 세부 데이터 넣기 
 				$('#k_course_name').html(party_info.course_name);
@@ -91,7 +91,7 @@ function modal_data(no) {
 
 				$('#k_partyname>span').html(party_info.partyname);
 				$('#k_addr>span').html(party_info.addr);
-				$('#k_d_and_t>span').html(party_info.distance + "/ "+ party_info.time);
+				$('#k_d_and_t>span').html(party_info.distance + "km/ "+ party_info.time+"분");
 				$('#k_number>span').html(party_info.number);
 				$('#k_meeting_time>span').html(party_info.meeting_time);
 				$('#k_meeting_place>span').html(party_info.meeting_place);
@@ -116,9 +116,12 @@ const addr_section_1 = urlParams.get('addr_section_1');
 const addr_section_2 = urlParams.get('addr_section_2');
 const searchDate = urlParams.get('searchDate');
 
-console.log(addr_section_1);
-console.log(addr_section_2);
-console.log(searchDate);
+if(addr_section_1 == null){
+	addr_section_1 = "서울특별시";
+}
+// console.log(addr_section_1);
+// console.log(addr_section_2);
+// console.log(searchDate);
 
 
 //-----------------   파티 검색하기  --------------------

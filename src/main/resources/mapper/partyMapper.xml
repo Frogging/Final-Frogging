@@ -226,7 +226,7 @@
 		) user
 		left outer join 
 		( 
-			select id, sum(distance) total_distance, count(no) plog_count 
+			select id, TRUNCATE(sum(distance),2) total_distance, count(no) plog_count 
 			from activity 
 			where id = #{param1}
 			group by id
