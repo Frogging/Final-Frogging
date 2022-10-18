@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
 		return dao.courseAllselect_t(mvo);
 	}
 
+	@Override
+	public int checkUserStatus(String id) {
+		return dao.checkUserStatus(id);
+	}
+
 }

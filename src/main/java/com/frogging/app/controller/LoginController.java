@@ -84,6 +84,7 @@ public class LoginController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {// 회원등록-> 로그인폼으로 이동
+			vo.setRestriction(0);
 			service.signUpOk(vo);
 
 			String msg = "<script>";
