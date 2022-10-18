@@ -29,6 +29,7 @@ import com.frogging.app.service.AddrService;
 import com.frogging.app.service.DataService;
 import com.frogging.app.service.MapsService;
 import com.frogging.app.service.PartyService;
+import com.frogging.app.service.UserService;
 import com.frogging.app.vo.ClubPagingVO;
 import com.frogging.app.vo.CoursePagingVO;
 import com.frogging.app.vo.CourseVO;
@@ -54,6 +55,9 @@ public class PartyController {
 
 	@Inject
 	MapsService m_service;
+
+	@Inject
+	UserService u_service;
 
 	// 함께 시작하기
 	@GetMapping(value = "/join_club")
@@ -307,39 +311,49 @@ public class PartyController {
 		// set_sample_user(session);
 
 		try {
-			// DB에 쓸 파티 세부 정보 세팅
-			PartyDetailVO p_detail_vo = new PartyDetailVO();
-			p_detail_vo.setParty_no(party_no);
-			p_detail_vo.setUser_id((String) request.getSession().getAttribute("logId"));
-			p_detail_vo.setJoin_status(0);
+			// 불량유저체크
+			String id = (String) request.getSession().getAttribute("logId");
+			int status = u_service.checkUserStatus(id);
 
-			// 신청 검사
-			// 검사-i) detail에 이미 있으면 x
-			// System.out.println("party_no:" + p_detail_vo.getParty_no() + " /in party:" +
-			// p_service.checkOverlap(p_detail_vo));
-			if (p_service.checkOverlap(p_detail_vo) == 0) {
+			if (status == 0) {
+				// DB에 쓸 파티 세부 정보 세팅
+				PartyDetailVO p_detail_vo = new PartyDetailVO();
+				p_detail_vo.setParty_no(party_no);
+				p_detail_vo.setUser_id((String) request.getSession().getAttribute("logId"));
+				p_detail_vo.setJoin_status(0);
 
-				// 검사-ii) party 정원이 찼는지 p_service.checkNumber
-				PartyVO p_vo = p_service.getPartyDetail(party_no);
-				if (p_vo.getCurrent_number() < p_vo.getNumber()) {
+				// 신청 검사
+				// 검사-i) detail에 이미 있으면 x
+				// System.out.println("party_no:" + p_detail_vo.getParty_no() + " /in party:" +
+				// p_service.checkOverlap(p_detail_vo));
+				if (p_service.checkOverlap(p_detail_vo) == 0) {
 
-					p_service.countCurrentNum(party_no); // current number 증가
-					p_service.newPartyRequest(p_detail_vo); // p_detail추가
+					// 검사-ii) party 정원이 찼는지 p_service.checkNumber
+					PartyVO p_vo = p_service.getPartyDetail(party_no);
+					if (p_vo.getCurrent_number() < p_vo.getNumber()) {
 
-					// 신청 성공일 때 -> 마이 클럽 리스트로
-					msg += "alert('클럽 참여 신청 성공하였습니다');";
-					msg += "location.href='/club/my_club_list';";
+						p_service.countCurrentNum(party_no); // current number 증가
+						p_service.newPartyRequest(p_detail_vo); // p_detail추가
+
+						// 신청 성공일 때 -> 마이 클럽 리스트로
+						msg += "alert('클럽 참여 신청 성공하였습니다');";
+						msg += "location.href='/club/my_club_list';";
+					} else {
+						// 모임 정원이 다 찼을 때
+						msg += "alert('모집이 마감된 모임입니다');";
+						msg += "history.go(-1)";
+					}
 				} else {
-					// 모임 정원이 다 찼을 때
-					msg += "alert('모집이 마감된 모임입니다');";
+					// 중복 신청일 때
+					msg += "alert('이미 신청한 모임입니다');";
 					msg += "history.go(-1)";
 				}
-			} else {
-				// 중복 신청일 때
-				msg += "alert('이미 신청한 모임입니다');";
+
+			} // 불량유저검사
+			else if (status == 1) {
+				msg += "alert('클럽에 참여할 수 없는 유저입니다.');";
 				msg += "history.go(-1)";
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 신청 실패일 때 -> back
@@ -362,24 +376,34 @@ public class PartyController {
 		try {
 			// set_sample_user(session);
 
-			// 1) DB:party
-			// party vo세팅
-			pVO.setId((String) request.getSession().getAttribute("logId"));
-			pVO.setCurrent_number(1); // 현재 참여인원 1명
-			// System.out.println(pVO.toString());
-			p_service.addNewParty(pVO);
+			// 불량유저체크
+			String id = (String) request.getSession().getAttribute("logId");
+			int status = u_service.checkUserStatus(id);
 
-			// 2) DB:party_detail (파티장) - status:4
-			// party_detail vo 세팅
-			PartyDetailVO p_detailVO = new PartyDetailVO();
-			p_detailVO.setParty_no(p_service.getMaxNo());
-			p_detailVO.setUser_id(pVO.getId());
-			p_detailVO.setJoin_status(4);
-			// System.out.println(p_detailVO.toString());
-			p_service.addNewPartyDetail(p_detailVO);
+			if (status == 0) {
+				// 1) DB:party
+				// party vo세팅
+				pVO.setId((String) request.getSession().getAttribute("logId"));
+				pVO.setCurrent_number(1); // 현재 참여인원 1명
+				// System.out.println(pVO.toString());
+				p_service.addNewParty(pVO);
 
-			msg += "alert('클럽 생성을 성공하였습니다');";
-			msg += "location.href='/club/my_club_list';";
+				// 2) DB:party_detail (파티장) - status:4
+				// party_detail vo 세팅
+				PartyDetailVO p_detailVO = new PartyDetailVO();
+				p_detailVO.setParty_no(p_service.getMaxNo());
+				p_detailVO.setUser_id(pVO.getId());
+				p_detailVO.setJoin_status(4);
+				// System.out.println(p_detailVO.toString());
+				p_service.addNewPartyDetail(p_detailVO);
+
+				msg += "alert('클럽 생성을 성공하였습니다');";
+				msg += "location.href='/club/my_club_list';";
+
+			} else if (status == 1) {
+				msg += "alert('클럽을 생성할 수 없는 유저입니다.');";
+				msg += "history.go(-1);";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			msg += "alert('클럽 생성을 실패하였습니다.');";
