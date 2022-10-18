@@ -15,7 +15,7 @@
 	</insert>
 		
 	<select id="qnaList" resultType="QnaVO">
-		select qna.no, qna.subject, qna.id, qna.reply_group, qna.reply_seq, qna.depth, qna.hit, date_format(qna.writedate, '%y.%m.%d %h:%i') writedate, user.name name
+		select qna.no, qna.subject, qna.id, qna.reply_group, qna.reply_seq, qna.depth, qna.hit, date_format(qna.writedate, '%y.%m.%d %h:%i') writedate, user.nickname name
 		from board_question qna, user user
 		where qna.id = user.id
 		<if test="searchWord!=null">
@@ -81,7 +81,7 @@
 		</if>
 	</select>
 	<select id="getQna" resultType="QnaVO" parameterType="int">
-		select qna.no, qna.reply_group, qna.subject, qna.content, qna.hit, qna.id, qna.writedate, qna.depth, user.name name
+		select qna.no, qna.reply_group, qna.subject, qna.content, qna.hit, qna.id, qna.writedate, qna.depth, user.nickname name
 		from board_question qna, user user
 		where no=${param1} and qna.id = user.id
 	</select>

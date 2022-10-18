@@ -58,9 +58,9 @@
 				data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 1},
 				success: function(result){
 					if(window.location.pathname == '/alone/alone_new_path'){
-						window.location.href = 'alone/alone_rec_path';
+						window.location.href = '/alone/alone_rec_path';
 					}else if(window.location.pathname == '/club/make_club_new_path'){
-						window.location.href = 'club/make_club_rec_path';
+						window.location.href = '/club/make_club_rec_path';
 					}
 				}, error: function(e){
 					console.log(e.responseText);

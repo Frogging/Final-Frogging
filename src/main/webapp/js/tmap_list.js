@@ -19,6 +19,7 @@
 				if(map_arr[i].type == 1){
 					var lat = new Array();
 					var log = new Array();
+					var point = [];
 					console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
@@ -46,6 +47,7 @@
 							}
 							lat.push(detail_arr[j].lat);
 							log.push(detail_arr[j].log);
+							point.push(new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log));
 							
 							if(detail_arr[j].waypoint == 0){
 								//console.log("start marker");
@@ -82,7 +84,7 @@
 					}
 					//console.log(markers);
 					searchRoute(lat, log, map[i]);
-					setBoundary(lat, log, map[i]);
+					setBoundary(point, map[i]);
 					//setTimeout(searchRoute, 1500, lat, log, map[i]);
 				} else if(map_arr[i].type == 2){
 					//console.log("type : 2");
@@ -148,6 +150,7 @@
 				if(map_arr[i].type == 1){
 					var lat = new Array();
 					var log = new Array();
+					var point = [];
 					//console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
@@ -170,7 +173,7 @@
 							}
 							lat.push(detail_arr[j].lat);
 							log.push(detail_arr[j].log);
-							
+							point.push(new Tmapv2.LatLng(detail_arr[j].lat, detail_arr[j].log));
 							if(detail_arr[j].waypoint == 0){
 								//console.log("start marker");
 								marker_s = new Tmapv2.Marker({
@@ -206,7 +209,7 @@
 					}
 					console.log(markers);
 					searchRoute(lat, log, map[i]);
-					setBoundary(lat, log, map[i]);
+					setBoundary(point, map[i]);
 					//setTimeout(searchRoute, 1500, lat, log, map[i]);
 				} else if(map_arr[i].type == 2){
 					console.log("type : 2");
