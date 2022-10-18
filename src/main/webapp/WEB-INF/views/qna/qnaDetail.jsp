@@ -109,7 +109,7 @@
                 	<button type="button" class="btn black mr5" onclick="location.href='/admin/qnaList'" style="width:150px;">관리자페이지로</button>
                 </c:if>
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaList'">목록으로</button>
-                <c:if test="${vo.id==logId}">
+                <c:if test="${vo.id==logId||logStatus=='Admin'}">
                 <button type="button" class="btn black mr5" onclick="location.href='/qna/qnaEdit/${vo.no }'">수정하기</button>
                 <input type="button" class="btn black" value="삭제하기" onclick="location.href='javascript:qnaDel();'"/>
                 </c:if>
