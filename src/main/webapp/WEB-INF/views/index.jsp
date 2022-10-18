@@ -41,7 +41,7 @@
 	.mobileMenu > ul >li>a{
 		color:white;
 	}
-	.mobileMenu-log{
+	.mobileMenu-log, .mobileMenu-logout{
 		width:200px;
 		text-align:center;
 	}
@@ -219,7 +219,12 @@
 			</div>
 			<div class="mobileMenu">
 			<ul>
+			<c:if test="${logStatus==null}">
               	<li><a href="/login" class="mobileMenu-log">로그인</a></li>         
+			</c:if>
+			<c:if test="${logStatus=='Y'}">
+				<li><a href="/logout" class="mobileMenu-logout">로그아웃</a></li>
+			</c:if>
 			</ul>
 			</div>
 		</div>	
