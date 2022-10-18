@@ -89,7 +89,7 @@
             			</tr>       
             			<tr>
            					<th>작성자</th>
-            				<td>${vo.id}</td>
+            				<td>${vo.name}</td>
             				<th>작성일시</th>
            					<td>${vo.writedate}</td>
            				</tr>       

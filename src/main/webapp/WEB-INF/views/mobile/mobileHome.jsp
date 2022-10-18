@@ -34,7 +34,7 @@
 		}
 		.mobile-plogging-btn{
 			height:100px;
-			width:100px;
+			width:130px;
 			background-color: #2fb86a;
 			font-family: 'Noto Sans KR', sans-serif;
 			color:white;

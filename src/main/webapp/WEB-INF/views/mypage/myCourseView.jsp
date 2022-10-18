@@ -117,14 +117,16 @@
 			<c:if test="${logStatus !='Admin'}">
 				<div><a href="/mypage/myCourse">돌아가기</a></div>
 				<c:if test="${logId!=null}">
-					<div><a href="/mypage/myCourseEdit?no=${vo.course_no}">수정하기</a></div>
+					<div>
+					<a href="/mypage/myCourseEdit<c:if test = '${vo.type == 2 }'>_user</c:if>?no=${vo.course_no}">수정하기</a>
+					</div>
 					<div><a href="javascript:deleteCourse(${vo.course_no});">삭제하기</a></div>
 				</c:if>
 			</c:if>
 			<c:if test="${logStatus =='Admin'}">
 				<div><a href="/admin/manageCourse">돌아가기</a></div>
 				<c:if test="${logId!=null}">
-					<div><a href="/mypage/myCourseEdit?no=${vo.course_no}">수정하기</a></div>
+					<div><a href="/mypage/myCourseEdit<c:if test = '${vo.type == 2 }'>_user</c:if>?no=${vo.course_no}">수정하기</a></div>
 					<div><a href="javascript:deleteCourse(${vo.course_no});">삭제하기</a></div>
 				</c:if>
 			</c:if>

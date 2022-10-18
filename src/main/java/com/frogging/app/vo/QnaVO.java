@@ -12,6 +12,7 @@ public class QnaVO {
 	private String id;
 	private int hit;
 	private String writedate;
+	private String name;
 	
 	private List<Integer> qnaList;
 	private String result;
@@ -147,7 +148,17 @@ public class QnaVO {
 	}
 
 
+	public String getName() {
+		return name;
+	}
 
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	
 
 
 	

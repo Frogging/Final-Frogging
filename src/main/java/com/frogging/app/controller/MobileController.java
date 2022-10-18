@@ -52,10 +52,13 @@ public class MobileController {
 	}
 	
 	@GetMapping("maps/geolocation01/{course_no}")
-	public ModelAndView geolocation01(@PathVariable("course_no") int course_no) {
+	public ModelAndView geolocation01(@PathVariable("course_no") int course_no, HttpServletRequest request) {
 		
 		mav = new ModelAndView();
 		
+		String id = (String)request.getSession().getAttribute("logId");
+		
+		System.out.println(id);
 		int result = m_service.courseCheck(course_no);
 		if(result == 0) {
 			CourseVO cvo = new CourseVO();
@@ -84,7 +87,6 @@ public class MobileController {
 		int activity_no = 0;
 		CourseVO cvo = m_service.courseSelect(course_no);
 		
-		session.setAttribute("logId","jjiho2001@gmail.com");
 		String id = (String)request.getSession().getAttribute("logId");
 		
 		avo.setId(id);
@@ -117,6 +119,7 @@ public class MobileController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		cpvo.setOnePageRecord(3);
 		cpvo.setTotalRecord(m_service.totalCourse(cpvo));
 
 		List<CourseVO> courseList = m_service.courseAllselect_t(cpvo);

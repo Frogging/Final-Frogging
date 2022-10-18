@@ -57,7 +57,11 @@
 				url : '/maps/mapsOk',
 				data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 1},
 				success: function(result){
-					window.location.href = '/maps/tmap02';
+					if(window.location.pathname == '/alone/alone_new_path'){
+						window.location.href = 'alone/alone_rec_path';
+					}else if(window.location.pathname == '/club/make_club_new_path'){
+						window.location.href = 'club/make_club_rec_path';
+					}
 				}, error: function(e){
 					console.log(e.responseText);
 					alert("코스 등록에 실패하였습니다.");
@@ -304,7 +308,8 @@
 										.toFixed(0);
 
 						$("#result").text("예상 거리 : " + tDistance +"km / 예상 소요 시간 : "+ tTime + "분");
-						
+						$('#result_distance').html(tDistance + "km");
+						$('#result_time').html(tTime+"분");
 						//기존 그려진 라인 & 마커가 있다면 초기화
 						if (resultdrawArr.length > 0) {
 							for ( var i in resultdrawArr) {
@@ -542,6 +547,11 @@
 			searchRoute();
 			reverseGeo(position.lng(), position.lat(), 2);
 		}
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 	}
 	
 	// 검색 결과를 클릭해서 경로 설정
@@ -610,7 +620,11 @@
 			searchRoute();
 			reverseGeo(lon, lat, 2);
 		}
-		
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 	}
 	
 	// 좌표를 주소로(도로명, 지번 가능)

@@ -33,7 +33,7 @@ $(function(){
 			check == false;
 		}
 		
-		alert(check);
+		//alert(check);
 		var lat = new Array();
 		var lon = new Array();
 		
@@ -74,7 +74,7 @@ $(function(){
 	});
 });
 function initTmap() {
-		alert("initTmap");
+		//alert("initTmap");
 		
 		// 1. 지도 띄우기
 		// 현재 위치 HTML Geolocaiton 을 통해 확인 GPS 아님
@@ -146,7 +146,7 @@ function startChecking(){
 
 						if(before_location != null){
 							const section_distance = before_location.distanceTo(new_location) / 1000;
-							if(section_distance < 0.02){
+							if(section_distance < 0.01){
 								updateFlag = false;
 							}
 							
@@ -283,7 +283,7 @@ function checkCourse(user_course, saved_course, distance){
 		if(checker < 10){
 			flag++;
 		}
-		alert(checker);
+		//alert(checker);
 	}
 	
 	if(flag >= limit){
@@ -304,7 +304,7 @@ function checkArea(point_user, point_saved){
 }
 function loadCourse(loaded_course, type){
 	if(type == 1){
-		alert("loadcourse!");
+		//alert("loadcourse!");
 		var waypoint = "";
 		for (let i = 2; i < loaded_course.length; i++){
 			waypoint += loaded_course[i].log + ",";
@@ -437,9 +437,18 @@ function loadCourse(loaded_course, type){
 					}
 				});
 	} else {
+		var temp_position;
+		var end_point;
 		for(let i = 0; i < loaded_course.length; i++){
-			saved_course.push(new Tmapv2.point(loaded_course.lat[i], loaded_course.log[i]));
+			temp_position = new Tmapv2.LatLng(loaded_course[i].lat, loaded_course[i].log);
+			if(loaded_course[i].waypoint != 1){
+				saved_course.push(temp_position);
+			} else {
+				end_point = new Tmapv2.LatLng(loaded_course[i].lat, loaded_course[i].log);
+			}
 		}
+		saved_course.push(end_point);
+		drawLine(saved_course);
 	}
 }
 
@@ -478,15 +487,16 @@ function synchronizeStart(){
 					var start = new Tmapv2.LatLng(lat, lon);
 					
 					let distance = saved_course[0].distanceTo(start);
-					alert(distance);
+					//alert(distance);
 					if(distance < 100){
 						sync = true;
 					}
+					
+					if(sync == true){
+						alert("출발지 동기화가 완료되었습니다. 경로를 확인하여 종료시 알려드립니다.");
+					} else {
+						alert("출발지 동기화에 실패하였습니다. 실제 이동 경로는 마이페이지에서 확인하실 수 있습니다만, 기존 경로에 대한 확인은 이루어지지 않습니다.");
+					}
 				}, showError);
 			}
-	if(sync == true){
-		alert("출발지 동기화가 완료되었습니다. 경로를 확인하여 종료시 알려드립니다.");
-	} else {
-		alert("출발지 동기화에 실패하였습니다. 실제 이동 경로는 마이페이지에서 확인하실 수 있습니다만, 기존 경로에 대한 확인은 이루어지지 않습니다.");
-	}
 }

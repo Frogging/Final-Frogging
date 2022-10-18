@@ -85,5 +85,11 @@
 		order by course_no desc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
+
+	<select id="checkUserStatus" resultType="int">
+		select restriction
+		from user
+		where id = #{param1}
+	</select>
 </mapper>
 

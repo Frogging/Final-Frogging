@@ -148,7 +148,7 @@
 							<li class="k_a_main_info">${vo.course_name}</li>
 							<li class="k_a_div"></li>
 							<li>거리: ${vo.distance}km, 걸음 수 : ${vo.step}보</li>
-							<li>주운 쓰레기: ${vo.amount_trash}l</li>
+							<li>주운 쓰레기: ${vo.amount_trash}L</li>
 							<li>
 								<c:if test="${vo.sort == 0 }">
 									혼자한 플로깅

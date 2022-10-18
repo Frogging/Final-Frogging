@@ -94,12 +94,22 @@
 					//console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
-							width : "500px",
-							height : "400px",
+							width : "100%",
+							height : "130px",
 							zoom : 15,
 							zoomControl : false,
 							scrollwheel : false
 						});
+						if(map_arr[i].course_no == 99999){
+							$('#map_div_99999').css('width', '100%');
+							$('#map_div_99999').css('height', '500px');
+							map[i].resize();
+						}
+						if(window.location.pathname == '/mobile/mobileList'){
+							$('#map_div_'+map_arr[i].course_no).css('width', '400px');
+							$('#map_div_'+map_arr[i].course_no).css('height', '220px');
+							map[i].resize();
+						}
 						for(var j = 0; j < detail_arr.length; j++){
 							if(map_arr[i].course_no == detail_arr[j].course_no){
 								if(detail_arr[j].waypoint == 0){
@@ -125,6 +135,7 @@
 							markers.push(marker);
 						}
 						drawLine(point, map[i]);
+						setBoundary(point, map[i]);
 				}
 			}, i * 500)
 		}
@@ -207,12 +218,17 @@
 					console.log(i);
 					map[i] = new Tmapv2.Map("map_div_"+map_arr[i].course_no, {
 						center : new Tmapv2.LatLng(37.56520450, 126.98702028),
-							width : "500px",
-							height : "400px",
+							width : "100%",
+							height : "100%",
 							zoom : 15,
 							zoomControl : false,
 							scrollwheel : false
 						});
+					if(map_arr[i].course_no == 99999){
+						$('#map_div_99999').css('width', '100%');
+						$('#map_div_99999').css('height', '28vh');
+						map[i].resize();
+					}
 						for(var j = 0; j < detail_arr.length; j++){
 							if(map_arr[i].course_no == detail_arr[j].course_no){
 								if(detail_arr[j].waypoint == 0){
@@ -238,6 +254,7 @@
 							markers.push(marker);
 						}
 						drawLine(point, map[i]);
+						setBoundary(point, map[i]);
 				}
 			}, i * 500)
 		}
@@ -426,6 +443,16 @@
 		for(let i = 0; i < lat.length; i++){
 			var point_b = new Tmapv2.LatLng(lat[i], log[i]);
 			boundary.extend(point_b);
+		}
+		map.fitBounds(boundary);
+	}
+	
+	function setBoundary(point, map){
+		
+		var boundary = new Tmapv2.LatLngBounds();
+		
+		for(let i = 0; i < point.length; i++){
+			boundary.extend(point[i]);
 		}
 		map.fitBounds(boundary);
 	}

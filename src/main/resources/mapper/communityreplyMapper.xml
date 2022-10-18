@@ -5,8 +5,10 @@
 <mapper namespace="com.frogging.app.dao.CommunityReplyDAO">
 	
 	<select id="replyList" resultType="CommunityReplyVO">
-		select reply_no, no, depth, reply_group, id, content, date_format(writedate, '%y년%m월%d일%h시%i분') writedate
-		from reply_community where no=${param1} order by reply_group asc, depth asc
+		select reply.reply_no, reply.no, reply.depth, reply.reply_group, reply.id, reply.content, date_format(reply.writedate, '%y년%m월%d일%h시%i분') writedate, user.nickname nickname
+		from reply_community reply, user user
+		where no=${param1} and reply.id = user.id
+		order by reply_group asc, depth asc
 	</select>
 	
 	<insert id="replyInsert">

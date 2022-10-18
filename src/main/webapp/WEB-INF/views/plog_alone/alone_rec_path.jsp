@@ -111,7 +111,7 @@
 										<li class="k_rec_path_title k_green">${vo.course_name}</li>
 										<li>${vo.addr}</li>
 										<li class="k_box_space"></li>
-										<li>예상 소요시간: ${vo.time}</li>
+										<li>예상 소요시간: ${vo.time}분</li>
 										<li>당월 방문 수: ${vo.plog_total}회</li>
 										<li class="k_more"><div id="map_div_${vo.course_no }"></div></li>
 									</ul>

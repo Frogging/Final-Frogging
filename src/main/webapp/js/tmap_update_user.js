@@ -11,57 +11,55 @@ var distance = 0;
 		var lat = new Array();
 		var lon = new Array();
 		
-		$("#courseForm").submit(function(){
-			
-			event.preventDefault();
-			
-			var temp_add;
-			var tDistance = 0;
-			var tTime = 0;
-			
-			for(var i = 0; i < markers.length; i++){
-				if(i == 0){
-					lat[i] = markers[i].getPosition().lat();
-					lon[i] = markers[i].getPosition().lng();
-				}else if(i == 1){
-					lat[i] = markers[markers.length-1].getPosition().lat();
-					lon[i] = markers[markers.length-1].getPosition().lng();
-					temp_add = address[i];
-					address[i] = address[address.length-1];
-				}else{
-					lat[i] = markers[i-1].getPosition().lat();
-					lon[i] = markers[i-1].getPosition().lng();
-					address[i] = temp_add;
-					if(i != markers.length - 1){
-						temp_add = address[i+1];
+		$(".saveEditedCourse").click(function(){
+			if(confirm("수정된 코스를 저장하시겠습니까?")){
+				var temp_add;
+				var tDistance = 0;
+				var tTime = 0;
+				
+				for(var i = 0; i < markers.length; i++){
+					if(i == 0){
+						lat[i] = markers[i].getPosition().lat();
+						lon[i] = markers[i].getPosition().lng();
+					}else if(i == 1){
+						lat[i] = markers[markers.length-1].getPosition().lat();
+						lon[i] = markers[markers.length-1].getPosition().lng();
+						temp_add = address[i];
+						address[i] = address[address.length-1];
+					}else{
+						lat[i] = markers[i-1].getPosition().lat();
+						lon[i] = markers[i-1].getPosition().lng();
+						address[i] = temp_add;
+						if(i != markers.length - 1){
+							temp_add = address[i+1];
+						}
 					}
+					console.log("lat : " + lat[i]);
+					console.log("lon : " + lon[i]);
+					console.log("address : " + address[i]);
 				}
-				console.log("lat : " + lat[i]);
-				console.log("lon : " + lon[i]);
-				console.log("address : " + address[i]);
+				
+				var course_name = $("#coursename").val();
+				var course_info = $("#course_info").val();
+				var course_no = detail_arr[0].course_no;
+				
+				tDistance = parseInt(distance) / 1000;
+				tTime = parseInt(tDistance / 4.02  * 60);
+				
+				console.log("distance : " + tDistance + " time : " + tTime);
+				
+				$.ajax({
+					type : 'POST',
+					url : '/maps/tmapsEditOk/'+course_no,
+					data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 2},
+					success: function(result){
+						window.location.href = '/mypage/myCourseView?no='+course_no;
+					}, error: function(e){
+						console.log(e.responseText);
+						alert("코스 등록에 실패하였습니다.");
+					}
+				});
 			}
-			
-			var course_name = $("#course_name").val();
-			var course_info = $("#course_info").val();
-			var course_no = detail_arr[0].course_no;
-			
-			tDistance = parseInt(distance) / 1000;
-			tTime = parseInt(tDistance / 4.02  * 60);
-			
-			console.log("distance : " + tDistance + " time : " + tTime);
-			
-			$.ajax({
-				type : 'POST',
-				url : '/maps/tmapsEditOk/'+course_no,
-				data : {"lat": lat, "log": lon, "distance" : tDistance, "time" : tTime, "course_name" : course_name, "course_info" : course_info, "address" : address, "type": 2},
-				success: function(result){
-					window.location.href = '/maps/tmap02';
-				}, error: function(e){
-					console.log(e.responseText);
-					alert("코스 등록에 실패하였습니다.");
-				}
-			});
-			
 		});
 		
 	});
@@ -192,7 +190,7 @@ var distance = 0;
 		marker = new Tmapv2.Marker(
 					{
 						position : point[point.length-1],
-						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
+						icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_"+point.length+".png",
 						iconSize : new Tmapv2.Size(24, 38),
 						map : map
 					});
@@ -204,9 +202,12 @@ var distance = 0;
 			distance += point[i].distanceTo(point[i-1]);
 		}
 		console.log(distance);
+		time = parseInt(distance / 4.02  * 60 / 1000);
+		$('#result_distance').html((distance / 1000).toFixed(3) + "km");
+		$('#result_time').html(time+"분");
 	}
 	
-	function onrightClick(){
+	function onrightClick(e){
 		if(point.length > 0){
 			point.pop();
 			polyline.setPath(point);
@@ -219,11 +220,14 @@ var distance = 0;
 		}
 		console.log(address[address.length-1]);
 		
-		tDistance = 0;
+		distance = 0;
 		for(var i = 1; i < point.length; i++){
-			tDistance += point[i].distanceTo(point[i-1]);
+			distance += point[i].distanceTo(point[i-1]);
 		}
-		console.log(tDistance);
+		console.log(distance);
+		time = parseInt(distance / 4.02  * 60 / 1000);
+		$('#result_distance').html((distance / 1000).toFixed(3) + "km");
+		$('#result_time').html(time+"분");
 	}
 	
 	function reverseGeo(lon, lat) {
@@ -417,7 +421,11 @@ var distance = 0;
 					map : map,
 					zIndex : 99999
 				});
-				
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 		reverseGeo(position._lng, position._lat);
 	}
 	
@@ -448,7 +456,11 @@ var distance = 0;
 					map : map,
 					zIndex : 99999
 				});
-
+		if(markerArr.length > 0){
+			for(var i in markerArr){
+				markerArr[i].setMap(null);
+			}
+		}
 		reverseGeo(lon, lat);
 	}
 	

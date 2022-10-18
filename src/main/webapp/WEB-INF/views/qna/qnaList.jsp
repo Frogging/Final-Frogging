@@ -77,7 +77,7 @@ a:visited {
                             </c:if> 
                            </td>
                             <td>${vo.hit}</td>
-                            <td>${vo.id}</td>
+                            <td>${vo.name}</td>
                             <td>${vo.writedate}</td>
                         </tr>
                         	</c:forEach> 

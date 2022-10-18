@@ -100,7 +100,7 @@ function communityDel(){
 							tag+= "30px'>"; //tag+= (vo.depth*10)+"px'>";
 						}						
 	
-						tag += "<div><b>"+vo.id+"("+vo.writedate+")</b>"
+						tag += "<div><b>"+vo.nickname+"("+vo.writedate+")</b>"
 
 						tag += "<input type='hidden' name='reply_no' value='"+vo.reply_no+"'/>";
 						tag += "<input type='button' value='답글' class='p_reReply' onclick=''/>";
@@ -248,7 +248,7 @@ function communityDel(){
 	<div id="p_communityview">
 		<ul style="padding: 10 50; margin: 10px 20px;">
 			<h5><li>no: ${vo.no }</li>
-				<li>아이디: ${vo.id }<hr/></li>
+				<li>닉네임: ${vo.nickname }<hr/></li>
 			
 				<span style="word-spacing:15px;"><li>조회수:${vo.hit } 등록일:${vo.writedate }</li></span>
 				<span style="padding:1px;"><li>제목: ${vo.subject }</li></span></h5>
