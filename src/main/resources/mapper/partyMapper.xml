@@ -85,7 +85,7 @@
 
 		(select course_no, addr
 		from course_detail
-		where waypoint = 1 ) detail
+		where waypoint = 0 ) detail
 		on course.course_no = detail.course_no
 
 		<if test="searchLoc!=null">

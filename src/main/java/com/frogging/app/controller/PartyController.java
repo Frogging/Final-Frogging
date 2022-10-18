@@ -83,7 +83,7 @@ public class PartyController {
 		mav = new ModelAndView();
 
 		mav.addObject("addr_1", d_service.getAddr_1());
-		mav.addObject("addr_2", d_service.getAddr_2(pageVO.getAddr_section_1()));
+		mav.addObject("addr_2", d_service.getAddr_2("서울특별시"));
 		mav.addObject("list", p_service.getPartyList(pageVO));
 		mav.addObject("pVO", pageVO);
 		mav.setViewName("plog_together/join_club");
