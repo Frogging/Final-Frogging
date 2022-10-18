@@ -4,6 +4,12 @@ const urlParams = new URL(location.href).searchParams;
 var addr_section_1 = urlParams.get('addr_section_1');
 var addr_section_2 = urlParams.get('addr_section_2');
 
+<<<<<<< HEAD
+=======
+// console.log(addr_section_1);
+// console.log(addr_section_2);
+
+>>>>>>> 45261aa08773cf925ac405d3d51b723c9bf58596
 
 console.log(addr_section_1);
 console.log(addr_section_2);
