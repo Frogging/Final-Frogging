@@ -112,11 +112,11 @@ function modal_data(no) {
 
 // ---- 전역변수 
 const urlParams = new URL(location.href).searchParams;
-const addr_section_1 = urlParams.get('addr_section_1');
-const addr_section_2 = urlParams.get('addr_section_2');
-const searchDate = urlParams.get('searchDate');
+var addr_section_1 = urlParams.get('addr_section_1');
+var addr_section_2 = urlParams.get('addr_section_2');
+var searchDate = urlParams.get('searchDate');
 
-if(addr_section_1 == null){
+if(addr_section_1 == null || addr_section_1 == "" ){
 	addr_section_1 = "서울특별시";
 }
 // console.log(addr_section_1);
