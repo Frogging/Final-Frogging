@@ -33,6 +33,10 @@ a:visited {
 	text-decoration:none;
 	color:black;
 } 
+ a:link { 
+  color: black; 
+  text-decoration: none;
+ }
 </style>
 </head>
 <body>
