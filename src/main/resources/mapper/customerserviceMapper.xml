@@ -13,7 +13,7 @@
 		insert into board_customerservice(id, subject, content, reply_group, depth )
 		values(#{id}, #{subject}, #{content}, #{reply_group}, 0 )
 	</insert>
-		
+			
 	<select id="customerServiceList" resultType="CustomerServiceVO">
 		select cs.no, cs.subject, cs.id, cs.reply_group, cs.depth, cs.hit, date_format(cs.writedate, '%y.%m.%d %h:%i') writedate, user.name name
 		from board_customerservice cs, user user
@@ -24,13 +24,14 @@
 		order by reply_group desc, depth asc
 		limit ${onePageRecord} offset ${offsetPoint}
 	</select>
-	
+
+
 	<delete id="customerServiceDel">
-		delete from board_customerservice where reply_group=${param1} and id=#{param2}
+		delete from board_customerservice where reply_group=${param1} 
 	</delete>
-	
+	<!-- and id=#{param2} -->
 	<delete id="customerServiceDel2">
-		delete from board_customerservice where no=${param1} and id=#{param2}
+		delete from board_customerservice where no=${param1} 
 	</delete>
 	
 		
