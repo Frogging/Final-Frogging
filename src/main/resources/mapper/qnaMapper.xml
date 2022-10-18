@@ -26,11 +26,11 @@
 	</select>
 	
 	<delete id="qnaDel">
-		delete from board_question where reply_group=${param1} and id=#{param2}
+		delete from board_question where reply_group=${param1} 
 	</delete>
-	
+	<!-- and id=#{param2} -->
 	<delete id="qnaDel2">
-		delete from board_question where no=${param1} and id=#{param2}
+		delete from board_question where no=${param1} 
 	</delete>
 	
 	<delete id="qnaParentDel">
