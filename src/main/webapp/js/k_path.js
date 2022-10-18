@@ -4,13 +4,18 @@ const urlParams = new URL(location.href).searchParams;
 var addr_section_1 = urlParams.get('addr_section_1');
 var addr_section_2 = urlParams.get('addr_section_2');
 
+<<<<<<< HEAD
+=======
 // console.log(addr_section_1);
 // console.log(addr_section_2);
 
+>>>>>>> 45261aa08773cf925ac405d3d51b723c9bf58596
 
-if(addr_section_1 == null || addr_section_1 == ""){
-	addr_section_1 = "서울특별시";
-}
+console.log(addr_section_1);
+console.log(addr_section_2);
+
+
+
 var course_no;
 var select_course_no;
 var select_course_name;
