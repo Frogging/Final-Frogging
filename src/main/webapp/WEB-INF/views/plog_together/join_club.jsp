@@ -120,7 +120,7 @@
 							<c:if test="${p==pVO.nowPage }">
 							style="font-weight:bold"
 							</c:if>
-							><a href="/club/join_club?nowPage=${p}<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.saddr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>">${p}</a></li>
+							><a href="/club/join_club?nowPage=${p}<c:if test='${pVO.addr_section_2!=null}'>&addr_section_1=${pVO.addr_section_1}&addr_section_2=${pVO.addr_section_2}</c:if>">${p}</a></li>
 						</c:if>
 					</c:forEach>
 					

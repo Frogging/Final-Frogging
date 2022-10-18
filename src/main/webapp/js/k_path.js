@@ -7,6 +7,9 @@ const addr_section_2 = urlParams.get('addr_section_2');
 console.log(addr_section_1);
 console.log(addr_section_2);
 
+if(addr_section_1 == null || addr_section_1 == ""){
+	addr_section_1="서울특별시";
+}
 
 var course_no;
 var select_course_no;
